@@ -31,6 +31,10 @@ jobs:
         echo "${{ secrets.DEPLOYMENT_KEY }}" > deploy_key
         chmod 600 deploy_key
         ssh-keyscan 18.132.1.139 >> known_hosts
+    
+    - name: Output deploy_key for debugging
+      run: |
+        cat deploy_key
 
     - name: SSH & Deploy Docker Container on EC2
       run: |
