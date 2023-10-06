@@ -29,7 +29,7 @@ jobs:
         echo "Debugging (first 10 characters): ${DEPLOYMENT_PRIVATE_KEY:0:10}" # This line attempts to display the first 10 characters.
         chmod 600 deploy_key
         ssh-keyscan 18.132.1.139 >> known_hosts
-        ssh -i deploy_key github@18.132.1.139 'docker pull basharherbawi/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest'
+        ssh -o StrictHostKeyChecking=no -i deploy_key github@18.132.1.139 'docker pull ***/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ***/expenelixir:latest'
 
       env:
         DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
