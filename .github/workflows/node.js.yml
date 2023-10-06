@@ -26,11 +26,15 @@ jobs:
     - name: Configure remote Docker host
       uses: khaledez/configure-docker-host@v1
       with:
-        ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
         host: 18.132.1.139
         user: github
+        ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
 
     - name: Pull and run Docker image on remote host
       run: |
         docker pull basharherbawi/expenelixir
         docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest
+    
+    - name: print logs
+      if: always()
+      run: docker compose logs
