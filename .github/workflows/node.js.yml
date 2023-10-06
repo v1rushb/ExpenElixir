@@ -35,9 +35,9 @@ jobs:
         docker pull basharherbawi/expenelixir
         docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest
     
-- name: debug secrets (USE WITH CAUTION)
-  run: |
-    echo "${{ secrets.DOCKERHUB_USERNAME }}" > debug_secrets.txt
-    echo "${{ secrets.DOCKERHUB_PASSWORD }}" >> debug_secrets.txt
-    echo "${{ secrets.DEPLOYMENT_KEY }}" >> debug_secrets.txt
-    cat debug_secrets.txt
+    - name: debug secrets (USE WITH CAUTION)
+      run: |
+        echo "${{ secrets.DOCKERHUB_USERNAME }}" > debug_secrets.txt
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" >> debug_secrets.txt
+        echo "${{ secrets.DEPLOYMENT_KEY }}" >> debug_secrets.txt
+        cat debug_secrets.txt
