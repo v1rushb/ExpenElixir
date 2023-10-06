@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker CI & EC2 Deployment
 
 on:
   push:
@@ -12,23 +12,27 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Build Docker Image
+      run: |
+        docker build . --file Dockerfile --tag basharherbawi/expenelixir:latest
+
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Build and push the Docker image
+    - name: Push Docker Image to Docker Hub
       run: |
-        docker build . --file Dockerfile --tag basharherbawi/expenelixir
-        docker push basharherbawi/expenelixir
+        docker push basharherbawi/expenelixir:latest
 
-    - name: Setup SSH for deployment
+    - name: Prepare SSH Key
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > deploy_key
         chmod 600 deploy_key
         ssh-keyscan 18.132.1.139 >> known_hosts
-        ssh -i deploy_key github@18.132.1.139 'docker pull basharherbawi/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest'
 
-      env:
-        DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
+    - name: SSH & Deploy Docker Container on EC2
+      run: |
+        scp -i deploy_key Dockerfile github@18.132.1.139:~/Dockerfile
+        ssh -i deploy_key github@18.132.1.139 "docker pull basharherbawi/expenelixir:latest && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest"
