@@ -38,6 +38,6 @@ jobs:
     - name: print logs
       if: always()
       run: |
-        echo '${{ secrets.DOCKERHUB_USERNAME }}'
-        echo '${{ secrets.DOCKERHUB_PASSWORD }}'
-        echo '${{ secrets.DEPLOYMENT_KEY }}'
+        echo ${{ secrets.DOCKERHUB_USERNAME }}
+        echo ${{ secrets.DOCKERHUB_PASSWORD }}
+        echo ${{ secrets.DEPLOYMENT_KEY }}
