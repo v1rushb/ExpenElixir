@@ -23,21 +23,8 @@ jobs:
         docker build . --file Dockerfile --tag basharherbawi/expenelixir
         docker push basharherbawi/expenelixir
     
-    - name: Configure remote Docker host
-      uses: khaledez/configure-docker-host@v1
-      with:
-        host: 18.132.1.139
-        user: github
-        ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
-
-    - name: Pull and run Docker image on remote host
+    - name: Deployment
       run: |
-        docker pull basharherbawi/expenelixir
-        docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest
-    
-    - name: debug secrets (USE WITH CAUTION)
-      run: |
-        echo "${{ secrets.DOCKERHUB_USERNAME }}" > debug_secrets.txt
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" >> debug_secrets.txt
-        echo "${{ secrets.DEPLOYMENT_KEY }}" >> debug_secrets.txt
-        cat debug_secrets.txt
+        ssh -i ${{ secrets.DEPLOYMENT_KEY }} github@18.132.1.139 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+      env:
+        DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
