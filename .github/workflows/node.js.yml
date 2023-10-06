@@ -26,9 +26,10 @@ jobs:
     - name: Setup SSH for deployment
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > deploy_key
+        echo "Debugging: $DEPLOYMENT_PRIVATE_KEY" # This is the line for debugging
         chmod 600 deploy_key
         ssh-keyscan 18.132.1.139 >> known_hosts
         ssh -i deploy_key github@18.132.1.139 'docker pull basharherbawi/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest'
 
       env:
-        DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_PRIVATE_KEY }}
+        DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
