@@ -22,15 +22,13 @@ jobs:
       run: |
         docker build . --file Dockerfile --tag basharherbawi/expenelixir
         docker push basharherbawi/expenelixir
-    
-    - name: Configure Docker Host on EC2
-      uses: khaledez/configure-docker-host@v1
-      with:
-        host: 18.132.1.139
-        user: github
-        ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
 
-    - name: Deploy on EC2
+    - name: Setup SSH for deployment
       run: |
-        docker pull basharherbawi/expenelixir:latest
-        docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest
+        echo "${{ secrets.DEPLOYMENT_KEY }}" > deploy_key
+        chmod 600 deploy_key
+        ssh-keyscan 18.132.1.139 >> known_hosts
+        ssh -o StrictHostKeyChecking=no -i deploy_key github@18.132.1.139 'docker pull basharherbawi/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest'
+
+      env:
+        DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
