@@ -28,7 +28,7 @@ jobs:
         echo "${{ secrets.DEPLOYMENT_KEY }}" > deploy_key
         chmod 600 deploy_key
         ssh-keyscan 18.132.1.139 >> known_hosts
-        ssh -o StrictHostKeyChecking=no -i deploy_key github@18.132.1.139 'docker pull basharherbawi/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest'
+        ssh -i deploy_key github@18.132.1.139 'docker pull basharherbawi/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 basharherbawi/expenelixir:latest'
 
       env:
         DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
