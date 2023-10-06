@@ -1,7 +1,7 @@
 import express from 'express';
 
 const app = express();
-const PORT = 2077;
+const PORT = process.env.PORT || 2077;
 
 app.get('/health',(req,res)=> {
     res.status(200).send('Full HP');
