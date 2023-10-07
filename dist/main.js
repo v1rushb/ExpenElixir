@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 2077;
 app.get('/health', (req, res) => {
     res.status(200).send('Full HP');
 });
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
     res.status(404).send('Not Found');
 });
 app.listen(PORT, () => {

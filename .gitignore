@@ -1,5 +1,7 @@
 .env
-/node_modules
-/dist
-/infrastructure
+./node_modules
+node_modules
+./dist
+./infrastructure
 Nodemon.json
+.dockerignore
