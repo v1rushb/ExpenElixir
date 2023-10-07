@@ -1,8 +1,8 @@
 import {BaseEntity, BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import bcrypt from 'bcrypt';
-import { Expense } from "./Expense.js";
-import { Income } from "./Income.js";
-import { Category } from "./Category.js";
+// import { Expense } from "./Expense.js";
+// import { Income } from "./Income.js";
+// import { Category } from "./Category.js";
 
 
 @Entity('users')
@@ -35,13 +35,13 @@ export class User extends BaseEntity {
         phoneNumber : string;
 
     
-    @OneToMany(() => Expense, expense => expense.user)
-    expenses: Expense[];
+    // @OneToMany(() => Expense, expense => expense.user)
+    // expenses: Expense[];
     
-    @OneToMany(() => Category, category => category.user)
-    categories: Category[];
-    
-    @OneToMany(() => Income, income => income.user)
-    incomes: Income[];
+    // @OneToMany(() => Category, category => category.user)
+    // categories: Category[];
+
+    // @OneToMany(() => Income, income => income.user)
+    // incomes: Income[];
 
 }

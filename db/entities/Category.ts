@@ -1,9 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, JoinColumn } from "typeorm";
-import { Expense } from "./Expense.js";
-import { User } from "./User.js";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, BaseEntity } from "typeorm";
+// import { Expense } from "./Expense.js";
+// import { User } from "./User.js";
 
 @Entity('Categories')
-export class Category {
+export class Category extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
@@ -13,9 +13,9 @@ export class Category {
     @Column()
     description: string;
 
-    @OneToMany(() => Expense, expense => expense.category)
-    expenses: Expense[];
+    // @OneToMany(() => Expense, expense => expense.category)
+    // expenses: Expense[];
 
-    @ManyToOne(() => User, user => user.expenses)
-    user: User;
+    // @ManyToOne(() => User, user => user.expenses)
+    // user: User;
 }

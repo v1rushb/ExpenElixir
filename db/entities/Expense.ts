@@ -1,6 +1,6 @@
 import {BaseEntity, BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import { User } from "./User.js";
-import { Category } from "./Category.js";
+// import { User } from "./User.js";
+// import { Category } from "./Category.js";
 
 
 @Entity('Expenses')
@@ -24,9 +24,9 @@ export class Expense extends BaseEntity {
     picURL: string;
 
 
-    @ManyToOne(() => User, user => user.expenses)
-    user: User;
+    // @ManyToOne(() => User, user => user.expenses)
+    // user: User;
 
-    @ManyToOne(() => Category, category => category.expenses)
-    category: Category;
+    // @ManyToOne(() => Category, category => category.expenses)
+    // category: Category;
 }
