@@ -44,4 +44,17 @@ const login = async (email, password) => {
         throw (`An error occured while trying to log you in. error: ${err}`);
     }
 };
-export { insertUser, login, };
+const calculateTotalIncome = async (req) => {
+    try {
+        const token = req.cookies["token"];
+        const decode = jwt.decode(token, { json: true });
+        const user = await Users.findOne({
+            where: { email: decode?.email }
+        });
+        return user?.incomes.reduce((acc, income) => acc + income.amount, 0);
+    }
+    catch (err) {
+        throw (`Unexpected Error ${err}`);
+    }
+};
+export { insertUser, login, calculateTotalIncome, };

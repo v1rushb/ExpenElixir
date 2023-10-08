@@ -1,3 +1,4 @@
+import express from 'express';
 import dataSource from "../db/dataSource.js";
 import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
@@ -52,8 +53,24 @@ const login = async (email: string, password: string) => {
     }
 }
 
+const calculateTotalIncome = async (req: express.Request) => {
+    try {
+        const token = req.cookies["token"];
+        const decode = jwt.decode(token,{json: true});
+        const user = await Users.findOne({
+            where:{email:decode?.email}
+        })
+
+        return user?.incomes.reduce((acc, income) => acc + income.amount, 0);
+    } 
+    catch(err) {
+        throw(`Unexpected Error ${err}`);
+    }
+}
+
 
 export {
     insertUser,
     login,
+    calculateTotalIncome,
 }

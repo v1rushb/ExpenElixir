@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { insertUser, login } from '../controllers/User.js';
+import { calculateTotalIncome, insertUser, login } from '../controllers/User.js';
 import authme from '../middlewares/Auth.js';
 import jwt from 'jsonwebtoken';
 
@@ -17,7 +17,7 @@ router.post('/register',authme, async (req, res) => {
         return res.status(400).send(`User with email: ${req.body.email} already exists.`);
     }
     insertUser(req.body).then(user=> {
-        res.status(200).send(`You have successfully registered! ${user}`);
+        res.status(200).send(`You have successfully registered! ${user.firstName!}`);
     }).catch(err => {
         res.status(401).send(`An error occured while trying to register you. error: ${err}`);
     });
@@ -29,12 +29,13 @@ router.post('/login',(req, res,next) => {
     const password = req.body.password;
 
     const token = req.cookies["token"];
-
-    if(token)
-    {
-        jwt.verify(token,process.env.SECRET_KEY || '');
-        return res.status(400).send(`You are already logged in.`);
-    }
+    try {
+        if(token)
+        {
+            jwt.verify(token,process.env.SECRET_KEY || '');
+            return res.status(400).send(`You are already logged in.`);
+        }
+    } catch(err) {}
 
     if (email && password) {
         login(email, password).then(data => {
@@ -75,6 +76,14 @@ router.post('/logout', (req, res) => {
     } catch (err) {
         res.status(400).send("Your session has expired or is invalid. Please log in again.");
     }
+});
+
+router.get('/totalIncome',authme, async (req, res) => {
+    calculateTotalIncome(req).then(data=> {
+        return res.status(200).send(`Your total income is: ${data}`);
+    }).catch(err=> {
+        return res.status(400).send(`Something went wrong. ${err}`);
+    });
 });
 
 router.get('/',authme, async (req, res) => {
