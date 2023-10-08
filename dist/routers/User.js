@@ -4,6 +4,7 @@ import { calculateTotalIncome, insertUser, login } from '../controllers/User.js'
 import authme from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
+import { passwordStrength } from 'check-password-strength';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -17,6 +18,7 @@ router.post('/register', validateUser, async (req, res) => {
     /*
     ps: husini now if we register a use it's going to be just fine, but for duplicates for any value (since db attributes are unique it'll return an error. so be advised.) fix it using the a centralized error handler.
     */
+    console.log(passwordStrength(req.body.password).value);
     insertUser(req.body).then(user => {
         res.status(200).send(`You have successfully registered! ${user.firstName}`);
     }).catch(err => {

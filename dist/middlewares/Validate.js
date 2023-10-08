@@ -11,7 +11,7 @@ const validateUser = async (req, res, next) => {
     try {
         if (!isEmail.default(user.email))
             errorList.push(`Invalid email.`);
-        if (user.password.length < 10 && passwordStrength(user.password).value == 'Weak')
+        if (user.password.length < 10 && passwordStrength(user.password).value.toLocaleLowerCase().includes('weak'))
             errorList.push(`Password is too weak.`);
     }
     catch (err) {
