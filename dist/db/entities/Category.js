@@ -7,9 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
-// import { Expense } from "./Expense.js";
-// import { User } from "./User.js";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, BaseEntity } from "typeorm";
+import { Expense } from "./Expense.js";
+import { Users } from "./Users.js";
 let Category = class Category extends BaseEntity {
 };
 __decorate([
@@ -24,7 +24,15 @@ __decorate([
     Column(),
     __metadata("design:type", String)
 ], Category.prototype, "description", void 0);
+__decorate([
+    OneToMany(() => Expense, expense => expense.category),
+    __metadata("design:type", Array)
+], Category.prototype, "expenses", void 0);
+__decorate([
+    ManyToOne(() => Users, user => user.expenses),
+    __metadata("design:type", String)
+], Category.prototype, "users", void 0);
 Category = __decorate([
-    Entity('Categories')
+    Entity()
 ], Category);
 export { Category };

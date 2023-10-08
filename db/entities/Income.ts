@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm";
-// import { User } from "./User.js";
+import { Users } from "./Users.js";
 
 @Entity()
 export class Income extends BaseEntity {
@@ -18,6 +18,6 @@ export class Income extends BaseEntity {
     @Column()
     description: string;
 
-    // @ManyToOne(() => User, user => user.incomes)
-    // user: User;
+    @ManyToOne(() => Users, user => user.incomes)
+    users: string;
 }

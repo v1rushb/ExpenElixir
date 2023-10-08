@@ -12,7 +12,8 @@ app.use('/user', users);
 app.get('/health', (req, res) => {
     res.status(200).send('Full HP');
 });
-app.get('/*', (req, res) => {
+app.use('/user', userRouter);
+app.get('/', (req, res) => {
     res.status(404).send('Not Found');
 });
 app.listen(PORT, () => {
