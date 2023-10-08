@@ -18,8 +18,8 @@ services:
 
   app:
     profiles:
-      - in_docker
-    container_name: express-docker
+      - ExpenElixir
+    container_name: ExpenElixir
     build: .
     environment:
       - PORT=80

@@ -1,6 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
-import { User } from '../db/entities/User.js';
+import { Users } from '../db/entities/Users.js';
 
 const authme = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
@@ -9,7 +9,7 @@ const authme = async (req: express.Request, res: express.Response, next: express
 
         if(isValidToken) {
             const decode = jwt.decode(token,{json: true});
-            const user = await User.findOne({
+            const user = await Users.findOne({
                 where:{email:decode?.email}
             })
             return next();

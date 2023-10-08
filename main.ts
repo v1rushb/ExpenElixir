@@ -3,9 +3,9 @@ import 'dotenv/config';
 import "reflect-metadata";
 import db from './db/dataSource.js';
 import userRouter from './routers/User.js'
-import { Users } from './db/entities/Users.js';
+import IncomeRouter from './routers/Income.js';
 import dataSource from './db/dataSource.js';
-import users from './routes/User.js';
+import users from './routers/User.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -14,15 +14,15 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 2077;
 
 app.use('/user',users);
+app.use('/income',IncomeRouter);
 
-app.get('/health',(req,res)=> {
-    res.status(200).send('Full HP');
-});
-
-app.use('/user', userRouter)
 
 app.get('/', (req, res) => {
     res.status(404).send('Not Found');
+});
+
+app.get('/health',(req,res)=> {
+    res.status(200).send('Full HP');
 });
 
 app.listen(PORT, () => {

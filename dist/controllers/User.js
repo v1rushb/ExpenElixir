@@ -1,10 +1,10 @@
 import dataSource from "../db/dataSource.js";
-import { User } from "../db/entities/User.js";
+import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 const insertUser = async (payload) => {
     return await dataSource.transaction(async (trans) => {
-        const newUser = User.create({
+        const newUser = Users.create({
             firstName: payload.firstName,
             lastName: payload.lastName,
             email: payload.email,
@@ -17,7 +17,7 @@ const insertUser = async (payload) => {
 };
 const login = async (email, password) => {
     try {
-        const info = await User.findOne({
+        const info = await Users.findOne({
             where: { email: email }
         });
         if (info) {
@@ -44,4 +44,17 @@ const login = async (email, password) => {
         throw (`An error occured while trying to log you in. error: ${err}`);
     }
 };
-export { insertUser, login, };
+const calculateTotalIncome = async (req) => {
+    try {
+        const token = req.cookies["token"];
+        const decode = jwt.decode(token, { json: true });
+        const user = await Users.findOne({
+            where: { email: decode?.email }
+        });
+        return user?.incomes.reduce((acc, income) => acc + income.amount, 0);
+    }
+    catch (err) {
+        throw (`Unexpected Error ${err}`);
+    }
+};
+export { insertUser, login, calculateTotalIncome, };
