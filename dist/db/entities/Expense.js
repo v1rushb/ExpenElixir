@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { User } from "./User.js";
+import { Users } from "./Users.js";
 import { Category } from "./Category.js";
 let Expense = class Expense extends BaseEntity {
 };
@@ -37,14 +37,14 @@ __decorate([
     __metadata("design:type", String)
 ], Expense.prototype, "picURL", void 0);
 __decorate([
-    ManyToOne(() => User, user => user.expenses),
-    __metadata("design:type", User)
-], Expense.prototype, "user", void 0);
+    ManyToOne(() => Users, user => user.expenses),
+    __metadata("design:type", String)
+], Expense.prototype, "users", void 0);
 __decorate([
     ManyToOne(() => Category, category => category.expenses),
     __metadata("design:type", Category)
 ], Expense.prototype, "category", void 0);
 Expense = __decorate([
-    Entity('Expenses')
+    Entity()
 ], Expense);
 export { Expense };
