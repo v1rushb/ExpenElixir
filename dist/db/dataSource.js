@@ -3,8 +3,6 @@ import { Users } from "./entities/Users.js";
 import { Expense } from "./entities/Expense.js";
 import { Category } from "./entities/Category.js";
 import { Income } from "./entities/Income.js";
-console.log(process.env.DB_PORT);
-console.log(process.env.DB_HOST);
 const dataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST,

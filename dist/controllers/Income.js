@@ -18,14 +18,11 @@ const insertIncome = async (payload, req) => {
                 where: { id: decode?.id },
                 relations: ["incomes"],
             });
-            if (user) { // this should always be true
-                console.log(user);
-                user.incomes.push(newIncome);
-                await trans.save(user);
-            }
-            else {
+            if (!user) {
                 throw ("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
             }
+            user.incomes.push(newIncome);
+            await trans.save(user);
         });
     }
     catch (err) {

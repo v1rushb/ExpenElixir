@@ -2,8 +2,9 @@ import dataSource from "../db/dataSource.js";
 import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import {Gen} from '../@types/generic.js';
 
-const insertUser = async (payload: any) => {
+const insertUser = async (payload: Gen.User) => {
     return await dataSource.transaction(async trans => {
         const newUser = Users.create({
             firstName: payload.firstName,

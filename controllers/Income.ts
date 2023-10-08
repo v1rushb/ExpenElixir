@@ -3,8 +3,9 @@ import dataSource from "../db/dataSource.js";
 import { Income } from "../db/entities/Income.js";
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
+import {Gen} from '../@types/generic.js';
 
-const insertIncome = async (payload: Income, req: express.Request) => {
+const insertIncome = async (payload: Gen.Income, req: express.Request) => {
     try {
         const decode = jwt.decode(req.cookies["token"],{json: true});
         return dataSource.manager.transaction(async trans => {
@@ -21,17 +22,14 @@ const insertIncome = async (payload: Income, req: express.Request) => {
                 where: { id: decode?.id },
                 relations: ["incomes"],
               });
-              if(user) { // this should always be true
-                  console.log(user);
-                  user.incomes.push(newIncome);
-                  await trans.save(user);
-              }
-            else {
-                throw("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
-            }
-        })
-     } catch(err) 
-     {
+              if(!user) {
+                    throw("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                }
+                user.incomes.push(newIncome);
+                await trans.save(user);
+        });
+     } 
+     catch(err) {
          throw(err);
      }
  }
@@ -47,7 +45,8 @@ const insertIncome = async (payload: Income, req: express.Request) => {
 
               await Income.delete({ user: user.id });
         });   
-     } catch(err) {
+     } 
+     catch(err) {
          throw(err);
      }
 }
