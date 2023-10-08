@@ -2,16 +2,21 @@ import express from 'express';
 import { Users } from '../db/entities/Users.js';
 import { calculateTotalIncome, insertUser, login } from '../controllers/User.js';
 import authme from '../middlewares/Auth.js';
+import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
-router.post('/register', authme, async (req, res) => {
-    const eamil = req.body.email;
-    const found = await Users.findOne({ where: { email: eamil } });
-    if (found) {
-        return res.status(400).send(`User with email: ${req.body.email} already exists.`);
-    }
+router.post('/register', validateUser, async (req, res) => {
+    // const eamil = req.body.email;
+    // const found = await Users.findOne({where: {email: eamil}});
+    // if(found) 
+    // {
+    //     return res.status(400).send(`User with email: ${req.body.email} already exists.`);
+    // }
+    /*
+    ps: husini now if we register a use it's going to be just fine, but for duplicates for any value (since db attributes are unique it'll return an error. so be advised.) fix it using the a centralized error handler.
+    */
     insertUser(req.body).then(user => {
         res.status(200).send(`You have successfully registered! ${user.firstName}`);
     }).catch(err => {
