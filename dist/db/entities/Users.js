@@ -62,7 +62,7 @@ __decorate([
     __metadata("design:type", Array)
 ], Users.prototype, "categories", void 0);
 __decorate([
-    OneToMany(() => Income, income => income.users),
+    OneToMany(() => Income, income => income.user, { eager: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "incomes", void 0);
 Users = __decorate([

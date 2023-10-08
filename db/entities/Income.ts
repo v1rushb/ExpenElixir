@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, BaseEntity } from "typeorm";
 import { Users } from "./Users.js";
+import User from "../../routers/User.js";
 
 @Entity()
 export class Income extends BaseEntity {
@@ -19,5 +20,5 @@ export class Income extends BaseEntity {
     description: string;
 
     @ManyToOne(() => Users, user => user.incomes)
-    users: string;
+    user: string;
 }

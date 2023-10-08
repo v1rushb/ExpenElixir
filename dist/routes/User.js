@@ -1,5 +1,5 @@
 import express from 'express';
-import { User } from '../db/entities/User.js';
+import { Users } from '../db/entities/Users.js';
 import { insertUser, login } from '../controllers/User.js';
 import authme from '../middlewares/Auth.js';
 const router = express.Router();
@@ -39,7 +39,7 @@ router.post('/logout', (req, res) => {
 });
 router.get('/', authme, async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await Users.find();
         res.status(200).send(users);
     }
     catch (err) {

@@ -1,12 +1,12 @@
 import jwt from 'jsonwebtoken';
-import { User } from '../db/entities/User.js';
+import { Users } from '../db/entities/Users.js';
 const authme = async (req, res, next) => {
     try {
         const token = req.cookies["token"] || "";
         const isValidToken = jwt.verify(token, process.env.SECRET_KEY || "");
         if (isValidToken) {
             const decode = jwt.decode(token, { json: true });
-            const user = await User.findOne({
+            const user = await Users.findOne({
                 where: { email: decode?.email }
             });
             return next();
