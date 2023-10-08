@@ -20,8 +20,8 @@ jobs:
 
     - name: Build and push the Docker image
       run: |
-        docker build . --file Dockerfile --tag basharherbawi/expenelixir
-        docker push basharherbawi/expenelixir
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
 
     - name: Set RDS Environment Variables on EC2
