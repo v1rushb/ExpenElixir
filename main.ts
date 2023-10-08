@@ -4,42 +4,15 @@ import "reflect-metadata";
 import db from './db/dataSource.js';
 import { User } from './db/entities/User.js';
 import dataSource from './db/dataSource.js';
-
+import users from './routes/User.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 const PORT = process.env.PORT || 2077;
 
-const insertUser = async (payload: any) => {
-    return await dataSource.transaction(async trans => {
-        const newUser = User.create({
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            email: payload.email,
-            username: payload.username,
-            password: payload.password, // Make sure to hash the password before saving.
-        });
-        return await trans.save(newUser);
-    });
-};
-
-app.post('/addUser', async (req, res) => {
-    try {
-        const newUser = await insertUser(req.body);
-        res.send(`A new user has been added to the database!`);
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
-
-app.get('/User', async (req, res) => {
-    try {
-        const users = await User.find();
-        res.send(users);
-    } catch (err) {
-        res.status(500).send(err);
-    }
-});
+app.use('/user',users);
 
 app.get('/health',(req,res)=> {
     res.status(200).send('Full HP');
