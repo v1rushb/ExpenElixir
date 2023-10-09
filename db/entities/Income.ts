@@ -4,8 +4,8 @@ import User from "../../routers/User.js";
 
 @Entity()
 export class Income extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column()
     title: string;

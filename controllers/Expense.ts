@@ -1,31 +1,32 @@
 import express from 'express';
 import dataSource from "../db/dataSource.js";
-import { Income } from "../db/entities/Income.js";
+import { Expense } from "../db/entities/Expense.js";
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 
-const insertIncome = async (payload: Gen.Income, req: express.Request) => {
+const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
     try {
         const decode = jwt.decode(req.cookies["token"], { json: true });
         return dataSource.manager.transaction(async trans => {
 
-            const newIncome = Income.create({
+            const newExpense = Expense.create({
                 title: payload.title,
                 amount: Number(payload.amount),
-                incomeDate: payload.incomeDate,
+                expenseDate: payload.expenseDate,
                 description: payload.description,
+                picURL: payload.picURL
             });
-            await trans.save(newIncome);
+            await trans.save(newExpense);
             console.log(decode?.id);
             const user = await Users.findOne({
                 where: { id: decode?.id },
-                relations: ["incomes"],
+                relations: ["expenses"],
             });
             if (!user) {
                 throw ("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
             }
-            user.incomes.push(newIncome);
+            user.expenses.push(newExpense);
             await trans.save(user);
         });
     }
@@ -34,16 +35,16 @@ const insertIncome = async (payload: Gen.Income, req: express.Request) => {
     }
 }
 
-const deleteAllIncomes = async (req: express.Request) => {
+const deleteAllExpenses = async (req: express.Request) => {
     try {
         const decode = jwt.decode(req.cookies["token"], { json: true });
         return dataSource.manager.transaction(async trans => {
             const user = await Users.findOneOrFail({
                 where: { id: decode?.id },
-                relations: ["incomes"],
+                relations: ["expenses"],
             });
 
-            await Income.delete({ user: user.id });
+            await Expense.delete({ users: user.id });
         });
     }
     catch (err) {
@@ -51,20 +52,20 @@ const deleteAllIncomes = async (req: express.Request) => {
     }
 }
 
-const deleteIncome = async (id: string) => {
+const deleteExpense = async (id: string) => {
     try {
-        const income = await Income.findOne({ where: { id } });
-        if (!income)
-            throw (`Income with id: ${id} was not found!`);
-        await Income.remove(income);
+        const expense = await Expense.findOne({ where: { id } });
+        if (!expense)
+            throw (`Expense with id: ${id} was not found!`);
+        await Expense.remove(expense);
     } catch (err) {
-        throw (`An error occurred while trying to delete the income. ${err}`);
+        throw (`An error occurred while trying to delete the expense. ${err}`);
     }
 }
 
 
 export {
-    insertIncome,
-    deleteAllIncomes,
-    deleteIncome,
+    insertExpense,
+    deleteAllExpenses,
+    deleteExpense,
 }

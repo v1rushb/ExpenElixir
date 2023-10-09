@@ -21,6 +21,7 @@ export namespace Gen {
         description: string,
         category: Category,
         user: User,
+        picURL: string
     }
     export interface Category {
         id: string,

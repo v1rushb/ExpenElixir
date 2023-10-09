@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
-const authme = async (req, res, next) => {
+const authMe = async (req, res, next) => {
     try {
         const token = req.cookies["token"] || "";
         const isValidToken = jwt.verify(token, process.env.SECRET_KEY || "");
@@ -18,4 +18,4 @@ const authme = async (req, res, next) => {
         res.status(500).send(`Unexpected Error err: ${err}`);
     }
 };
-export default authme;
+export default authMe;
