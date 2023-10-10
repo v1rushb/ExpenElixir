@@ -12,7 +12,7 @@ const dataSource = new DataSource({
     database: process.env.DB_NAME,
     entities: [Users, Expense, Category, Income],
     //migrations: ['./**/migration/*.ts'],
-    logging: false,
-    // synchronize: true
+    logging: true,
+    synchronize: false
 });
 export default dataSource;

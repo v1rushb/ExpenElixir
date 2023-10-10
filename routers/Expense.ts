@@ -1,11 +1,11 @@
 import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
-import { deleteAllExpenses, deleteExpense as deleteExpense, insertExpense } from '../controllers/Expense.js';
+import { deleteAllExpenses, deleteExpense, insertExpense } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 
 const router = express.Router();
 
-router.post('/addExpense', authMe, async (req, res) => {
+router.post('/', authMe, async (req, res) => {
     insertExpense(req.body, req).then(expense => {
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => {

@@ -2,6 +2,7 @@ import dataSource from "../db/dataSource.js";
 import { Expense } from "../db/entities/Expense.js";
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
+import { Category } from '../db/entities/Category.js';
 const insertExpense = async (payload, req) => {
     try {
         const decode = jwt.decode(req.cookies["token"], { json: true });
@@ -22,8 +23,17 @@ const insertExpense = async (payload, req) => {
             if (!user) {
                 throw ("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
             }
+            const category = await Category.findOne({
+                where: { id: payload.category },
+                relations: ["expenses"],
+            });
+            if (!category) {
+                throw ("Category not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+            }
             user.expenses.push(newExpense);
+            category.expenses.push(newExpense);
             await trans.save(user);
+            await trans.save(category);
         });
     }
     catch (err) {

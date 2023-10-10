@@ -4,6 +4,7 @@ import { Expense } from "../db/entities/Expense.js";
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
+import { Category } from '../db/entities/Category.js';
 
 const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
     try {
@@ -26,8 +27,17 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
             if (!user) {
                 throw ("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
             }
+            const category = await Category.findOne({
+                where: { id: payload.category },
+                relations: ["expenses"],
+            });
+            if (!category) {
+                throw ("Category not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+            }
             user.expenses.push(newExpense);
+            category.expenses.push(newExpense);
             await trans.save(user);
+            await trans.save(category);
         });
     }
     catch (err) {

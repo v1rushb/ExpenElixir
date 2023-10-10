@@ -31,7 +31,6 @@ router.post('/register', validateUser, async (req, res) => {
 router.post('/login', (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-
     const token = req.cookies["token"];
     try {
         if (token) {

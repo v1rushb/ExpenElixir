@@ -4,8 +4,8 @@ import "reflect-metadata";
 import db from './db/dataSource.js';
 import userRouter from './routers/User.js'
 import incomeRouter from './routers/Income.js';
+import categoryRouter from './routers/Category.js'
 import expenseRouter from './routers/Expense.js';
-import dataSource from './db/dataSource.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -16,6 +16,7 @@ const PORT = process.env.PORT || 2077;
 app.use('/user', userRouter);
 app.use('/income', incomeRouter);
 app.use('/expense', expenseRouter);
+app.use('/category', categoryRouter);
 
 
 app.get('/', (req, res) => {

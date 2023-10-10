@@ -3,7 +3,8 @@ import { Income } from '../db/entities/Income.js';
 import { deleteAllIncomes, deleteIncome, insertIncome } from '../controllers/Income.js';
 import authMe from '../middlewares/Auth.js';
 const router = express.Router();
-router.post('/addIncome', authMe, async (req, res) => {
+router.post('/', authMe, async (req, res) => {
+    console.log(new Date());
     insertIncome(req.body, req).then(income => {
         res.status(200).send(`You have successfully added a new income!`);
     }).catch(err => {

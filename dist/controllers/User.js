@@ -28,7 +28,7 @@ const login = async (email, password) => {
                     username: info.username,
                     id: info.id,
                 }, process.env.SECRET_KEY || '', {
-                    expiresIn: '15m'
+                    expiresIn: '30m'
                 });
                 return { username: info.username, email: email, token };
             }
