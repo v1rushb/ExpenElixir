@@ -2,6 +2,8 @@ import express from 'express';
 import { Category } from '../db/entities/Category.js';
 import { deleteAllCategory, deleteCategory, insertCategory } from '../controllers/Category.js';
 import authMe from '../middlewares/Auth.js';
+import { Users } from '../db/entities/Users.js';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -17,8 +19,13 @@ router.post('/', authMe, async (req, res) => {
 
 router.get('/', authMe, async (req, res) => {
     try {
-        const categorys = await Category.find();
-        res.status(200).send(categorys);
+        const decode = jwt.decode(req.cookies["token"], { json: true });
+        console.log(decode?.id);
+
+        const category = await Users.findOne({
+            where: { id: decode?.id }
+        });
+        res.status(200).send(category?.categories);
     } catch (err) {
         res.status(500).send(err);
     }

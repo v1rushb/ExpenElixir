@@ -1,7 +1,8 @@
 import express from 'express';
-import { Income } from '../db/entities/Income.js';
 import { deleteAllIncomes, deleteIncome, insertIncome } from '../controllers/Income.js';
 import authMe from '../middlewares/Auth.js';
+import jwt from 'jsonwebtoken';
+import { Users } from '../db/entities/Users.js';
 const router = express.Router();
 router.post('/', authMe, async (req, res) => {
     console.log(new Date());
@@ -13,8 +14,12 @@ router.post('/', authMe, async (req, res) => {
 });
 router.get('/', authMe, async (req, res) => {
     try {
-        const incomes = await Income.find();
-        res.status(200).send(incomes);
+        const decode = jwt.decode(req.cookies["token"], { json: true });
+        console.log(decode?.id);
+        const incomes = await Users.findOne({
+            where: { id: decode?.id }
+        });
+        res.status(200).send(incomes?.incomes);
     }
     catch (err) {
         res.status(500).send(err);

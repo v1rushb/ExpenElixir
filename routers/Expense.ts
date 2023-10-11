@@ -2,6 +2,8 @@ import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
 import { deleteAllExpenses, deleteExpense, insertExpense } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
+import { Users } from '../db/entities/Users.js';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -15,8 +17,13 @@ router.post('/', authMe, async (req, res) => {
 
 router.get('/', authMe, async (req, res) => {
     try {
-        const expense = await Expense.find();
-        res.status(200).send(expense);
+        const decode = jwt.decode(req.cookies["token"], { json: true });
+        console.log(decode?.id);
+
+        const expense = await Users.findOne({
+            where: { id: decode?.id }
+        });
+        res.status(200).send(expense?.expenses);
     } catch (err) {
         res.status(500).send(err);
     }

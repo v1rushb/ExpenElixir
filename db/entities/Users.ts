@@ -40,7 +40,7 @@ export class Users extends BaseEntity {
     @OneToMany(() => Expense, expense => expense.users)
     expenses: Expense[];
 
-    @OneToMany(() => Category, category => category.users)
+    @OneToMany(() => Category, category => category.users, { eager: true })
     categories: Category[];
 
     @OneToMany(() => Income, income => income.user, { eager: true })
