@@ -66,4 +66,15 @@ const deleteExpense = async (id) => {
         throw (`An error occurred while trying to delete the expense. ${err}`);
     }
 };
-export { insertExpense, deleteAllExpenses, deleteExpense, };
+const totalExpenses = async (req) => {
+    const decode = jwt.decode(req.cookies["token"], { json: true });
+    console.log(decode?.id);
+    const user = await Users.findOne({
+        where: { id: decode?.id }
+    });
+    const expenseList = user?.expenses;
+    const total = expenseList ? expenseList.reduce((acc, expense) => acc + expense.amount, 0) : 0;
+    return total;
+};
+export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses };
+//# sourceMappingURL=Expense.js.map

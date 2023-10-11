@@ -62,9 +62,21 @@ const deleteIncome = async (id: string) => {
     }
 }
 
+const totalIncomes = async (req: express.Request) => {
+    const decode = jwt.decode(req.cookies["token"], { json: true });
+    console.log(decode?.id);
 
+    const user = await Users.findOne({
+        where: { id: decode?.id }
+    });
+    const incomeList = user?.incomes
+    const total = incomeList ? incomeList.reduce((acc, income) => acc + income.amount, 0) : 0
+
+    return total
+}
 export {
     insertIncome,
     deleteAllIncomes,
     deleteIncome,
+    totalIncomes
 }

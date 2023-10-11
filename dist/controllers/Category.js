@@ -53,3 +53,4 @@ const deleteCategory = async (id) => {
     }
 };
 export { insertCategory, deleteAllCategory, deleteCategory, };
+//# sourceMappingURL=Category.js.map

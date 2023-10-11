@@ -29,3 +29,4 @@ app.listen(PORT, () => {
         console.error(`Failed to connect to the database. Error: ${err}`);
     });
 });
+//# sourceMappingURL=main.js.map

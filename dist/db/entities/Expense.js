@@ -48,3 +48,4 @@ Expense = __decorate([
     Entity()
 ], Expense);
 export { Expense };
+//# sourceMappingURL=Expense.js.map

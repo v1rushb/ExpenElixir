@@ -87,3 +87,4 @@ router.get('/', authMe, async (req, res) => {
     }
 });
 export default router;
+//# sourceMappingURL=User.js.map

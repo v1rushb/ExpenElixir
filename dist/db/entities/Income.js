@@ -39,3 +39,4 @@ Income = __decorate([
     Entity()
 ], Income);
 export { Income };
+//# sourceMappingURL=Income.js.map

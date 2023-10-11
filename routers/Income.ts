@@ -1,6 +1,6 @@
 import express from 'express';
 import { Income } from '../db/entities/Income.js';
-import { deleteAllIncomes, deleteIncome, insertIncome } from '../controllers/Income.js';
+import { deleteAllIncomes, deleteIncome, insertIncome, totalIncomes } from '../controllers/Income.js';
 import authMe from '../middlewares/Auth.js';
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
@@ -17,6 +17,14 @@ router.post('/', authMe, async (req, res) => {
         res.status(401).send(`An error occured while trying to add a new income. error: ${err}`);
     });
 });
+router.get('/total', authMe, async (req: express.Request, res) => {
+    try {
+        res.status(200).send(`Total income : ${await totalIncomes(req)}`);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
 
 router.get('/', authMe, async (req, res) => {
     try {
@@ -31,6 +39,7 @@ router.get('/', authMe, async (req, res) => {
         res.status(500).send(err);
     }
 });
+
 
 router.delete('/deleteAllIncomes', authMe, async (req, res) => {
     deleteAllIncomes(req).then(income => {

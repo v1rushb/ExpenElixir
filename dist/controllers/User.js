@@ -58,3 +58,4 @@ const calculateTotalIncome = async (req) => {
     }
 };
 export { insertUser, login, calculateTotalIncome, };
+//# sourceMappingURL=User.js.map

@@ -23,3 +23,4 @@ const validateUser = async (req, res, next) => {
     next();
 };
 export { validateUser, };
+//# sourceMappingURL=Validate.js.map

@@ -36,3 +36,4 @@ Category = __decorate([
     Entity()
 ], Category);
 export { Category };
+//# sourceMappingURL=Category.js.map

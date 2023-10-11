@@ -43,3 +43,4 @@ router.delete('/deletecategory/:id', authMe, async (req, res) => {
     }
 });
 export default router;
+//# sourceMappingURL=Category.js.map

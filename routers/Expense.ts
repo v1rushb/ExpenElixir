@@ -1,6 +1,6 @@
 import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
-import { deleteAllExpenses, deleteExpense, insertExpense } from '../controllers/Expense.js';
+import { deleteAllExpenses, deleteExpense, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import { Users } from '../db/entities/Users.js';
 import jwt from 'jsonwebtoken';
@@ -24,6 +24,14 @@ router.get('/', authMe, async (req, res) => {
             where: { id: decode?.id }
         });
         res.status(200).send(expense?.expenses);
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
+
+router.get('/total', authMe, async (req, res) => {
+    try {
+        res.status(200).send(`Total expense : ${await totalExpenses(req)}`);
     } catch (err) {
         res.status(500).send(err);
     }
