@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateTotalIncome, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -82,12 +82,13 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.get('/totalIncome', authMe, async (req, res) => {
-    calculateTotalIncome(req).then(data => {
-        return res.status(200).send(`Your total income is: ${data}`);
-    }).catch(err => {
-        return res.status(400).send(`Something went wrong. ${err}`);
-    });
+router.get('/balance', authMe, async (req, res) => {
+    try {
+        res.status(200).send(await calculateBalance(req));
+    }
+    catch (error) {
+        res.status(400).send(`Something went wrong. ${error}`);
+    }
 });
 
 router.get('/', authMe, async (req, res) => {

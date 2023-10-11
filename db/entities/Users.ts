@@ -37,7 +37,7 @@ export class Users extends BaseEntity {
     phoneNumber: string;
 
 
-    @OneToMany(() => Expense, expense => expense.users)
+    @OneToMany(() => Expense, expense => expense.users, { eager: true })
     expenses: Expense[];
 
     @OneToMany(() => Category, category => category.users, { eager: true })

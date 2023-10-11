@@ -4,6 +4,8 @@ import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Gen } from '../@types/generic.js';
+import { totalIncomes } from './Income.js';
+import { totalExpenses } from './Expense.js';
 
 const insertUser = async (payload: Gen.User) => {
     return await dataSource.transaction(async trans => {
@@ -51,15 +53,9 @@ const login = async (email: string, password: string) => {
     }
 }
 
-const calculateTotalIncome = async (req: express.Request) => {
+const calculateBalance = async (req: express.Request) => {
     try {
-        const token = req.cookies["token"];
-        const decode = jwt.decode(token, { json: true });
-        const user = await Users.findOne({
-            where: { email: decode?.email }
-        })
-
-        return user?.incomes.reduce((acc, income) => acc + income.amount, 0);
+        return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`
     }
     catch (err) {
         throw (`Unexpected Error ${err}`);
@@ -70,5 +66,5 @@ const calculateTotalIncome = async (req: express.Request) => {
 export {
     insertUser,
     login,
-    calculateTotalIncome,
+    calculateBalance,
 }

@@ -37,6 +37,10 @@ router.get('/total', authMe, async (req, res) => {
     }
 });
 
+
+
+
+
 router.delete('/deleteAllExpenses', authMe, async (req, res) => {
     deleteAllExpenses(req).then(expense => {
         res.status(200).send(`You have successfully deleted all expenses!`);

@@ -54,7 +54,7 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "phoneNumber", void 0);
 __decorate([
-    OneToMany(() => Expense, expense => expense.users),
+    OneToMany(() => Expense, expense => expense.users, { eager: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);
 __decorate([
