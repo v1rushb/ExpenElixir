@@ -1,0 +1,27 @@
+2023-10-11T15:40:14.142Z [info]: Full HP [200]
+2023-10-11T19:10:09.503Z [info]: Server is ON and running on PORT: 2077
+2023-10-11T19:10:09.589Z [info]: Connected to DB dude!
+2023-10-11T19:13:16.901Z [info]: Server is ON and running on PORT: 2077
+2023-10-11T19:13:17.012Z [info]: Connected to DB dude!
+2023-10-11T19:13:38.705Z [info]: Server is ON and running on PORT: 2077
+2023-10-11T19:13:38.784Z [info]: Connected to DB dude!
+2023-10-11T19:20:01.788Z [info]: Server is ON and running on PORT: 2077
+2023-10-11T19:20:01.881Z [info]: Connected to DB dude!
+2023-10-11T19:20:14.770Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:28.163Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:29.037Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:29.627Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:30.159Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:30.647Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:31.123Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:31.841Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:42.258Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:42.919Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:20:43.588Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:21:51.672Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:21:56.184Z [error]: 404 - Not found - /user/registers - POST - ::1
+2023-10-11T19:24:50.188Z [error]: 404 - Page Not found - /health - GET - ::1
+2023-10-11T19:25:16.413Z [info]: /health - GET - ::1
+2023-10-11T19:25:17.944Z [info]: /health - GET - ::1
+2023-10-11T19:27:55.330Z [info]: Connected to DB dude!
+2023-10-11T19:30:00.367Z [info]: Connected to DB dude!

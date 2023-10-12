@@ -15,7 +15,13 @@ const validateUser = async (req: express.Request, res: express.Response, next: e
     if(!isEmail.default(user.email))
         errorList.push(`Invalid email.`);
      if(user.password.length < 10 && passwordStrength(user.password).value.toLocaleLowerCase().includes('weak'))
+     {
+        console.log("Wrong");
          errorList.push(`Password is too weak.`);
+     }
+     else {
+        console.log("Right");
+     }
     } catch(err) {
         console.error(err);
         return res.status(500).send(`Empty body!`);
