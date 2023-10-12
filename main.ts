@@ -7,6 +7,8 @@ import incomeRouter from './routers/Income.js';
 import categoryRouter from './routers/Category.js'
 import expenseRouter from './routers/Expense.js';
 import cookieParser from 'cookie-parser';
+import logger from './logger.js';
+import ErrorHandler from './middlewares/ErrorHandler.js';
 
 const app = express();
 app.use(express.json());
@@ -23,9 +25,19 @@ app.get('/', (req, res) => {
     res.status(404).send('Not Found');
 });
 
-app.get('/health', (req, res) => {
+app.get('/health',(req,res)=> {
+    logger.info('Full HP [200] - /health - GET');
     res.status(200).send('Full HP');
 });
+
+app.use('/', (req, res) => {
+    console.log(`sadly`);
+    logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+    res.status(404).send('Not Found');
+});
+
+app.use(ErrorHandler);
+
 
 app.listen(PORT, () => {
     console.log(`Server is ON and running on PORT: ${PORT}`);
