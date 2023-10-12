@@ -68,7 +68,7 @@ const calculateBalance = async (req: express.Request) => {
         return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`
     }
     catch (err) {
-        throw (`Unexpected Error ${err}`);
+        throw new CustomError(`Unexpected Error ${err}`,500);
     }
 }
 

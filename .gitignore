@@ -5,3 +5,4 @@ node_modules
 ./infrastructure
 nodemon.json
 .dockerignore
+*.log

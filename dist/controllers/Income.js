@@ -13,7 +13,7 @@ const insertIncome = async (payload, req) => {
                 description: payload.description,
             });
             await trans.save(newIncome);
-            console.log(decode?.id);
+            console.log(1);
             const user = await Users.findOne({
                 where: { id: decode?.id },
                 relations: ["incomes"],

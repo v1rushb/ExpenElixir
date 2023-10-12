@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
             return res.status(400).send(`You are already logged in.`);
         }
     } catch (err) {
-        res.status(401).send(`An error occured while trying to login you. error: ${err}`);
+        return next(new CustomError(`Your session has expired or is invalid. Please log in again.`, 400));
     }
 
     if (email && password) {
@@ -39,6 +39,7 @@ router.post('/login', (req, res, next) => {
             res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });
             res.cookie("loginDate", Date.now(), { maxAge: 30 * 60 * 1000 });
 
+            logger.info(`200 OK - /user/login - POST - ${req.ip}`);
             res.status(200).send(`You have successfully logged in ${data.username}!`);
         }).catch(err => next(err));
     }
@@ -62,27 +63,26 @@ router.post('/logout', (req, res) => {
         res.clearCookie("userEmail");
         res.clearCookie("token");
         res.clearCookie("loginDate");
-
+        logger.info(`200 OK - /user/logout - POST - ${req.ip}`);
         res.status(200).send(`You have been logged out. See you soon ${decoded?.username}!`);
     } catch (err) {
         throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
     }
 });
 
-router.get('/totalIncome',authme, async (req, res) => {
-    calculateTotalIncome(req).then(data=> {
+router.get('/balance',authMe, async (req, res,next) => {
+    calculateBalance(req).then(data=> {
+        logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);
-    }).catch(err=> {
-        return res.status(400).send(`Something went wrong. ${err}`);
-    });
+    }).catch(err=> next(err));
 });
 
-router.get('/', authMe, async (req, res) => {
+router.get('/', authMe, async (req, res,next) => {
     try {
         const users = await Users.find();
         res.status(200).send(users);
     } catch (err) {
-        res.status(500).send(err);
+        return next(new CustomError(`An error occurred while trying to get all users. Error: ${err}`, 500));
     }
 });
 

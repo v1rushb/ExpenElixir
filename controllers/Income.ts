@@ -17,7 +17,7 @@ const insertIncome = async (payload: Gen.Income, req: express.Request) => {
                 description: payload.description,
             });
             await trans.save(newIncome);
-            console.log(decode?.id);
+            console.log(1);
             const user = await Users.findOne({
                 where: { id: decode?.id },
                 relations: ["incomes"],

@@ -49,7 +49,7 @@ router.delete('/deleteAllIncomes', authMe, async (req, res) => {
     });
 });
 
-router.delete('/deleteIncome/:id', authMe, async (req, res) => {
+router.delete('/:id', authMe, async (req, res) => {
     try {
         const id = req.params.id
         await deleteIncome(id);

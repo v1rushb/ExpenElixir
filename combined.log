@@ -36,3 +36,10 @@
 2023-10-11T19:25:17.944Z [info]: /health - GET - ::1
 2023-10-11T19:27:55.330Z [info]: Connected to DB dude!
 2023-10-11T19:30:00.367Z [info]: Connected to DB dude!
+2023-10-12T13:51:21.553Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-12T13:51:24.219Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-12T14:06:17.062Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-12T14:06:18.131Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-12T14:07:15.568Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-12T14:07:17.147Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-12T14:07:17.769Z [info]: 200 OK - /user/totalIncome - GET - ::1

@@ -40,7 +40,7 @@ router.delete('/deleteAllIncomes', authMe, async (req, res) => {
         res.status(401).send(`An error occured while trying to delete all incomes. error: ${err}`);
     });
 });
-router.delete('/deleteIncome/:id', authMe, async (req, res) => {
+router.delete('/:id', authMe, async (req, res) => {
     try {
         const id = req.params.id;
         await deleteIncome(id);

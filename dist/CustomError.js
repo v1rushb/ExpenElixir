@@ -4,3 +4,4 @@ export class CustomError extends Error {
         this.statusCode = statusCode;
     }
 }
+//# sourceMappingURL=CustomError.js.map

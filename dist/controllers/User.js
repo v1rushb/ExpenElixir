@@ -62,10 +62,7 @@ const calculateBalance = async (req) => {
         return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`;
     }
     catch (err) {
-        if (err instanceof CustomError) {
-            throw err;
-        }
-        throw new CustomError(`Unexpected error: ${err}`, 500);
+        throw new CustomError(`Unexpected Error ${err}`, 500);
     }
 };
 export { insertUser, login, calculateBalance, };
