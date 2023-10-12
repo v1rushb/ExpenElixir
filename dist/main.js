@@ -2,15 +2,19 @@ import express from 'express';
 import 'dotenv/config';
 import "reflect-metadata";
 import db from './db/dataSource.js';
-import IncomeRouter from './routers/Income.js';
-import users from './routers/User.js';
+import userRouter from './routers/User.js';
+import incomeRouter from './routers/Income.js';
+import categoryRouter from './routers/Category.js';
+import expenseRouter from './routers/Expense.js';
 import cookieParser from 'cookie-parser';
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
 const PORT = process.env.PORT || 2077;
-app.use('/user', users);
-app.use('/income', IncomeRouter);
+app.use('/user', userRouter);
+app.use('/income', incomeRouter);
+app.use('/expense', expenseRouter);
+app.use('/category', categoryRouter);
 app.get('/', (req, res) => {
     res.status(404).send('Not Found');
 });
@@ -25,3 +29,4 @@ app.listen(PORT, () => {
         console.error(`Failed to connect to the database. Error: ${err}`);
     });
 });
+//# sourceMappingURL=main.js.map

@@ -4,6 +4,7 @@ import { Expense } from "./entities/Expense.js";
 import { Category } from "./entities/Category.js";
 import { Income } from "./entities/Income.js";
 
+
 const dataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST,
@@ -13,8 +14,8 @@ const dataSource = new DataSource({
     database: process.env.DB_NAME,
     entities: [Users, Expense, Category, Income],
     //migrations: ['./**/migration/*.ts'],
-    logging: false,
-    synchronize: true
+    logging: true,
+    synchronize: false
 });
 
 export default dataSource;

@@ -17,7 +17,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Category.prototype, "id", void 0);
 __decorate([
-    Column(),
+    Column({ nullable: false, unique: true }),
     __metadata("design:type", String)
 ], Category.prototype, "title", void 0);
 __decorate([
@@ -36,3 +36,4 @@ Category = __decorate([
     Entity()
 ], Category);
 export { Category };
+//# sourceMappingURL=Category.js.map

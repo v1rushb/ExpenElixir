@@ -1,0 +1,12 @@
+{
+    "env": {
+      "PORT": 2077,
+      "DB_HOST": "localhost",
+      "DB_USER_NAME": "root",
+      "DB_PASSWORD": "root",
+      "DB_NAME": "ExpenElixir",
+      "DB_PORT": "2099",
+      "SECRET_KEY": "Hibyesheeesh"
+    }
+  }
+  

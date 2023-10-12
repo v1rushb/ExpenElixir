@@ -7,7 +7,7 @@ export class Category extends BaseEntity {
     @PrimaryGeneratedColumn('increment')
     id: number;
 
-    @Column()
+    @Column({ nullable: false, unique: true })
     title: string;
 
     @Column()

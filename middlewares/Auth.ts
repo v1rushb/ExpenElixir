@@ -2,15 +2,15 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 
-const authme = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+const authMe = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
         const token = req.cookies["token"] || "";
         const isValidToken = jwt.verify(token, process.env.SECRET_KEY || "");
 
-        if(isValidToken) {
-            const decode = jwt.decode(token,{json: true});
+        if (isValidToken) {
+            const decode = jwt.decode(token, { json: true });
             const user = await Users.findOne({
-                where:{email:decode?.email}
+                where: { email: decode?.email }
             })
             return next();
         }
@@ -21,4 +21,4 @@ const authme = async (req: express.Request, res: express.Response, next: express
     }
 }
 
-export default authme;
+export default authMe;

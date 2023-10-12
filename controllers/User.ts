@@ -3,7 +3,9 @@ import dataSource from "../db/dataSource.js";
 import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {Gen} from '../@types/generic.js';
+import { Gen } from '../@types/generic.js';
+import { totalIncomes } from './Income.js';
+import { totalExpenses } from './Expense.js';
 
 const insertUser = async (payload: Gen.User) => {
     return await dataSource.transaction(async trans => {
@@ -22,49 +24,41 @@ const insertUser = async (payload: Gen.User) => {
 const login = async (email: string, password: string) => {
     try {
         const info = await Users.findOne({
-            where: {email: email}
+            where: { email: email }
         });
-        if(info)
-        {
+        if (info) {
             const passMatch = await bcrypt.compare(password, info.password || '');
-            if(passMatch)
-            {
+            if (passMatch) {
                 const token = jwt.sign({
                     email: info.email,
                     username: info.username,
                     id: info.id,
                 },
-                process.env.SECRET_KEY || '',
-                {
-                    expiresIn: '15m'
-                })
-                return {username: info.username  ,email: email,token};
+                    process.env.SECRET_KEY || '',
+                    {
+                        expiresIn: '30m'
+                    })
+                return { username: info.username, email: email, token };
             }
             else {
-                throw("invalid password.")
+                throw ("invalid password.")
             }
         }
         else {
-            throw("invalid email.");
+            throw ("invalid email.");
         }
 
-    } catch(err) {
-        throw(`An error occured while trying to log you in. error: ${err}`);
+    } catch (err) {
+        throw (`An error occured while trying to log you in. error: ${err}`);
     }
 }
 
-const calculateTotalIncome = async (req: express.Request) => {
+const calculateBalance = async (req: express.Request) => {
     try {
-        const token = req.cookies["token"];
-        const decode = jwt.decode(token,{json: true});
-        const user = await Users.findOne({
-            where:{email:decode?.email}
-        })
-
-        return user?.incomes.reduce((acc, income) => acc + income.amount, 0);
-    } 
-    catch(err) {
-        throw(`Unexpected Error ${err}`);
+        return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`
+    }
+    catch (err) {
+        throw (`Unexpected Error ${err}`);
     }
 }
 
@@ -72,5 +66,5 @@ const calculateTotalIncome = async (req: express.Request) => {
 export {
     insertUser,
     login,
-    calculateTotalIncome,
+    calculateBalance,
 }

@@ -20,7 +20,7 @@ export class Expense extends BaseEntity {
     @Column({ length: 255 })
     description: string;
 
-    @Column({ name: 'pictureURL' })
+    @Column({ name: 'pictureURL', default: 'http://default' })
     picURL: string;
 
 

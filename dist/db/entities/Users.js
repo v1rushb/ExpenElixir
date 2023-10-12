@@ -54,11 +54,11 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "phoneNumber", void 0);
 __decorate([
-    OneToMany(() => Expense, expense => expense.users),
+    OneToMany(() => Expense, expense => expense.users, { eager: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);
 __decorate([
-    OneToMany(() => Category, category => category.users),
+    OneToMany(() => Category, category => category.users, { eager: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "categories", void 0);
 __decorate([
@@ -69,3 +69,4 @@ Users = __decorate([
     Entity()
 ], Users);
 export { Users };
+//# sourceMappingURL=Users.js.map

@@ -12,8 +12,8 @@ import { Users } from "./Users.js";
 let Income = class Income extends BaseEntity {
 };
 __decorate([
-    PrimaryGeneratedColumn(),
-    __metadata("design:type", Number)
+    PrimaryGeneratedColumn('uuid'),
+    __metadata("design:type", String)
 ], Income.prototype, "id", void 0);
 __decorate([
     Column(),
@@ -39,3 +39,4 @@ Income = __decorate([
     Entity()
 ], Income);
 export { Income };
+//# sourceMappingURL=Income.js.map

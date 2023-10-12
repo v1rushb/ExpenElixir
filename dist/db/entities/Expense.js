@@ -33,7 +33,7 @@ __decorate([
     __metadata("design:type", String)
 ], Expense.prototype, "description", void 0);
 __decorate([
-    Column({ name: 'pictureURL' }),
+    Column({ name: 'pictureURL', default: 'http://default' }),
     __metadata("design:type", String)
 ], Expense.prototype, "picURL", void 0);
 __decorate([
@@ -48,3 +48,4 @@ Expense = __decorate([
     Entity()
 ], Expense);
 export { Expense };
+//# sourceMappingURL=Expense.js.map

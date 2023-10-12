@@ -19,12 +19,14 @@ export namespace Gen {
         amount: number,
         expenseDate: Date,
         description: string,
-        category: Category,
+        category?: number,
         user: User,
+        picURL?: string
     }
     export interface Category {
         id: string,
-        name: string,
+        title: string,
+        description: string,
         user: User,
     }
     export interface Income {
