@@ -4,19 +4,27 @@ import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {Gen} from '../@types/generic.js';
+import { CustomError } from '../CustomError.js';
 
 const insertUser = async (payload: Gen.User) => {
-    return await dataSource.transaction(async trans => {
-        const newUser = Users.create({
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            email: payload.email,
-            username: payload.username,
-            password: payload.password,
-            phoneNumber: payload.phoneNumber,
+    try {
+        return await dataSource.transaction(async trans => {
+            const newUser = Users.create({
+                firstName: payload.firstName,
+                lastName: payload.lastName,
+                email: payload.email,
+                username: payload.username,
+                password: payload.password,
+                phoneNumber: payload.phoneNumber,
+            });
+            return await trans.save(newUser);
         });
-        return await trans.save(newUser);
-    });
+    } catch (err: any) {
+        if (err.code.includes('ER_DUP_ENTRY')) {
+            throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
+    }
 };
 
 const login = async (email: string, password: string) => {
@@ -41,15 +49,17 @@ const login = async (email: string, password: string) => {
                 return {username: info.username  ,email: email,token};
             }
             else {
-                throw("invalid password.")
+                throw new CustomError(`Invalid password`, 401)
             }
         }
         else {
-            throw("invalid email.");
+            throw new CustomError(`Invalid email.` ,400);
         }
 
     } catch(err) {
-        throw(`An error occured while trying to log you in. error: ${err}`);
+        if(err instanceof CustomError)
+            throw(err);
+        throw new CustomError(`An error occurred while trying to log you in. Error: ${err}`, 500);
     }
 }
 
@@ -63,8 +73,11 @@ const calculateTotalIncome = async (req: express.Request) => {
 
         return user?.incomes.reduce((acc, income) => acc + income.amount, 0);
     } 
-    catch(err) {
-        throw(`Unexpected Error ${err}`);
+    catch (err) {
+        if (err instanceof CustomError) {
+            throw err;
+        }
+        throw new CustomError(`Unexpected error: ${err}`, 500);
     }
 }
 

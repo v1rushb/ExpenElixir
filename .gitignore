@@ -3,5 +3,5 @@
 node_modules
 ./dist
 ./infrastructure
-Nodemon.json
+nodemon.json
 .dockerignore
