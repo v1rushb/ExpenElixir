@@ -37,4 +37,10 @@ export namespace Gen {
         description: string,
         user: User,
     }
+    
+    export interface DecodedPayload {
+        id: string,
+        email: string,
+        username : string,
+    }
 }

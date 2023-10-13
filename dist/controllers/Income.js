@@ -2,6 +2,7 @@ import dataSource from "../db/dataSource.js";
 import { Income } from "../db/entities/Income.js";
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
+import { CustomError } from '../CustomError.js';
 const insertIncome = async (payload, req) => {
     try {
         const decode = jwt.decode(req.cookies["token"], { json: true });
@@ -19,14 +20,14 @@ const insertIncome = async (payload, req) => {
                 relations: ["incomes"],
             });
             if (!user) {
-                throw ("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new Error("Session terminated. You have to log in again!"); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
             }
             user.incomes.push(newIncome);
             await trans.save(user);
         });
     }
     catch (err) {
-        throw (err);
+        throw new CustomError(`An error occurred while trying to add a new income. try again later!`, 500);
     }
 };
 const deleteAllIncomes = async (req) => {
