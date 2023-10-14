@@ -1,14 +1,10 @@
 import express from 'express';
 
 export namespace Gen {
-    export interface User {
-        id: string,
-        firstName: string,
-        lastName: string,
+    export interface User extends Profile {
         username: string,
         email: string,
         password: string,
-        phoneNumber: string,
         expenses: Expense[],
         categories: Category[],
         Income: Income[],
@@ -36,5 +32,19 @@ export namespace Gen {
         incomeDate: Date,
         description: string,
         user: User,
+    }
+    export interface Profile {
+        id: string,
+        firstName: string,
+        lastName: string,
+        phoneNumber: string,
+        Currency: string,
+        subscription: string,
+    }
+    
+    export interface DecodedPayload {
+        id: string,
+        email: string,
+        username : string,
     }
 }

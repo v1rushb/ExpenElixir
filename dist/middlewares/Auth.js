@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
+import { CustomError } from '../CustomError.js';
 const authMe = async (req, res, next) => {
     try {
         const token = req.cookies["token"] || "";
@@ -9,13 +10,13 @@ const authMe = async (req, res, next) => {
             const user = await Users.findOne({
                 where: { email: decode?.email }
             });
+            res.locals.user = user;
             return next();
         }
-        return res.status(401).send(`Unauthorized`);
+        throw new CustomError(`Unauthorized`, 401);
     }
     catch (err) {
-        console.error(err);
-        res.status(500).send(`Unexpected Error err: ${err}`);
+        throw err;
     }
 };
 export default authMe;

@@ -1,6 +1,7 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
+import { CustomError } from '../CustomError.js';
 
 const authMe = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
@@ -12,12 +13,12 @@ const authMe = async (req: express.Request, res: express.Response, next: express
             const user = await Users.findOne({
                 where: { email: decode?.email }
             })
+            res.locals.user = user;
             return next();
         }
-        return res.status(401).send(`Unauthorized`);
+        throw new CustomError(`Unauthorized`, 401);
     } catch (err) {
-        console.error(err);
-        res.status(500).send(`Unexpected Error err: ${err}`);
+        throw err;
     }
 }
 

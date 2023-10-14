@@ -1,11 +1,12 @@
 import dataSource from "../db/dataSource.js";
 import { Expense } from "../db/entities/Expense.js";
-import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
+import { decodeToken } from './Income.js';
+import { CustomError } from '../CustomError.js';
 const insertExpense = async (payload, req) => {
     try {
-        const decode = jwt.decode(req.cookies["token"], { json: true });
+        const decode = decodeToken(req);
         return dataSource.manager.transaction(async (trans) => {
             const newExpense = Expense.create({
                 title: payload.title,
@@ -15,20 +16,19 @@ const insertExpense = async (payload, req) => {
                 picURL: payload.picURL
             });
             await trans.save(newExpense);
-            console.log(decode?.id);
             const user = await Users.findOne({
                 where: { id: decode?.id },
                 relations: ["expenses"],
             });
             if (!user) {
-                throw ("User not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new CustomError(`User not found.`, 404);
             }
             const category = await Category.findOne({
                 where: { id: payload.category },
                 relations: ["expenses"],
             });
             if (!category) {
-                throw ("Category not found."); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new CustomError(`Category not found.`, 404);
             }
             user.expenses.push(newExpense);
             category.expenses.push(newExpense);
@@ -37,37 +37,37 @@ const insertExpense = async (payload, req) => {
         });
     }
     catch (err) {
-        throw (err);
+        if (err instanceof CustomError)
+            throw err;
+        throw new CustomError(`Internal Server Error`, 500);
     }
 };
 const deleteAllExpenses = async (req) => {
-    try {
-        const decode = jwt.decode(req.cookies["token"], { json: true });
-        return dataSource.manager.transaction(async (trans) => {
-            const user = await Users.findOneOrFail({
-                where: { id: decode?.id },
-                relations: ["expenses"],
-            });
-            await Expense.delete({ users: user.id });
+    const decode = decodeToken(req);
+    return dataSource.manager.transaction(async (trans) => {
+        const user = await Users.findOneOrFail({
+            where: { id: decode?.id },
+            relations: ["expenses"],
         });
-    }
-    catch (err) {
-        throw (err);
-    }
+        await Expense.delete({ users: user.id });
+    });
 };
-const deleteExpense = async (id) => {
+const deleteExpense = async (id, req) => {
     try {
         const expense = await Expense.findOne({ where: { id } });
         if (!expense)
-            throw (`Expense with id: ${id} was not found!`);
+            throw new CustomError(`Expense with id: ${id} was not found!`, 404);
         await Expense.remove(expense);
+        return expense;
     }
     catch (err) {
-        throw (`An error occurred while trying to delete the expense. ${err}`);
+        if (err instanceof CustomError)
+            throw err;
+        throw new CustomError(`Internal Server Error`, 500);
     }
 };
 const totalExpenses = async (req) => {
-    const decode = jwt.decode(req.cookies["token"], { json: true });
+    const decode = decodeToken(req);
     console.log(decode?.id);
     const user = await Users.findOne({
         where: { id: decode?.id }
@@ -76,5 +76,28 @@ const totalExpenses = async (req) => {
     const total = expenseList ? expenseList.reduce((acc, expense) => acc + expense.amount, 0) : 0;
     return total;
 };
-export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses };
+const getExpenses = async (req, res) => {
+    try {
+        const userId = req.cookies['userId'];
+        const search = req.query.search?.toString().toLowerCase() || '';
+        const minAmount = Number(req.query.minAmount) || 0;
+        const maxAmount = Number(req.query.maxAmount) || Infinity;
+        const expense = await Users.findOne({
+            where: { id: userId },
+            relations: ['expenses'],
+        });
+        if (!expense)
+            throw new CustomError('User not found', 404);
+        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount; });
+        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search); });
+        return searchedExpense;
+    }
+    catch (err) {
+        if (err instanceof CustomError) {
+            throw new CustomError(err.message, err.statusCode);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
+    }
+};
+export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, };
 //# sourceMappingURL=Expense.js.map

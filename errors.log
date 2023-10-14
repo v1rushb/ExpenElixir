@@ -1,5 +1,3 @@
-2023-10-12T12:31:34.339Z [info]: Full HP [200] - /health - GET
-2023-10-12T12:31:41.247Z [info]: Full HP [200] - /health - GET
 2023-10-12T13:02:17.193Z [error]: 404 Not Found - /user/registers - POST - ::1
 2023-10-12T13:02:21.095Z [error]: 404 Not Found - /user/registers - POST - ::1
 2023-10-12T13:04:36.806Z [error]: 404 Not Found - /users/register - POST - ::1
@@ -9,56 +7,12 @@
 2023-10-12T13:15:56.329Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
 2023-10-12T13:16:10.198Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
 2023-10-12T13:16:15.920Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
-2023-10-11T15:40:14.142Z [info]: Full HP [200]
-2023-10-11T19:10:09.503Z [info]: Server is ON and running on PORT: 2077
-2023-10-11T19:10:09.589Z [info]: Connected to DB dude!
-2023-10-11T19:13:16.901Z [info]: Server is ON and running on PORT: 2077
-2023-10-11T19:13:17.012Z [info]: Connected to DB dude!
-2023-10-11T19:13:38.705Z [info]: Server is ON and running on PORT: 2077
-2023-10-11T19:13:38.784Z [info]: Connected to DB dude!
-2023-10-11T19:20:01.788Z [info]: Server is ON and running on PORT: 2077
-2023-10-11T19:20:01.881Z [info]: Connected to DB dude!
-2023-10-11T19:20:14.770Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:28.163Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:29.037Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:29.627Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:30.159Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:30.647Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:31.123Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:31.841Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:42.258Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:42.919Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:20:43.588Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:21:51.672Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:21:56.184Z [error]: 404 - Not found - /user/registers - POST - ::1
-2023-10-11T19:24:50.188Z [error]: 404 - Page Not found - /health - GET - ::1
-2023-10-11T19:25:16.413Z [info]: /health - GET - ::1
-2023-10-11T19:25:17.944Z [info]: /health - GET - ::1
-2023-10-11T19:27:55.330Z [info]: Connected to DB dude!
-2023-10-11T19:30:00.367Z [info]: Connected to DB dude!
-2023-10-12T13:51:21.553Z [info]: 200 OK - /user/login - POST - ::1
-2023-10-12T13:51:24.219Z [info]: 200 OK - /user/totalIncome - GET - ::1
-2023-10-12T14:06:17.062Z [info]: 200 OK - /user/totalIncome - GET - ::1
-2023-10-12T14:06:18.131Z [info]: 200 OK - /user/totalIncome - GET - ::1
-2023-10-12T14:07:15.568Z [info]: 200 OK - /user/totalIncome - GET - ::1
-2023-10-12T14:07:17.147Z [info]: 200 OK - /user/totalIncome - GET - ::1
-2023-10-12T14:07:17.769Z [info]: 200 OK - /user/totalIncome - GET - ::1
 2023-10-13T21:51:34.511Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
 2023-10-13T21:51:37.668Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
 2023-10-13T21:51:38.250Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
 2023-10-13T21:51:38.810Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
-2023-10-13T21:51:43.255Z [info]: 200 OK - /user/login - POST - ::1
-2023-10-13T21:51:47.742Z [info]: 200 OK - /user/logout - POST - ::1
 2023-10-13T21:51:49.076Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
 2023-10-13T21:51:49.781Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
-2023-10-13T21:51:51.988Z [info]: 200 OK - /user/login - POST - ::1
-2023-10-13T21:52:04.700Z [info]: 200 OK - /user/totalIncome - GET - ::1
-2023-10-13T21:52:15.258Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
-2023-10-13T21:52:16.144Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
-2023-10-13T21:52:16.557Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
-2023-10-13T21:52:17.090Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
-2023-10-13T21:52:17.562Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
-2023-10-13T21:52:18.014Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
 2023-10-13T21:52:29.679Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
 2023-10-13T21:52:33.037Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
 2023-10-13T21:52:33.526Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
@@ -115,39 +69,24 @@
 2023-10-14T13:23:33.305Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
 2023-10-14T13:23:38.529Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
 2023-10-14T13:34:50.871Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T13:35:30.280Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:35:30.281Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
 2023-10-14T13:35:51.026Z [error]: 409 - User with email: mohhusini@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T13:36:15.100Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:36:15.101Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
-2023-10-14T13:37:02.334Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:37:02.337Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
-2023-10-14T13:37:56.150Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:37:56.155Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
 2023-10-14T13:38:03.778Z [error]: 409 - User with email: mohhusisniss@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T13:38:13.202Z [info]: 200 OK - /user/login - POST - ::1
-2023-10-14T13:39:20.836Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:39:20.841Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
-2023-10-14T13:40:16.579Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:40:16.583Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
 2023-10-14T13:41:05.806Z [error]: 409 - User with email: mohhusiswwniss@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T13:41:12.774Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:41:12.775Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
-2023-10-14T13:41:28.776Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:41:28.782Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
-2023-10-14T13:42:08.673Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:42:08.680Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
 2023-10-14T13:42:44.739Z [error]: 409 - User with email: mohhusissswwsniss@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T13:42:49.651Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:42:49.652Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
-2023-10-14T13:46:16.652Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-14T13:46:18.235Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
 2023-10-14T13:46:19.515Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
 2023-10-14T13:47:59.984Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T14:18:37.203Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-14T14:21:19.952Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
-2023-10-14T14:22:15.068Z [info]: 200 OK - /user/logout - POST - ::1
-2023-10-14T14:22:18.082Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-14T14:29:50.710Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
 2023-10-14T14:29:52.029Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
 2023-10-14T14:29:52.550Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
@@ -166,26 +105,9 @@
 2023-10-14T14:29:58.174Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
 2023-10-14T14:29:58.699Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
 2023-10-14T18:07:56.065Z [error]: 500 - An error occurred while trying to log you in. Error: QueryFailedError: ER_NO_SUCH_TABLE: Table 'expenelixir.profile' doesn't exist - /user/login - POST - ::ffff:127.0.0.1
-2023-10-14T18:11:22.846Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
 2023-10-14T18:11:26.128Z [error]: 409 - User with email: ok@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
-2023-10-14T18:11:30.731Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
-2023-10-14T18:11:37.076Z [info]: User undefined requested all Expenses!
-2023-10-14T18:11:51.834Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
-2023-10-14T18:12:34.761Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
 2023-10-14T18:12:44.263Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
 2023-10-14T18:14:18.941Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-14T18:14:25.847Z [info]: User undefined added a new Expense!
-2023-10-14T18:14:29.214Z [info]: User undefined requested all Expenses!
 2023-10-14T18:14:34.455Z [error]: 401 - You are not a premium user - /user/balance - GET - ::ffff:127.0.0.1
 2023-10-14T18:14:37.376Z [error]: 401 - You are not a premium user - /user/balance - GET - ::ffff:127.0.0.1
-2023-10-14T18:15:16.771Z [info]: 200 OK - /user/totalIncome - GET - ::ffff:127.0.0.1
-2023-10-14T18:16:09.158Z [info]: User undefined added a new Expense!
-2023-10-14T18:16:22.595Z [info]: User undefined added a new Expense!
-2023-10-14T18:16:24.584Z [info]: User undefined requested all Expenses!
-2023-10-14T18:16:28.076Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
-2023-10-14T18:16:45.138Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
-2023-10-14T18:16:47.980Z [info]: User undefined requested all Expenses!
-2023-10-14T18:17:31.582Z [info]: User undefined requested all Expenses!
-2023-10-14T18:18:01.169Z [info]: User undefined requested all Expenses!
 2023-10-14T18:18:10.427Z [error]: 404 Not Found - /expensesearch=lol - GET - ::ffff:127.0.0.1
-2023-10-14T18:18:15.673Z [info]: User undefined requested all Expenses!

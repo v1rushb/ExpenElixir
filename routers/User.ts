@@ -4,27 +4,20 @@ import { calculateBalance, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
+import logger from '../logger.js';
+import { CustomError } from '../CustomError.js';
+import PremiumAuth from '../middlewares/PremiumAuth.js';
 
 const router = express.Router();
 
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
 
-router.post('/register', validateUser, async (req, res) => {
-    // const eamil = req.body.email;
-    // const found = await Users.findOne({where: {email: eamil}});
-    // if(found) 
-    // {
-    //     return res.status(400).send(`User with email: ${req.body.email} already exists.`);
-    // }
-    /*
-    ps: husini now if we register a use it's going to be just fine, but for duplicates for any value (since db attributes are unique it'll return an error. so be advised.) fix it using the a centralized error handler.
-    */
+router.post('/register', validateUser, async (req, res, next) => {
     insertUser(req.body).then(user => {
-        res.status(200).send(`You have successfully registered! ${user.firstName!}`);
-    }).catch(err => {
-        res.status(401).send(`An error occured while trying to register you. error: ${err}`);
-    });
+        logger.info(`201 Created - /user/register - POST - ${req.ip}`);
+        res.status(201).send(`You have been registered successfully ${user.username}!`);
+    }).catch(err => next(err));
 });
 
 
@@ -38,7 +31,7 @@ router.post('/login', (req, res, next) => {
             return res.status(400).send(`You are already logged in.`);
         }
     } catch (err) {
-        res.status(401).send(`An error occured while trying to login you. error: ${err}`);
+        return next(new CustomError(`Your session has expired or is invalid. Please log in again.`, 400));
     }
 
     if (email && password) {
@@ -47,16 +40,12 @@ router.post('/login', (req, res, next) => {
             res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });
             res.cookie("loginDate", Date.now(), { maxAge: 30 * 60 * 1000 });
 
+            logger.info(`200 OK - /user/login - POST - ${req.ip}`);
             res.status(200).send(`You have successfully logged in ${data.username}!`);
-        }).catch(err => {
-            //next("Something went really really wrong my dude.");
-            console.error(err);
-            res.status(400).send(`Something went wrong my dude.`);
-        })
+        }).catch(err => next(err));
     }
     else {
-        //next("Invalid email or password.");
-        res.status(400).send(`Invalid email or password.`);
+        return next({ message: `Invalid email or password.`, code: 401 });
     }
 });
 
@@ -65,7 +54,7 @@ router.post('/logout', (req, res) => {
 
 
     if (!token) {
-        return res.status(400).send("You are not logged in.");
+        throw new CustomError(`You are not logged in.`, 401);
     }
 
     try {
@@ -75,28 +64,26 @@ router.post('/logout', (req, res) => {
         res.clearCookie("userEmail");
         res.clearCookie("token");
         res.clearCookie("loginDate");
-
+        logger.info(`200 OK - /user/logout - POST - ${req.ip}`);
         res.status(200).send(`You have been logged out. See you soon ${decoded?.username}!`);
     } catch (err) {
-        res.status(400).send("Your session has expired or is invalid. Please log in again.");
+        throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
     }
 });
 
-router.get('/balance', authMe, async (req, res) => {
-    try {
-        res.status(200).send(await calculateBalance(req));
-    }
-    catch (error) {
-        res.status(400).send(`Something went wrong. ${error}`);
-    }
+router.get('/balance', authMe, PremiumAuth, async (req, res, next) => {
+    calculateBalance(req).then(data => {
+        logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
+        return res.status(200).send(`Your total income is: ${data}`);
+    }).catch(err => next(err));
 });
 
-router.get('/', authMe, async (req, res) => {
+router.get('/', authMe, async (req, res, next) => {
     try {
         const users = await Users.find();
         res.status(200).send(users);
     } catch (err) {
-        res.status(500).send(err);
+        return next(new CustomError(`An error occurred while trying to get all users. Error: ${err}`, 500));
     }
 });
 
