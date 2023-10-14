@@ -6,6 +6,7 @@ import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
+import PremiumAuth from '../middlewares/PremiumAuth.js';
 
 const router = express.Router();
 
@@ -70,7 +71,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.get('/balance',authMe, async (req, res,next) => {
+router.get('/balance',authMe, PremiumAuth, async (req, res,next) => {
     calculateBalance(req).then(data=> {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);

@@ -6,6 +6,7 @@ import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
+import PremiumAuth from '../middlewares/PremiumAuth.js';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -59,7 +60,7 @@ router.post('/logout', (req, res) => {
         throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
     }
 });
-router.get('/balance', authMe, async (req, res, next) => {
+router.get('/balance', authMe, PremiumAuth, async (req, res, next) => {
     calculateBalance(req).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);

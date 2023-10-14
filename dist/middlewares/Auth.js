@@ -10,15 +10,13 @@ const authMe = async (req, res, next) => {
             const user = await Users.findOne({
                 where: { email: decode?.email }
             });
+            res.locals.user = user;
             return next();
         }
         throw new CustomError(`Unauthorized`, 401);
     }
     catch (err) {
-        console.error(err);
-        if (err instanceof CustomError)
-            return res.status(err.statusCode).send(err.message);
-        res.status(500).send(`Unexpected Error err: ${err}`);
+        throw err;
     }
 };
 export default authMe;

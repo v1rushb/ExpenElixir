@@ -144,3 +144,24 @@
 2023-10-14T13:46:18.235Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
 2023-10-14T13:46:19.515Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
 2023-10-14T13:47:59.984Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T14:18:37.203Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-14T14:21:19.952Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T14:22:15.068Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-14T14:22:18.082Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-14T14:29:50.710Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:52.029Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:52.550Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:52.931Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:53.414Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:53.843Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:54.298Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:54.680Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:55.064Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:55.455Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:55.870Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:56.480Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:56.897Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:57.356Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:57.813Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:58.174Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T14:29:58.699Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1

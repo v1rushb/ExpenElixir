@@ -28,7 +28,7 @@ const insertUser = async (payload) => {
         if (err.code.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
-        throw new CustomError(err, 500);
+        throw new CustomError('Internal Server Error', 500);
     }
 };
 const login = async (email, password) => {
