@@ -43,3 +43,61 @@
 2023-10-12T14:07:15.568Z [info]: 200 OK - /user/totalIncome - GET - ::1
 2023-10-12T14:07:17.147Z [info]: 200 OK - /user/totalIncome - GET - ::1
 2023-10-12T14:07:17.769Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-13T21:51:34.511Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-13T21:51:37.668Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-13T21:51:38.250Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-13T21:51:38.810Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-13T21:51:43.255Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-13T21:51:47.742Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-13T21:51:49.076Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-13T21:51:49.781Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-13T21:51:51.988Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-13T21:52:04.700Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-13T21:52:15.258Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
+2023-10-13T21:52:16.144Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
+2023-10-13T21:52:16.557Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
+2023-10-13T21:52:17.090Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
+2023-10-13T21:52:17.562Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
+2023-10-13T21:52:18.014Z [info]: Total income : 5000, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzLmJhc2hhci5oZXJiYXdpQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiTmlnQnJvIiwiaWQiOiJjNzliNzlhOC00NTE5LTRiMjEtYmQ2ZS01YTMyMWJjMmIwOTUiLCJpYXQiOjE2OTcyMzM5MTEsImV4cCI6MTY5NzIzNTcxMX0.CO6RGuPyo45tFj-94gXuW3DIKOwdGNt0Eizz_GDQItA
+2023-10-13T21:52:29.679Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:52:33.037Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:52:33.526Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:52:37.201Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:52:37.506Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:53:31.333Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:53:37.991Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:53:38.747Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:53:39.346Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:53:42.035Z [error]: 404 Not Found - /income - DELETE - ::1
+2023-10-13T21:53:42.656Z [error]: 404 Not Found - /income - DELETE - ::1
+2023-10-13T21:53:44.250Z [error]: 404 Not Found - /income - DELETE - ::1
+2023-10-13T21:53:47.589Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:55:14.575Z [error]: 500 - An error occurred while trying to delete the income. Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:56:38.636Z [error]: 500 - Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:56:40.104Z [error]: 500 - Error: Income with id: 67e56ce2-8793-4e4d-bf56-78ca7f6ad00c was not found! - /income/67e56ce2-8793-4e4d-bf56-78ca7f6ad00c - DELETE - ::1
+2023-10-13T21:56:44.983Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:57:15.445Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:57:18.618Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:57:19.871Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:58:59.209Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:59:01.682Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:59:49.057Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:59:51.266Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:59:52.131Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T21:59:52.983Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T22:00:06.167Z [error]: 500 - Error: Income with id: a was not found! - /income/a - DELETE - ::1
+2023-10-13T22:00:14.691Z [error]: 500 - Error: Income with id: 1 was not found! - /income/1 - DELETE - ::1
+2023-10-13T22:00:15.766Z [error]: 500 - Error: Income with id: 1 was not found! - /income/1 - DELETE - ::1
+2023-10-13T22:00:16.340Z [error]: 500 - Error: Income with id: 1 was not found! - /income/1 - DELETE - ::1
+2023-10-13T22:00:16.914Z [error]: 500 - Error: Income with id: 1 was not found! - /income/1 - DELETE - ::1
+2023-10-13T22:00:21.333Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T22:00:24.877Z [error]: 404 Not Found - /income/ - DELETE - ::1
+2023-10-13T22:03:16.108Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:17.054Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:17.595Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:17.966Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:18.477Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:18.827Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:19.251Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:20.713Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-13T22:03:21.208Z [error]: 400 - ID is required. - /income/ - DELETE - ::1

@@ -41,11 +41,10 @@ router.delete('/deleteAllIncomes', authMe, async (req, res,next) => {
     }).catch(err => next(err));
 });
 
-router.delete('/:id', authMe, async (req, res,next) => {
-    deleteIncome(req.params.id,req).then(income => {
+router.delete('/', authMe, async (req, res,next) => {
+    deleteIncome(req.query.id as string,req).then(income => {
         logger.info(`User ${income} ${req.params.id} ` )
         res.status(200).send(`You have successfully deleted the income with id: ${req.params.id}!`);
-
     }).catch(err => next(err));
 });
 

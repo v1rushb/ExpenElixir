@@ -78,7 +78,7 @@ const deleteIncome = async (id: string, req : express.Request) : Promise<string>
             throw new CustomError(`Income with id: ${id} was not found!`,404);
         await Income.remove(income);
     } catch (err) {
-        throw new CustomError(`An error occurred while trying to delete the income. ${err}`,500);
+        throw new CustomError(`${err}`,500);
     }
     return decode.username;
 }

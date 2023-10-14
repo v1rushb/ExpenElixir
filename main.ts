@@ -31,7 +31,6 @@ app.get('/health',(req,res)=> {
 });
 
 app.use('/', (req, res) => {
-    console.log(`sadly`);
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);
     res.status(404).send('Not Found');
 });
