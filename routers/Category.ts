@@ -14,24 +14,24 @@ router.post('/', authMe, async (req, res, next) => {
     }).catch(err => next(err));
 });
 
-router.get('/', authMe, async (req, res,next) => {
+router.get('/', authMe, async (req, res, next) => {
     await totalCategory(req).then(category => {
         logger.info(`User ${req.body.username} requested all categorys!`);
         res.status(200).send(category);
     }).catch(err => next(err));
 });
 
-router.delete('/deleteAllCategorys', authMe, async (req, res,next) => {
+router.delete('/deleteAllCategorys', authMe, async (req, res, next) => {
     deleteAllCategory(req).then(category => {
         res.status(200).send(`You have successfully deleted all categorys!`);
     }).catch(err => next(err));
 });
 
-router.delete('/deletecategory/:id', authMe, async (req, res,next) => {
-    await deleteCategory(Number(req.params.id)).then(category => {
+router.delete('/deleteCategory/:id', authMe, async (req, res, next) => {
+    await deleteCategory(req.params.id).then(category => {
         logger.info(`User ${req.body.username} deleted category ${req.params.id}!`);
         res.status(200).send(`You have successfully deleted the category with id: ${req.params.id}!`);
-    }).catch(err=> next(err))
+    }).catch(err => next(err))
 });
 
 export default router;

@@ -14,7 +14,7 @@ const dataSource = new DataSource({
     entities: [Users, Expense, Category, Income, Profile],
     //migrations: ['./**/migration/*.ts'],
     logging: true,
-    synchronize: true
+    synchronize: false
 });
 export default dataSource;
 //# sourceMappingURL=dataSource.js.map

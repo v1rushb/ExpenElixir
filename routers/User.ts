@@ -13,8 +13,8 @@ const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
 
-router.post('/register',validateUser, async (req, res,next) => {
-    insertUser(req.body).then(user=> {
+router.post('/register', validateUser, async (req, res, next) => {
+    insertUser(req.body).then(user => {
         logger.info(`201 Created - /user/register - POST - ${req.ip}`);
         res.status(201).send(`You have been registered successfully ${user.username}!`);
     }).catch(err => next(err));
@@ -45,7 +45,7 @@ router.post('/login', (req, res, next) => {
         }).catch(err => next(err));
     }
     else {
-        return next({message: `Invalid email or password.`, code: 401});
+        return next({ message: `Invalid email or password.`, code: 401 });
     }
 });
 
@@ -71,14 +71,14 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.get('/balance',authMe, PremiumAuth, async (req, res,next) => {
-    calculateBalance(req).then(data=> {
+router.get('/balance', authMe, PremiumAuth, async (req, res, next) => {
+    calculateBalance(req).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);
-    }).catch(err=> next(err));
+    }).catch(err => next(err));
 });
 
-router.get('/', authMe, async (req, res,next) => {
+router.get('/', authMe, async (req, res, next) => {
     try {
         const users = await Users.find();
         res.status(200).send(users);

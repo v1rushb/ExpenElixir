@@ -22,14 +22,14 @@ const insertCategory = async (payload: Gen.Category, req: express.Request) => {
                 relations: ["categories"],
             });
             if (!user) {
-                throw new CustomError(`User not found.`,404); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new CustomError(`User not found.`, 404); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
             }
             user.categories.push(newCategory);
             await trans.save(user);
         });
     }
     catch (err) {
-        if(err instanceof CustomError)
+        if (err instanceof CustomError)
             throw err;
         throw new CustomError(`Internal Server Error`, 500);
     }
@@ -46,21 +46,21 @@ const deleteAllCategory = async (req: express.Request) => {
     });
 }
 
-const deleteCategory = async (id: number) : Promise<Category> => {
+const deleteCategory = async (id: string): Promise<Category> => {
     try {
         const category = await Category.findOne({ where: { id } });
         if (!category)
-            throw new CustomError(`category with id: ${id} was not found!`,404);
+            throw new CustomError(`category with id: ${id} was not found!`, 404);
         await Category.remove(category);
         return category;
     } catch (err) {
-        if(err instanceof CustomError)
+        if (err instanceof CustomError)
             throw err;
         throw new CustomError(`Internal Server Error`, 500);
     }
 }
 
-const totalCategory = async (req: express.Request) : Promise<Category[]> => {
+const totalCategory = async (req: express.Request): Promise<Category[]> => {
     try {
         const decode = decodeToken(req);
         const user = await Users.findOne({
@@ -70,8 +70,8 @@ const totalCategory = async (req: express.Request) : Promise<Category[]> => {
         if (!user) throw new CustomError('User not found', 404);
 
         return user?.categories as Category[];
-    } catch(err) {
-        if(err instanceof CustomError)
+    } catch (err) {
+        if (err instanceof CustomError)
             throw err;
         throw new CustomError(`Internal Server Error`, 500);
     }

@@ -28,14 +28,14 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
                 relations: ["expenses"],
             });
             if (!user) {
-                throw new CustomError(`User not found.`,404);
+                throw new CustomError(`User not found.`, 404);
             }
             const category = await Category.findOne({
                 where: { id: payload.category },
                 relations: ["expenses"],
             });
             if (!category) {
-                throw new CustomError(`Category not found.`,404);
+                throw new CustomError(`Category not found.`, 404);
             }
             user.expenses.push(newExpense);
             category.expenses.push(newExpense);
@@ -44,7 +44,7 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
         });
     }
     catch (err) {
-        if(err instanceof CustomError)
+        if (err instanceof CustomError)
             throw err;
         throw new CustomError(`Internal Server Error`, 500);
     }
@@ -62,15 +62,15 @@ const deleteAllExpenses = async (req: express.Request) => {
     });
 }
 
-const deleteExpense = async (id: string,req: express.Request) : Promise<Expense> => {
+const deleteExpense = async (id: string, req: express.Request): Promise<Expense> => {
     try {
         const expense = await Expense.findOne({ where: { id } }) as Expense;
         if (!expense)
-            throw new CustomError(`Expense with id: ${id} was not found!`,404);
+            throw new CustomError(`Expense with id: ${id} was not found!`, 404);
         await Expense.remove(expense);
         return expense;
     } catch (err) {
-        if(err instanceof CustomError)
+        if (err instanceof CustomError)
             throw err;
         throw new CustomError(`Internal Server Error`, 500);
     }
@@ -89,24 +89,29 @@ const totalExpenses = async (req: express.Request) => {
 }
 
 
-const getExpenses = async (req : express.Request, res : express.Response) : Promise<Expense[]> => {
+const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-      const userId = req.cookies['userId'];
+        const userId = req.cookies['userId'];
+        const search = req.query.search?.toString().toLowerCase() || '';
+        const minAmount = Number(req.query.minAmount) || 0
+        const maxAmount = Number(req.query.maxAmount) || Infinity
+        const expense = await Users.findOne({
+            where: { id: userId },
+            relations: ['expenses'],
+        });
+        if (!expense) throw new CustomError('User not found', 404);
 
-      const user = await Users.findOne({
-        where: { id: userId },
-        relations: ['expenses'],
-      });
-      if (!user) throw new CustomError('User not found', 404);
+        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount })
 
-      return user.expenses
+        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search) })
+        return searchedExpense
     } catch (err: unknown) {
-      if (err instanceof CustomError) {
-        throw new CustomError(err.message, err.statusCode);
-      }
-      throw new CustomError(`Internal Server Error`, 500);
+        if (err instanceof CustomError) {
+            throw new CustomError(err.message, err.statusCode);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
     }
-  };
+};
 
 export {
     insertExpense,

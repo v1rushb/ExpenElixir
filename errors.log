@@ -104,3 +104,10 @@
 2023-10-14T14:29:57.813Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
 2023-10-14T14:29:58.174Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
 2023-10-14T14:29:58.699Z [error]: 401 - You are not a premium user - /user/balance - GET - ::1
+2023-10-14T18:07:56.065Z [error]: 500 - An error occurred while trying to log you in. Error: QueryFailedError: ER_NO_SUCH_TABLE: Table 'expenelixir.profile' doesn't exist - /user/login - POST - ::ffff:127.0.0.1
+2023-10-14T18:11:26.128Z [error]: 409 - User with email: ok@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-14T18:12:44.263Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-14T18:14:18.941Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-14T18:14:34.455Z [error]: 401 - You are not a premium user - /user/balance - GET - ::ffff:127.0.0.1
+2023-10-14T18:14:37.376Z [error]: 401 - You are not a premium user - /user/balance - GET - ::ffff:127.0.0.1
+2023-10-14T18:18:10.427Z [error]: 404 Not Found - /expensesearch=lol - GET - ::ffff:127.0.0.1

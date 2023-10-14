@@ -79,13 +79,18 @@ const totalExpenses = async (req) => {
 const getExpenses = async (req, res) => {
     try {
         const userId = req.cookies['userId'];
-        const user = await Users.findOne({
+        const search = req.query.search?.toString().toLowerCase() || '';
+        const minAmount = Number(req.query.minAmount) || 0;
+        const maxAmount = Number(req.query.maxAmount) || Infinity;
+        const expense = await Users.findOne({
             where: { id: userId },
             relations: ['expenses'],
         });
-        if (!user)
+        if (!expense)
             throw new CustomError('User not found', 404);
-        return user.expenses;
+        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount; });
+        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search); });
+        return searchedExpense;
     }
     catch (err) {
         if (err instanceof CustomError) {
