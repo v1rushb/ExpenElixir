@@ -7,11 +7,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
 import { Category } from "./Category.js";
+import { Profile } from "./Profile.js";
 let Users = class Users extends BaseEntity {
     async hashPassword() {
         if (this.password) {
@@ -23,14 +24,6 @@ __decorate([
     PrimaryGeneratedColumn('uuid'),
     __metadata("design:type", String)
 ], Users.prototype, "id", void 0);
-__decorate([
-    Column({ length: 255, nullable: false }),
-    __metadata("design:type", String)
-], Users.prototype, "firstName", void 0);
-__decorate([
-    Column({ length: 255, nullable: false }),
-    __metadata("design:type", String)
-], Users.prototype, "lastName", void 0);
 __decorate([
     Column({ length: 255, nullable: false, unique: true }),
     __metadata("design:type", String)
@@ -50,10 +43,6 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
-    Column({ nullable: false }),
-    __metadata("design:type", String)
-], Users.prototype, "phoneNumber", void 0);
-__decorate([
     OneToMany(() => Expense, expense => expense.users, { eager: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);
@@ -65,6 +54,10 @@ __decorate([
     OneToMany(() => Income, income => income.user, { eager: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "incomes", void 0);
+__decorate([
+    OneToOne(() => Profile, profile => profile.user, { eager: true }),
+    __metadata("design:type", Object)
+], Users.prototype, "profile", void 0);
 Users = __decorate([
     Entity()
 ], Users);

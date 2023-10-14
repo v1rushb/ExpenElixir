@@ -55,3 +55,34 @@
 2023-10-13T22:03:19.251Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
 2023-10-13T22:03:20.713Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
 2023-10-13T22:03:21.208Z [error]: 400 - ID is required. - /income/ - DELETE - ::1
+2023-10-14T13:21:23.845Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:22:23.348Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:22:24.202Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:22:39.792Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:22:41.916Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:22:53.339Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:22:56.058Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:23:14.300Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:23:16.710Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:23:20.143Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:23:31.474Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:23:33.305Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:23:38.529Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-14T13:34:50.871Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:35:30.281Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:35:51.026Z [error]: 409 - User with email: mohhusini@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:36:15.101Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:37:02.337Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:37:56.155Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:38:03.778Z [error]: 409 - User with email: mohhusisniss@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:39:20.841Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:40:16.583Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:41:05.806Z [error]: 409 - User with email: mohhusiswwniss@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:41:12.775Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:41:28.782Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:42:08.680Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:42:44.739Z [error]: 409 - User with email: mohhusissswwsniss@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:42:49.652Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/register - POST - ::1
+2023-10-14T13:46:18.235Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:46:19.515Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1
+2023-10-14T13:47:59.984Z [error]: 409 - User with email: mohammadali@gmail.com already exists. - /user/register - POST - ::1

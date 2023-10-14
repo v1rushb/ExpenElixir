@@ -1,8 +1,9 @@
-import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
 import { Category } from "./Category.js";
+import { Profile } from "./Profile.js";
 
 
 @Entity()
@@ -11,12 +12,6 @@ export class Users extends BaseEntity {
 
     @PrimaryGeneratedColumn('uuid')
     id: string;
-
-    @Column({ length: 255, nullable: false })
-    firstName: string;
-
-    @Column({ length: 255, nullable: false })
-    lastName: string;
 
     @Column({ length: 255, nullable: false, unique: true })
     username: string;
@@ -33,9 +28,6 @@ export class Users extends BaseEntity {
     @Column({ nullable: false })
     password: string;
 
-    @Column({ nullable: false })
-    phoneNumber: string;
-
 
     @OneToMany(() => Expense, expense => expense.users, { eager: true })
     expenses: Expense[];
@@ -45,5 +37,8 @@ export class Users extends BaseEntity {
 
     @OneToMany(() => Income, income => income.user, { eager: true })
     incomes: Income[];
+
+    @OneToOne(() => Profile, profile => profile.user, { eager: true })
+    profile: Partial<Profile>;
 
 }

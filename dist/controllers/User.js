@@ -5,16 +5,21 @@ import jwt from 'jsonwebtoken';
 import { totalIncomes } from './Income.js';
 import { totalExpenses } from './Expense.js';
 import { CustomError } from '../CustomError.js';
+import { Profile } from '../db/entities/Profile.js';
 const insertUser = async (payload) => {
     try {
         return await dataSource.transaction(async (trans) => {
-            const newUser = Users.create({
+            const newProfile = Profile.create({
                 firstName: payload.firstName,
                 lastName: payload.lastName,
+                phoneNumber: payload.phoneNumber,
+            });
+            await trans.save(newProfile);
+            const newUser = Users.create({
                 email: payload.email,
                 username: payload.username,
                 password: payload.password,
-                phoneNumber: payload.phoneNumber,
+                profile: newProfile,
             });
             return await trans.save(newUser);
         });
@@ -23,7 +28,7 @@ const insertUser = async (payload) => {
         if (err.code.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
-        throw new CustomError(`Internal Server Error`, 500);
+        throw new CustomError(err, 500);
     }
 };
 const login = async (email, password) => {
