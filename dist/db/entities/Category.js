@@ -13,8 +13,8 @@ import { Users } from "./Users.js";
 let Category = class Category extends BaseEntity {
 };
 __decorate([
-    PrimaryGeneratedColumn('increment'),
-    __metadata("design:type", Number)
+    PrimaryGeneratedColumn('uuid'),
+    __metadata("design:type", String)
 ], Category.prototype, "id", void 0);
 __decorate([
     Column({ nullable: false, unique: true }),

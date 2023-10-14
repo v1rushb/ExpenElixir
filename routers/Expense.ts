@@ -8,6 +8,8 @@ import jwt from 'jsonwebtoken';
 const router = express.Router();
 
 router.post('/', authMe, async (req, res) => {
+
+
     insertExpense(req.body, req).then(expense => {
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => {
@@ -18,12 +20,21 @@ router.post('/', authMe, async (req, res) => {
 router.get('/', authMe, async (req, res) => {
     try {
         const decode = jwt.decode(req.cookies["token"], { json: true });
-        console.log(decode?.id);
+        const search = req.query.search?.toString().toLowerCase() || '';
+        const minAmount = Number(req.query.minAmount) || 0
+        const maxAmount = Number(req.query.maxAmount) || Infinity
 
         const expense = await Users.findOne({
             where: { id: decode?.id }
         });
-        res.status(200).send(expense?.expenses);
+
+        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount })
+
+
+        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search) })
+
+        res.status(200).send(searchedExpense);
+
     } catch (err) {
         res.status(500).send(err);
     }

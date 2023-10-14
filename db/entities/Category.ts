@@ -4,8 +4,8 @@ import { Users } from "./Users.js";
 
 @Entity()
 export class Category extends BaseEntity {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column({ nullable: false, unique: true })
     title: string;

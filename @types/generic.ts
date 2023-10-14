@@ -19,7 +19,7 @@ export namespace Gen {
         amount: number,
         expenseDate: Date,
         description: string,
-        category?: number,
+        category?: string,
         user: User,
         picURL?: string
     }

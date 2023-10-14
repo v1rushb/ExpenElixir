@@ -48,7 +48,7 @@ const deleteAllCategory = async (req: express.Request) => {
     }
 }
 
-const deleteCategory = async (id: number) => {
+const deleteCategory = async (id: string) => {
     try {
         const category = await Category.findOne({ where: { id } });
         if (!category)

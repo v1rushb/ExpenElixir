@@ -41,7 +41,7 @@ router.delete('/deleteAllcategorys', authMe, async (req, res) => {
 
 router.delete('/deletecategory/:id', authMe, async (req, res) => {
     try {
-        const id = Number(req.params.id);
+        const id = req.params.id;
         await deleteCategory(id);
         res.status(200).send(`You have successfully deleted the category with id: ${id}!`);
     } catch (err) {
