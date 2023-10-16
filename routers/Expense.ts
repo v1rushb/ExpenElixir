@@ -1,6 +1,6 @@
 import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
-import { deleteAllExpenses, deleteExpense, getExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
+import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import { Users } from '../db/entities/Users.js';
 import jwt from 'jsonwebtoken';
@@ -18,6 +18,13 @@ router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), asy
 
 router.get('/', authMe, async (req, res, next) => {
     getExpenses(req, res).then(expense => {
+        logger.info(`User ${req.body.username} requested all Expenses!`);
+        res.status(200).send(expense);
+    }).catch(err => next(err));
+});
+
+router.get('/search', authMe, async (req, res, next) => {
+    getFilteredExpenses(req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);
     }).catch(err => next(err));

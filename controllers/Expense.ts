@@ -94,6 +94,25 @@ const totalExpenses = async (req: express.Request) => {
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
         const userId = req.cookies['userId'];
+
+        const expense = await Users.findOne({
+            where: { id: userId },
+            relations: ['expenses'],
+        });
+        if (!expense) throw new CustomError('User not found', 404);
+
+
+        return expense.expenses
+    } catch (err: unknown) {
+        if (err instanceof CustomError) {
+            throw new CustomError(err.message, err.statusCode);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
+    }
+};
+const getFilteredExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
+    try {
+        const userId = req.cookies['userId'];
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0
         const maxAmount = Number(req.query.maxAmount) || Infinity
@@ -104,7 +123,6 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
         if (!expense) throw new CustomError('User not found', 404);
 
         const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount })
-
         const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search) })
         return searchedExpense
     } catch (err: unknown) {
@@ -121,4 +139,5 @@ export {
     deleteExpense,
     totalExpenses,
     getExpenses,
+    getFilteredExpenses,
 }
