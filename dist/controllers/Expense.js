@@ -79,6 +79,24 @@ const totalExpenses = async (req) => {
 const getExpenses = async (req, res) => {
     try {
         const userId = req.cookies['userId'];
+        const expense = await Users.findOne({
+            where: { id: userId },
+            relations: ['expenses'],
+        });
+        if (!expense)
+            throw new CustomError('User not found', 404);
+        return expense.expenses;
+    }
+    catch (err) {
+        if (err instanceof CustomError) {
+            throw new CustomError(err.message, err.statusCode);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
+    }
+};
+const getFilteredExpenses = async (req, res) => {
+    try {
+        const userId = req.cookies['userId'];
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
@@ -99,5 +117,5 @@ const getExpenses = async (req, res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, };
+export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, };
 //# sourceMappingURL=Expense.js.map

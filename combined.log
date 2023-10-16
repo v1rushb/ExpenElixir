@@ -222,3 +222,11 @@
 2023-10-16T12:00:41.985Z [info]: User undefined added a new Expense!
 2023-10-16T12:00:50.484Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
 2023-10-16T12:00:54.685Z [info]: User undefined added a new Expense!
+2023-10-16T12:06:13.141Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-16T12:06:17.015Z [info]: User undefined requested all Expenses!
+2023-10-16T12:10:24.206Z [info]: User undefined requested all Expenses!
+2023-10-16T12:10:30.470Z [info]: User undefined requested all Expenses!
+2023-10-16T12:10:44.893Z [info]: User undefined requested all Expenses!
+2023-10-16T12:10:53.396Z [info]: User undefined requested all Expenses!
+2023-10-16T12:11:01.148Z [info]: User undefined requested all Expenses!
+2023-10-16T12:11:16.614Z [info]: User undefined requested all Expenses!
