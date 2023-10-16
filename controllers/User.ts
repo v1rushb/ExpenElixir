@@ -8,6 +8,7 @@ import { totalIncomes } from './Income.js';
 import { totalExpenses } from './Expense.js';
 import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
+import { Business } from '../db/entities/Business.js';
 
 const insertUser = async (payload: Gen.User) => {
     try {
@@ -32,7 +33,7 @@ const insertUser = async (payload: Gen.User) => {
         if (err.code.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
-        throw new CustomError('Internal Server Error', 500);
+        throw new CustomError(err, 500);
     }
 };
 
@@ -80,8 +81,30 @@ const calculateBalance = async (req: express.Request) => {
 }
 
 
+const createUserUnderRoot = async (payload: Gen.User,res : express.Response) => {
+    return await dataSource.transaction(async trans => {
+        const newProfile = Profile.create({
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            phoneNumber: payload.phoneNumber,
+            role: 'User',
+        });
+        await trans.save(newProfile);
+        const newUser = Users.create({
+            email: payload.email,
+            username: payload.username,
+            password: payload.password,
+            profile: newProfile,
+            business: res.locals.user.business,
+        });
+        await trans.save(newUser.business);
+        return await trans.save(newUser);
+    });
+}
+
 export {
     insertUser,
     login,
     calculateBalance,
+    createUserUnderRoot,
 }

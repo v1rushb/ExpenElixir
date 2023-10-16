@@ -1,4 +1,5 @@
 import express from 'express';
+import { Expense } from '../db/entities/Expense.js';
 import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import logger from '../logger.js';
@@ -38,6 +39,10 @@ router.delete('/deleteExpense/:id', authMe, async (req, res, next) => {
         logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
         res.status(200).send(`You have successfully deleted the expense with id: ${req.params.id}!`);
     }).catch(err => next(err));
+});
+router.get('/all', authMe, async (req, res, next) => {
+    const expenses = await Expense.find();
+    res.status(200).send(expenses);
 });
 export default router;
 //# sourceMappingURL=Expense.js.map

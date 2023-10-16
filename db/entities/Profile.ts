@@ -22,10 +22,10 @@ export class Profile extends BaseEntity {
 
     @Column({ 
         type: 'enum',
-        enum: ['Member', 'Premium', 'Admin'], // admin has *, implement later
+        enum: ['Member', 'Root', 'User'],
         default: 'Member'
     })
-    subscription: string;
+    role: string;
 
     @OneToOne(() => Users, user => user.profile)
     @JoinColumn()

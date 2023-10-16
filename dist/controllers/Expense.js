@@ -78,9 +78,8 @@ const totalExpenses = async (req) => {
 };
 const getExpenses = async (req, res) => {
     try {
-        const userId = req.cookies['userId'];
         const expense = await Users.findOne({
-            where: { id: userId },
+            where: { id: res.locals.user.id },
             relations: ['expenses'],
         });
         if (!expense)

@@ -28,7 +28,7 @@ const insertUser = async (payload) => {
         if (err.code.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
-        throw new CustomError('Internal Server Error', 500);
+        throw new CustomError(err, 500);
     }
 };
 const login = async (email, password) => {
@@ -70,5 +70,25 @@ const calculateBalance = async (req) => {
         throw new CustomError(`Unexpected Error ${err}`, 500);
     }
 };
-export { insertUser, login, calculateBalance, };
+const createUserUnderRoot = async (payload, res) => {
+    return await dataSource.transaction(async (trans) => {
+        const newProfile = Profile.create({
+            firstName: payload.firstName,
+            lastName: payload.lastName,
+            phoneNumber: payload.phoneNumber,
+            role: 'User',
+        });
+        await trans.save(newProfile);
+        const newUser = Users.create({
+            email: payload.email,
+            username: payload.username,
+            password: payload.password,
+            profile: newProfile,
+            business: res.locals.user.business,
+        });
+        await trans.save(newUser.business);
+        return await trans.save(newUser);
+    });
+};
+export { insertUser, login, calculateBalance, createUserUnderRoot, };
 //# sourceMappingURL=User.js.map

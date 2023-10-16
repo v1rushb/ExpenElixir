@@ -93,10 +93,10 @@ const totalExpenses = async (req: express.Request) => {
 
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const userId = req.cookies['userId'];
+        
 
         const expense = await Users.findOne({
-            where: { id: userId },
+            where: { id: res.locals.user.id },
             relations: ['expenses'],
         });
         if (!expense) throw new CustomError('User not found', 404);

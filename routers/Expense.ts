@@ -51,4 +51,9 @@ router.delete('/deleteExpense/:id', authMe, async (req, res, next) => {
     }).catch(err => next(err));
 });
 
+router.get('/all',authMe,async(req,res,next)=>{
+    const expenses = await Expense.find();
+    res.status(200).send(expenses);
+});
+
 export default router;

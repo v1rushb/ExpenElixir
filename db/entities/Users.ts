@@ -1,9 +1,10 @@
-import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
 import { Category } from "./Category.js";
 import { Profile } from "./Profile.js";
+import { Business } from "./Business.js";
 
 
 @Entity()
@@ -37,6 +38,9 @@ export class Users extends BaseEntity {
 
     @OneToMany(() => Income, income => income.user, { eager: true })
     incomes: Income[];
+
+    @ManyToOne(() => Business, business => business.users,{eager: true})
+    business: Business;
 
     @OneToOne(() => Profile, profile => profile.user, { eager: true })
     profile: Partial<Profile>;

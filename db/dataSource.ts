@@ -4,6 +4,7 @@ import { Expense } from "./entities/Expense.js";
 import { Category } from "./entities/Category.js";
 import { Income } from "./entities/Income.js";
 import { Profile } from "./entities/Profile.js";
+import { Business } from "./entities/Business.js";
 
 
 const dataSource = new DataSource({
@@ -13,10 +14,10 @@ const dataSource = new DataSource({
     username: process.env.DB_USER_NAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
-    entities: [Users, Expense, Category, Income, Profile],
+    entities: [Users, Expense, Category, Income, Profile,Business],
     //migrations: ['./**/migration/*.ts'],
-    logging: true,
-    synchronize: false
+    logging: false,
+    synchronize: true
 });
 
 export default dataSource;

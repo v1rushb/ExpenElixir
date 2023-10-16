@@ -1,12 +1,13 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, createUserUnderRoot, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
 import PremiumAuth from '../middlewares/PremiumAuth.js';
+import { Business } from '../db/entities/Business.js';
 
 const router = express.Router();
 
@@ -71,7 +72,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.get('/balance', authMe, PremiumAuth, async (req, res, next) => {
+router.get('/balance', authMe, async (req, res, next) => {
     calculateBalance(req).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);
@@ -84,6 +85,47 @@ router.get('/', authMe, async (req, res, next) => {
         res.status(200).send(users);
     } catch (err) {
         return next(new CustomError(`An error occurred while trying to get all users. Error: ${err}`, 500));
+    }
+});
+
+router.post('/addUser', authMe, PremiumAuth, async (req, res, next) => {
+    createUserUnderRoot(req.body, res).then(user => {
+        logger.info(`201 Created - /user/addUser - POST - ${req.ip}`);
+        res.status(201).send(`${user.username} has been successfully added to your business!`);
+    }).catch(err => next(err));
+});
+
+router.put('/upgradeToPremium', authMe, async (req, res, next) => { // just some testing stuff
+    try {
+        const user = res.locals.user;
+        console.log(`profiles are ${user.profile}`);
+        if(user.profile) {
+        user.profile.role = 'Root';
+        await user.profile.save();
+        const newBusiness = Business.create({
+            businessName: user.profile.firstName + "'s Business",
+            rootUserID: user.id,
+            users: [user],
+        });
+        await newBusiness.save();
+
+        user.business = newBusiness;
+
+        await user.save();
+        }
+        logger.info(`200 OK - /user/upgradeToPremium - PUT - ${req.ip}`);
+        res.status(200).send(`You have been upgraded to premium successfully ${user.username}!`);
+    } catch (err) {
+        return next(new CustomError(`An error occurred while trying to upgrade you to premium. Error: ${err}`, 500));
+    }
+});
+
+router.get('/allRootUsers', authMe, PremiumAuth, async (req, res, next) => {
+    try {
+        const users = await Users.find({ where: { business: { id: res.locals.user.business.id } } });
+        res.status(200).send(users);
+    } catch (err) {
+        return next(new CustomError(`An error occurred while trying to get all root users. Error: ${err}`, 500));
     }
 });
 

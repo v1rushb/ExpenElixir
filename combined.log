@@ -230,3 +230,121 @@
 2023-10-16T12:10:53.396Z [info]: User undefined requested all Expenses!
 2023-10-16T12:11:01.148Z [info]: User undefined requested all Expenses!
 2023-10-16T12:11:16.614Z [info]: User undefined requested all Expenses!
+2023-10-16T22:33:00.033Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-16T22:33:04.980Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-16T22:39:44.717Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-16T22:40:24.932Z [error]: undefined - jwt must be provided - /user/Adduser - POST - ::1
+2023-10-16T22:40:27.097Z [error]: undefined - jwt must be provided - /user/Adduser - POST - ::1
+2023-10-16T22:40:27.818Z [error]: undefined - jwt must be provided - /user/Adduser - POST - ::1
+2023-10-16T22:40:28.382Z [error]: undefined - jwt must be provided - /user/Adduser - POST - ::1
+2023-10-16T22:40:47.955Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T22:40:54.400Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:40:56.942Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:40:57.554Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:40:58.127Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:40:58.776Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:40:59.370Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:41:00.118Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:41:00.813Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:41:01.222Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:41:01.894Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:41:02.293Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:41:02.892Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:43:11.059Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:43:32.907Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:43:34.518Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:43:40.637Z [error]: 404 Not Found - /user/Adduser - PUT - ::1
+2023-10-16T22:43:44.619Z [error]: 401 - You are not a root user - /user/Adduser - POST - ::1
+2023-10-16T22:44:11.065Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:44:22.404Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:44:48.100Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:48:46.999Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:48:51.240Z [error]: 404 Not Found - /user/addUser - PUT - ::1
+2023-10-16T22:48:55.602Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:49:18.217Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:50:52.552Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:51:13.516Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:51:15.570Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:51:16.131Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T22:51:19.788Z [error]: 404 Not Found - /user/addUser - PUT - ::1
+2023-10-16T22:51:22.781Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:51:24.345Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:51:24.766Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:51:25.137Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:51:25.661Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:51:47.169Z [error]: undefined - DataSource is not set for this entity. - /user/addUser - POST - ::1
+2023-10-16T22:51:51.112Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:52:58.707Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:53:11.482Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:53:24.682Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:53:33.207Z [error]: 401 - You are not a root user - /user/addUser - POST - ::1
+2023-10-16T22:53:42.224Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAli' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T22:53:43.436Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAli' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T22:53:44.480Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAli' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T22:53:50.749Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAli' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T22:54:18.252Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T22:54:22.861Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAliJr.' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T22:54:26.764Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAliJr.' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T23:06:34.615Z [error]: undefined - Unexpected field - /expense - POST - ::1
+2023-10-16T23:09:02.959Z [error]: undefined - The difference between the request time and the current time is too large. - /expense - POST - ::1
+2023-10-16T23:09:35.338Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-16T23:10:59.852Z [error]: undefined - jwt must be provided - /category - POST - ::1
+2023-10-16T23:11:01.785Z [error]: undefined - jwt must be provided - /category - POST - ::1
+2023-10-16T23:11:09.191Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T23:11:12.188Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category - POST - ::1
+2023-10-16T23:11:35.864Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-16T23:11:39.465Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-16T23:11:55.298Z [info]: User undefined requested all categorys!
+2023-10-16T23:12:08.556Z [info]: User undefined added a new Expense!
+2023-10-16T23:13:00.394Z [info]: User undefined requested all Expenses!
+2023-10-16T23:13:02.143Z [info]: User undefined requested all Expenses!
+2023-10-16T23:13:06.011Z [info]: User undefined requested all Expenses!
+2023-10-16T23:17:24.867Z [info]: User undefined requested all Expenses!
+2023-10-16T23:18:05.339Z [info]: User undefined requested all Expenses!
+2023-10-16T23:23:50.019Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'MohammadAliJr.' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T23:24:33.605Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-16T23:24:43.019Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-16T23:24:48.708Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T23:24:57.771Z [error]: undefined - Cannot read properties of null (reading 'role') - /user/addUser - POST - ::1
+2023-10-16T23:25:16.529Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:25:23.263Z [error]: undefined - Cannot read properties of null (reading 'role') - /user/addUser - POST - ::1
+2023-10-16T23:25:48.769Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-16T23:26:10.523Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:26:17.919Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-16T23:26:20.939Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T23:26:35.896Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-16T23:26:38.693Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T23:26:41.508Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:27:02.862Z [error]: 404 Not Found - /user/addUser - PUT - ::1
+2023-10-16T23:27:07.266Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:27:08.994Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'momin' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T23:27:24.425Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:27:40.242Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:29:16.483Z [error]: 500 - An error occurred while trying to get all users. Error: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client - /user/ - GET - ::1
+2023-10-16T23:29:43.407Z [error]: 500 - An error occurred while trying to get all users. Error: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client - /user/ - GET - ::1
+2023-10-16T23:35:27.415Z [error]: 500 - An error occurred while trying to upgrade you to premium. Error: TypeError: Cannot read properties of undefined (reading 'name') - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:36:42.137Z [error]: 500 - An error occurred while trying to upgrade you to premium. Error: TypeError: Cannot read properties of undefined (reading 'name') - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:36:42.931Z [error]: 500 - An error occurred while trying to upgrade you to premium. Error: TypeError: Cannot read properties of undefined (reading 'name') - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:37:03.671Z [error]: 500 - An error occurred while trying to upgrade you to premium. Error: QueryFailedError: ER_NO_DEFAULT_FOR_FIELD: Field 'businessName' doesn't have a default value - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:37:28.322Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-16T23:38:38.830Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-16T23:38:46.514Z [error]: 400 - Invalid email. - /user/login - POST - ::1
+2023-10-16T23:38:49.963Z [error]: 400 - Invalid email. - /user/login - POST - ::1
+2023-10-16T23:38:59.738Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T23:39:42.940Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-16T23:39:48.397Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T23:39:51.184Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:40:50.713Z [error]: undefined - DataSource is not set for this entity. - /user - GET - ::1
+2023-10-16T23:40:52.285Z [error]: undefined - DataSource is not set for this entity. - /user - GET - ::1
+2023-10-16T23:40:53.098Z [error]: undefined - DataSource is not set for this entity. - /user - GET - ::1
+2023-10-16T23:40:53.919Z [error]: undefined - DataSource is not set for this entity. - /user - GET - ::1
+2023-10-16T23:45:00.995Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:45:50.764Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:47:01.696Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:47:27.697Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'malsoosok' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T23:47:34.551Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:47:53.477Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'malesoosok' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-16T23:47:56.968Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:48:19.543Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:49:49.702Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-16T23:50:34.110Z [info]: 201 Created - /user/addUser - POST - ::1
