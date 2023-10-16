@@ -189,3 +189,36 @@
 2023-10-14T18:18:01.169Z [info]: User undefined requested all Expenses!
 2023-10-14T18:18:10.427Z [error]: 404 Not Found - /expensesearch=lol - GET - ::ffff:127.0.0.1
 2023-10-14T18:18:15.673Z [info]: User undefined requested all Expenses!
+2023-10-14T18:30:28.426Z [info]: User undefined added a new Expense!
+2023-10-14T18:32:28.494Z [info]: User undefined added a new Expense!
+2023-10-14T18:35:36.339Z [error]: 500 - Internal Server Error - /expense - POST - ::ffff:127.0.0.1
+2023-10-14T18:35:50.686Z [error]: 500 - Internal Server Error - /expense - POST - ::ffff:127.0.0.1
+2023-10-14T18:36:10.990Z [error]: 500 - Internal Server Error - /expense - POST - ::ffff:127.0.0.1
+2023-10-14T18:45:39.901Z [info]: User undefined added a new Expense!
+2023-10-14T18:46:36.136Z [info]: User undefined added a new Expense!
+2023-10-16T10:37:21.706Z [error]: 404 Not Found - /upload - POST - ::1
+2023-10-16T10:41:36.511Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T10:42:19.271Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T10:46:37.074Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T10:52:34.530Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T10:53:51.044Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T10:55:46.558Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T10:58:26.077Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T11:01:13.679Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T11:01:51.347Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T11:02:38.842Z [error]: undefined - Unexpected field - /upload - POST - ::1
+2023-10-16T11:08:36.797Z [error]: undefined - Could not load credentials from any providers - /upload - POST - ::1
+2023-10-16T11:23:01.129Z [error]: 404 Not Found - /user/login - GET - ::1
+2023-10-16T11:23:07.532Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T11:23:52.911Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T11:24:04.989Z [info]: User undefined added a new Expense!
+2023-10-16T11:27:30.015Z [info]: User undefined added a new Expense!
+2023-10-16T11:28:08.835Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T11:34:58.918Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T11:36:32.047Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T11:37:00.515Z [info]: User undefined added a new Expense!
+2023-10-16T11:43:11.690Z [info]: User undefined added a new Expense!
+2023-10-16T12:00:38.844Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-16T12:00:41.985Z [info]: User undefined added a new Expense!
+2023-10-16T12:00:50.484Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T12:00:54.685Z [info]: User undefined added a new Expense!

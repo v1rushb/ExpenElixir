@@ -10,8 +10,10 @@ import { decode } from 'punycode';
 import { CustomError } from '../CustomError.js';
 
 
-const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
+const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined) => {
     try {
+
+
         const decode = decodeToken(req);
         return dataSource.manager.transaction(async trans => {
 
@@ -20,7 +22,7 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request) => {
                 amount: Number(payload.amount),
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: payload.picURL
+                picURL: picFile?.location
             });
             await trans.save(newExpense);
             const user = await Users.findOne({

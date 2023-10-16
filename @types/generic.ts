@@ -41,10 +41,10 @@ export namespace Gen {
         Currency: string,
         subscription: string,
     }
-    
+
     export interface DecodedPayload {
         id: string,
         email: string,
-        username : string,
+        username: string,
     }
 }
