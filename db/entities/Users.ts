@@ -30,19 +30,19 @@ export class Users extends BaseEntity {
     password: string;
 
 
-    @OneToMany(() => Expense, expense => expense.users, { eager: true })
+    @OneToMany(() => Expense, expense => expense.users, { eager: true , cascade: true })
     expenses: Expense[];
 
-    @OneToMany(() => Category, category => category.users, { eager: true })
+    @OneToMany(() => Category, category => category.users, { eager: true , cascade: true })
     categories: Category[];
 
-    @OneToMany(() => Income, income => income.user, { eager: true })
+    @OneToMany(() => Income, income => income.user, { eager: true , cascade: true })
     incomes: Income[];
 
     @ManyToOne(() => Business, business => business.users,{eager: true})
     business: Business;
 
-    @OneToOne(() => Profile, profile => profile.user, { eager: true })
+    @OneToOne(() => Profile, profile => profile.user, { eager: true , cascade: true })
     profile: Partial<Profile>;
 
 }

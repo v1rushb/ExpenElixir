@@ -348,3 +348,29 @@
 2023-10-16T23:48:19.543Z [info]: 201 Created - /user/addUser - POST - ::1
 2023-10-16T23:49:49.702Z [info]: 201 Created - /user/addUser - POST - ::1
 2023-10-16T23:50:34.110Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-17T14:05:55.179Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-17T14:06:34.010Z [error]: 404 Not Found - /user/test - GET - ::1
+2023-10-17T14:07:53.897Z [error]: undefined - The difference between the request time and the current time is too large. - /expense - POST - ::1
+2023-10-17T14:08:21.988Z [info]: User undefined added a new Expense!
+2023-10-17T14:08:23.927Z [info]: User undefined added a new Expense!
+2023-10-17T14:43:04.388Z [error]: undefined - jwt must be provided - /expense - GET - ::1
+2023-10-17T14:43:17.146Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-17T14:43:20.420Z [info]: User malsssessoosok requested all Expenses!
+2023-10-17T14:43:23.122Z [info]: User malsssessoosok requested all Expenses!
+2023-10-17T14:43:24.411Z [info]: User malsssessoosok requested all Expenses!
+2023-10-17T14:45:45.096Z [info]: User malsssessoosok requested all Expenses!
+2023-10-17T14:45:58.948Z [info]: User undefined requested all Expenses!
+2023-10-17T14:46:12.877Z [error]: 404 Not Found - /allRootUsers - GET - ::1
+2023-10-17T14:46:32.220Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-17T14:46:38.711Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-17T14:46:43.602Z [info]: User malsssessoosok requested all Expenses!
+2023-10-17T14:49:00.741Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-17T14:49:02.865Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:09.528Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:13.448Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:18.286Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:21.490Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:31.634Z [error]: 400 - Invalid email. - /user/login - POST - ::1
+2023-10-17T14:49:45.157Z [error]: 400 - Invalid email. - /user/login - POST - ::1
+2023-10-17T14:49:49.779Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-17T14:49:54.543Z [info]: User malsssessoosok requested all Expenses!

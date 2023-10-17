@@ -1,11 +1,12 @@
 import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
-import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
+import { addUserExpense, deleteAllExpenses, deleteExpense, deleteUserExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import { Users } from '../db/entities/Users.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
+import exp from 'constants';
 
 const router = express.Router();
 
@@ -56,4 +57,24 @@ router.get('/all',authMe,async(req,res,next)=>{
     res.status(200).send(expenses);
 });
 
+//this is not the final code.
+router.get('/ExpensesUnderRootUser',authMe, async (req, res, next) => {
+    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
+    const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
+    res.status(200).send(result);
+});
+
+router.post('/addUserExpense', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+    addUserExpense(req.body,req.query.userID as string, res, req.file as Express.MulterS3.File).then(expense => {
+        logger.info(`User ${req.body.username} added a new Expense!`);
+        res.status(200).send(`You have successfully added a new Expense!`);
+    }).catch(err => next(err));
+});
+
+router.delete('/deleteUserExpense', authMe, async (req, res, next) => {
+    deleteUserExpense(req.query.expenseID as string,req.query.userID as string,res).then(expense => {
+        logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
+        res.status(200).send(`You have successfully deleted the expense with id: ${req.params.id}!`);
+    }).catch(err => next(err));
+});
 export default router;

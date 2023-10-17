@@ -9,6 +9,8 @@ import { totalExpenses } from './Expense.js';
 import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
 import { Business } from '../db/entities/Business.js';
+import Income from '../routers/Income.js';
+import Expense from '../routers/Expense.js';
 
 const insertUser = async (payload: Gen.User) => {
     try {
@@ -102,9 +104,30 @@ const createUserUnderRoot = async (payload: Gen.User,res : express.Response) => 
     });
 }
 
+const rootUserDescendant = async (res: express.Response, descendantID: string): Promise<Users> => {
+    const descendant = await Users.findOne({ where: { business: res.locals.user.business,id:descendantID } }) as Users;
+    return descendant;
+}
+
+const deleteDescendant = async (descendantID: string, res : express.Response): Promise<void> => {
+    try {
+        return await dataSource.transaction(async trans => {
+            const descendant = await rootUserDescendant(res, descendantID);
+            if(descendant) {
+                throw new CustomError('User not found in your business', 404);
+            }
+
+            await trans.remove(Users, descendant);
+        });
+    } catch(err) {
+        throw(err);
+    }
+};
+
 export {
     insertUser,
     login,
     calculateBalance,
     createUserUnderRoot,
+    deleteDescendant,
 }

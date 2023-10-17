@@ -205,3 +205,14 @@
 2023-10-16T23:40:53.919Z [error]: undefined - DataSource is not set for this entity. - /user - GET - ::1
 2023-10-16T23:47:27.697Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'malsoosok' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
 2023-10-16T23:47:53.477Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'malesoosok' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/addUser - POST - ::1
+2023-10-17T14:06:34.010Z [error]: 404 Not Found - /user/test - GET - ::1
+2023-10-17T14:07:53.897Z [error]: undefined - The difference between the request time and the current time is too large. - /expense - POST - ::1
+2023-10-17T14:43:04.388Z [error]: undefined - jwt must be provided - /expense - GET - ::1
+2023-10-17T14:46:12.877Z [error]: 404 Not Found - /allRootUsers - GET - ::1
+2023-10-17T14:49:02.865Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:09.528Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:13.448Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:18.286Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:21.490Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-17T14:49:31.634Z [error]: 400 - Invalid email. - /user/login - POST - ::1
+2023-10-17T14:49:45.157Z [error]: 400 - Invalid email. - /user/login - POST - ::1
