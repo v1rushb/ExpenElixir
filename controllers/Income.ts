@@ -91,73 +91,10 @@ const totalIncomes = async (req: express.Request) => {
 
     return total
 }
-
-const addUserIncome = async (payload: Gen.Income, userID: string, res: express.Response) => {
-    try {
-        const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
-        });
-        if (!user) {
-            throw new CustomError(`User not found.`, 404);
-        }
-        return dataSource.manager.transaction(async trans => {
-
-            const newIncome = Income.create({
-                title: payload.title,
-                amount: Number(payload.amount),
-                incomeDate: payload.incomeDate,
-                description: payload.description,
-            });
-            await trans.save(newIncome);
-            user.incomes.push(newIncome);
-            await trans.save(user);
-        }); 
-    } catch(err) {
-        throw err;
-    }
-}
-
-const deleteUserIncome = async (incomeID: string, userID: string, res: express.Response) => {
-    try {
-        const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
-        });
-        if (!user) {
-            throw new CustomError(`User not found.`, 404);
-        }
-        const income = await Income.findOne({
-            where: { id: incomeID },
-        });
-
-        if (!income || income.user !== user.id) {
-            throw new CustomError("Income not found.", 404);
-        }
-
-        await Income.remove(income);
-    } catch(err) {
-        throw err;
-    }
-}
-
-const businessIncome = async (res: express.Response): Promise<any> => { // do the typing later in gen
-    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
-    const result = users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
-    return result;
-}
-
-const totalBusinessIncome = async (res: express.Response): Promise<number> => { // fix error handling and typing later (for now it's any)
-    const incomes = await businessIncome(res);
-    return incomes ? incomes.reduce((acc: any, income: { amount: any; }) => acc + income.amount, 0) : 0
-}
-
 export {
     insertIncome,
     deleteAllIncomes,
     deleteIncome,
     totalIncomes,
     decodeToken,
-    addUserIncome,
-    deleteUserIncome,
-    businessIncome,
-    totalBusinessIncome,
 }

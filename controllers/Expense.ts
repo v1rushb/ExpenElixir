@@ -127,82 +127,6 @@ const getFilteredExpenses = async (req: express.Request, res: express.Response):
     }
 };
 
-const addUserExpense = async (payload: Gen.Expense ,userID : string,res : express.Response, picFile: Express.MulterS3.File | undefined) => {
-    
-    try {
-        const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
-        });
-        if (!user) {
-            throw new CustomError(`User not found.`, 404);
-        }
-        return dataSource.manager.transaction(async trans => {
-
-            const newExpense = Expense.create({
-                title: payload.title,
-                amount: Number(payload.amount),
-                expenseDate: payload.expenseDate,
-                description: payload.description,
-                picURL: picFile?.location
-            });
-            await trans.save(newExpense);
-            const category = await Category.findOne({
-                where: { id: payload.category },
-                relations: ["expenses"],
-            });
-            if (!category) {
-                throw new CustomError(`Category not found.`, 404);
-            }
-            user.expenses.push(newExpense);
-            category.expenses.push(newExpense);
-            await trans.save(user);
-            await trans.save(category);
-        }); 
-    } catch(err) {
-        throw err;
-    }
-}
-
-const deleteUserExpense = async (expenseID : string, userID : string, res : express.Response) : Promise<void> => {
-    try {
-        const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
-        });
-        if (!user) {
-            throw new CustomError(`User not found.`, 404);
-        }
-        const expense = await Expense.findOne({
-            where: { id: expenseID },
-        });
-        if(expense) {
-            const correctExpense = await Users.findOne({
-                where: {id: expense.users}
-            });
-        }
-        if (!expense) {
-            throw new CustomError(`Expense not found.`, 404);
-        }
-        await Expense.remove(expense);
-    } catch(err) {
-        throw err;
-    }
-}
-
-const businessExpenses = async (res: express.Response) => { //add typing later
-    try {
-        const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
-        const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
-        return result;
-    } catch(err) {
-        throw(err);
-    }
-}
-
-const totalBusinessExpenses = async (res: express.Response): Promise<number> => { // fix error handling later
-    const expenses = await businessExpenses(res);
-    return expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0
-}
-
 export {
     insertExpense,
     deleteAllExpenses,
@@ -210,8 +134,4 @@ export {
     totalExpenses,
     getExpenses,
     getFilteredExpenses,
-    addUserExpense,
-    deleteUserExpense,
-    businessExpenses,
-    totalBusinessExpenses,
 }

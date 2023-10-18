@@ -1,13 +1,12 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { businessBalance, businessUsers, calculateBalance, createUserUnderRoot, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
-import PremiumAuth from '../middlewares/PremiumAuth.js';
-import { Business } from '../db/entities/Business.js';
+import businessUser from '../middlewares/businessUser.js';
 
 const router = express.Router();
 
@@ -88,49 +87,6 @@ router.get('/', authMe, async (req, res, next) => {
     }
 });
 
-router.post('/addUser', authMe, PremiumAuth, async (req, res, next) => {
-    createUserUnderRoot(req.body, res).then(user => {
-        logger.info(`201 Created - /user/addUser - POST - ${req.ip}`);
-        res.status(201).send(`${user.username} has been successfully added to your business!`);
-    }).catch(err => next(err));
-});
+router.use('/business',businessUser);
 
-router.put('/upgradeToPremium', authMe, async (req, res, next) => { // just some testing stuff
-    try {
-        const user = res.locals.user;
-        console.log(`profiles are ${user.profile}`);
-        if(user.profile) {
-        user.profile.role = 'Root';
-        await user.profile.save();
-        const newBusiness = Business.create({
-            businessName: user.profile.firstName + "'s Business",
-            rootUserID: user.id,
-            users: [user],
-        });
-        await newBusiness.save();
-
-        user.business = newBusiness;
-
-        await user.save();
-        }
-        logger.info(`200 OK - /user/upgradeToPremium - PUT - ${req.ip}`);
-        res.status(200).send(`You have been upgraded to premium successfully ${user.username}!`);
-    } catch (err) {
-        return next(new CustomError(`An error occurred while trying to upgrade you to premium. Error: ${err}`, 500));
-    }
-});
-
-router.get('/businessUsers', authMe, PremiumAuth, async (req, res, next) => {
-    businessUsers(res).then(users => {
-        logger.info(`200 OK - /user/businessUsers - GET - ${req.ip}`);
-        res.status(200).send(users);
-    }).catch(err => next(err));
-});
-
-router.get('/businessBalance', authMe, PremiumAuth, async (req, res, next) => {
-    businessBalance(res).then(balance => {
-        logger.info(`200 OK - /user/businessBalance - GET - ${req.ip}`);
-        res.status(200).send(`Your business balance is: ${balance}`);
-    }).catch(err => next(err));
-});
 export default router;
