@@ -29,6 +29,9 @@ export class Users extends BaseEntity {
     @Column({ nullable: false })
     password: string;
 
+    @Column()
+    iamId: string;
+
 
     @OneToMany(() => Expense, expense => expense.users, { eager: true , cascade: true })
     expenses: Expense[];

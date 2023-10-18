@@ -18,12 +18,15 @@ const createUserUnderRoot = async (payload: Gen.User,res : express.Response) => 
             role: 'User',
         });
         await trans.save(newProfile);
+
+        const iamId = `${Date.now()}`;
         const newUser = Users.create({
             email: payload.email,
             username: payload.username,
             password: payload.password,
             profile: newProfile,
             business: res.locals.user.business,
+            iamId,
         });
         await trans.save(newUser.business);
         return await trans.save(newUser);
