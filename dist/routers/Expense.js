@@ -12,7 +12,7 @@ router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), asy
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
 });
-router.get('/', authMe, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     getExpenses(req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);

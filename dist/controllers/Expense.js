@@ -98,17 +98,19 @@ const getFilteredExpenses = async (req, res) => {
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
         const user = res.locals.user;
-        if (!expense)
+        if (!user)
             throw new CustomError('User not found', 404);
-        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount; });
-        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search); });
-        return searchedExpense;
+        const expenses = user.expenses;
+        if (expenses.length === 0)
+            throw new CustomError('No expenses found', 404);
+        const filteredExpenses = expenses.filter(expense => {
+            return expense.amount >= minAmount && expense.amount <= maxAmount &&
+                expense.title.toLowerCase().includes(search);
+        });
+        return filteredExpenses;
     }
     catch (err) {
-        if (err instanceof CustomError) {
-            throw new CustomError(err.message, err.statusCode);
-        }
-        throw new CustomError(`Internal Server Error`, 500);
+        throw err;
     }
 };
 export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, };

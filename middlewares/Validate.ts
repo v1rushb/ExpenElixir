@@ -30,14 +30,15 @@ const validateUser = async (req: express.Request, res: express.Response, next: e
 
 const validateExpense = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
+        console.log(req.body);
         if (!req.body)
             throw new CustomError(`Empty body!`, 400);
         const values = ['title', 'amount', 'expenseDate'];
         const errorList: string[] = [];
         values.forEach(iterator=> {
             if(!req.body[iterator])
-                return void errorList.push(`${iterator} is Required.`);
-        });
+            return void errorList.push(`${iterator} is Required.`);
+    });
         const expense = req.body;
         if(expense.amount <= 0)
             errorList.push(`Amount must be greater than 0.`);

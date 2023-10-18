@@ -85,7 +85,6 @@ const totalExpenses = async (req: express.Request): Promise<number>=> {
     return total;
 }
 
-
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
         const expense = await Users.findOne({

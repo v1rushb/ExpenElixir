@@ -3,8 +3,9 @@ import { deleteAllCategory, deleteCategory, insertCategory, totalCategory } from
 import authMe from '../middlewares/Auth.js';
 import logger from '../logger.js';
 import businessCategory from '../middlewares/businessCategory.js';
+import { validateCategory } from '../middlewares/Validate.js';
 const router = express.Router();
-router.post('/', authMe, async (req, res, next) => {
+router.post('/', authMe, validateCategory, async (req, res, next) => {
     insertCategory(req.body, req).then(category => {
         res.status(200).send(`You have successfully added a new category!`);
     }).catch(err => next(err));

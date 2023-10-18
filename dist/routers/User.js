@@ -17,9 +17,10 @@ router.post('/register', validateUser, async (req, res, next) => {
     }).catch(err => next(err));
 });
 router.post('/login', (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
+    console.log(username);
+    console.log(password);
     try {
         if (token) {
             jwt.verify(token, process.env.SECRET_KEY || '');
@@ -29,8 +30,8 @@ router.post('/login', (req, res, next) => {
     catch (err) {
         return next(new CustomError(`Your session has expired or is invalid. Please log in again.`, 400));
     }
-    if (email && password) {
-        login(email, password).then(data => {
+    if (username && password) {
+        login(username, password, iamId, res).then(data => {
             res.cookie("userEmail", data.email, { maxAge: 30 * 60 * 1000 });
             res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });
             res.cookie("loginDate", Date.now(), { maxAge: 30 * 60 * 1000 });
@@ -39,7 +40,7 @@ router.post('/login', (req, res, next) => {
         }).catch(err => next(err));
     }
     else {
-        return next({ message: `Invalid email or password.`, code: 401 });
+        return next(new CustomError(`Invalid username or password.`, 401));
     }
 });
 router.post('/logout', (req, res) => {

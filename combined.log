@@ -375,3 +375,120 @@
 2023-10-17T14:49:49.779Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-17T14:49:54.543Z [info]: User malsssessoosok requested all Expenses!
 2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
+2023-10-18T20:18:08.042Z [error]: 401 - Invalid Error - /expense - GET - ::1
+2023-10-18T21:07:55.676Z [error]: 500 - QueryFailedError: ER_NO_DEFAULT_FOR_FIELD: Field 'iamId' doesn't have a default value - /user/register - POST - ::1
+2023-10-18T21:08:54.685Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-18T21:08:56.497Z [error]: 409 - User with email: theprogamermch@hotmail.com already exists. - /user/register - POST - ::1
+2023-10-18T21:09:00.273Z [error]: 409 - User with email: theprogamermch@hotmail.com already exists. - /user/register - POST - ::1
+2023-10-18T21:09:25.228Z [error]: 401 - Invalid email or password. - /user/login - POST - ::1
+2023-10-18T21:09:46.242Z [error]: 401 - Invalid username or password. - /user/login - POST - ::1
+2023-10-18T21:09:47.484Z [error]: 401 - Invalid username or password. - /user/login - POST - ::1
+2023-10-18T21:09:55.880Z [error]: 401 - Invalid username or password. - /user/login - POST - ::1
+2023-10-18T21:10:01.981Z [error]: 401 - Invalid username or password. - /user/login - POST - ::1
+2023-10-18T21:10:05.459Z [error]: 401 - Invalid username or password. - /user/login - POST - ::1
+2023-10-18T21:10:29.323Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-18T21:10:35.792Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-18T21:11:04.287Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-18T21:12:20.973Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-18T21:14:39.427Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-18T21:15:05.020Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-18T21:15:07.436Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-18T21:16:53.763Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-18T21:16:55.343Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-18T21:16:55.896Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-18T21:18:32.047Z [info]: 200 OK - /user/upgradeToPremium - PUT - ::1
+2023-10-18T21:18:34.662Z [error]: 500 - An error occurred while trying to upgrade you to premium. Error: QueryFailedError: ER_DUP_ENTRY: Duplicate entry 'Ali's Business' for key 'business.IDX_b485ad884cd5182b8ba80f0331' - /user/business/upgrade-to-premium - PUT - ::1
+2023-10-18T21:18:48.796Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'firstName' doesn't have a default value - /user/business/add-user - POST - ::1
+2023-10-18T21:19:12.467Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'firstName' doesn't have a default value - /user/business/add-user - POST - ::1
+2023-10-18T21:20:06.917Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Monster' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/business/add-user - POST - ::1
+2023-10-18T21:20:29.674Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-18T21:20:31.536Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Monstergt' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/business/add-user - POST - ::1
+2023-10-18T21:20:46.808Z [error]: 400 - Expected double-quoted property name in JSON at position 57 - /login - POST - ::1
+2023-10-18T21:20:50.615Z [error]: 404 Not Found - /login - POST - ::1
+2023-10-18T21:21:04.265Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-18T21:21:05.801Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-18T21:21:12.776Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-18T21:21:18.487Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-18T21:21:34.942Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-18T21:22:13.803Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-18T21:22:54.974Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T21:23:49.794Z [error]: 404 Not Found - /income/add-user-income - POST - ::1
+2023-10-18T21:24:19.952Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T21:26:10.751Z [error]: 400 - You must provide an id for the user you want to add an income to! - /income/business/add-user-income - POST - ::1
+2023-10-18T21:26:23.944Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-18T21:27:15.063Z [error]: 400 - You must provide an id for the user you want to add an income to! - /income/business/add-user-income - POST - ::1
+2023-10-18T21:37:57.560Z [error]: 400 - You must provide an id for the user you want to add an income to! - /income/business/add-user-income - POST - ::1
+2023-10-18T21:38:20.468Z [error]: 400 - You must provide an id for the user you want to add an income to! - /income/business/add-user-income/?userid=8f4952f5-2629-4d29-9127-6c978b931d42 - POST - ::1
+2023-10-18T21:38:28.439Z [error]: 400 - You must provide an id for the user you want to add an income to! - /income/business/add-user-income/?userID=8f4952f5-2629-4d29-9127-6c978b931d42 - POST - ::1
+2023-10-18T21:38:38.859Z [error]: 404 Not Found - /income/business/add-user-income/userID?=8f4952f5-2629-4d29-9127-6c978b931d42 - POST - ::1
+2023-10-18T21:39:14.653Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T21:40:08.800Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-18T21:42:03.948Z [error]: 404 Not Found - /user/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&?id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:42:17.253Z [error]: 400 - You must provide an id for the income you want to delete! - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&?id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:42:38.622Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:43:00.178Z [error]: 404 Not Found - /user/business/all-business-users - GET - ::1
+2023-10-18T21:43:13.155Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-18T21:43:33.337Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:43:35.211Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:44:41.852Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:46:26.772Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:46:48.731Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:54:38.811Z [error]: undefined - jwt must be provided - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:54:50.481Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-18T21:54:54.011Z [info]: User Monster deleted income undefined for user with id 8d60ac3f-b25d-498c-8885-d56fde1cedd0!
+2023-10-18T21:54:55.490Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=2b22d87d-de18-4873-b3d7-59ef2d3ed77a - DELETE - ::1
+2023-10-18T21:55:02.429Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-18T21:55:13.228Z [info]: User Monster deleted income undefined for user with id 8d60ac3f-b25d-498c-8885-d56fde1cedd0!
+2023-10-18T21:56:09.231Z [error]: 404 - Income not found. - /income/business/delete-user-income/?userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0&id=e41f86ee-7fad-4c6d-84b4-95aae9297fc4 - DELETE - ::1
+2023-10-18T21:56:41.020Z [info]: User Monster requested all Incomes!
+2023-10-18T21:58:48.182Z [info]: User undefined requested all Expenses!
+2023-10-18T22:02:06.767Z [error]: undefined - Cannot set headers after they are sent to the client - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:02:56.478Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:06:34.401Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:06:55.438Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:06:56.621Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:08:37.603Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:08:42.693Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:09:00.838Z [error]: 400 - Empty body! - /expense - POST - ::1
+2023-10-18T22:09:04.812Z [error]: 400 - Empty body! - /expense - POST - ::1
+2023-10-18T22:09:19.049Z [error]: undefined - The difference between the request time and the current time is too large. - /expense - POST - ::1
+2023-10-18T22:09:33.993Z [info]: User undefined added a new Expense!
+2023-10-18T22:12:23.900Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:12:25.439Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:13:12.731Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:15:58.544Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:16:00.291Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:16:19.788Z [error]: 400 - Empty body! - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:16:50.248Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:17:36.429Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:18:08.593Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:18:29.031Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:19:01.695Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:19:09.798Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:19:17.419Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:19:55.265Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:20:12.008Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:20:26.842Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:21:08.550Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:21:33.540Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:22:05.989Z [error]: undefined - Unexpected end of form - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:32:34.521Z [error]: undefined - jwt must be provided - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:32:35.487Z [error]: undefined - jwt must be provided - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:32:45.875Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-18T22:38:43.258Z [error]: undefined - The difference between the request time and the current time is too large. - /expense/business/add-user-expense - POST - ::1
+2023-10-18T22:38:45.765Z [info]: User undefined added a new Expense!
+2023-10-18T22:38:59.057Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T22:39:04.360Z [info]: User undefined added a new Expense!
+2023-10-18T22:39:05.495Z [info]: User undefined added a new Expense!
+2023-10-18T22:39:13.096Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T22:39:28.211Z [info]: User undefined added a new Expense!
+2023-10-18T22:39:29.917Z [info]: User undefined added a new Expense!
+2023-10-18T22:39:39.805Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T22:40:21.857Z [info]: User undefined added a new Expense!
+2023-10-18T22:40:29.984Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-18T22:40:36.428Z [info]: User Monster requested all Incomes!
+2023-10-18T22:40:54.472Z [info]: User undefined requested all Expenses!
+2023-10-18T22:42:46.761Z [error]: 404 Not Found - /expense/business/business-expenses/?expenseID=11031a50-cc22-4f41-b6c4-2decc45018b5&userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0 - DELETE - ::1
+2023-10-18T22:43:09.677Z [error]: 404 Not Found - /expense/business/delete-user-expenses/?expenseID=11031a50-cc22-4f41-b6c4-2decc45018b5&userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0 - DELETE - ::1
+2023-10-18T22:43:13.456Z [info]: User undefined deleted expense undefined!
+2023-10-18T22:43:17.157Z [error]: 404 - Expense not found. - /expense/business/delete-user-expense/?expenseID=11031a50-cc22-4f41-b6c4-2decc45018b5&userID=8d60ac3f-b25d-498c-8885-d56fde1cedd0 - DELETE - ::1

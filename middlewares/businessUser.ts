@@ -5,10 +5,11 @@ import { businessBalance, businessUsers, createUserUnderRoot } from '../controll
 import logger from '../logger.js';
 import { Business } from '../db/entities/Business.js';
 import { CustomError } from '../CustomError.js';
+import { validateUser } from './Validate.js';
 
 const router = express.Router();
 
-router.post('/add-user', authMe, PremiumAuth, async (req, res, next) => {
+router.post('/add-user', authMe, PremiumAuth, validateUser, async (req, res, next) => {
     createUserUnderRoot(req.body, res).then(user => {
         logger.info(`201 Created - /user/addUser - POST - ${req.ip}`);
         res.status(201).send(`${user.username} has been successfully added to your business!`);

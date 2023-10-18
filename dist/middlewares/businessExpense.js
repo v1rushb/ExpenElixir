@@ -19,8 +19,8 @@ router.post('/add-user-expense', authMe, uImage('expen-elixir-bucket').single('e
 });
 router.delete('/delete-user-expense', authMe, async (req, res, next) => {
     deleteUserExpense(req.query.expenseID, req.query.userID, res).then(expense => {
-        logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
-        res.status(200).send(`You have successfully deleted the expense with id: ${req.params.id}!`);
+        logger.info(`User ${req.body.username} deleted expense ${req.query.id}!`);
+        res.status(200).send(`You have successfully deleted the expense!`);
     }).catch(err => next(err));
 });
 export default router;

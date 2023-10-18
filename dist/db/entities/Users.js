@@ -44,6 +44,10 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
+    Column({ nullable: true }),
+    __metadata("design:type", String)
+], Users.prototype, "iamId", void 0);
+__decorate([
     OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);

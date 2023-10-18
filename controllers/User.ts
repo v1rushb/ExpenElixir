@@ -31,7 +31,11 @@ const insertUser = async (payload: Gen.User) => {
 
 const login = async (username: string, password: string, iamId: string | null, res: express.Response): Promise<{ username: string, email: string, token: string }> => {
     try {
-      const user = res.locals.user;
+      //const user = res.locals.user;
+
+      const user = await Users.findOne({
+        where: { username },
+      }) as Users;
   
       if (!user || user.username !== username) {
         throw new CustomError('Invalid credentials', 400);
