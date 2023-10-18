@@ -1,9 +1,10 @@
-import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
 import { Category } from "./Category.js";
 import { Profile } from "./Profile.js";
+import { Business } from "./Business.js";
 
 
 @Entity()
@@ -28,17 +29,23 @@ export class Users extends BaseEntity {
     @Column({ nullable: false })
     password: string;
 
+    @Column()
+    iamId: string;
 
-    @OneToMany(() => Expense, expense => expense.users, { eager: true })
+
+    @OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true })
     expenses: Expense[];
 
-    @OneToMany(() => Category, category => category.users, { eager: true })
+    @OneToMany(() => Category, category => category.users, { eager: true, cascade: true })
     categories: Category[];
 
-    @OneToMany(() => Income, income => income.user, { eager: true })
+    @OneToMany(() => Income, income => income.user, { eager: true, cascade: true })
     incomes: Income[];
 
-    @OneToOne(() => Profile, profile => profile.user, { eager: true })
+    @ManyToOne(() => Business, business => business.users, { eager: true })
+    business: Business;
+
+    @OneToOne(() => Profile, profile => profile.user, { eager: true, cascade: true })
     profile: Partial<Profile>;
 
 }

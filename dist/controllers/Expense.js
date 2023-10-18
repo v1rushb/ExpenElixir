@@ -4,9 +4,7 @@ import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
-import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
-const currencyFromUSDtoOther = await currencyConverterFromUSDtoOther(300, "ILS");
-const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(1200, 'ILS');
+import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 const insertExpense = async (payload, req, picFile) => {
     try {
         const decode = decodeToken(req);
@@ -73,7 +71,6 @@ const deleteExpense = async (id, req) => {
 };
 const totalExpenses = async (req) => {
     const decode = decodeToken(req);
-    console.log(decode?.id);
     const user = await Users.findOne({
         where: { id: decode?.id }
     });
@@ -85,7 +82,7 @@ const getExpenses = async (req, res) => {
     try {
         const userId = req.cookies['userId'];
         const expense = await Users.findOne({
-            where: { id: userId },
+            where: { id: res.locals.user.id },
             relations: ['expenses'],
         });
         if (!expense)
@@ -105,33 +102,20 @@ const getFilteredExpenses = async (req, res) => {
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
-        const category = req.query.category;
         const expense = await Users.findOne({
             where: { id: userId },
             relations: ['expenses'],
         });
         if (!expense)
             throw new CustomError('User not found', 404);
-        const expenseByCategory = expense?.expenses.filter((expense) => {
-            if (category) {
-                if (expense.category.id === category) {
-                    return expense;
-                }
-            }
-            else {
-                return expense;
-            }
+        const filteredExpenses = expense.expenses.filter(expense => {
+            return expense.amount >= minAmount && expense.amount <= maxAmount &&
+                expense.title.toLowerCase().includes(search);
         });
-        console.log(expenseByCategory);
-        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount; });
-        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search); });
-        return searchedExpense;
+        return filteredExpenses;
     }
     catch (err) {
-        if (err instanceof CustomError) {
-            throw new CustomError(err.message, err.statusCode);
-        }
-        throw new CustomError(`Internal Server Error`, 500);
+        throw err;
     }
 };
 export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, };

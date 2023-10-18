@@ -34,11 +34,11 @@ __decorate([
 __decorate([
     Column({
         type: 'enum',
-        enum: ['Member', 'Premium', 'Admin'],
+        enum: ['Member', 'Root', 'User'],
         default: 'Member'
     }),
     __metadata("design:type", String)
-], Profile.prototype, "subscription", void 0);
+], Profile.prototype, "role", void 0);
 __decorate([
     OneToOne(() => Users, user => user.profile),
     JoinColumn(),

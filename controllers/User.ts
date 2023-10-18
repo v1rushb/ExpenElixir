@@ -12,19 +12,12 @@ import { Profile } from '../db/entities/Profile.js';
 const insertUser = async (payload: Gen.User) => {
     try {
         return await dataSource.transaction(async trans => {
-            const newProfile = Profile.create({
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                phoneNumber: payload.phoneNumber,
-            });
+            const {firstName, lastName, phoneNumber} = payload;
+            const newProfile = Profile.create({firstName, lastName, phoneNumber});
             await trans.save(newProfile);
             
-            const newUser = Users.create({
-                email: payload.email,
-                username: payload.username,
-                password: payload.password,
-                profile: newProfile,
-            });
+            const {email, username, password} = payload;
+            const newUser = Users.create({email, username, password, profile: newProfile,});
 
             return await trans.save(newUser);
         });
@@ -32,43 +25,50 @@ const insertUser = async (payload: Gen.User) => {
         if (err.code.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
-        throw new CustomError('Internal Server Error', 500);
+        throw new CustomError(err, 500);
     }
 };
 
-const login = async (email: string, password: string) => {
+const login = async (username: string, password: string, iamId: string | null, res: express.Response): Promise<{ username: string, email: string, token: string }> => {
     try {
-        const info = await Users.findOne({
-            where: { email: email }
-        });
-        if (info) {
-            const passMatch = await bcrypt.compare(password, info.password || '');
-            if (passMatch) {
-                const token = jwt.sign({
-                    email: info.email,
-                    username: info.username,
-                    id: info.id,
-                },
-                    process.env.SECRET_KEY || '',
-                    {
-                        expiresIn: '30m'
-                    })
-                return { username: info.username, email: email, token };
-            }
-            else {
-                throw new CustomError(`Invalid password`, 401)
-            }
+      const user = res.locals.user;
+  
+      if (!user || user.username !== username) {
+        throw new CustomError('Invalid credentials', 400);
+      }
+  
+      if (user.profile.role === 'User') {
+        if (!iamId || user.iamId !== iamId) {
+          throw new CustomError('IAM users must provide a valid IAM ID', 401);
         }
-        else {
-            throw new CustomError(`Invalid email.` ,400);
+      }
+  
+      const isPasswordMatch = await bcrypt.compare(password, user.password);
+      if (!isPasswordMatch) {
+        throw new CustomError('Invalid password', 401);
+      }
+  
+      const token = jwt.sign(
+        {
+          email: user.email,
+          username: user.username,
+          id: user.id,
+        },
+        process.env.SECRET_KEY || '',
+        {
+          expiresIn: '30m',
         }
-
-    } catch(err) {
-        if(err instanceof CustomError)
-            throw(err);
-        throw new CustomError(`An error occurred while trying to log you in. Error: ${err}`, 500);
+      );
+  
+      return { username: user.username, email: user.email, token };
+  
+    } catch (err) {
+      if (err instanceof CustomError) {
+        throw err;
+      }
+      throw new CustomError(`An error occurred during login. Error: ${err}`, 500);
     }
-}
+  };
 
 const calculateBalance = async (req: express.Request) => {
     try {
@@ -78,7 +78,6 @@ const calculateBalance = async (req: express.Request) => {
         throw new CustomError(`Unexpected Error ${err}`,500);
     }
 }
-
 
 export {
     insertUser,

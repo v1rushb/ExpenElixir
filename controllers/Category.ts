@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { CustomError } from '../CustomError.js';
-import { decode } from 'punycode';
 import { decodeToken } from './Income.js';
 
 const insertCategory = async (payload: Gen.Category, req: express.Request) => {

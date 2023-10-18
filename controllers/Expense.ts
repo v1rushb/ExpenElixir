@@ -1,23 +1,17 @@
 import express from 'express';
 import dataSource from "../db/dataSource.js";
 import { Expense } from "../db/entities/Expense.js";
-import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
-import { decode } from 'punycode';
 import { CustomError } from '../CustomError.js';
 import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 
 
 
-const currencyFromUSDtoOther = await currencyConverterFromUSDtoOther(300, "ILS")
-const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(1200, 'ILS')
-const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined) => {
+const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined): Promise<void> => {
     try {
-
-
         const decode = decodeToken(req);
         const currencyType = payload.currency || "USD";
         const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType)
@@ -58,7 +52,7 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile
     }
 }
 
-const deleteAllExpenses = async (req: express.Request) => {
+const deleteAllExpenses = async (req: express.Request): Promise<void> => {
     const decode = decodeToken(req);
     return dataSource.manager.transaction(async trans => {
         const user = await Users.findOneOrFail({
@@ -84,9 +78,8 @@ const deleteExpense = async (id: string, req: express.Request): Promise<Expense>
     }
 }
 
-const totalExpenses = async (req: express.Request) => {
+const totalExpenses = async (req: express.Request): Promise<number> => {
     const decode = decodeToken(req);
-    console.log(decode?.id);
 
     const user = await Users.findOne({
         where: { id: decode?.id }
@@ -100,12 +93,12 @@ const totalExpenses = async (req: express.Request) => {
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
         const userId = req.cookies['userId'];
+
         const expense = await Users.findOne({
-            where: { id: userId },
+            where: { id: res.locals.user.id },
             relations: ['expenses'],
         });
         if (!expense) throw new CustomError('User not found', 404);
-
 
         return expense.expenses
     } catch (err: unknown) {
@@ -121,30 +114,20 @@ const getFilteredExpenses = async (req: express.Request, res: express.Response):
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0
         const maxAmount = Number(req.query.maxAmount) || Infinity
-        const category = req.query.category
         const expense = await Users.findOne({
             where: { id: userId },
             relations: ['expenses'],
         });
         if (!expense) throw new CustomError('User not found', 404);
 
-        const expenseByCategory = expense?.expenses.filter((expense) => {
-            if (category) {
-                if (expense.category.id === category) {
-                    return expense
-                }
-            } else { return expense }
-        })
-        console.log(expenseByCategory);
+        const filteredExpenses: Expense[] = expense.expenses.filter(expense => {
+            return expense.amount >= minAmount && expense.amount <= maxAmount &&
+                expense.title.toLowerCase().includes(search);
+        });
 
-        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount })
-        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search) })
-        return searchedExpense
-    } catch (err: unknown) {
-        if (err instanceof CustomError) {
-            throw new CustomError(err.message, err.statusCode);
-        }
-        throw new CustomError(`Internal Server Error`, 500);
+        return filteredExpenses;
+    } catch (err) {
+        throw err;
     }
 };
 

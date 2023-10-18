@@ -16,7 +16,7 @@ const authMe = async (req, res, next) => {
         throw new CustomError(`Unauthorized`, 401);
     }
     catch (err) {
-        return next(err);
+        next(err);
     }
 };
 export default authMe;

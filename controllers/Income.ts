@@ -19,9 +19,8 @@ const decodeToken = (req: express.Request) : Gen.DecodedPayload => {
 }
 
 
-const insertIncome = async (payload: Gen.Income, req: express.Request) => {
+const insertIncome = async (payload: Gen.Income, res: express.Response) => {
     try {
-        const decode = decodeToken(req);
         return dataSource.manager.transaction(async trans => {
 
             const newIncome = Income.create({
@@ -31,9 +30,8 @@ const insertIncome = async (payload: Gen.Income, req: express.Request) => {
                 description: payload.description,
             });
             await trans.save(newIncome);
-            console.log(1);
             const user = await Users.findOne({
-                where: { id: decode?.id },
+                where: { id: res.locals.user.id },
                 relations: ["incomes"],
             });
             if (!user) {

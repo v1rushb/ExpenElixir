@@ -10,9 +10,8 @@ const decodeToken = (req) => {
         throw new CustomError(`Invalid Error`, 401);
     return decode;
 };
-const insertIncome = async (payload, req) => {
+const insertIncome = async (payload, res) => {
     try {
-        const decode = decodeToken(req);
         return dataSource.manager.transaction(async (trans) => {
             const newIncome = Income.create({
                 title: payload.title,
@@ -21,9 +20,8 @@ const insertIncome = async (payload, req) => {
                 description: payload.description,
             });
             await trans.save(newIncome);
-            console.log(1);
             const user = await Users.findOne({
-                where: { id: decode?.id },
+                where: { id: res.locals.user.id },
                 relations: ["incomes"],
             });
             if (!user) {

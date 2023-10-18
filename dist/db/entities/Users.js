@@ -7,12 +7,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { BaseEntity, BeforeInsert, Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
 import { Category } from "./Category.js";
 import { Profile } from "./Profile.js";
+import { Business } from "./Business.js";
 let Users = class Users extends BaseEntity {
     async hashPassword() {
         if (this.password) {
@@ -43,19 +44,27 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
-    OneToMany(() => Expense, expense => expense.users, { eager: true }),
+    Column(),
+    __metadata("design:type", String)
+], Users.prototype, "iamId", void 0);
+__decorate([
+    OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);
 __decorate([
-    OneToMany(() => Category, category => category.users, { eager: true }),
+    OneToMany(() => Category, category => category.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "categories", void 0);
 __decorate([
-    OneToMany(() => Income, income => income.user, { eager: true }),
+    OneToMany(() => Income, income => income.user, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "incomes", void 0);
 __decorate([
-    OneToOne(() => Profile, profile => profile.user, { eager: true }),
+    ManyToOne(() => Business, business => business.users, { eager: true }),
+    __metadata("design:type", Business)
+], Users.prototype, "business", void 0);
+__decorate([
+    OneToOne(() => Profile, profile => profile.user, { eager: true, cascade: true }),
     __metadata("design:type", Object)
 ], Users.prototype, "profile", void 0);
 Users = __decorate([
