@@ -27,6 +27,6 @@ export class Expense extends BaseEntity {
     @ManyToOne(() => Users, user => user.expenses)
     users: string;
 
-    @ManyToOne(() => Category, category => category.expenses)
+    @ManyToOne(() => Category, category => category.expenses, { eager: true })
     category: Category;
 }

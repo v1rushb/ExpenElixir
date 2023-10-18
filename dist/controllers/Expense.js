@@ -4,16 +4,21 @@ import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
+import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
+const currencyFromUSDtoOther = await currencyConverterFromUSDtoOther(300, "ILS");
+const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(1200, 'ILS');
 const insertExpense = async (payload, req, picFile) => {
     try {
         const decode = decodeToken(req);
+        const currencyType = payload.currency || "USD";
+        const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType);
         return dataSource.manager.transaction(async (trans) => {
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currencyFromOtherToUSD,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location
+                picURL: picFile?.location,
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
@@ -100,12 +105,24 @@ const getFilteredExpenses = async (req, res) => {
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
+        const category = req.query.category;
         const expense = await Users.findOne({
             where: { id: userId },
             relations: ['expenses'],
         });
         if (!expense)
             throw new CustomError('User not found', 404);
+        const expenseByCategory = expense?.expenses.filter((expense) => {
+            if (category) {
+                if (expense.category.id === category) {
+                    return expense;
+                }
+            }
+            else {
+                return expense;
+            }
+        });
+        console.log(expenseByCategory);
         const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount; });
         const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search); });
         return searchedExpense;

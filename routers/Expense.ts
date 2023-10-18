@@ -1,9 +1,6 @@
 import express from 'express';
-import { Expense } from '../db/entities/Expense.js';
 import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
-import { Users } from '../db/entities/Users.js';
-import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
 

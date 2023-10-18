@@ -132,3 +132,19 @@
 2023-10-16T11:34:58.918Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
 2023-10-16T11:36:32.047Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
 2023-10-16T12:00:50.484Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T12:19:58.811Z [error]: 500 - Internal Server Error - /expense/search - GET - ::ffff:127.0.0.1
+2023-10-16T12:40:30.598Z [error]: 400 - Unexpected token } in JSON at position 51 - /category - POST - ::1
+2023-10-16T12:52:50.041Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-16T12:53:21.081Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-16T12:54:22.004Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-16T12:55:35.634Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-16T12:56:17.897Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-16T13:10:24.001Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T13:10:34.939Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'field list' - /expense - POST - ::1
+2023-10-16T14:17:23.850Z [error]: 404 Not Found - /favicon.ico - GET - ::ffff:206.189.0.60
+2023-10-16T14:17:23.992Z [error]: 404 Not Found - /HNAP1 - GET - ::ffff:206.189.0.60
+2023-10-16T14:17:24.158Z [error]: 404 Not Found - /onvif/device_service - POST - ::ffff:206.189.0.60
+2023-10-16T14:17:24.305Z [error]: 404 Not Found - /PSIA/index - GET - ::ffff:206.189.0.60
+2023-10-17T16:08:51.632Z [error]: undefined - CurrencyConverter.from is not a function - /curr - GET - ::ffff:127.0.0.1
+2023-10-17T16:09:57.409Z [error]: undefined - CC is not a constructor - /curr - GET - ::ffff:127.0.0.1
+2023-10-17T16:57:02.259Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1

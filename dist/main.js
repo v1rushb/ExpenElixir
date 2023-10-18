@@ -9,6 +9,7 @@ import expenseRouter from './routers/Expense.js';
 import cookieParser from 'cookie-parser';
 import logger from './logger.js';
 import ErrorHandler from './middlewares/ErrorHandler.js';
+import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from './utils/currencyConverter.js';
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
@@ -23,6 +24,11 @@ app.get('/', (req, res) => {
 app.get('/health', (req, res) => {
     logger.info('Full HP [200] - /health - GET');
     res.status(200).send('Full HP');
+});
+app.get('/curr', async (req, res) => {
+    const currencyFromUSDtoOther = await currencyConverterFromUSDtoOther(300, "ILS");
+    const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(1200, 'ILS');
+    res.status(200).send(`${currencyFromUSDtoOther} AND ${currencyFromOtherToUSD}`);
 });
 app.use('/', (req, res) => {
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);

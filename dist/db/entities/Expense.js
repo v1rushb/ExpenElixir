@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:type", String)
 ], Expense.prototype, "users", void 0);
 __decorate([
-    ManyToOne(() => Category, category => category.expenses),
+    ManyToOne(() => Category, category => category.expenses, { eager: true }),
     __metadata("design:type", Category)
 ], Expense.prototype, "category", void 0);
 Expense = __decorate([

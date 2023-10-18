@@ -10,13 +10,13 @@ router.post('/', authMe, async (req, res, next) => {
 });
 router.get('/', authMe, async (req, res, next) => {
     await totalCategory(req).then(category => {
-        logger.info(`User ${req.body.username} requested all categorys!`);
+        logger.info(`User ${req.body.username} requested all categories!`);
         res.status(200).send(category);
     }).catch(err => next(err));
 });
 router.delete('/deleteAllCategorys', authMe, async (req, res, next) => {
     deleteAllCategory(req).then(category => {
-        res.status(200).send(`You have successfully deleted all categorys!`);
+        res.status(200).send(`You have successfully deleted all categories!`);
     }).catch(err => next(err));
 });
 router.delete('/deleteCategory/:id', authMe, async (req, res, next) => {

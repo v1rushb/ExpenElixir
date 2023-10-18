@@ -17,7 +17,8 @@ export namespace Gen {
         description: string,
         category?: string,
         user: User,
-        picURL?: string
+        picURL?: string,
+        currency?: string
     }
     export interface Category {
         id: string,
