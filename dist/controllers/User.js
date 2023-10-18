@@ -90,5 +90,23 @@ const createUserUnderRoot = async (payload, res) => {
         return await trans.save(newUser);
     });
 };
-export { insertUser, login, calculateBalance, createUserUnderRoot, };
+const rootUserDescendant = async (res, descendantID) => {
+    const descendant = await Users.findOne({ where: { business: res.locals.user.business, id: descendantID } });
+    return descendant;
+};
+const deleteDescendant = async (descendantID, res) => {
+    try {
+        return await dataSource.transaction(async (trans) => {
+            const descendant = await rootUserDescendant(res, descendantID);
+            if (descendant) {
+                throw new CustomError('User not found in your business', 404);
+            }
+            await trans.remove(Users, descendant);
+        });
+    }
+    catch (err) {
+        throw (err);
+    }
+};
+export { insertUser, login, calculateBalance, createUserUnderRoot, deleteDescendant, };
 //# sourceMappingURL=User.js.map

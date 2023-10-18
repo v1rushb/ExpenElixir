@@ -1,17 +1,14 @@
 import express from 'express';
 import dataSource from "../db/dataSource.js";
 import { Expense } from "../db/entities/Expense.js";
-import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
-import { decode } from 'punycode';
 import { CustomError } from '../CustomError.js';
-import { Business } from '../db/entities/Business.js';
 
 
-const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined) => {
+const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined): Promise<void> => {
     try {
 
 
@@ -53,7 +50,7 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile
     }
 }
 
-const deleteAllExpenses = async (req: express.Request) => {
+const deleteAllExpenses = async (req: express.Request): Promise<void> => {
     const decode = decodeToken(req);
     return dataSource.manager.transaction(async trans => {
         const user = await Users.findOneOrFail({
@@ -79,9 +76,8 @@ const deleteExpense = async (id: string, req: express.Request): Promise<Expense>
     }
 }
 
-const totalExpenses = async (req: express.Request) => {
+const totalExpenses = async (req: express.Request): Promise<number>=> {
     const decode = decodeToken(req);
-    console.log(decode?.id);
 
     const user = await Users.findOne({
         where: { id: decode?.id }
@@ -94,8 +90,6 @@ const totalExpenses = async (req: express.Request) => {
 
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        
-
         const expense = await Users.findOne({
             where: { id: res.locals.user.id },
             relations: ['expenses'],
@@ -169,7 +163,7 @@ const addUserExpense = async (payload: Gen.Expense ,userID : string,res : expres
     }
 }
 
-const deleteUserExpense = async (expenseID : string, userID : string, res : express.Response) => {
+const deleteUserExpense = async (expenseID : string, userID : string, res : express.Response) : Promise<void> => {
     try {
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
@@ -194,6 +188,21 @@ const deleteUserExpense = async (expenseID : string, userID : string, res : expr
     }
 }
 
+const businessExpenses = async (res: express.Response) => { //add typing later
+    try {
+        const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
+        const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
+        return result;
+    } catch(err) {
+        throw(err);
+    }
+}
+
+const totalBusinessExpenses = async (res: express.Response): Promise<number> => { // fix error handling later
+    const expenses = await businessExpenses(res);
+    return expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0
+}
+
 export {
     insertExpense,
     deleteAllExpenses,
@@ -203,4 +212,6 @@ export {
     getFilteredExpenses,
     addUserExpense,
     deleteUserExpense,
+    businessExpenses,
+    totalBusinessExpenses,
 }

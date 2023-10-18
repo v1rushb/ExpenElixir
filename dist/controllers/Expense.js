@@ -116,5 +116,64 @@ const getFilteredExpenses = async (req, res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, };
+const addUserExpense = async (payload, userID, res, picFile) => {
+    try {
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user) {
+            throw new CustomError(`User not found.`, 404);
+        }
+        return dataSource.manager.transaction(async (trans) => {
+            const newExpense = Expense.create({
+                title: payload.title,
+                amount: Number(payload.amount),
+                expenseDate: payload.expenseDate,
+                description: payload.description,
+                picURL: picFile?.location
+            });
+            await trans.save(newExpense);
+            const category = await Category.findOne({
+                where: { id: payload.category },
+                relations: ["expenses"],
+            });
+            if (!category) {
+                throw new CustomError(`Category not found.`, 404);
+            }
+            user.expenses.push(newExpense);
+            category.expenses.push(newExpense);
+            await trans.save(user);
+            await trans.save(category);
+        });
+    }
+    catch (err) {
+        throw err;
+    }
+};
+const deleteUserExpense = async (expenseID, userID, res) => {
+    try {
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user) {
+            throw new CustomError(`User not found.`, 404);
+        }
+        const expense = await Expense.findOne({
+            where: { id: expenseID },
+        });
+        if (expense) {
+            const correctExpense = await Users.findOne({
+                where: { id: expense.users }
+            });
+        }
+        if (!expense) {
+            throw new CustomError(`Expense not found.`, 404);
+        }
+        await Expense.remove(expense);
+    }
+    catch (err) {
+        throw err;
+    }
+};
+export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, addUserExpense, deleteUserExpense, };
 //# sourceMappingURL=Expense.js.map

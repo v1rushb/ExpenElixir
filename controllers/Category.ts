@@ -77,10 +77,63 @@ const totalCategory = async (req: express.Request): Promise<Category[]> => {
     }
 }
 
+const addUserCategory = async (payload: Gen.Category, userID: string, res: express.Response): Promise<void> => {
+    try {
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user) {
+            throw new CustomError(`User not found.`, 404);
+        }
+        return dataSource.manager.transaction(async trans => {
+
+            const newCategory = Category.create({
+                title: payload.title, description: payload.description,
+            });
+            await trans.save(newCategory);
+            user.categories.push(newCategory);
+            await trans.save(user);
+        }); 
+    } catch(err) {
+        throw err;
+    }
+}
+
+const deleteUserCategory = async (categoryID: string, userID : string, res: express.Response): Promise<void> => {
+    try {
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user) {
+            throw new CustomError(`User not found.`, 404);
+        }
+        const category = await Category.findOne({
+            where: { id: categoryID },
+        });
+
+        if (!category || category.users !== user.id) {
+            throw new CustomError("Income not found.", 404);
+        }
+
+        await Category.remove(category);
+    } catch(err) {
+        throw err;
+    }
+}
+
+const businessCategories = async (res: express.Response) => {
+    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
+    const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
+    return result;
+}
+
 
 export {
     insertCategory,
     deleteAllCategory,
     deleteCategory,
     totalCategory,
+    addUserCategory,
+    deleteUserCategory,
+    businessCategories,
 }

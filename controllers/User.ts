@@ -4,8 +4,8 @@ import { Users } from "../db/entities/Users.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { Gen } from '../@types/generic.js';
-import { totalIncomes } from './Income.js';
-import { totalExpenses } from './Expense.js';
+import { businessIncome, totalBusinessIncome, totalIncomes } from './Income.js';
+import { totalBusinessExpenses, totalExpenses } from './Expense.js';
 import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
 import { Business } from '../db/entities/Business.js';
@@ -124,10 +124,26 @@ const deleteDescendant = async (descendantID: string, res : express.Response): P
     }
 };
 
+const businessUsers = async (res: express.Response): Promise<Users[]> => {
+    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
+    return users;
+}
+
+const businessBalance = async (res: express.Response): Promise<number> => {
+    try {
+        return await totalBusinessIncome(res) - await totalBusinessExpenses(res);
+    }
+    catch (err) {
+        throw new CustomError(`Unexpected Error ${err}`,500);
+    }
+}
+
 export {
     insertUser,
     login,
     calculateBalance,
     createUserUnderRoot,
     deleteDescendant,
+    businessUsers,
+    businessBalance,
 }

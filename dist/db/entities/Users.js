@@ -44,15 +44,15 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
-    OneToMany(() => Expense, expense => expense.users, { eager: true }),
+    OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);
 __decorate([
-    OneToMany(() => Category, category => category.users, { eager: true }),
+    OneToMany(() => Category, category => category.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "categories", void 0);
 __decorate([
-    OneToMany(() => Income, income => income.user, { eager: true }),
+    OneToMany(() => Income, income => income.user, { eager: true, cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "incomes", void 0);
 __decorate([
@@ -60,7 +60,7 @@ __decorate([
     __metadata("design:type", Business)
 ], Users.prototype, "business", void 0);
 __decorate([
-    OneToOne(() => Profile, profile => profile.user, { eager: true }),
+    OneToOne(() => Profile, profile => profile.user, { eager: true, cascade: true }),
     __metadata("design:type", Object)
 ], Users.prototype, "profile", void 0);
 Users = __decorate([

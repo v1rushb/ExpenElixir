@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, createUserUnderRoot, insertUser, login } from '../controllers/User.js';
+import { businessBalance, businessUsers, calculateBalance, createUserUnderRoot, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -120,13 +120,17 @@ router.put('/upgradeToPremium', authMe, async (req, res, next) => { // just some
     }
 });
 
-router.get('/allRootUsers', authMe, PremiumAuth, async (req, res, next) => {
-    try {
-        const users = await Users.find({ where: { business: { id: res.locals.user.business.id } } });
+router.get('/businessUsers', authMe, PremiumAuth, async (req, res, next) => {
+    businessUsers(res).then(users => {
+        logger.info(`200 OK - /user/businessUsers - GET - ${req.ip}`);
         res.status(200).send(users);
-    } catch (err) {
-        return next(new CustomError(`An error occurred while trying to get all root users. Error: ${err}`, 500));
-    }
+    }).catch(err => next(err));
 });
 
+router.get('/businessBalance', authMe, PremiumAuth, async (req, res, next) => {
+    businessBalance(res).then(balance => {
+        logger.info(`200 OK - /user/businessBalance - GET - ${req.ip}`);
+        res.status(200).send(`Your business balance is: ${balance}`);
+    }).catch(err => next(err));
+});
 export default router;
