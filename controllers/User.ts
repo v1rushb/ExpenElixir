@@ -8,26 +8,16 @@ import { totalIncomes } from './Income.js';
 import { totalExpenses } from './Expense.js';
 import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
-import { Business } from '../db/entities/Business.js';
-import Income from '../routers/Income.js';
-import Expense from '../routers/Expense.js';
 
 const insertUser = async (payload: Gen.User) => {
     try {
         return await dataSource.transaction(async trans => {
-            const newProfile = Profile.create({
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                phoneNumber: payload.phoneNumber,
-            });
+            const {firstName, lastName, phoneNumber} = payload;
+            const newProfile = Profile.create({firstName, lastName, phoneNumber});
             await trans.save(newProfile);
             
-            const newUser = Users.create({
-                email: payload.email,
-                username: payload.username,
-                password: payload.password,
-                profile: newProfile,
-            });
+            const {email, username, password} = payload;
+            const newUser = Users.create({email, username, password, profile: newProfile,});
 
             return await trans.save(newUser);
         });

@@ -4,9 +4,10 @@ import authMe from '../middlewares/Auth.js';
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import logger from '../logger.js';
+import incomeBusiness from '../middlewares/businessIncome.js';
 const router = express.Router();
 router.post('/', authMe, async (req, res, next) => {
-    insertIncome(req.body, req).then(income => {
+    insertIncome(req.body, res).then(() => {
         res.status(200).send(`You have successfully added a new income!`);
     }).catch(err => next(err));
 });
@@ -39,5 +40,6 @@ router.delete('/', authMe, async (req, res, next) => {
         res.status(200).send(`You have successfully deleted the income with id: ${req.params.id}!`);
     }).catch(err => next(err));
 });
+router.use('/business', incomeBusiness);
 export default router;
 //# sourceMappingURL=Income.js.map

@@ -5,10 +5,11 @@ import authMe from '../middlewares/Auth.js';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
 import expenseBusiness from '../middlewares/businessExpense.js';
+import { validateExpense } from '../middlewares/Validate.js';
 
 const router = express.Router();
 
-router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+router.post('/', authMe, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     insertExpense(req.body, req, req.file as Express.MulterS3.File).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);

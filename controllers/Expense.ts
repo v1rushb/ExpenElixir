@@ -10,8 +10,6 @@ import { CustomError } from '../CustomError.js';
 
 const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined): Promise<void> => {
     try {
-
-
         const decode = decodeToken(req);
         return dataSource.manager.transaction(async trans => {
 
@@ -106,24 +104,24 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
 };
 const getFilteredExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const userId = req.cookies['userId'];
-        const search = req.query.search?.toString().toLowerCase() || '';
-        const minAmount = Number(req.query.minAmount) || 0
-        const maxAmount = Number(req.query.maxAmount) || Infinity
-        const expense = await Users.findOne({
-            where: { id: userId },
-            relations: ['expenses'],
-        });
-        if (!expense) throw new CustomError('User not found', 404);
+        const search: string = req.query.search?.toString().toLowerCase() || '';
+        const minAmount: number = Number(req.query.minAmount) || 0;
+        const maxAmount: number = Number(req.query.maxAmount) || Infinity;
+        
+        const user = res.locals.user;
+        if (!user) throw new CustomError('User not found', 404);
 
-        const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount })
-        const searchedExpense = filteredExpenseByAmount?.filter(expense => { return expense.title.toLowerCase().includes(search) })
-        return searchedExpense
-    } catch (err: unknown) {
-        if (err instanceof CustomError) {
-            throw new CustomError(err.message, err.statusCode);
-        }
-        throw new CustomError(`Internal Server Error`, 500);
+        const expenses : Expense[] = user.expenses;
+        if(expenses.length === 0) throw new CustomError('No expenses found', 404);
+
+        const filteredExpenses: Expense[] = expenses.filter(expense => {
+            return expense.amount >= minAmount && expense.amount <= maxAmount &&
+                   expense.title.toLowerCase().includes(search);
+        });
+
+        return filteredExpenses;
+    } catch (err) {
+        throw err;
     }
 };
 

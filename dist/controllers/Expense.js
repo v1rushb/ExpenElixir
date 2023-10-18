@@ -68,7 +68,6 @@ const deleteExpense = async (id, req) => {
 };
 const totalExpenses = async (req) => {
     const decode = decodeToken(req);
-    console.log(decode?.id);
     const user = await Users.findOne({
         where: { id: decode?.id }
     });
@@ -95,14 +94,10 @@ const getExpenses = async (req, res) => {
 };
 const getFilteredExpenses = async (req, res) => {
     try {
-        const userId = req.cookies['userId'];
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
-        const expense = await Users.findOne({
-            where: { id: userId },
-            relations: ['expenses'],
-        });
+        const user = res.locals.user;
         if (!expense)
             throw new CustomError('User not found', 404);
         const filteredExpenseByAmount = expense?.expenses.filter(expense => { return expense.amount >= minAmount && expense.amount <= maxAmount; });
@@ -116,64 +111,5 @@ const getFilteredExpenses = async (req, res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const addUserExpense = async (payload, userID, res, picFile) => {
-    try {
-        const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
-        });
-        if (!user) {
-            throw new CustomError(`User not found.`, 404);
-        }
-        return dataSource.manager.transaction(async (trans) => {
-            const newExpense = Expense.create({
-                title: payload.title,
-                amount: Number(payload.amount),
-                expenseDate: payload.expenseDate,
-                description: payload.description,
-                picURL: picFile?.location
-            });
-            await trans.save(newExpense);
-            const category = await Category.findOne({
-                where: { id: payload.category },
-                relations: ["expenses"],
-            });
-            if (!category) {
-                throw new CustomError(`Category not found.`, 404);
-            }
-            user.expenses.push(newExpense);
-            category.expenses.push(newExpense);
-            await trans.save(user);
-            await trans.save(category);
-        });
-    }
-    catch (err) {
-        throw err;
-    }
-};
-const deleteUserExpense = async (expenseID, userID, res) => {
-    try {
-        const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
-        });
-        if (!user) {
-            throw new CustomError(`User not found.`, 404);
-        }
-        const expense = await Expense.findOne({
-            where: { id: expenseID },
-        });
-        if (expense) {
-            const correctExpense = await Users.findOne({
-                where: { id: expense.users }
-            });
-        }
-        if (!expense) {
-            throw new CustomError(`Expense not found.`, 404);
-        }
-        await Expense.remove(expense);
-    }
-    catch (err) {
-        throw err;
-    }
-};
-export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, addUserExpense, deleteUserExpense, };
+export { insertExpense, deleteAllExpenses, deleteExpense, totalExpenses, getExpenses, getFilteredExpenses, };
 //# sourceMappingURL=Expense.js.map

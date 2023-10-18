@@ -9,11 +9,8 @@ import { Profile } from '../db/entities/Profile.js';
 const insertUser = async (payload) => {
     try {
         return await dataSource.transaction(async (trans) => {
-            const newProfile = Profile.create({
-                firstName: payload.firstName,
-                lastName: payload.lastName,
-                phoneNumber: payload.phoneNumber,
-            });
+            const { firstName, lastName, phoneNumber } = payload;
+            const newProfile = Profile.create({ firstName, lastName, phoneNumber });
             await trans.save(newProfile);
             const newUser = Users.create({
                 email: payload.email,
@@ -70,43 +67,5 @@ const calculateBalance = async (req) => {
         throw new CustomError(`Unexpected Error ${err}`, 500);
     }
 };
-const createUserUnderRoot = async (payload, res) => {
-    return await dataSource.transaction(async (trans) => {
-        const newProfile = Profile.create({
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            phoneNumber: payload.phoneNumber,
-            role: 'User',
-        });
-        await trans.save(newProfile);
-        const newUser = Users.create({
-            email: payload.email,
-            username: payload.username,
-            password: payload.password,
-            profile: newProfile,
-            business: res.locals.user.business,
-        });
-        await trans.save(newUser.business);
-        return await trans.save(newUser);
-    });
-};
-const rootUserDescendant = async (res, descendantID) => {
-    const descendant = await Users.findOne({ where: { business: res.locals.user.business, id: descendantID } });
-    return descendant;
-};
-const deleteDescendant = async (descendantID, res) => {
-    try {
-        return await dataSource.transaction(async (trans) => {
-            const descendant = await rootUserDescendant(res, descendantID);
-            if (descendant) {
-                throw new CustomError('User not found in your business', 404);
-            }
-            await trans.remove(Users, descendant);
-        });
-    }
-    catch (err) {
-        throw (err);
-    }
-};
-export { insertUser, login, calculateBalance, createUserUnderRoot, deleteDescendant, };
+export { insertUser, login, calculateBalance, };
 //# sourceMappingURL=User.js.map

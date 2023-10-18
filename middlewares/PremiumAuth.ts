@@ -1,6 +1,4 @@
 import express from 'express';
-import { decodeToken } from '../controllers/Income.js';
-import { Users } from '../db/entities/Users.js';
 import { CustomError } from '../CustomError.js';
 
 const premiumAuth = async (req: express.Request, res: express.Response, next: express.NextFunction) => {

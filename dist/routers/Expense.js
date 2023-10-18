@@ -1,11 +1,10 @@
 import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
-import { addUserExpense, deleteAllExpenses, deleteExpense, deleteUserExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
+import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
-import { Users } from '../db/entities/Users.js';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
-import premiumAuth from '../middlewares/PremiumAuth.js';
+import expenseBusiness from '../middlewares/businessExpense.js';
 const router = express.Router();
 router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     insertExpense(req.body, req, req.file).then(expense => {
@@ -46,23 +45,6 @@ router.get('/all', authMe, async (req, res, next) => {
     const expenses = await Expense.find();
     res.status(200).send(expenses);
 });
-//this is not the final code.
-router.get('/ExpensesUnderRootUser', authMe, premiumAuth, async (req, res, next) => {
-    const users = await Users.find({ where: { business: res.locals.user.business } });
-    const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
-    res.status(200).send(result);
-});
-router.post('/addUserExpense', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
-    addUserExpense(req.body, req.query.userID, res, req.file).then(expense => {
-        logger.info(`User ${req.body.username} added a new Expense!`);
-        res.status(200).send(`You have successfully added a new Expense!`);
-    }).catch(err => next(err));
-});
-router.delete('/deleteUserExpense', authMe, async (req, res, next) => {
-    deleteUserExpense(req.query.expenseID, req.query.userID, res).then(expense => {
-        logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
-        res.status(200).send(`You have successfully deleted the expense with id: ${req.params.id}!`);
-    }).catch(err => next(err));
-});
+router.use('/business', expenseBusiness);
 export default router;
 //# sourceMappingURL=Expense.js.map

@@ -5,11 +5,12 @@ import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import logger from '../logger.js';
 import incomeBusiness from '../middlewares/businessIncome.js';
+import { validateIncome } from '../middlewares/Validate.js';
 
 
 const router = express.Router();
 
-router.post('/', authMe, async (req, res,next) => {
+router.post('/', authMe, validateIncome, async (req, res,next) => {
     insertIncome(req.body, res).then(() => {
         res.status(200).send(`You have successfully added a new income!`);
     }).catch(err=> next(err));

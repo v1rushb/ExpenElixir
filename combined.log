@@ -374,3 +374,4 @@
 2023-10-17T14:49:45.157Z [error]: 400 - Invalid email. - /user/login - POST - ::1
 2023-10-17T14:49:49.779Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-17T14:49:54.543Z [info]: User malsssessoosok requested all Expenses!
+2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
