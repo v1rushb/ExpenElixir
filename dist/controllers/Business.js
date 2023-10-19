@@ -59,6 +59,8 @@ const businessBalance = async (res) => {
 };
 const addUserIncome = async (payload, userID, res) => {
     try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to add an income to!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -83,16 +85,19 @@ const addUserIncome = async (payload, userID, res) => {
 };
 const deleteUserIncome = async (incomeID, userID, res) => {
     try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete an income from!`, 400);
+        if (!incomeID)
+            throw new CustomError(`You must provide an id for the income you want to delete!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
         if (!user) {
             throw new CustomError(`User not found.`, 404);
         }
-        const income = await Income.findOne({
-            where: { id: incomeID },
-        });
-        if (!income || income.user !== user.id) {
+        const incomes = user.incomes;
+        const income = incomes.find(income => income.id === incomeID);
+        if (!income) {
             throw new CustomError("Income not found.", 404);
         }
         await Income.remove(income);
@@ -112,6 +117,8 @@ const totalBusinessIncome = async (res) => {
 };
 const addUserExpense = async (payload, userID, res, picFile) => {
     try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to add an expense to!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -146,6 +153,10 @@ const addUserExpense = async (payload, userID, res, picFile) => {
 };
 const deleteUserExpense = async (expenseID, userID, res) => {
     try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete an expense from!`, 400);
+        if (!expenseID)
+            throw new CustomError(`You must provide an id for the expense you want to delete!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -185,6 +196,8 @@ const totalBusinessExpenses = async (res) => {
 };
 const addUserCategory = async (payload, userID, res) => {
     try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to add a category to!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -206,6 +219,10 @@ const addUserCategory = async (payload, userID, res) => {
 };
 const deleteUserCategory = async (categoryID, userID, res) => {
     try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete a category from!`, 400);
+        if (!categoryID)
+            throw new CustomError(`You must provide an id for the category you want to delete!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });

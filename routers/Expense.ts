@@ -9,14 +9,14 @@ import { validateExpense } from '../middlewares/Validate.js';
 
 const router = express.Router();
 
-router.post('/', authMe, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     insertExpense(req.body, req, req.file as Express.MulterS3.File).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
 });
 
-router.get('/', authMe, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     getExpenses(req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);

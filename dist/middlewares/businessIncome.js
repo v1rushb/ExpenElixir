@@ -13,7 +13,7 @@ router.post('/add-user-income', authMe, premiumAuth, validateIncome, async (req,
 router.delete('/delete-user-income', authMe, premiumAuth, async (req, res, next) => {
     deleteUserIncome(req.query.id, req.query.userID, res).then(() => {
         logger.info(`User ${res.locals.user.username} deleted income ${req.params.id} for user with id ${req.query.userID}!`);
-        res.status(200).send(`You have successfully deleted the income with id: ${req.params.id} for the user with id: ${req.query.userID}!`);
+        res.status(200).send(`You have successfully deleted the income!`);
     }).catch(err => next(err));
 });
 router.get('/business-income', authMe, premiumAuth, async (req, res, next) => {

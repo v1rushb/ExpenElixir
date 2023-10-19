@@ -26,6 +26,7 @@ const insertUser = async (payload) => {
 };
 const login = async (username, password, iamId, res) => {
     try {
+<<<<<<< HEAD
         const user = res.locals.user;
         if (!user || user.username !== username) {
             throw new CustomError('Invalid credentials', 400);
@@ -46,6 +47,31 @@ const login = async (username, password, iamId, res) => {
         }, process.env.SECRET_KEY || '', {
             expiresIn: '30m',
         });
+=======
+        //const user = res.locals.user;
+        const user = await Users.findOne({
+            where: { username },
+        });
+        if (!user || user.username !== username) {
+            throw new CustomError('Invalid credentials', 400);
+        }
+        if (user.profile.role === 'User') {
+            if (!iamId || user.iamId !== iamId) {
+                throw new CustomError('IAM users must provide a valid IAM ID', 401);
+            }
+        }
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        if (!isPasswordMatch) {
+            throw new CustomError('Invalid password', 401);
+        }
+        const token = jwt.sign({
+            email: user.email,
+            username: user.username,
+            id: user.id,
+        }, process.env.SECRET_KEY || '', {
+            expiresIn: '30m',
+        });
+>>>>>>> 82280aa450d8038d23ea4552631226b71cb7a534
         return { username: user.username, email: user.email, token };
     }
     catch (err) {

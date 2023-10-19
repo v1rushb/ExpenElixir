@@ -4,6 +4,7 @@ import premiumAuth from './PremiumAuth.js';
 import { addUserIncome, businessIncome, deleteUserIncome } from '../controllers/Business.js';
 import logger from '../logger.js';
 import { validateIncome } from './Validate.js';
+import { CustomError } from '../CustomError.js';
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.post('/add-user-income', authMe, premiumAuth, validateIncome, async (req,
 router.delete('/delete-user-income', authMe, premiumAuth, async (req,res,next) => {
     deleteUserIncome(req.query.id as string,req.query.userID as string,res).then(()=> {
         logger.info(`User ${res.locals.user.username} deleted income ${req.params.id} for user with id ${req.query.userID}!`);
-        res.status(200).send(`You have successfully deleted the income with id: ${req.params.id} for the user with id: ${req.query.userID}!`);
+        res.status(200).send(`You have successfully deleted the income!`);
     }).catch(err=> next(err));
 });
 

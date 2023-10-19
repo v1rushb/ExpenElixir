@@ -69,6 +69,8 @@ const businessBalance = async (res: express.Response): Promise<number> => {
 
 const addUserIncome = async (payload: Gen.Income, userID: string, res: express.Response) => {
     try {
+        if(!userID)
+            throw new CustomError(`You must provide an id for the user you want to add an income to!`,400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -94,17 +96,20 @@ const addUserIncome = async (payload: Gen.Income, userID: string, res: express.R
 
 const deleteUserIncome = async (incomeID: string, userID: string, res: express.Response) => {
     try {
+        if(!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete an income from!`,400);
+        if(!incomeID)
+            throw new CustomError(`You must provide an id for the income you want to delete!`,400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
         if (!user) {
             throw new CustomError(`User not found.`, 404);
         }
-        const income = await Income.findOne({
-            where: { id: incomeID },
-        });
 
-        if (!income || income.user !== user.id) {
+        const incomes = user.incomes;
+        const income = incomes.find(income => income.id === incomeID);
+        if (!income) {
             throw new CustomError("Income not found.", 404);
         }
 
@@ -128,6 +133,8 @@ const totalBusinessIncome = async (res: express.Response): Promise<number> => { 
 const addUserExpense = async (payload: Gen.Expense, userID: string, res: express.Response, picFile: Express.MulterS3.File | undefined) => {
 
     try {
+        if(!userID)
+            throw new CustomError(`You must provide an id for the user you want to add an expense to!`,400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -163,6 +170,10 @@ const addUserExpense = async (payload: Gen.Expense, userID: string, res: express
 
 const deleteUserExpense = async (expenseID: string, userID: string, res: express.Response): Promise<void> => {
     try {
+        if(!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete an expense from!`,400);
+        if(!expenseID)
+            throw new CustomError(`You must provide an id for the expense you want to delete!`,400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -203,6 +214,8 @@ const totalBusinessExpenses = async (res: express.Response): Promise<number> => 
 
 const addUserCategory = async (payload: Gen.Category, userID: string, res: express.Response): Promise<void> => {
     try {
+        if(!userID)
+            throw new CustomError(`You must provide an id for the user you want to add a category to!`,400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -225,6 +238,11 @@ const addUserCategory = async (payload: Gen.Category, userID: string, res: expre
 
 const deleteUserCategory = async (categoryID: string, userID: string, res: express.Response): Promise<void> => {
     try {
+        if(!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete a category from!`,400);
+        if(!categoryID)
+            throw new CustomError(`You must provide an id for the category you want to delete!`,400);
+
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
