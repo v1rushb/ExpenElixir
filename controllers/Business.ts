@@ -9,7 +9,7 @@ import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
 
 
-const createUserUnderRoot = async (payload: Gen.User,res : express.Response) => {
+const createUserUnderRoot = async (payload: Gen.User, res: express.Response) => {
     return await dataSource.transaction(async trans => {
         const newProfile = Profile.create({
             firstName: payload.firstName,
@@ -34,22 +34,22 @@ const createUserUnderRoot = async (payload: Gen.User,res : express.Response) => 
 }
 
 const rootUserDescendant = async (res: express.Response, descendantID: string): Promise<Users> => {
-    const descendant = await Users.findOne({ where: { business: res.locals.user.business,id:descendantID } }) as Users;
+    const descendant = await Users.findOne({ where: { business: res.locals.user.business, id: descendantID } }) as Users;
     return descendant;
 }
 
-const deleteDescendant = async (descendantID: string, res : express.Response): Promise<void> => {
+const deleteDescendant = async (descendantID: string, res: express.Response): Promise<void> => {
     try {
         return await dataSource.transaction(async trans => {
             const descendant = await rootUserDescendant(res, descendantID);
-            if(descendant) {
+            if (descendant) {
                 throw new CustomError('User not found in your business', 404);
             }
 
             await trans.remove(Users, descendant);
         });
-    } catch(err) {
-        throw(err);
+    } catch (err) {
+        throw (err);
     }
 };
 
@@ -63,7 +63,7 @@ const businessBalance = async (res: express.Response): Promise<number> => {
         return await totalBusinessIncome(res) - await totalBusinessExpenses(res);
     }
     catch (err) {
-        throw new CustomError(`Unexpected Error ${err}`,500);
+        throw new CustomError(`Unexpected Error ${err}`, 500);
     }
 }
 
@@ -86,8 +86,8 @@ const addUserIncome = async (payload: Gen.Income, userID: string, res: express.R
             await trans.save(newIncome);
             user.incomes.push(newIncome);
             await trans.save(user);
-        }); 
-    } catch(err) {
+        });
+    } catch (err) {
         throw err;
     }
 }
@@ -109,7 +109,7 @@ const deleteUserIncome = async (incomeID: string, userID: string, res: express.R
         }
 
         await Income.remove(income);
-    } catch(err) {
+    } catch (err) {
         throw err;
     }
 }
@@ -125,8 +125,8 @@ const totalBusinessIncome = async (res: express.Response): Promise<number> => { 
     return incomes ? incomes.reduce((acc: any, income: { amount: any; }) => acc + income.amount, 0) : 0
 }
 
-const addUserExpense = async (payload: Gen.Expense ,userID : string,res : express.Response, picFile: Express.MulterS3.File | undefined) => {
-    
+const addUserExpense = async (payload: Gen.Expense, userID: string, res: express.Response, picFile: Express.MulterS3.File | undefined) => {
+
     try {
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
@@ -155,13 +155,13 @@ const addUserExpense = async (payload: Gen.Expense ,userID : string,res : expres
             category.expenses.push(newExpense);
             await trans.save(user);
             await trans.save(category);
-        }); 
-    } catch(err) {
+        });
+    } catch (err) {
         throw err;
     }
 }
 
-const deleteUserExpense = async (expenseID : string, userID : string, res : express.Response) : Promise<void> => {
+const deleteUserExpense = async (expenseID: string, userID: string, res: express.Response): Promise<void> => {
     try {
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
@@ -172,16 +172,16 @@ const deleteUserExpense = async (expenseID : string, userID : string, res : expr
         const expense = await Expense.findOne({
             where: { id: expenseID },
         });
-        if(expense) {
+        if (expense) {
             const correctExpense = await Users.findOne({
-                where: {id: expense.users}
+                where: { id: expense.users }
             });
         }
         if (!expense) {
             throw new CustomError(`Expense not found.`, 404);
         }
         await Expense.remove(expense);
-    } catch(err) {
+    } catch (err) {
         throw err;
     }
 }
@@ -191,8 +191,8 @@ const businessExpenses = async (res: express.Response) => { //add typing later
         const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
         const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
         return result;
-    } catch(err) {
-        throw(err);
+    } catch (err) {
+        throw (err);
     }
 }
 
@@ -217,13 +217,13 @@ const addUserCategory = async (payload: Gen.Category, userID: string, res: expre
             await trans.save(newCategory);
             user.categories.push(newCategory);
             await trans.save(user);
-        }); 
-    } catch(err) {
+        });
+    } catch (err) {
         throw err;
     }
 }
 
-const deleteUserCategory = async (categoryID: string, userID : string, res: express.Response): Promise<void> => {
+const deleteUserCategory = async (categoryID: string, userID: string, res: express.Response): Promise<void> => {
     try {
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
@@ -240,7 +240,7 @@ const deleteUserCategory = async (categoryID: string, userID : string, res: expr
         }
 
         await Category.remove(category);
-    } catch(err) {
+    } catch (err) {
         throw err;
     }
 }
