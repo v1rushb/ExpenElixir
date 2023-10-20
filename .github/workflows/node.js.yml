@@ -23,7 +23,14 @@ jobs:
         docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
-    
+    - name: Set Environment Variables
+      run: |
+        echo "DB_HOST: $DB_HOST"
+        echo "DB_PORT: $DB_PORT"
+        echo "DB_USER_NAME: $DB_USER_NAME"
+        echo "DB_PASSWORD: $DB_PASSWORD"
+        echo "DB_NAME: $DB_NAME"
+
     - name: Deployment
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
