@@ -29,5 +29,3 @@ sudo -u github sh -c "mkdir -p /home/app/.ssh && echo $github_pubkey > /home/app
 
 # Reboot to apply changes
 sudo reboot
-
-# new file.

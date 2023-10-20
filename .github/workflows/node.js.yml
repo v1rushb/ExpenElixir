@@ -26,8 +26,8 @@ jobs:
     
     - name: Deployment
       run: |
-        echo "${{ secrets.OG_DEP }}" > ogkey.pem
-        chmod 600 ogkey.pem
-        ssh -i 'ogkey.pem' -o StrictHostKeyChecking=no ubuntu@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+        echo "${{ secrets.DEP_KEY }}" > key.pem
+        chmod 600 key.pem
+        ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
       env:
-        DEPLOYMENT_PRIVATE_KEY: ${{ secrets.OG_DEP }}
+        DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEP_KEY }}
