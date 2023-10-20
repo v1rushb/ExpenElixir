@@ -17,7 +17,7 @@ const dataSource = new DataSource({
     entities: [Users, Expense, Category, Income, Profile, Business],
     //migrations: ['./**/migration/*.ts'],
     logging: true,
-    synchronize: false
+    synchronize: true
 });
 
 export default dataSource;

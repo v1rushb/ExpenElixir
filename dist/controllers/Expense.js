@@ -102,7 +102,6 @@ const getFilteredExpenses = async (req, res) => {
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
-<<<<<<< HEAD
         const expense = await Users.findOne({
             where: { id: userId },
             relations: ['expenses'],
@@ -110,15 +109,6 @@ const getFilteredExpenses = async (req, res) => {
         if (!expense)
             throw new CustomError('User not found', 404);
         const filteredExpenses = expense.expenses.filter(expense => {
-=======
-        const user = res.locals.user;
-        if (!user)
-            throw new CustomError('User not found', 404);
-        const expenses = user.expenses;
-        if (expenses.length === 0)
-            throw new CustomError('No expenses found', 404);
-        const filteredExpenses = expenses.filter(expense => {
->>>>>>> 82280aa450d8038d23ea4552631226b71cb7a534
             return expense.amount >= minAmount && expense.amount <= maxAmount &&
                 expense.title.toLowerCase().includes(search);
         });

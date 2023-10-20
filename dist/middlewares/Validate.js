@@ -26,10 +26,7 @@ const validateUser = async (req, res, next) => {
 };
 const validateExpense = async (req, res, next) => {
     try {
-<<<<<<< HEAD
-=======
         console.log(req.body);
->>>>>>> 82280aa450d8038d23ea4552631226b71cb7a534
         if (!req.body)
             throw new CustomError(`Empty body!`, 400);
         const values = ['title', 'amount', 'expenseDate'];
