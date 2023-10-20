@@ -23,6 +23,9 @@ jobs:
         docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
+    - name: Echo EC2_IP
+      run: |
+        echo "EC2_IP is: ${{ secrets.EC2_IP }}"
 
     - name: Set RDS Environment Variables on EC2 //Deployment will be left till later.
       run: |
@@ -36,7 +39,7 @@ jobs:
         sudo sh -c "echo 'export DB_PASSWORD=***' >> /etc/environment"
         sudo sh -c "echo 'export DB_NAME=***' >> /etc/environment"
         '
-    
+
     - name: Deployment
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
