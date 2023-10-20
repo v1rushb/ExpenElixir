@@ -28,12 +28,13 @@ jobs:
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
         chmod 600 key.pem
-        ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} '
-        sudo echo "export DB_HOST=${{ secrets.DB_HOST }}" >> /etc/environment;
-        sudo echo "export DB_PORT=${{ secrets.RDS_PORT }}" >> /etc/environment;
-        sudo echo "export DB_USER_NAME=${{ secrets.DB_USER_NAME }}" >> /etc/environment;
-        sudo echo "export DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> /etc/environment;
-        sudo echo "export DB_NAME=${{ secrets.DB_NAME }}" >> /etc/environment;
+        ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}}'
+        sudo touch /etc/environment
+        sud sh -c echo "export DB_HOST=${{ secrets.DB_HOST }}" >> /etc/environment;
+        sudo sh -c echo "export DB_PORT=${{ secrets.RDS_PORT }}" >> /etc/environment;
+        sudo sh -c echo "export DB_USER_NAME=${{ secrets.DB_USER_NAME }}" >> /etc/environment;
+        sudo sh -c echo "export DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> /etc/environment;
+        sudo sh -c echo "export DB_NAME=${{ secrets.DB_NAME }}" >> /etc/environment;
         '
     
     - name: Deployment
