@@ -28,7 +28,7 @@ jobs:
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
         chmod 600 key.pem
-        ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_IP }} '
+        ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{ secrets.EC2_IP }} '
         sudo touch /etc/environment
         sudo sh -c "echo export DB_HOST=${{ secrets.DB_HOST }} >> /etc/environment"
         sudo sh -c "echo export DB_PORT=${{ secrets.RDS_PORT }} >> /etc/environment"
