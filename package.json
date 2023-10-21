@@ -24,6 +24,7 @@
     "@aws-sdk/client-s3": "^3.428.0",
     "@types/cookie-parser": "^1.4.4",
     "@types/jsonwebtoken": "^9.0.3",
+    "@types/stripe": "^8.0.417",
     "@types/validator": "^13.11.2",
     "bcrypt": "^5.1.1",
     "check-password-strength": "^2.0.7",
@@ -35,6 +36,7 @@
     "mysql": "^2.18.1",
     "nodemon": "^3.0.1",
     "reflect-metadata": "^0.1.13",
+    "stripe": "^14.1.0",
     "typeorm": "^0.3.17",
     "validator": "^13.11.0",
     "winston": "^3.11.0"

@@ -7,6 +7,8 @@ import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
 import businessUser from '../middlewares/businessUser.js';
+import { stripe } from '../stripe-config.js';
+import { upgradeToBusiness } from '../controllers/Business.js';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -74,6 +76,49 @@ router.get('/', authMe, async (req, res, next) => {
     }
     catch (err) {
         return next(new CustomError(`An error occurred while trying to get all users. Error: ${err}`, 500));
+    }
+});
+router.post('/upgrade-to-business', authMe, async (req, res, next) => {
+    try {
+        const { name, email } = res.locals.user;
+        const customer = await stripe.customers.create({
+            name,
+            email,
+        });
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: 3000,
+            currency: 'usd',
+            customer: customer.id,
+            payment_method: 'pm_card_visa',
+            automatic_payment_methods: {
+                enabled: true,
+                allow_redirects: 'never',
+            },
+        });
+        const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
+        if (confirmedPaymentIntent.status === 'succeeded') {
+            try {
+                const user = res.locals.user;
+                if (user.profile.role !== 'Member') {
+                    if (user.profile.role === 'Root') {
+                        throw new CustomError(`You are already a business user.`, 400);
+                    }
+                    throw new CustomError(`You are not allowed here.`, 400);
+                }
+                await upgradeToBusiness(res);
+                logger.info(`200 OK - /user/upgrade-to-business - POST - ${req.ip}`);
+                res.status(200).send('Payment succeeded');
+            }
+            catch (err) {
+                throw err;
+            }
+        }
+        else {
+            throw new CustomError(`Payment failed.`, 400);
+        }
+    }
+    catch (err) {
+        next(err);
     }
 });
 router.use('/business', businessUser);

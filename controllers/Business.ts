@@ -7,6 +7,8 @@ import { CustomError } from '../CustomError.js';
 import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
+import { Business } from '../db/entities/Business.js';
+import logger from '../logger.js';
 
 
 const createUserUnderRoot = async (payload: Gen.User, res: express.Response) => {
@@ -269,6 +271,29 @@ const businessCategories = async (res: express.Response) => {
     return result;
 }
 
+const upgradeToBusiness = async (res: express.Response) => {
+    try {
+        const user = res.locals.user;
+        console.log(`profiles are ${user.profile}`);
+        if(user.profile) {
+        user.profile.role = 'Root';
+        await user.profile.save();
+        const newBusiness = Business.create({
+            businessName: user.profile.firstName + "'s Business",
+            rootUserID: user.id,
+            users: [user],
+        });
+        await newBusiness.save();
+
+        user.business = newBusiness;
+
+        await user.save();
+        }
+    } catch (err) {
+        throw(err);
+    }
+}
+
 export {
     createUserUnderRoot,
     deleteDescendant,
@@ -285,4 +310,5 @@ export {
     addUserCategory,
     deleteUserCategory,
     businessCategories,
+    upgradeToBusiness,
 }

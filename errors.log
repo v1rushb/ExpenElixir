@@ -217,3 +217,5 @@
 2023-10-17T14:49:31.634Z [error]: 400 - Invalid email. - /user/login - POST - ::1
 2023-10-17T14:49:45.157Z [error]: 400 - Invalid email. - /user/login - POST - ::1
 2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
+2023-10-21T11:42:54.796Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-21T11:43:24.484Z [error]: 404 Not Found - /process-payment - POST - ::1

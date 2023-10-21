@@ -375,3 +375,7 @@
 2023-10-17T14:49:49.779Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-17T14:49:54.543Z [info]: User malsssessoosok requested all Expenses!
 2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
+2023-10-21T11:42:43.421Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-21T11:42:54.796Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-21T11:42:58.989Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-21T11:43:24.484Z [error]: 404 Not Found - /process-payment - POST - ::1

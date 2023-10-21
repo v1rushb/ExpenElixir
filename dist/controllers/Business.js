@@ -5,6 +5,7 @@ import { CustomError } from '../CustomError.js';
 import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
+import { Business } from '../db/entities/Business.js';
 const createUserUnderRoot = async (payload, res) => {
     return await dataSource.transaction(async (trans) => {
         const newProfile = Profile.create({
@@ -246,5 +247,26 @@ const businessCategories = async (res) => {
     const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
     return result;
 };
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, };
+const upgradeToBusiness = async (res) => {
+    try {
+        const user = res.locals.user;
+        console.log(`profiles are ${user.profile}`);
+        if (user.profile) {
+            user.profile.role = 'Root';
+            await user.profile.save();
+            const newBusiness = Business.create({
+                businessName: user.profile.firstName + "'s Business",
+                rootUserID: user.id,
+                users: [user],
+            });
+            await newBusiness.save();
+            user.business = newBusiness;
+            await user.save();
+        }
+    }
+    catch (err) {
+        throw (err);
+    }
+};
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, };
 //# sourceMappingURL=Business.js.map
