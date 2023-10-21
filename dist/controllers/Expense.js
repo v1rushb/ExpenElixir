@@ -4,19 +4,17 @@ import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
-import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
-const insertExpense = async (payload, req, picFile) => {
+const insertExpense = async (payload, req) => {
     try {
         const decode = decodeToken(req);
-        const currencyType = payload.currency || "USD";
-        const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType);
+        // const currencyType = payload.currency || "USD";
+        // const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType)
         return dataSource.manager.transaction(async (trans) => {
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: currencyFromOtherToUSD,
+                amount: payload.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location,
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
@@ -42,7 +40,7 @@ const insertExpense = async (payload, req, picFile) => {
     catch (err) {
         if (err instanceof CustomError)
             throw err;
-        throw new CustomError(`Internal Server Error`, 500);
+        throw new CustomError(err, 500);
     }
 };
 const deleteAllExpenses = async (req) => {
@@ -80,7 +78,6 @@ const totalExpenses = async (req) => {
 };
 const getExpenses = async (req, res) => {
     try {
-        const userId = req.cookies['userId'];
         const expense = await Users.findOne({
             where: { id: res.locals.user.id },
             relations: ['expenses'],

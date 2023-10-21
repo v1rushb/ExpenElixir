@@ -401,3 +401,43 @@
 2023-10-21T14:26:26.220Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
 2023-10-21T14:26:35.264Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
 2023-10-21T14:26:45.194Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-21T15:44:49.277Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-21T15:45:41.277Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-21T15:45:57.216Z [info]: User undefined requested all categories!
+2023-10-21T15:46:40.786Z [error]: undefined - getaddrinfo ENOTFOUND expen-elixir-bucket.s3.undefined.amazonaws.com - /expense - POST - ::1
+2023-10-21T15:50:30.761Z [error]: 500 - Internal Server Error - /expense - POST - ::1
+2023-10-21T15:50:53.779Z [error]: 500 - Internal Server Error - /expense - POST - ::1
+2023-10-21T15:51:38.702Z [error]: 500 - Internal Server Error - /expense - POST - ::1
+2023-10-21T15:52:33.723Z [error]: 500 - Internal Server Error - /expense - POST - ::1
+2023-10-21T15:53:14.196Z [error]: 500 - Internal Server Error - /expense - POST - ::1
+2023-10-21T15:53:32.460Z [error]: 500 - TypeError: Cannot read properties of undefined (reading 'USD') - /expense - POST - ::1
+2023-10-21T15:54:46.304Z [error]: 500 - TypeError: Cannot read properties of undefined (reading 'USD') - /expense - POST - ::1
+2023-10-21T15:55:20.907Z [info]: User undefined added a new Expense!
+2023-10-21T15:55:35.859Z [info]: User undefined added a new Expense!
+2023-10-21T15:55:53.145Z [info]: User undefined requested all categories!
+2023-10-21T15:56:18.905Z [info]: User undefined added a new Expense!
+2023-10-21T15:56:25.516Z [info]: User undefined added a new Expense!
+2023-10-21T15:57:00.444Z [info]: User undefined added a new Expense!
+2023-10-21T15:57:07.656Z [info]: User undefined added a new Expense!
+2023-10-21T15:57:28.396Z [error]: 404 Not Found - /expense/analytics - GET - ::1
+2023-10-21T15:58:03.769Z [error]: 400 - Please provide a start date and an end date. - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-21T15:59:01.760Z [error]: undefined - Cannot read properties of undefined (reading 'expenses') - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-21T15:59:58.611Z [error]: undefined - Cannot read properties of undefined (reading 'expenses') - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-21T16:00:17.486Z [error]: undefined - Cannot read properties of undefined (reading 'expenses') - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-21T16:00:39.879Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-21T16:11:34.911Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-21T16:12:30.313Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-21T16:13:52.241Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-21T16:14:41.902Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-21T16:25:54.701Z [error]: 500 - Internal Server Error - /expense - GET - ::1
+2023-10-21T16:26:40.201Z [error]: 500 - Internal Server Error - /expense - GET - ::1
+2023-10-21T16:27:12.863Z [error]: 500 - Internal Server Error - /expense - GET - ::1
+2023-10-21T16:27:32.039Z [error]: 500 - TypeError: Cannot read properties of undefined (reading 'id') - /expense - GET - ::1
+2023-10-21T16:28:20.199Z [error]: undefined - jwt must be provided - /expense - GET - ::1
+2023-10-21T16:28:21.034Z [error]: undefined - jwt must be provided - /expense - GET - ::1
+2023-10-21T16:28:29.650Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-21T16:28:35.933Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-21T16:28:38.319Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-21T16:28:46.307Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-21T16:28:53.413Z [info]: User undefined requested all Expenses!
+2023-10-21T16:31:11.407Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1

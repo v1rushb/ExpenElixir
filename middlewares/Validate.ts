@@ -79,7 +79,7 @@ const validateCategory = async (req: express.Request, res: express.Response, nex
     try {
         if (!req.body)
             throw new CustomError(`Empty body!`, 400);
-        const values = ['name'];
+        const values = ['title'];
         const errorList : string[] = [];
         values.forEach(iterator=> {
             if(!req.body[iterator])
