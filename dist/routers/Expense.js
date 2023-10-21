@@ -3,16 +3,17 @@ import { Expense } from '../db/entities/Expense.js';
 import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import logger from '../logger.js';
-import uImage from '../utils/uploadS3Image.js';
 import expenseBusiness from '../middlewares/businessExpense.js';
+import { validateExpense } from '../middlewares/Validate.js';
+import expenseAnalytics from '../middlewares/epxense-analytics.js';
 const router = express.Router();
-router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
-    insertExpense(req.body, req, req.file).then(expense => {
+router.post('/', authMe, validateExpense, async (req, res, next) => {
+    insertExpense(req.body, req).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
 });
-router.get('/', async (req, res, next) => {
+router.get('/', authMe, async (req, res, next) => {
     getExpenses(req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);
@@ -45,6 +46,7 @@ router.get('/all', authMe, async (req, res, next) => {
     const expenses = await Expense.find();
     res.status(200).send(expenses);
 });
+router.use('/analytics', expenseAnalytics);
 router.use('/business', expenseBusiness);
 export default router;
 //# sourceMappingURL=Expense.js.map

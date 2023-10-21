@@ -10,19 +10,18 @@ import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from
 
 
 
-const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile: Express.MulterS3.File | undefined): Promise<void> => {
+const insertExpense = async (payload: Gen.Expense, req: express.Request): Promise<void> => {
     try {
-        const decode = decodeToken(req);
-        const currencyType = payload.currency || "USD";
-        const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType)
+         const decode = decodeToken(req);
+        // const currencyType = payload.currency || "USD";
+        // const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType)
         return dataSource.manager.transaction(async trans => {
 
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: currencyFromOtherToUSD,
+                amount: payload.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location,
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
@@ -48,7 +47,7 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request, picFile
     catch (err) {
         if (err instanceof CustomError)
             throw err;
-        throw new CustomError(`Internal Server Error`, 500);
+        throw new CustomError(err, 500);
     }
 }
 
@@ -91,7 +90,6 @@ const totalExpenses = async (req: express.Request): Promise<number> => {
 
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const userId = req.cookies['userId'];
 
         const expense = await Users.findOne({
             where: { id: res.locals.user.id },
@@ -100,7 +98,7 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
         if (!expense) throw new CustomError('User not found', 404);
 
         return expense.expenses
-    } catch (err: unknown) {
+    } catch (err: any) {
         if (err instanceof CustomError) {
             throw new CustomError(err.message, err.statusCode);
         }
