@@ -48,4 +48,13 @@ export namespace Gen {
         email: string,
         username: string,
     }
+
+    export interface card {
+        cardName: string,
+        cardNumber: number,
+        card_token: string,
+        cardExp: Date,
+        card_cvc: number,
+        amount: number,
+    }
 }

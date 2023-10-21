@@ -219,3 +219,24 @@
 2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
 2023-10-21T11:42:54.796Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
 2023-10-21T11:43:24.484Z [error]: 404 Not Found - /process-payment - POST - ::1
+2023-10-21T14:19:38.029Z [error]: 400 - Expected double-quoted property name in JSON at position 70 - /user/process-payment - POST - ::1
+2023-10-21T14:19:49.384Z [error]: 404 Not Found - /user/process-payment - POST - ::1
+2023-10-21T14:19:59.606Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:20:46.870Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:20:48.650Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:20:51.181Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:20:52.119Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:20:55.456Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:21:26.194Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:21:28.081Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:22:15.129Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:22:56.421Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:23:14.634Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:23:22.327Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:24:01.298Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:24:22.161Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:25:23.815Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:26:11.620Z [error]: undefined - Cannot read properties of undefined (reading 'cardExp') - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:26:26.220Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:26:35.264Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-21T14:26:45.194Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
