@@ -220,3 +220,4 @@
 2023-10-22T11:06:28.934Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
 2023-10-22T11:06:38.011Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
 2023-10-22T11:38:58.839Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
+2023-10-22T14:33:14.824Z [error]: 404 Not Found - /send - GET - ::ffff:127.0.0.1

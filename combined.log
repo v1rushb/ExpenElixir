@@ -403,3 +403,4 @@
 2023-10-22T11:40:28.116Z [info]: User undefined added a new Expense!
 2023-10-22T11:41:08.890Z [info]: User undefined requested all Expenses!
 2023-10-22T11:49:37.706Z [info]: User undefined requested all Expenses!
+2023-10-22T14:33:14.824Z [error]: 404 Not Found - /send - GET - ::ffff:127.0.0.1
