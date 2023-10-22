@@ -11,6 +11,7 @@ import { stripe } from '../stripe-config.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
 import { Gen } from '../@types/generic.js';
+import IAMAuth from '../middlewares/IAMAuth.js';
 
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.post('/register', validateUser, async (req, res, next) => {
 });
 
 
-router.post('/login', (req, res, next) => {
+router.post('/login', IAMAuth, (req, res, next) => {
     const {username, password, iamId} = req.body;
     const token = req.cookies["token"];
     console.log(username);

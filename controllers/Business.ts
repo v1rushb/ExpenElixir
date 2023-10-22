@@ -275,19 +275,21 @@ const upgradeToBusiness = async (res: express.Response) => {
     try {
         const user = res.locals.user;
         console.log(`profiles are ${user.profile}`);
-        if(user.profile) {
-        user.profile.role = 'Root';
-        await user.profile.save();
-        const newBusiness = Business.create({
-            businessName: user.profile.firstName + "'s Business",
-            rootUserID: user.id,
-            users: [user],
-        });
-        await newBusiness.save();
+        if (user.profile) {
+            user.profile.role = 'Root';
+            user.profile.subscription_date = new Date();
+            user.profile.hasSentEmail = false;
+            await user.profile.save();
+            const newBusiness = Business.create({
+                businessName: user.profile.firstName + "'s Business",
+                rootUserID: user.id,
+                users: [user],
+            });
+            await newBusiness.save();
 
-        user.business = newBusiness;
+            user.business = newBusiness;
 
-        await user.save();
+            await user.save();
         }
     } catch (err) {
         throw(err);

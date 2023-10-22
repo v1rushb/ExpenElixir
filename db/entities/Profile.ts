@@ -27,6 +27,12 @@ export class Profile extends BaseEntity {
     })
     role: string;
 
+    @Column({ nullable: true })
+    subscription_date: Date;
+
+    @Column({ nullable: false })
+    hasSentEmail: boolean;
+
     @OneToOne(() => Users, user => user.profile)
     @JoinColumn()
     user: Partial<Users>;
