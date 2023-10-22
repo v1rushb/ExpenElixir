@@ -375,49 +375,31 @@
 2023-10-17T14:49:49.779Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-17T14:49:54.543Z [info]: User malsssessoosok requested all Expenses!
 2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
-2023-10-19T12:15:45.646Z [error]: 401 - Invalid username or password. - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T12:19:39.232Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
-2023-10-19T12:19:45.313Z [error]: 401 - Invalid username or password. - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T12:20:02.316Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
-2023-10-19T12:20:10.003Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T12:20:14.716Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:20:35.284Z [info]: 200 OK - /user/totalIncome - GET - ::ffff:127.0.0.1
-2023-10-19T12:20:36.293Z [info]: 200 OK - /user/totalIncome - GET - ::ffff:127.0.0.1
-2023-10-19T12:20:49.543Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:20:56.885Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-19T12:21:33.468Z [error]: 404 Not Found - /categoty - POST - ::ffff:127.0.0.1
-2023-10-19T12:23:25.021Z [info]: User undefined added a new Expense!
-2023-10-19T12:23:27.347Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:23:32.225Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:24:20.377Z [info]: User undefined requested all Expenses!
-2023-10-19T12:24:57.140Z [info]: User undefined requested all Expenses!
-2023-10-19T12:29:22.888Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-19T12:29:48.532Z [info]: User undefined added a new Expense!
-2023-10-19T12:30:48.214Z [info]: User undefined added a new Expense!
-2023-10-19T12:34:13.591Z [info]: User undefined requested all Expenses!
-2023-10-19T12:41:46.250Z [info]: User undefined requested all Expenses!
-2023-10-19T12:42:18.987Z [info]: User undefined requested all Expenses!
-2023-10-19T12:44:15.192Z [info]: User undefined requested all Expenses!
-2023-10-19T12:47:45.247Z [info]: User undefined requested all Expenses!
-2023-10-19T12:48:44.519Z [info]: User undefined requested all Expenses!
-2023-10-19T12:51:22.017Z [error]: undefined - jwt must be provided - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:51:28.482Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T12:51:32.066Z [info]: User undefined requested all Expenses!
-2023-10-19T12:53:28.441Z [info]: User undefined requested all Expenses!
-2023-10-19T12:54:20.046Z [info]: User undefined requested all Expenses!
-2023-10-19T13:23:00.450Z [error]: 500 - An error occurred during login. Error: Error: DataSource is not set for this entity. - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T13:23:21.249Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T13:24:11.331Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-19T13:25:01.646Z [info]: User undefined added a new Expense!
-2023-10-19T13:25:26.313Z [error]: undefined - jwt must be provided - /expense - POST - ::1
-2023-10-19T13:25:31.060Z [error]: undefined - jwt must be provided - /expense - POST - ::1
-2023-10-19T13:25:47.304Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
-2023-10-19T13:26:06.458Z [info]: 200 OK - /user/login - POST - ::1
-2023-10-19T13:34:22.108Z [info]: User undefined added a new Expense!
-2023-10-19T13:35:27.931Z [info]: User undefined added a new Expense!
-2023-10-19T13:36:39.358Z [error]: undefined - req.body.json is not a function - /expense - POST - ::1
-2023-10-19T13:37:27.740Z [error]: undefined - req.body.stringify is not a function - /expense - POST - ::1
-2023-10-19T13:37:59.156Z [error]: 400 - Empty body! - /expense - POST - ::1
-2023-10-19T13:38:32.141Z [error]: 400 - Empty body! - /expense - POST - ::1
-2023-10-19T13:40:41.389Z [info]: User undefined added a new Expense!
-2023-10-19T13:41:49.516Z [info]: User undefined added a new Expense!
+2023-10-22T10:52:21.193Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-22T10:52:24.735Z [info]: User undefined requested all Expenses!
+2023-10-22T11:00:16.282Z [info]: User undefined added a new Expense!
+2023-10-22T11:06:20.343Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-22T11:06:23.156Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-22T11:06:28.934Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
+2023-10-22T11:06:34.780Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-22T11:06:38.011Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-22T11:07:30.192Z [info]: User undefined added a new Expense!
+2023-10-22T11:07:36.773Z [info]: User undefined requested all Expenses!
+2023-10-22T11:09:31.419Z [info]: User undefined added a new Expense!
+2023-10-22T11:09:36.920Z [info]: User undefined requested all Expenses!
+2023-10-22T11:19:35.859Z [info]: User undefined requested all Expenses!
+2023-10-22T11:20:43.569Z [info]: User undefined requested all Expenses!
+2023-10-22T11:24:47.549Z [info]: User undefined requested all Expenses!
+2023-10-22T11:25:05.774Z [info]: User undefined requested all Expenses!
+2023-10-22T11:26:17.259Z [info]: User undefined requested all Expenses!
+2023-10-22T11:26:53.991Z [info]: User undefined requested all Expenses!
+2023-10-22T11:27:51.034Z [info]: User undefined requested all Expenses!
+2023-10-22T11:28:24.004Z [info]: User undefined requested all Expenses!
+2023-10-22T11:34:01.375Z [info]: User undefined requested all Expenses!
+2023-10-22T11:36:23.704Z [info]: User undefined requested all Expenses!
+2023-10-22T11:38:58.839Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
+2023-10-22T11:39:02.700Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-22T11:39:10.987Z [info]: User undefined added a new Expense!
+2023-10-22T11:40:28.116Z [info]: User undefined added a new Expense!
+2023-10-22T11:41:08.890Z [info]: User undefined requested all Expenses!
+2023-10-22T11:49:37.706Z [info]: User undefined requested all Expenses!

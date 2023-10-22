@@ -1,35 +1,31 @@
 #!/bin/sh
 set -e
 
+# Update and upgrade packages
 sudo apt update
 sudo apt upgrade -y
 
-sudo apt-get install -y ca-certificates curl gnupg
-sudo install -m 0755 -d /etc/apt/keyrings
+# Install necessary packages
+sudo apt-get install -y ca-certificates curl gnupg sudo
 
-# install docker
-for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
+# Install Docker
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-sudo chmod a+r /etc/apt/keyrings/docker.gpg
-# Add the repository to Apt sources:
-echo \
-  "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
-  "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
 sudo apt update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
 
-sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-
-# create github user
+# Create the "github" user
 sudo mkdir -p /home/app
-sudo useradd --no-create-home --home-dir /home/app --shell /bin/bash github
-sudo usermod --append --groups docker github
-sudo usermod --append --groups docker ubuntu
-sudo chown github:github -R /home/app
+sudo useradd --create-home --home-dir /home/app --shell /bin/bash github
 
+# Add the "github" user to the "sudo" group to grant sudo privileges
+sudo usermod -aG sudo github
+
+# Set up SSH key for the "github" user
 github_pubkey="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM+pNBrYA5qN/PFsK7J5dCDMpfHPGdV7lEgGiF8mcINk 211111@ppu.edu.ps"
-
 sudo -u github sh -c "mkdir -p /home/app/.ssh && echo $github_pubkey > /home/app/.ssh/authorized_keys"
 
+# Reboot to apply changes
 sudo reboot

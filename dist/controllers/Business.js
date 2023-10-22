@@ -5,6 +5,8 @@ import { CustomError } from '../CustomError.js';
 import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
+import { Business } from '../db/entities/Business.js';
+import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 const createUserUnderRoot = async (payload, res) => {
     return await dataSource.transaction(async (trans) => {
         const newProfile = Profile.create({
@@ -126,12 +128,14 @@ const addUserExpense = async (payload, userID, res, picFile) => {
             throw new CustomError(`User not found.`, 404);
         }
         return dataSource.manager.transaction(async (trans) => {
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location
+                picURL: picFile?.location,
+                data: currency.currencyData
             });
             await trans.save(newExpense);
             const category = await Category.findOne({
@@ -184,7 +188,11 @@ const businessExpenses = async (res) => {
     try {
         const users = await Users.find({ where: { business: res.locals.user.business } });
         const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
-        return result;
+        const expenseOnProfileCurrency = await Promise.all(result.map(async (expense) => {
+            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
+            return { ...expense, amount };
+        }));
+        return expenseOnProfileCurrency;
     }
     catch (err) {
         throw (err);
@@ -246,5 +254,26 @@ const businessCategories = async (res) => {
     const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
     return result;
 };
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, };
+const upgradeToBusiness = async (res) => {
+    try {
+        const user = res.locals.user;
+        console.log(`profiles are ${user.profile}`);
+        if (user.profile) {
+            user.profile.role = 'Root';
+            await user.profile.save();
+            const newBusiness = Business.create({
+                businessName: user.profile.firstName + "'s Business",
+                rootUserID: user.id,
+                users: [user],
+            });
+            await newBusiness.save();
+            user.business = newBusiness;
+            await user.save();
+        }
+    }
+    catch (err) {
+        throw (err);
+    }
+};
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, };
 //# sourceMappingURL=Business.js.map

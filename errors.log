@@ -217,23 +217,6 @@
 2023-10-17T14:49:31.634Z [error]: 400 - Invalid email. - /user/login - POST - ::1
 2023-10-17T14:49:45.157Z [error]: 400 - Invalid email. - /user/login - POST - ::1
 2023-10-18T15:47:02.526Z [error]: 404 Not Found - /register - POST - ::1
-2023-10-19T12:15:45.646Z [error]: 401 - Invalid username or password. - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T12:19:45.313Z [error]: 401 - Invalid username or password. - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T12:20:02.316Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
-2023-10-19T12:20:14.716Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:20:49.543Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:20:56.885Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-19T12:21:33.468Z [error]: 404 Not Found - /categoty - POST - ::ffff:127.0.0.1
-2023-10-19T12:23:27.347Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:23:32.225Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T12:29:22.888Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-19T12:51:22.017Z [error]: undefined - jwt must be provided - /expense - GET - ::ffff:127.0.0.1
-2023-10-19T13:23:00.450Z [error]: 500 - An error occurred during login. Error: Error: DataSource is not set for this entity. - /user/login - POST - ::ffff:127.0.0.1
-2023-10-19T13:24:11.331Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
-2023-10-19T13:25:26.313Z [error]: undefined - jwt must be provided - /expense - POST - ::1
-2023-10-19T13:25:31.060Z [error]: undefined - jwt must be provided - /expense - POST - ::1
-2023-10-19T13:25:47.304Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
-2023-10-19T13:36:39.358Z [error]: undefined - req.body.json is not a function - /expense - POST - ::1
-2023-10-19T13:37:27.740Z [error]: undefined - req.body.stringify is not a function - /expense - POST - ::1
-2023-10-19T13:37:59.156Z [error]: 400 - Empty body! - /expense - POST - ::1
-2023-10-19T13:38:32.141Z [error]: 400 - Empty body! - /expense - POST - ::1
+2023-10-22T11:06:28.934Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
+2023-10-22T11:06:38.011Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-22T11:38:58.839Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1

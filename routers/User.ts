@@ -7,6 +7,10 @@ import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
 import businessUser from '../middlewares/businessUser.js';
+import { stripe } from '../stripe-config.js';
+import { upgradeToBusiness } from '../controllers/Business.js';
+import getCards from '../middlewares/cards.js';
+import { Gen } from '../@types/generic.js';
 
 const router = express.Router();
 
@@ -52,12 +56,9 @@ router.post('/login', (req, res, next) => {
 
 router.post('/logout', (req, res) => {
     const token = req.cookies["token"];
-
-
     if (!token) {
         throw new CustomError(`You are not logged in.`, 401);
     }
-
     try {
         jwt.verify(token, process.env.SECRET_KEY || '');
         const decoded = jwt.decode(token || '', { json: true });
@@ -87,6 +88,64 @@ router.get('/', authMe, async (req, res, next) => {
         return next(new CustomError(`An error occurred while trying to get all users. Error: ${err}`, 500));
     }
 });
+
+router.post('/upgrade-to-business', authMe, getCards, async (req, res,next) => {
+    try {
+        const selectedCard = Number(req.body.card);
+        if (!selectedCard || selectedCard < 0 || selectedCard > 2) {
+            throw new CustomError(`You must select a valid card.`, 400);
+        }
+        const card: Gen.card = res.locals.cards[selectedCard];
+        if(card.cardExp <= new Date()) {
+            throw new CustomError(`Card expired.`, 400);
+        }
+        if(card.amount < 3000) {
+            throw new CustomError(`Insufficient funds.`, 400);
+        }
+        const {name,email} = res.locals.user;
+        
+        const customer = await stripe.customers.create({
+        name,
+        email,
+      });
+  
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: 3000,
+        currency: 'usd',
+        customer: customer.id,
+        payment_method: 'pm_card_visa',
+        automatic_payment_methods: {
+          enabled: true,
+          allow_redirects: 'never',
+        },
+      });
+  
+      const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
+  
+      if (confirmedPaymentIntent.status === 'succeeded') {
+        try {
+            const user = res.locals.user;
+            if(user.profile.role !== 'Member')
+            {
+                if(user.profile.role === 'Root')
+                {
+                    throw new CustomError(`You are already a business user.`, 400);
+                }
+                throw new CustomError(`You are not allowed here.`, 400);
+            }
+            await upgradeToBusiness(res);
+            logger.info(`200 OK - /user/upgrade-to-business - POST - ${req.ip}`);
+            res.status(200).send('Payment succeeded');
+        } catch (err: any) {
+            throw err;
+        }
+      } else {
+        throw new CustomError(`Payment failed.`, 400);
+      }
+    } catch (err: any) {
+        next(err);
+    }
+  });
 
 router.use('/business', businessUser);
 

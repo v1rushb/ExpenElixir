@@ -23,10 +23,10 @@ const decodeToken = (req: express.Request): Gen.DecodedPayload => {
 const insertIncome = async (payload: Gen.Income, res: express.Response) => {
     try {
         return dataSource.manager.transaction(async trans => {
-
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD")
             const newIncome = Income.create({
                 title: payload.title,
-                amount: await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD"),
+                amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
             });

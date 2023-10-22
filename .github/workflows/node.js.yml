@@ -23,23 +23,18 @@ jobs:
         docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
+    - name: Set Environment Variables
+      run: |
+        echo "DB_HOST: $DB_HOST"
+        echo "DB_PORT: $DB_PORT"
+        echo "DB_USER_NAME: $DB_USER_NAME"
+        echo "DB_PASSWORD: $DB_PASSWORD"
+        echo "DB_NAME: $DB_NAME"
 
-    # - name: Set RDS Environment Variables on EC2 //Deployment will be left till later.
-    #   run: |
-    #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
-    #     chmod 600 key.pem
-    #     ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} '
-    #     echo "export DB_HOST=${{ secrets.DB_HOST }}" >> /etc/environment;
-    #     echo "export DB_PORT=${{ secrets.RDS_PORT }}" >> /etc/environment;
-    #     echo "export DB_USER_NAME=${{ secrets.DB_USER_NAME }}" >> /etc/environment;
-    #     echo "export DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> /etc/environment;
-    #     echo "export DB_NAME=${{ secrets.DB_NAME }}" >> /etc/environment;
-    #     '
-    
-    # - name: Deployment
-    #   run: |
-    #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
-    #     chmod 600 key.pem
-    #     ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
-    #   env:
-    #     DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
+    - name: Deployment
+      run: |
+        echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+        chmod 600 key.pem
+        ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+      env:
+        DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
