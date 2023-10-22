@@ -18,7 +18,7 @@ export namespace Gen {
         category?: string,
         user: User,
         picURL?: string,
-        currency?: string
+        currencyType?: string
     }
     export interface Category {
         id: string,
@@ -33,6 +33,7 @@ export namespace Gen {
         incomeDate: Date,
         description: string,
         user: User,
+        currencyType?: string,
     }
     export interface Profile {
         id: string,

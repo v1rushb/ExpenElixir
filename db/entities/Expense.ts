@@ -11,7 +11,7 @@ export class Expense extends BaseEntity {
     @Column()
     title: string;
 
-    @Column()
+    @Column({ type: 'double' })
     amount: number;
 
     @Column()

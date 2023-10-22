@@ -4,7 +4,6 @@ import premiumAuth from './PremiumAuth.js';
 import { addUserExpense, businessExpenses, deleteUserExpense } from '../controllers/Business.js';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
-import { validateExpense } from './Validate.js';
 const router = express.Router();
 router.get('/business-expenses', authMe, premiumAuth, async (req, res, next) => {
     businessExpenses(res).then(expense => {
@@ -12,7 +11,7 @@ router.get('/business-expenses', authMe, premiumAuth, async (req, res, next) => 
         res.status(200).send(expense);
     }).catch(err => next(err));
 });
-router.post('/add-user-expense', authMe, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+router.post('/add-user-expense', authMe, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     addUserExpense(req.body, req.query.userID, res, req.file).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);

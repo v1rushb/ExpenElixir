@@ -44,11 +44,7 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "password", void 0);
 __decorate([
-<<<<<<< HEAD
-    Column(),
-=======
     Column({ nullable: true }),
->>>>>>> 82280aa450d8038d23ea4552631226b71cb7a534
     __metadata("design:type", String)
 ], Users.prototype, "iamId", void 0);
 __decorate([

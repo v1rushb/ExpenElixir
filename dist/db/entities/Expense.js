@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", String)
 ], Expense.prototype, "title", void 0);
 __decorate([
-    Column(),
+    Column({ type: 'double' }),
     __metadata("design:type", Number)
 ], Expense.prototype, "amount", void 0);
 __decorate([

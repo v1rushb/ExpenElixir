@@ -4,16 +4,14 @@ import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
-import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
+import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 const insertExpense = async (payload, req, picFile) => {
     try {
         const decode = decodeToken(req);
-        const currencyType = payload.currency || "USD";
-        const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType);
         return dataSource.manager.transaction(async (trans) => {
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: currencyFromOtherToUSD,
+                amount: await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD"),
                 expenseDate: payload.expenseDate,
                 description: payload.description,
                 picURL: picFile?.location,
@@ -80,14 +78,17 @@ const totalExpenses = async (req) => {
 };
 const getExpenses = async (req, res) => {
     try {
-        const userId = req.cookies['userId'];
         const expense = await Users.findOne({
             where: { id: res.locals.user.id },
             relations: ['expenses'],
         });
         if (!expense)
             throw new CustomError('User not found', 404);
-        return expense.expenses;
+        const expenseOnProfileCurrency = await Promise.all(expense.expenses.map(async (expense) => {
+            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency);
+            return { ...expense, amount };
+        }));
+        return expenseOnProfileCurrency;
     }
     catch (err) {
         if (err instanceof CustomError) {
@@ -102,7 +103,6 @@ const getFilteredExpenses = async (req, res) => {
         const search = req.query.search?.toString().toLowerCase() || '';
         const minAmount = Number(req.query.minAmount) || 0;
         const maxAmount = Number(req.query.maxAmount) || Infinity;
-<<<<<<< HEAD
         const expense = await Users.findOne({
             where: { id: userId },
             relations: ['expenses'],
@@ -110,19 +110,14 @@ const getFilteredExpenses = async (req, res) => {
         if (!expense)
             throw new CustomError('User not found', 404);
         const filteredExpenses = expense.expenses.filter(expense => {
-=======
-        const user = res.locals.user;
-        if (!user)
-            throw new CustomError('User not found', 404);
-        const expenses = user.expenses;
-        if (expenses.length === 0)
-            throw new CustomError('No expenses found', 404);
-        const filteredExpenses = expenses.filter(expense => {
->>>>>>> 82280aa450d8038d23ea4552631226b71cb7a534
             return expense.amount >= minAmount && expense.amount <= maxAmount &&
                 expense.title.toLowerCase().includes(search);
         });
-        return filteredExpenses;
+        const expenseOnProfileCurrency = await Promise.all(filteredExpenses.map(async (expense) => {
+            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency);
+            return { ...expense, amount };
+        }));
+        return expenseOnProfileCurrency;
     }
     catch (err) {
         throw err;
