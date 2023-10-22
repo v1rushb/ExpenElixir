@@ -4,17 +4,18 @@ import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
+import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 const insertExpense = async (payload, req) => {
     try {
         const decode = decodeToken(req);
-        // const currencyType = payload.currency || "USD";
-        // const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(Number(payload.amount), currencyType)
         return dataSource.manager.transaction(async (trans) => {
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: payload.amount,
+                amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
+                data: currency.currencyData
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
@@ -40,7 +41,7 @@ const insertExpense = async (payload, req) => {
     catch (err) {
         if (err instanceof CustomError)
             throw err;
-        throw new CustomError(err, 500);
+        throw new CustomError('err', 500);
     }
 };
 const deleteAllExpenses = async (req) => {
@@ -78,13 +79,18 @@ const totalExpenses = async (req) => {
 };
 const getExpenses = async (req, res) => {
     try {
+        const userId = req.cookies['userId'];
         const expense = await Users.findOne({
             where: { id: res.locals.user.id },
             relations: ['expenses'],
         });
         if (!expense)
             throw new CustomError('User not found', 404);
-        return expense.expenses;
+        const expenseOnProfileCurrency = await Promise.all(expense.expenses.map(async (expense) => {
+            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
+            return { ...expense, amount };
+        }));
+        return expenseOnProfileCurrency;
     }
     catch (err) {
         if (err instanceof CustomError) {
@@ -109,7 +115,11 @@ const getFilteredExpenses = async (req, res) => {
             return expense.amount >= minAmount && expense.amount <= maxAmount &&
                 expense.title.toLowerCase().includes(search);
         });
-        return filteredExpenses;
+        const expenseOnProfileCurrency = await Promise.all(filteredExpenses.map(async (expense) => {
+            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
+            return { ...expense, amount };
+        }));
+        return expenseOnProfileCurrency;
     }
     catch (err) {
         throw err;

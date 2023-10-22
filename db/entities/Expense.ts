@@ -2,7 +2,6 @@ import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedCo
 import { Users } from "./Users.js";
 import { Category } from "./Category.js";
 
-
 @Entity()
 export class Expense extends BaseEntity {
     @PrimaryGeneratedColumn('uuid')
@@ -11,7 +10,7 @@ export class Expense extends BaseEntity {
     @Column()
     title: string;
 
-    @Column()
+    @Column({ type: 'double' })
     amount: number;
 
     @Column()
@@ -23,6 +22,8 @@ export class Expense extends BaseEntity {
     @Column({ name: 'pictureURL', default: 'http://default' })
     picURL: string;
 
+    @Column({ type: 'json', nullable: true })
+    data: object;
 
     @ManyToOne(() => Users, user => user.expenses)
     users: string;

@@ -3,6 +3,7 @@ import { Income } from "../db/entities/Income.js";
 import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { CustomError } from '../CustomError.js';
+import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 const decodeToken = (req) => {
     const token = req.cookies["token"];
     const decode = jwt.decode(token, { json: true });
@@ -13,9 +14,10 @@ const decodeToken = (req) => {
 const insertIncome = async (payload, res) => {
     try {
         return dataSource.manager.transaction(async (trans) => {
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD");
             const newIncome = Income.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
             });

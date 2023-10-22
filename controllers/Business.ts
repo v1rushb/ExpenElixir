@@ -9,6 +9,7 @@ import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
 import logger from '../logger.js';
+import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 
 
 const createUserUnderRoot = async (payload: Gen.User, res: express.Response) => {
@@ -71,8 +72,8 @@ const businessBalance = async (res: express.Response): Promise<number> => {
 
 const addUserIncome = async (payload: Gen.Income, userID: string, res: express.Response) => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to add an income to!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to add an income to!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -98,10 +99,10 @@ const addUserIncome = async (payload: Gen.Income, userID: string, res: express.R
 
 const deleteUserIncome = async (incomeID: string, userID: string, res: express.Response) => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to delete an income from!`,400);
-        if(!incomeID)
-            throw new CustomError(`You must provide an id for the income you want to delete!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete an income from!`, 400);
+        if (!incomeID)
+            throw new CustomError(`You must provide an id for the income you want to delete!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -135,8 +136,8 @@ const totalBusinessIncome = async (res: express.Response): Promise<number> => { 
 const addUserExpense = async (payload: Gen.Expense, userID: string, res: express.Response, picFile: Express.MulterS3.File | undefined) => {
 
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to add an expense to!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to add an expense to!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -144,13 +145,14 @@ const addUserExpense = async (payload: Gen.Expense, userID: string, res: express
             throw new CustomError(`User not found.`, 404);
         }
         return dataSource.manager.transaction(async trans => {
-
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD')
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location
+                picURL: picFile?.location,
+                data: currency.currencyData
             });
             await trans.save(newExpense);
             const category = await Category.findOne({
@@ -172,10 +174,10 @@ const addUserExpense = async (payload: Gen.Expense, userID: string, res: express
 
 const deleteUserExpense = async (expenseID: string, userID: string, res: express.Response): Promise<void> => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to delete an expense from!`,400);
-        if(!expenseID)
-            throw new CustomError(`You must provide an id for the expense you want to delete!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete an expense from!`, 400);
+        if (!expenseID)
+            throw new CustomError(`You must provide an id for the expense you want to delete!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -203,7 +205,13 @@ const businessExpenses = async (res: express.Response) => { //add typing later
     try {
         const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
         const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
-        return result;
+        const expenseOnProfileCurrency = await Promise.all(
+            result.map(async (expense) => {
+                const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
+                return { ...expense, amount };
+            })
+        );
+        return expenseOnProfileCurrency;
     } catch (err) {
         throw (err);
     }
@@ -216,8 +224,8 @@ const totalBusinessExpenses = async (res: express.Response): Promise<number> => 
 
 const addUserCategory = async (payload: Gen.Category, userID: string, res: express.Response): Promise<void> => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to add a category to!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to add a category to!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
@@ -240,10 +248,10 @@ const addUserCategory = async (payload: Gen.Category, userID: string, res: expre
 
 const deleteUserCategory = async (categoryID: string, userID: string, res: express.Response): Promise<void> => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to delete a category from!`,400);
-        if(!categoryID)
-            throw new CustomError(`You must provide an id for the category you want to delete!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to delete a category from!`, 400);
+        if (!categoryID)
+            throw new CustomError(`You must provide an id for the category you want to delete!`, 400);
 
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
@@ -292,7 +300,7 @@ const upgradeToBusiness = async (res: express.Response) => {
             await user.save();
         }
     } catch (err) {
-        throw(err);
+        throw (err);
     }
 }
 

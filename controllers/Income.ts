@@ -5,14 +5,15 @@ import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { CustomError } from '../CustomError.js';
+import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 
 
-const decodeToken = (req: express.Request) : Gen.DecodedPayload => {
+const decodeToken = (req: express.Request): Gen.DecodedPayload => {
     const token = req.cookies["token"];
 
     const decode = jwt.decode(token, { json: true }) as Gen.DecodedPayload;
 
-    if(!decode)
+    if (!decode)
         throw new CustomError(`Invalid Error`, 401);
 
     return decode;
@@ -22,10 +23,10 @@ const decodeToken = (req: express.Request) : Gen.DecodedPayload => {
 const insertIncome = async (payload: Gen.Income, res: express.Response) => {
     try {
         return dataSource.manager.transaction(async trans => {
-
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD")
             const newIncome = Income.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
             });
@@ -42,7 +43,7 @@ const insertIncome = async (payload: Gen.Income, res: express.Response) => {
         });
     }
     catch (err) {
-        throw new CustomError(`An error occurred while trying to add a new income. try again later!`,500);
+        throw new CustomError(`An error occurred while trying to add a new income. try again later!`, 500);
     }
 }
 
@@ -59,24 +60,24 @@ const deleteAllIncomes = async (req: express.Request) => {
         });
     }
     catch (err: any) {
-        if(err.name.includes(`EntityNotFound`))
+        if (err.name.includes(`EntityNotFound`))
             throw new CustomError("Session Terminated, Log in again.", 404);
 
-        throw new CustomError(`You have no incomes to delete!`,404);
+        throw new CustomError(`You have no incomes to delete!`, 404);
     }
 }
 
-const deleteIncome = async (id: string, req : express.Request) : Promise<string> => {
+const deleteIncome = async (id: string, req: express.Request): Promise<string> => {
     const decode = decodeToken(req);
-    if(!id)
+    if (!id)
         throw new CustomError("ID is required.", 400);
     try {
         const income = await Income.findOne({ where: { id } });
         if (!income)
-            throw new CustomError(`Income with id: ${id} was not found!`,404);
+            throw new CustomError(`Income with id: ${id} was not found!`, 404);
         await Income.remove(income);
     } catch (err) {
-        throw new CustomError(`${err}`,500);
+        throw new CustomError(`${err}`, 500);
     }
     return decode.username;
 }

@@ -441,5 +441,3 @@
 2023-10-21T16:28:46.307Z [info]: 200 OK - /user/login - POST - ::1
 2023-10-21T16:28:53.413Z [info]: User undefined requested all Expenses!
 2023-10-21T16:31:11.407Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
-2023-10-21T20:53:54.335Z [info]: 200 OK - /user/login - POST - ::1
-2023-10-21T20:54:06.099Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1

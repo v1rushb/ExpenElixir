@@ -10,7 +10,7 @@ import expenseAnalytics from '../middlewares/epxense-analytics.js';
 
 const router = express.Router();
 
-router.post('/', authMe, validateExpense,async (req, res, next) => {
+router.post('/', authMe, validateExpense, async (req, res, next) => {
     insertExpense(req.body, req).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);

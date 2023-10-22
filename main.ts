@@ -31,13 +31,7 @@ app.get('/health', (req, res) => {
     res.status(200).send('Full HP');
 
 });
-app.get('/curr', async (req, res) => {
 
-    const currencyFromUSDtoOther = await currencyConverterFromUSDtoOther(300, "ILS")
-    const currencyFromOtherToUSD = await currencyConverterFromOtherToUSD(1200, 'ILS')
-    res.status(200).send(`${currencyFromUSDtoOther} AND ${currencyFromOtherToUSD}`)
-
-});
 
 app.use('/', (req, res) => {
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);

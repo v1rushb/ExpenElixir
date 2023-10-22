@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", String)
 ], Expense.prototype, "title", void 0);
 __decorate([
-    Column(),
+    Column({ type: 'double' }),
     __metadata("design:type", Number)
 ], Expense.prototype, "amount", void 0);
 __decorate([
@@ -36,6 +36,10 @@ __decorate([
     Column({ name: 'pictureURL', default: 'http://default' }),
     __metadata("design:type", String)
 ], Expense.prototype, "picURL", void 0);
+__decorate([
+    Column({ type: 'json', nullable: true }),
+    __metadata("design:type", Object)
+], Expense.prototype, "data", void 0);
 __decorate([
     ManyToOne(() => Users, user => user.expenses),
     __metadata("design:type", String)

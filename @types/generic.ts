@@ -18,7 +18,7 @@ export namespace Gen {
         category?: string,
         user: User,
         picURL?: string,
-        currency?: string
+        currencyType?: string
     }
     export interface Category {
         id: string,
@@ -33,6 +33,7 @@ export namespace Gen {
         incomeDate: Date,
         description: string,
         user: User,
+        currencyType?: string,
     }
     export interface Profile {
         id: string,
@@ -56,5 +57,41 @@ export namespace Gen {
         cardExp: Date,
         card_cvc: number,
         amount: number,
+    }
+    export interface currencyType {
+        "AUD": number,
+        "BGN": number,
+        "BRL": number,
+        "CAD": number,
+        "CHF": number,
+        "CNY": number,
+        "CZK": number,
+        "DKK": number,
+        "EUR": number,
+        "GBP": number,
+        "HKD": number,
+        "HRK": number,
+        "HUF": number,
+        "IDR": number,
+        "ILS": number,
+        "INR": number,
+        "ISK": number,
+        "JPY": number,
+        "KRW": number,
+        "MXN": number,
+        "MYR": number,
+        "NOK": number,
+        "NZD": number,
+        "PHP": number,
+        "PLN": number,
+        "RON": number,
+        "RUB": number,
+        "SEK": number,
+        "SGD": number,
+        "THB": number,
+        "TRY": number,
+        "USD": number,
+        "ZAR": number,
+
     }
 }
