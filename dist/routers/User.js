@@ -10,6 +10,7 @@ import businessUser from '../middlewares/businessUser.js';
 import { stripe } from '../stripe-config.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
+import IAMAuth from '../middlewares/IAMAuth.js';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -19,7 +20,7 @@ router.post('/register', validateUser, async (req, res, next) => {
         res.status(201).send(`You have been registered successfully ${user.username}!`);
     }).catch(err => next(err));
 });
-router.post('/login', (req, res, next) => {
+router.post('/login', IAMAuth, (req, res, next) => {
     const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
     console.log(username);

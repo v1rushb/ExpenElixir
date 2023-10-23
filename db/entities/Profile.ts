@@ -30,7 +30,7 @@ export class Profile extends BaseEntity {
     @Column({ nullable: true })
     subscription_date: Date;
 
-    @Column({ nullable: false })
+    @Column({ nullable: true })
     hasSentEmail: boolean;
 
     @OneToOne(() => Users, user => user.profile)

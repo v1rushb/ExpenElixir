@@ -4,20 +4,21 @@ import { addUserCategory, businessCategories, deleteUserCategory } from '../cont
 import logger from '../logger.js';
 import premiumAuth from './PremiumAuth.js';
 import { validateCategory } from './Validate.js';
+import checkBusiness from './business-check.js';
 const router = express.Router();
-router.get('/business-categories', authMe, premiumAuth, async (req, res, next) => {
+router.get('/business-categories', authMe, premiumAuth, checkBusiness, async (req, res, next) => {
     businessCategories(res).then(categories => {
         logger.info(`User ${req.body.username} requested all categories!`);
         res.status(200).send(categories);
     }).catch(err => next(err));
 });
-router.delete('/delete-user-category', authMe, premiumAuth, async (req, res, next) => {
+router.delete('/delete-user-category', authMe, premiumAuth, checkBusiness, async (req, res, next) => {
     deleteUserCategory(req.query.id, req.query.userID, res).then(() => {
         logger.info(`User ${res.locals.user.username} deleted category ${req.params.id} for user with id ${req.query.userID}!`);
         res.status(200).send(`You have successfully deleted the category with id: ${req.params.id}!`);
     }).catch(err => next(err));
 });
-router.post('add-user-category', authMe, premiumAuth, validateCategory, async (req, res, next) => {
+router.post('add-user-category', authMe, premiumAuth, checkBusiness, validateCategory, async (req, res, next) => {
     addUserCategory(req.body, req.query.userID, res).then(() => {
         logger.info(`User ${res.locals.user.username} added a new category for user with id ${req.query.userID}!`);
         res.status(200).send(`You have successfully added a new category!`);

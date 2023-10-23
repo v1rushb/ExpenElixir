@@ -40,6 +40,14 @@ __decorate([
     __metadata("design:type", String)
 ], Profile.prototype, "role", void 0);
 __decorate([
+    Column({ nullable: true }),
+    __metadata("design:type", Date)
+], Profile.prototype, "subscription_date", void 0);
+__decorate([
+    Column({ nullable: true }),
+    __metadata("design:type", Boolean)
+], Profile.prototype, "hasSentEmail", void 0);
+__decorate([
     OneToOne(() => Users, user => user.profile),
     JoinColumn(),
     __metadata("design:type", Object)

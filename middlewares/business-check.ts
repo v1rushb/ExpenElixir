@@ -1,19 +1,25 @@
 import express from 'express';
+import { sendEmail } from '../utils/sesServiceAws.js';
 
 const checkBusiness = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const user = res.locals.user;
-    const subDate = user.profile.subscription_date;
-    const today = new Date();
+    try {
+        const user = res.locals.user;
+        const subDate = user.profile.subscription_date;
+        const today = new Date();
 
-    const arg = today.getTime() - subDate.getTime()/(1000*60);
+        const arg = today.getTime() - subDate.getTime()/(1000*60);
 
-    if(arg > 15)
-    {
-        //do the ses thingy here and take out the business role
-        user.profile.role = 'User';
-        await user.profile.save();
+        if(arg > 15)
+        {
+            await sendEmail(user.email,`Your subscription has expired!`, `Subscription Expired!`);
+            user.profile.hasSentEmail = true;
+            user.profile.role = 'User';
+            await user.profile.save();
+        }
+        next();
+    } catch(err) {
+        next(err);
     }
-    next();
 }
 
 export default checkBusiness;

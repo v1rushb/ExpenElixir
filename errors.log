@@ -221,3 +221,12 @@
 2023-10-22T11:06:38.011Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
 2023-10-22T11:38:58.839Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
 2023-10-22T14:33:14.824Z [error]: 404 Not Found - /send - GET - ::ffff:127.0.0.1
+2023-10-23T16:20:47.218Z [error]: 500 - QueryFailedError: ER_NO_DEFAULT_FOR_FIELD: Field 'hasSentEmail' doesn't have a default value - /user/register - POST - ::1
+2023-10-23T16:23:46.102Z [error]: 409 - User with email: Bashar@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:23:49.967Z [error]: 409 - User with email: Bashar@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:23:54.484Z [error]: 409 - User with email: Basharx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:24:00.107Z [error]: 409 - User with email: Basharxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:24:16.105Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:24:17.050Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:24:17.702Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T16:24:18.243Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1

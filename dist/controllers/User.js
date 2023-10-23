@@ -10,7 +10,7 @@ const insertUser = async (payload) => {
     try {
         return await dataSource.transaction(async (trans) => {
             const { firstName, lastName, phoneNumber } = payload;
-            const newProfile = Profile.create({ firstName, lastName, phoneNumber });
+            const newProfile = Profile.create({ firstName, lastName, phoneNumber, hasSentEmail: false });
             await trans.save(newProfile);
             const { email, username, password } = payload;
             const newUser = Users.create({ email, username, password, profile: newProfile, });

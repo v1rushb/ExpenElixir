@@ -8,14 +8,14 @@ import { Business } from "./entities/Business.js";
 const dataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
+    port: 2099,
     username: process.env.DB_USER_NAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     entities: [Users, Expense, Category, Income, Profile, Business],
     //migrations: ['./**/migration/*.ts'],
-    logging: true,
-    synchronize: false
+    logging: false,
+    synchronize: true
 });
 export default dataSource;
 //# sourceMappingURL=dataSource.js.map

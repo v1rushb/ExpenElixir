@@ -32,11 +32,11 @@ app.get('/health', (req, res) => {
     res.status(200).send('Full HP');
 
 });
-app.get('/send', async (req, res) => {
-    await sendEmail("hii", 'Mohammad')
-    res.status(200).send('Full HP');
+// app.get('/send', async (req, res) => {
+//     await sendEmail("hii", 'Mohammad')
+//     res.status(200).send('Full HP');
 
-});
+// });
 
 app.use('/', (req, res) => {
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);

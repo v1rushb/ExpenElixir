@@ -13,7 +13,7 @@ const insertUser = async (payload: Gen.User) => {
     try {
         return await dataSource.transaction(async trans => {
             const {firstName, lastName, phoneNumber} = payload;
-            const newProfile = Profile.create({firstName, lastName, phoneNumber});
+            const newProfile = Profile.create({firstName, lastName, phoneNumber, hasSentEmail: false});
             await trans.save(newProfile);
             
             const {email, username, password} = payload;
@@ -74,7 +74,7 @@ const login = async (username: string, password: string, iamId: string | null, r
     }
   };
 
-const calculateBalance = async (req: express.Request) => {
+const calculateBalance = async (req: express.Request): Promise<string> => {
     try {
         return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`
     }

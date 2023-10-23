@@ -37,10 +37,10 @@ const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBod
     });
 };
 
-export const sendEmail = async (emailBody: string, emailSubject: string) => {
+export const sendEmail = async (distEmail: string,emailBody: string, emailSubject: string) => {
     const sendEmailCommand = createSendEmailCommand(
         "mo.r.husini@gmail.com",
-        "mo.r.husini@gmail.com",
+        distEmail,
         emailBody,
         emailSubject
     );
