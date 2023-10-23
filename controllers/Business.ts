@@ -296,6 +296,30 @@ const upgradeToBusiness = async (res: express.Response) => {
     }
 }
 
+const getFilteredExpenses = async (searchQuery: string,minAmountQuery: string, maxAmountQuery: string, userIDQuery: string, req: express.Request, res: express.Response) => {
+
+    try {
+        const Expenses = await businessExpenses(res);// put authme in router, else it wont work.
+
+        if(!searchQuery && !minAmountQuery && !maxAmountQuery && !userIDQuery)
+            return Expenses;
+        const search = searchQuery || '';
+        const minAmount = Number(minAmountQuery) || -Infinity;
+        const maxAmount = Number(maxAmountQuery) || Infinity;
+        const userID = userIDQuery;
+
+        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        if(!userID)
+            return filteredExpenses;
+        else {
+            const newFilteredExpenses = filteredExpenses.filter(expense => expense.userId === userID);
+            return newFilteredExpenses;
+        }
+    } catch (err) {
+        throw err;
+    }
+}
+
 export {
     createUserUnderRoot,
     deleteDescendant,
@@ -313,4 +337,5 @@ export {
     deleteUserCategory,
     businessCategories,
     upgradeToBusiness,
+    getFilteredExpenses,
 }

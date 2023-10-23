@@ -7,6 +7,7 @@ import uImage from '../utils/uploadS3Image.js';
 import expenseBusiness from '../middlewares/businessExpense.js';
 import { validateExpense } from '../middlewares/Validate.js';
 import expenseAnalytics from '../middlewares/epxense-analytics.js';
+import filtering from '../middlewares/filtering.js';
 
 const router = express.Router();
 
@@ -19,13 +20,6 @@ router.post('/', authMe, validateExpense, async (req, res, next) => {
 
 router.get('/', authMe, async (req, res, next) => {
     getExpenses(req, res).then(expense => {
-        logger.info(`User ${req.body.username} requested all Expenses!`);
-        res.status(200).send(expense);
-    }).catch(err => next(err));
-});
-
-router.get('/search', authMe, async (req, res, next) => {
-    getFilteredExpenses(req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);
     }).catch(err => next(err));
@@ -56,6 +50,8 @@ router.get('/all', authMe, async (req, res, next) => { // testing purposes
     const expenses = await Expense.find();
     res.status(200).send(expenses);
 });
+
+router.use('/search',filtering);
 router.use('/analytics', expenseAnalytics);
 router.use('/business', expenseBusiness);
 
