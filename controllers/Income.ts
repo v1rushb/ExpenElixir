@@ -92,10 +92,31 @@ const totalIncomes = async (req: express.Request) => {
 
     return total
 }
+
+const modifyIncome = async (id: string, payload: Gen.Income, res: express.Response) => {
+    const userIncomes: Income[] = res.locals.user.incomes;
+    if (!id)
+        throw new CustomError("ID is required.", 400);
+    try {
+        const income = userIncomes.find(income => income.id === id);
+        if (!income)
+            throw new CustomError(`Income with id: ${id} was not found!`, 404);
+        const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD")
+        income.title = payload.title;
+        income.amount = currency.amount;
+        income.incomeDate = payload.incomeDate;
+        income.description = payload.description;
+        await income.save();
+    } catch (err) {
+        throw new CustomError(`${err}`, 500);
+    }
+    return res.locals.user.username;
+}
 export {
     insertIncome,
     deleteAllIncomes,
     deleteIncome,
     totalIncomes,
     decodeToken,
+    modifyIncome,
 }

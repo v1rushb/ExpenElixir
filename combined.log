@@ -413,3 +413,38 @@
 2023-10-23T16:24:17.050Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:17.702Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:18.243Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-24T18:08:28.764Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:09:25.401Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:09:26.570Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:09:31.963Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:09:32.881Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:09:42.029Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:09:48.511Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-24T18:10:46.954Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-24T18:10:48.768Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-24T18:10:53.777Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-24T18:13:24.252Z [error]: 404 Not Found - /user/logout - GET - ::1
+2023-10-24T18:13:28.735Z [error]: 404 Not Found - /user/logout - PUT - ::1
+2023-10-24T18:13:30.911Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-24T18:13:38.641Z [error]: 500 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::1
+2023-10-24T18:21:39.411Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-24T18:21:54.054Z [error]: 500 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::1
+2023-10-24T18:21:57.398Z [error]: 500 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::1
+2023-10-24T18:21:59.234Z [error]: 500 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::1
+2023-10-24T18:27:27.800Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-24T18:28:43.643Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-24T18:28:54.392Z [error]: undefined - ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`profile`, CONSTRAINT `FK_a24972ebd73b106250713dcddd9` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/ - DELETE - ::1
+2023-10-24T18:30:00.304Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-24T18:30:14.727Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-24T18:30:50.588Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-24T18:30:56.963Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.coms already exists. - /user/register - POST - ::1
+2023-10-24T18:31:03.686Z [error]: 409 - User with email: cs.bashar.herbawisss@gmail.com already exists. - /user/register - POST - ::1
+2023-10-24T18:31:18.079Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-24T16:35:25.024Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-24T16:37:14.982Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-24T16:42:19.086Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-24T16:44:47.744Z [error]: 404 Not Found - /user/verify-account?token=b0a30e23-02f8-4bce-a9b0-e08c05d8c987 - GET - ::1
+2023-10-24T16:44:47.792Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-24T16:45:16.175Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-24T16:49:28.638Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-24T16:49:34.655Z [error]: 409 - User with email: cs.bashsasrs.herbawisssss@gmail.com already exists. - /user/register - POST - ::1

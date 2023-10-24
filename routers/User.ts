@@ -12,6 +12,7 @@ import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
 import { Gen } from '../@types/generic.js';
 import IAMAuth from '../middlewares/IAMAuth.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
@@ -21,12 +22,12 @@ const router = express.Router();
 router.post('/register', validateUser, async (req, res, next) => {
     insertUser(req.body).then(user => {
         logger.info(`201 Created - /user/register - POST - ${req.ip}`);
-        res.status(201).send(`You have been registered successfully ${user.username}!`);
+        res.status(201).send(`You have been registered successfully ${user.username}. Please check your mail box for email verification.`);
     }).catch(err => next(err));
 });
 
 
-router.post('/login', IAMAuth, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     const {username, password, iamId} = req.body;
     const token = req.cookies["token"];
     console.log(username);
@@ -148,6 +149,36 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res,next) => {
     }
   });
 
-router.use('/business', businessUser);
+router.get('/verify-account', async (req, res, next) => {
+    try {
+        const {token} = req.query;
+        if(!token)
+            throw new CustomError(`Invalid token.`, 400);
+
+        const user = await Users.findOne({where: {verificationToken: token as string}});
+        if(!user)
+            throw new CustomError(`Invalid token.`, 400);
+
+        user.isVerified = true;
+        user.verificationToken = ' ';
+        await user.save();
+
+        logger.info(`200 OK - /user/verify-email - GET - ${req.ip}`);
+        res.status(200).send(`Email verified successfully. Welcome aboard ${user.username}!`);
+    } catch(err) {
+        next(err);
+    }
+});
+
+router.delete('/', authMe, async (req, res, next) => {
+    try {
+        const user = res.locals.user;
+        await Users.remove(user);
+        logger.info(`200 OK - /user/ - DELETE - ${req.ip}`);
+        res.status(200).send(`User ${user.username} has been deleted successfully.`);
+    } catch(err) {
+        next(err);
+    }
+});
 
 export default router;

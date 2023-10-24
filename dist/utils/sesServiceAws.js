@@ -29,13 +29,13 @@ const createSendEmailCommand = (toAddress, fromAddress, emailBody, emailSubject)
         Source: fromAddress,
     });
 };
-export const sendEmail = async (distEmail, emailBody, emailSubject) => {
-    const sendEmailCommand = createSendEmailCommand("mo.r.husini@gmail.com", distEmail, emailBody, emailSubject);
+export const sendEmail = async (emailBody, emailSubject) => {
+    const sendEmailCommand = createSendEmailCommand("cs.bashar.herbawi@gmail.com", "cs.bashar.herbawi@gmail.com", emailBody, emailSubject);
     try {
         return await sesClient.send(sendEmailCommand);
     }
     catch (e) {
-        console.error("Failed to send email.");
+        console.error("Failed to send email." + e);
         return e;
     }
 };

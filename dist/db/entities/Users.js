@@ -30,7 +30,7 @@ __decorate([
     __metadata("design:type", String)
 ], Users.prototype, "username", void 0);
 __decorate([
-    Column({ nullable: false, unique: true }),
+    Column({ nullable: false }),
     __metadata("design:type", String)
 ], Users.prototype, "email", void 0);
 __decorate([
@@ -47,6 +47,14 @@ __decorate([
     Column({ nullable: true }),
     __metadata("design:type", String)
 ], Users.prototype, "iamId", void 0);
+__decorate([
+    Column({ default: false }),
+    __metadata("design:type", Boolean)
+], Users.prototype, "isVerified", void 0);
+__decorate([
+    Column(),
+    __metadata("design:type", String)
+], Users.prototype, "verificationToken", void 0);
 __decorate([
     OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)

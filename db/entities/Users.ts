@@ -17,7 +17,7 @@ export class Users extends BaseEntity {
     @Column({ length: 255, nullable: false, unique: true })
     username: string;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ nullable: false })
     email: string;
 
     @BeforeInsert()
@@ -31,6 +31,12 @@ export class Users extends BaseEntity {
 
     @Column({nullable: true})
     iamId: string;
+
+    @Column({default: false})
+    isVerified: boolean;
+
+    @Column()
+    verificationToken: string;
 
 
     @OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true })

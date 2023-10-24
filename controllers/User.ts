@@ -8,9 +8,20 @@ import { totalIncomes } from './Income.js';
 import { totalExpenses } from './Expense.js';
 import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
+import { v4 as uuidv4 } from 'uuid';
+import { sendEmail } from '../utils/sesServiceAws.js';
 
 const insertUser = async (payload: Gen.User) => {
     try {
+          const user = await Users.findOne({ where: { email:payload.email } });
+          if (user) {
+              if (!user.isVerified) {
+                  throw new CustomError('Please verify your email address.', 409);
+              } else {
+                  throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
+              }
+              if()
+          }
         return await dataSource.transaction(async trans => {
             const {firstName, lastName, phoneNumber} = payload;
             const newProfile = Profile.create({firstName, lastName, phoneNumber, hasSentEmail: false});
@@ -19,10 +30,19 @@ const insertUser = async (payload: Gen.User) => {
             const {email, username, password} = payload;
             const newUser = Users.create({email, username, password, profile: newProfile,});
 
+            
+            const verificationToken = uuidv4();
+            newUser.verificationToken = verificationToken;
+            
+            const host = process.env.HOST || 'localhost:2077';
+            const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
+            const emailBody = 'Please verify your account by clicking the link: ' + verificationLink;
+            const emailSubject = 'EpenElixir Email Verification';
+            sendEmail(emailBody, emailSubject);
             return await trans.save(newUser);
         });
     } catch (err: any) {
-        if (err.code.includes('ER_DUP_ENTRY')) {
+        if (err.code.includes('ER_DUP_ENTRY' )) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
         throw new CustomError(err, 500);

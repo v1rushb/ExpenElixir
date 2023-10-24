@@ -6,6 +6,7 @@ import logger from '../logger.js';
 import { validateIncome } from './Validate.js';
 import { CustomError } from '../CustomError.js';
 import checkBusiness from './business-check.js';
+import { modifyIncome } from '../controllers/Income.js';
 
 const router = express.Router();
 
@@ -27,6 +28,13 @@ router.get('/business-income',authMe, premiumAuth, checkBusiness, async (req, re
     businessIncome(res).then(income => {
         logger.info(`User ${res.locals.user.username} requested all Incomes!`);
         res.status(200).send(income);
+    }).catch(err => next(err));
+});
+
+router.put('/',authMe, premiumAuth, checkBusiness, validateIncome, async (req, res, next) => {
+    modifyIncome(req.query.id as string,req.body,res).then(()=> {
+        logger.info(`User ${res.locals.user.username} modified income ${req.params.id}!`);
+        res.status(200).send(`You have successfully modified the income!`);
     }).catch(err => next(err));
 });
 

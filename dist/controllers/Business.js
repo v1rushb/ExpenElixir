@@ -6,6 +6,8 @@ import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
+import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
+import { sendEmail } from '../utils/sesServiceAws.js';
 const createUserUnderRoot = async (payload, res) => {
     return await dataSource.transaction(async (trans) => {
         const newProfile = Profile.create({
@@ -116,6 +118,33 @@ const totalBusinessIncome = async (res) => {
     const incomes = await businessIncome(res);
     return incomes ? incomes.reduce((acc, income) => acc + income.amount, 0) : 0;
 };
+const modifyUserIncome = async (incomeID, userID, payload, res) => {
+    try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to modify an income from!`, 400);
+        if (!incomeID)
+            throw new CustomError(`You must provide an id for the income you want to modify!`, 400);
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user)
+            throw new CustomError(`User not found.`, 404);
+        const userIncomes = user.incomes;
+        const income = userIncomes.find(income => income.id === incomeID);
+        if (!income) {
+            throw new CustomError(`Income with id: ${incomeID} was not found!`, 404);
+        }
+        const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD");
+        income.title = payload.title;
+        income.amount = currency.amount;
+        income.incomeDate = payload.incomeDate;
+        income.description = payload.description;
+        await income.save();
+    }
+    catch (err) {
+        throw err;
+    }
+};
 const addUserExpense = async (payload, userID, res, picFile) => {
     try {
         if (!userID)
@@ -142,10 +171,28 @@ const addUserExpense = async (payload, userID, res, picFile) => {
             if (!category) {
                 throw new CustomError(`Category not found.`, 404);
             }
+            category.totalExpenses += newExpense.amount;
             user.expenses.push(newExpense);
             category.expenses.push(newExpense);
             await trans.save(user);
             await trans.save(category);
+            if (category.totalExpenses >= (category.budget * 0.9)) {
+                let emailBody = '';
+                let emailSubject = '';
+                if (category.totalExpenses < category.budget) {
+                    emailBody = `You are about to reach your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    emailSubject = `You are about to reach your budget limit for ${category.title}`;
+                }
+                else if (category.totalExpenses === category.budget) {
+                    emailBody = `You have reached your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    emailSubject = `You have reached your budget limit for ${category.title}`;
+                }
+                else {
+                    emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    emailSubject = `You have exceeded your budget limit for ${category.title}`;
+                }
+                await sendEmail(emailBody, emailSubject);
+            }
         });
     }
     catch (err) {
@@ -270,5 +317,84 @@ const upgradeToBusiness = async (res) => {
         throw (err);
     }
 };
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, };
+const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, userIDQuery, req, res) => {
+    try {
+        const Expenses = await businessExpenses(res); // put authme in router, else it wont work.
+        if (!searchQuery && !minAmountQuery && !maxAmountQuery && !userIDQuery)
+            return Expenses;
+        const search = searchQuery || '';
+        const minAmount = Number(minAmountQuery) || -Infinity;
+        const maxAmount = Number(maxAmountQuery) || Infinity;
+        const userID = userIDQuery;
+        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        if (!userID)
+            return filteredExpenses;
+        else {
+            const newFilteredExpenses = filteredExpenses.filter(expense => expense.userId === userID);
+            return newFilteredExpenses;
+        }
+    }
+    catch (err) {
+        throw err;
+    }
+};
+const modifyUserExpense = async (expenseID, userID, payload, res, picFile) => {
+    try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to modify an expense from!`, 400);
+        if (!expenseID)
+            throw new CustomError(`You must provide an id for the expense you want to modify!`, 400);
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user)
+            throw new CustomError(`User not found.`, 404);
+        const userExpenses = user.expenses;
+        const expense = userExpenses.find(expense => expense.id === expenseID);
+        if (!expense) {
+            throw new CustomError(`Expense with id: ${expenseID} was not found!`, 404);
+        }
+        const category = await Category.findOne({
+            where: { id: payload.category },
+            relations: ["expenses"],
+        });
+        if (!category) {
+            throw new CustomError(`Category not found.`, 404);
+        }
+        expense.title = payload.title;
+        expense.amount = Number(payload.amount);
+        expense.expenseDate = payload.expenseDate;
+        expense.description = payload.description;
+        expense.picURL = picFile?.location;
+        await expense.save();
+    }
+    catch (err) {
+        throw err;
+    }
+}; // this controller is not done yet.
+const modifyUserCategory = async (categoryID, userID, payload, res) => {
+    try {
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to modify a category from!`, 400);
+        if (!categoryID)
+            throw new CustomError(`You must provide an id for the category you want to modify!`, 400);
+        const user = await Users.findOne({
+            where: { business: res.locals.user.business, id: userID },
+        });
+        if (!user)
+            throw new CustomError(`User not found.`, 404);
+        const userCategories = user.categories;
+        const category = userCategories.find(category => category.id === categoryID);
+        if (!category) {
+            throw new CustomError(`Category with id: ${categoryID} was not found!`, 404);
+        }
+        category.title = payload.title;
+        category.description = payload.description;
+        await category.save();
+    }
+    catch (err) {
+        throw err;
+    }
+};
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, modifyUserIncome, modifyUserCategory, };
 //# sourceMappingURL=Business.js.map

@@ -6,21 +6,19 @@ import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
-import businessUser from '../middlewares/businessUser.js';
 import { stripe } from '../stripe-config.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
-import IAMAuth from '../middlewares/IAMAuth.js';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
 router.post('/register', validateUser, async (req, res, next) => {
     insertUser(req.body).then(user => {
         logger.info(`201 Created - /user/register - POST - ${req.ip}`);
-        res.status(201).send(`You have been registered successfully ${user.username}!`);
+        res.status(201).send(`You have been registered successfully ${user.username}. Please check your mail box for email verification.`);
     }).catch(err => next(err));
 });
-router.post('/login', IAMAuth, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
     console.log(username);
@@ -134,6 +132,34 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => 
         next(err);
     }
 });
-router.use('/business', businessUser);
+router.get('/verify-account', async (req, res, next) => {
+    try {
+        const { token } = req.query;
+        if (!token)
+            throw new CustomError(`Invalid token.`, 400);
+        const user = await Users.findOne({ where: { verificationToken: token } });
+        if (!user)
+            throw new CustomError(`Invalid token.`, 400);
+        user.isVerified = true;
+        user.verificationToken = ' ';
+        await user.save();
+        logger.info(`200 OK - /user/verify-email - GET - ${req.ip}`);
+        res.status(200).send(`Email verified successfully. Welcome aboard ${user.username}!`);
+    }
+    catch (err) {
+        next(err);
+    }
+});
+router.delete('/', authMe, async (req, res, next) => {
+    try {
+        const user = res.locals.user;
+        await Users.remove(user);
+        logger.info(`200 OK - /user/ - DELETE - ${req.ip}`);
+        res.status(200).send(`User ${user.username} has been deleted successfully.`);
+    }
+    catch (err) {
+        next(err);
+    }
+});
 export default router;
 //# sourceMappingURL=User.js.map

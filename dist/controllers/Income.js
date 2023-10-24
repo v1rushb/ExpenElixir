@@ -78,5 +78,25 @@ const totalIncomes = async (req) => {
     const total = incomeList ? incomeList.reduce((acc, income) => acc + income.amount, 0) : 0;
     return total;
 };
-export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, decodeToken, };
+const modifyIncome = async (id, payload, res) => {
+    const userIncomes = res.locals.user.incomes;
+    if (!id)
+        throw new CustomError("ID is required.", 400);
+    try {
+        const income = userIncomes.find(income => income.id === id);
+        if (!income)
+            throw new CustomError(`Income with id: ${id} was not found!`, 404);
+        const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD");
+        income.title = payload.title;
+        income.amount = currency.amount;
+        income.incomeDate = payload.incomeDate;
+        income.description = payload.description;
+        await income.save();
+    }
+    catch (err) {
+        throw new CustomError(`${err}`, 500);
+    }
+    return res.locals.user.username;
+};
+export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, decodeToken, modifyIncome, };
 //# sourceMappingURL=Income.js.map
