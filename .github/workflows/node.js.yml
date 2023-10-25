@@ -60,8 +60,10 @@ jobs:
     
     - name: Deploy to EC2 instances
       run: |
+        echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+        chmod 600 key.pem
         for ip in $public_ips; do
-          ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+          ssh -i 'key.pem' -o StrictHostKeyChecking=no github@$ip 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
         done
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
