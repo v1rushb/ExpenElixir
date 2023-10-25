@@ -99,27 +99,42 @@ const getExpenses = async (req, res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const getFilteredExpenses = async (req, res) => {
+// const getFilteredExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
+//     try {
+//         const userId = req.cookies['userId'];
+//         const search = req.query.search?.toString().toLowerCase() || '';
+//         const minAmount = Number(req.query.minAmount) || 0
+//         const maxAmount = Number(req.query.maxAmount) || Infinity
+//         const expense = await Users.findOne({
+//             where: { id: userId },
+//             relations: ['expenses'],
+//         });
+//         if (!expense) throw new CustomError('User not found', 404);
+//         const filteredExpenses: Expense[] = expense.expenses.filter(expense => {
+//             return expense.amount >= minAmount && expense.amount <= maxAmount &&
+//                 expense.title.toLowerCase().includes(search);
+//         });
+//         const expenseOnProfileCurrency = await Promise.all(
+//             filteredExpenses.map(async (expense) => {
+//                 const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
+//                 return { ...expense, amount };
+//             })
+//         );
+//         return expenseOnProfileCurrency as unknown as Promise<Expense[]>;
+//     } catch (err) {
+//         throw err;
+//     }
+// };
+const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, req, res) => {
     try {
-        const userId = req.cookies['userId'];
-        const search = req.query.search?.toString().toLowerCase() || '';
-        const minAmount = Number(req.query.minAmount) || 0;
-        const maxAmount = Number(req.query.maxAmount) || Infinity;
-        const expense = await Users.findOne({
-            where: { id: userId },
-            relations: ['expenses'],
-        });
-        if (!expense)
-            throw new CustomError('User not found', 404);
-        const filteredExpenses = expense.expenses.filter(expense => {
-            return expense.amount >= minAmount && expense.amount <= maxAmount &&
-                expense.title.toLowerCase().includes(search);
-        });
-        const expenseOnProfileCurrency = await Promise.all(filteredExpenses.map(async (expense) => {
-            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
-            return { ...expense, amount };
-        }));
-        return expenseOnProfileCurrency;
+        const Expenses = await getExpenses(req, res); // put authme in router, else it wont work.
+        if (!searchQuery && !minAmountQuery && !maxAmountQuery)
+            return Expenses;
+        const search = searchQuery || '';
+        const minAmount = Number(minAmountQuery) || -Infinity;
+        const maxAmount = Number(maxAmountQuery) || Infinity;
+        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        return filteredExpenses;
     }
     catch (err) {
         throw err;
