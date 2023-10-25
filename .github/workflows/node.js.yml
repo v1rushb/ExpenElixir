@@ -48,15 +48,13 @@ jobs:
         unzip awscliv2.zip
         sudo ./aws/install --update
     
-    - name: Get list of EC2 instances IPs from ASG
-      run: |
-        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='Your-ASG-Name'].InstanceId")
-        public_ips=""
-        for id in $instance_ids; do
-          ip=$(aws ec2 describe-instances --instance-ids $id --region eu-west-2 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
-          public_ips+="$ip "
-        done
-        echo "Public IPs: $public_ips"
+    - name: Get EC2 Instances IPs
+          run: |
+            public_ips=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text \
+            --query "AutoScalingInstances[?AutoScalingGroupName=='ExpenElixir-ASG'].InstanceId" \
+            | xargs -n1 aws ec2 describe-instances --instance-ids $ID --region eu-west-2 \
+            --query "Reservations[].Instances[].PublicIpAddress" --output text)
+            echo "Public IPs: $public_ips"
     
     - name: Deploy to EC2 instances
       run: |
