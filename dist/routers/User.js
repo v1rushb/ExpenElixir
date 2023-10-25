@@ -1,14 +1,16 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, deleteUser, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, deleteUser, insertUser, login, sendResetPasswordEmail } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
-import { validateUser } from '../middlewares/Validate.js';
+import { validatePassword, validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
 import { stripe } from '../stripe-config.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
+import { v4 as uuidv4 } from 'uuid';
+import bcrypt from 'bcrypt';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -21,8 +23,6 @@ router.post('/register', validateUser, async (req, res, next) => {
 router.post('/login', (req, res, next) => {
     const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
-    console.log(username);
-    console.log(password);
     try {
         if (token) {
             jwt.verify(token, process.env.SECRET_KEY || '');
@@ -151,8 +151,82 @@ router.get('/verify-account', async (req, res, next) => {
     }
 });
 router.delete('/delete-account', authMe, async (req, res, next) => {
+    deleteUser(res).then(() => {
+        logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        res.status(200).send(`Your account has been deleted successfully.`);
+    }).catch(err => next(err));
+});
+router.post('/reset-password', validatePassword, async (req, res, next) => {
+    const { email, newPassword } = req.body;
     try {
-        await deleteUser(res);
+        if (!email) {
+            throw new CustomError('Email is required', 400);
+        }
+        if (!newPassword) {
+            throw new CustomError('new password is required', 400);
+        }
+        const user = await Users.findOne({ where: { email } });
+        if (!user) {
+            throw new CustomError('User not found', 404);
+        }
+        if (bcrypt.compareSync(newPassword, user.password))
+            throw new CustomError('You cannot use your old password.', 400);
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        user.newHashedPassword = hashedPassword;
+        const resetToken = uuidv4();
+        user.resetToken = resetToken;
+        user.resetTokenExpiration = new Date(Date.now() + 1800000);
+        await sendResetPasswordEmail(email, resetToken);
+        await user.save();
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        res.send('Please check your mailbox for to continue in resetting your passwrd.');
+    }
+    catch (err) {
+        next(err);
+    }
+});
+router.get('/reset-password-email', async (req, res, next) => {
+    const { token } = req.query;
+    try {
+        if (!token)
+            throw new CustomError(`Invalid token.`, 400);
+        const user = await Users.findOne({ where: { resetToken: token } });
+        if (!user)
+            throw new CustomError(`Invalid token.`, 400);
+        user.password = user.newHashedPassword ? user.newHashedPassword : user.password;
+        user.resetToken = '';
+        user.resetTokenExpiration = undefined;
+        user.newHashedPassword = '';
+        await user.save();
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        res.send('Your password has been changed successfully!');
+    }
+    catch (err) {
+        next(err);
+    }
+});
+router.put('/', authMe, async (req, res, next) => {
+    try {
+        const user = res.locals.user;
+        const { username, email, password } = req.body;
+        if (await bcrypt.compare(password, user.password)) {
+            if (username)
+                user.username = username;
+            if (email)
+                user.email = email;
+            if (password)
+                user.password = await bcrypt.hash(password, 10);
+            await user.save();
+            res.status(200).send('User updated successfully.');
+        }
+        throw new CustomError('Invalid password.', 400);
     }
     catch (err) {
         next(err);

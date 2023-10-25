@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
@@ -55,6 +55,25 @@ __decorate([
     Column(),
     __metadata("design:type", String)
 ], Users.prototype, "verificationToken", void 0);
+__decorate([
+    Column({ type: 'varchar', length: 255, nullable: true }),
+    __metadata("design:type", String)
+], Users.prototype, "resetToken", void 0);
+__decorate([
+    Column({ type: 'timestamp', nullable: true }),
+    __metadata("design:type", Date)
+], Users.prototype, "resetTokenExpiration", void 0);
+__decorate([
+    Column({ nullable: true }),
+    __metadata("design:type", String)
+], Users.prototype, "newHashedPassword", void 0);
+__decorate([
+    CreateDateColumn({
+        type: 'timestamp',
+        default: () => "CURRENT_TIMESTAMP(6)"
+    }),
+    __metadata("design:type", Date)
+], Users.prototype, "createdAt", void 0);
 __decorate([
     OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true }),
     __metadata("design:type", Array)

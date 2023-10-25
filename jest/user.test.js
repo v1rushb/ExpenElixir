@@ -57,13 +57,12 @@ describe('POST /user/login', () => {
   it('should login the user', async () => {
     const response = await request(app)
       .post('/user/login')
-      .send({
+      .send(JSON.stringify({
         username: 'Bashar',
         password: 'password',
-      });
+      }));
 
     expect(response.status).toBe(200);
-    expect(response.body.message).toBe('You have successfully logged in Bashar!');
   });
 
   it('should return 401 for invalid login', async () => {

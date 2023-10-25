@@ -266,3 +266,76 @@
 2023-10-25T08:08:00.385Z [error]: 404 Not Found - /user/ - DELETE - ::1
 2023-10-25T08:08:10.406Z [error]: 404 - User not found - /user/delete-account - DELETE - ::1
 2023-10-25T08:08:36.412Z [error]: 500 - Error deleting user: QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`profile`, CONSTRAINT `FK_a24972ebd73b106250713dcddd9` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-25T08:32:00.922Z [error]: 400 - Invalid token. - /user/verify-account?token=12a35c45-d104-416f-a6c2-8558dea54b2b - GET - ::1
+2023-10-25T08:35:54.917Z [error]: undefined - jwt must be provided - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:35:56.263Z [error]: undefined - jwt must be provided - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:36:04.075Z [error]: undefined - jwt must be provided - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:36:05.194Z [error]: undefined - jwt must be provided - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:55:00.610Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T08:55:01.266Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T08:55:02.390Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T08:55:03.967Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T08:55:17.937Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T08:55:24.294Z [error]: 401 - You need to verify your email. Please check your mailbox! - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:58:25.492Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'isVerified') - /user/login - POST - ::1
+2023-10-25T08:59:27.573Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T08:59:28.698Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T08:59:38.876Z [error]: undefined - jwt must be provided - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:59:39.855Z [error]: undefined - jwt must be provided - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-25T08:59:45.456Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-25T08:59:46.942Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-25T09:00:09.333Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T09:01:03.345Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T09:53:21.240Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-25T09:54:12.867Z [error]: 400 - Email is required - /user/reset-password - POST - ::1
+2023-10-25T09:54:44.208Z [error]: 404 - User not found - /user/reset-password - POST - ::1
+2023-10-25T09:55:57.431Z [error]: 400 - Invalid token. - /user/reset-password-email?token=ea38b720-28eb-48dc-9516-e01a3def272e - GET - ::1
+2023-10-25T09:56:10.064Z [error]: 400 - Invalid token. - /user/reset-password-email?token=ea38b720-28eb-48dc-9516-e01a3def272e - GET - ::1
+2023-10-25T09:56:15.415Z [error]: 400 - Invalid token. - /user/reset-password-email?token=7db24943-b003-4635-9480-012374546f02 - GET - ::1
+2023-10-25T09:56:32.227Z [error]: 400 - Invalid token. - /user/reset-password-email?token=ee94540a-aa9d-42ce-97b9-8e130fe434e0 - GET - ::1
+2023-10-25T09:57:56.775Z [error]: 400 - Invalid token. - /user/reset-password-email?token=0e3840b8-bc3a-4204-979c-255b6d838b41 - GET - ::1
+2023-10-25T09:58:24.816Z [error]: 400 - Invalid token. - /user/reset-password-email?token=0e3840b8-bc3a-4204-979c-255b6d838b41 - GET - ::1
+2023-10-25T10:02:32.109Z [error]: 400 - Invalid token. - /user/reset-password-email?token=0e3840b8-bc3a-4204-979c-255b6d838b41 - GET - ::1
+2023-10-25T10:13:57.519Z [error]: 404 Not Found - /user/logout - GET - ::1
+2023-10-25T10:14:12.219Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T10:14:36.551Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T10:14:48.899Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T10:15:16.754Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:15:20.190Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:15:33.321Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:15:44.343Z [error]: 400 - Invalid token. - /user/reset-password-email?token=38e166d1-1485-4fec-b0e4-46c170cb96b4 - GET - ::1
+2023-10-25T10:15:51.981Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T10:15:56.416Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-25T10:16:31.209Z [error]: 404 Not Found - /user/logout - GET - ::1
+2023-10-25T10:18:03.309Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T10:19:31.326Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/delete-account - DELETE - ::1
+2023-10-25T10:21:20.450Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-25T10:21:47.305Z [error]: 400 - Invalid token. - /user/verify-account?token=6bf1d4de-a8ee-4c46-89d2-74d51e33363d - GET - ::1
+2023-10-25T10:22:02.728Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-25T10:25:57.613Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-25T10:29:59.116Z [error]: 400 - Invalid token. - /user/reset-password-email?token=18209aef-a2e0-490d-8f57-6a6407149d49 - GET - ::1
+2023-10-25T10:31:36.338Z [error]: 400 - You cannot use your old password. - /user/reset-password - POST - ::1
+2023-10-25T10:32:43.694Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-25T10:32:46.537Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-25T10:32:47.183Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-25T10:32:47.753Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-25T10:32:48.194Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-25T10:33:04.936Z [error]: 404 - User not found - /user/reset-password - POST - ::1
+2023-10-25T10:40:07.799Z [error]: undefined - jwt must be provided - /user/delete-account - DELETE - ::1
+2023-10-25T10:40:19.985Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:40:22.500Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:40:24.613Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:40:43.301Z [error]: 400 - Invalid token. - /user/reset-password-email?token=fe497c55-61a8-4fb1-ba68-455fbda83d48 - GET - ::1
+2023-10-25T10:40:48.843Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-25T10:42:52.117Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-25T10:44:39.635Z [error]: 400 - You cannot use your old password. - /user/reset-password - POST - ::1
+2023-10-25T10:45:40.722Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-25T10:45:47.484Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-25T11:54:12.197Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T11:56:25.788Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T12:16:53.379Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T12:19:28.592Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T12:20:48.704Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T12:20:58.807Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T12:21:44.941Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T12:26:30.103Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1

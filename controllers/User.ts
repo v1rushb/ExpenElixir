@@ -10,6 +10,9 @@ import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '../utils/sesServiceAws.js';
+import schedule from 'node-schedule';
+import { LessThan } from 'typeorm';
+import logger from '../logger.js';
 
 const insertUser = async (payload: Gen.User) => {
     try {
@@ -20,15 +23,15 @@ const insertUser = async (payload: Gen.User) => {
               } else {
                   throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
               }
-              //if()
           }
         return await dataSource.transaction(async trans => {
             const {firstName, lastName, phoneNumber} = payload;
+            const createdAt = new Date();
             const newProfile = Profile.create({firstName, lastName, phoneNumber, hasSentEmail: false});
             await trans.save(newProfile);
             
             const {email, username, password} = payload;
-            const newUser = Users.create({email, username, password, profile: newProfile,});
+            const newUser = Users.create({email, username, password, profile: newProfile, createdAt});
 
             
             const verificationToken = uuidv4();
@@ -42,7 +45,7 @@ const insertUser = async (payload: Gen.User) => {
             return await trans.save(newUser);
         });
     } catch (err: any) {
-        if (err.code.includes('ER_DUP_ENTRY' )) {
+        if (err.code?.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
         }
         throw new CustomError(err, 500);
@@ -56,10 +59,14 @@ const login = async (username: string, password: string, iamId: string | null, r
       const user = await Users.findOne({
         where: { username },
       }) as Users;
-  
+
       if (!user || user.username !== username) {
         throw new CustomError('Invalid credentials', 400);
       }
+      if(user.isVerified === false) {
+        throw new CustomError('Please verify your email address.', 409);
+      }
+  
   
       if (user.profile.role === 'User') {
         if (!iamId || user.iamId !== iamId) {
@@ -112,15 +119,49 @@ const deleteUser = async (res: express.Response): Promise<void> => {
 
   try {
       await Users.delete(user.id);
-      res.status(200).send('User deleted successfully.');
   } catch (err: any) {
       throw new CustomError(`Error deleting user: ${err}`, 500);
   }
 };
+
+const checkForVerification = () => {
+  setInterval(async () => {
+    try {
+      const users = await Users.find({ where: { isVerified: false } });
+
+      const currentTime = new Date();
+      const expiredUsers = users.filter(user => {
+        const userCreationTime = new Date(user.createdAt);
+        return (currentTime.getTime() - userCreationTime.getTime()) >= 60000;
+      });
+      
+      
+      for (const user of expiredUsers) {
+        await Users.delete({ id: user.id });
+      }
+
+      logger.info(`Scheduled task completed successfully, deleted ${expiredUsers.length} users.`);
+    } catch (err) {
+      logger.error(`Scheduled task failed. Error: ${err}`);
+    }
+  }, 60000);
+};
+
+const sendResetPasswordEmail = async (email: string, token: string): Promise<void> => {
+  const host = process.env.HOST || 'localhost:2077';
+  const resetLink = 'http://' + host + '/user/reset-password-email?token=' + token;
+  const emailSubject = 'EpenElixir User Password Reset';
+  const emailBody = 'Please reset your password by clicking the link: ' + resetLink;
+
+  await sendEmail(emailBody, emailSubject);
+}
+
 
 export {
     insertUser,
     login,
     calculateBalance,
     deleteUser,
+    checkForVerification,
+    sendResetPasswordEmail,
 }

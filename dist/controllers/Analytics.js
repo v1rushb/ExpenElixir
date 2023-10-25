@@ -36,9 +36,13 @@ const makeGraphicalData = (data) => {
     return graphicalData;
 };
 const getAdvice = async (graph) => {
-    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
-    const res = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`);
-    return res.text.toString();
+    if (graph.length === 0) {
+        return "I can't give you advice without data";
+    }
+    console.log(graph.length);
+    //const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
+    // const res : ChatMessage = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`)
+    //return res.text.toString();
 };
 const getPrediction = async (res) => {
     const userId = res.locals.user.id;
