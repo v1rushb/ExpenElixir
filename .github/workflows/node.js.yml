@@ -39,10 +39,14 @@ jobs:
     
     - name: Get list of EC2 instances IPs from ASG
       run: |
-        instance_ids=$(aws ec2 describe-instances --query 'Reservations[].Instances[?Tags[?Key==`aws:autoscaling:groupName`].Value==`ExpenElixir-ASG`].[InstanceId]' --output text)
+        set -x
+        instance_ids=$(aws ec2 describe-instances --query 'Reservations[].Instances[?Tags[?Key==`aws:autoscaling:groupName`].Value==`ExpenElixir-ASG`].[InstanceId]')
+        echo "Instance IDs: $instance_ids"
+        instance_ids=$(echo $instance_ids | jq -r '.[]')
         public_ips=""
         for id in $instance_ids; do
-          ip=$(aws ec2 describe-instances --instance-ids $id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+          ip=$(aws ec2 describe-instances --instance-ids $id --query 'Reservations[].Instances[].PublicIpAddress')
+          echo "IP for $id: $ip"
           public_ips+="$ip "
         done
         echo "Public IPs: $public_ips"
