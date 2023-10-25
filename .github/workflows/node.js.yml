@@ -49,12 +49,12 @@ jobs:
         sudo ./aws/install --update
     
     - name: Get EC2 Instances IPs
-          run: |
-            public_ips=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text \
-            --query "AutoScalingInstances[?AutoScalingGroupName=='ExpenElixir-ASG'].InstanceId" \
-            | xargs -n1 aws ec2 describe-instances --instance-ids $ID --region eu-west-2 \
-            --query "Reservations[].Instances[].PublicIpAddress" --output text)
-            echo "Public IPs: $public_ips"
+      run: |
+        public_ips=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text \
+        --query "AutoScalingInstances[?AutoScalingGroupName=='ExpenElixir-ASG'].InstanceId" \
+        | xargs -n1 aws ec2 describe-instances --instance-ids $ID --region eu-west-2 \
+        --query "Reservations[].Instances[].PublicIpAddress" --output text)
+        echo "Public IPs: $public_ips"
     
     - name: Deploy to EC2 instances
       run: |
