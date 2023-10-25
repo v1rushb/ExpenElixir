@@ -39,17 +39,17 @@ jobs:
     
     - name: Get list of EC2 instances IPs from ASG
       run: |
-        set -x
-        instance_ids=$(aws ec2 describe-instances --query 'Reservations[].Instances[?Tags[?Key==`aws:autoscaling:groupName`].Value==`ExpenElixir-ASG`].[InstanceId]')
-        echo "Instance IDs: $instance_ids"
-        instance_ids=$(echo $instance_ids | jq -r '.[]')
+        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region us-east-1 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='Your-ASG-Name'].InstanceId")
         public_ips=""
         for id in $instance_ids; do
-          ip=$(aws ec2 describe-instances --instance-ids $id --query 'Reservations[].Instances[].PublicIpAddress')
-          echo "IP for $id: $ip"
+          ip=$(aws ec2 describe-instances --instance-ids $id --region us-east-1 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
           public_ips+="$ip "
         done
         echo "Public IPs: $public_ips"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: us-east-1
     
     - name: Deploy to EC2 instances
       run: |
