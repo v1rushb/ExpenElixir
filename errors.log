@@ -230,3 +230,68 @@
 2023-10-23T16:24:17.050Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:17.702Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:18.243Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T20:07:15.561Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:12:16.651Z [error]: undefined - Converting circular structure to JSON
+    --> starting at object with constructor 'EntityMetadata'
+    |     property 'ownColumns' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'ColumnMetadata'
+    --- property 'entityMetadata' closes the circle - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:17:27.806Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:18:30.412Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:18:31.540Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:19:01.839Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:24:56.788Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:25:51.409Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:26:21.772Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:29:04.244Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:29:55.000Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:30:53.722Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:35:49.649Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:40:39.231Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-24T10:45:40.528Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T10:45:58.993Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T10:57:17.400Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T10:57:40.706Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T11:01:57.582Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T11:28:18.775Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
+2023-10-24T11:28:24.228Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-24T12:03:31.458Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-24T12:06:01.899Z [error]: 404 Not Found - /send - GET - ::ffff:127.0.0.1
+2023-10-24T18:13:26.242Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:15:26.225Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:15:28.107Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:15:28.488Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:35:26.650Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:30.118Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:33.606Z [error]: 409 - User with email: mo@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:43.506Z [error]: undefined - ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`expenelixir`.`profile`, CONSTRAINT `FK_a24972ebd73b106250713dcddd9` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:52:24.066Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T12:52:26.176Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:52:54.613Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:53:25.358Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:55:11.679Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-25T12:55:36.817Z [error]: undefined - ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`expenelixir`.`expense`, CONSTRAINT `FK_42eea5debc63f4d1bf89881c10a` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T14:51:03.253Z [error]: undefined - jwt must be provided - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:09:41.795Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:04.071Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:10.357Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:24.659Z [error]: 409 - User with email: Test@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:26:50.853Z [error]: undefined - Cannot remove, given value must be an entity, instead "null" is given. - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:42:59.364Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:04.861Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:12.966Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:22.031Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:27.307Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:34.273Z [error]: 404 Not Found - / - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:38.385Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:38.765Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:38.926Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:43.325Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:43.803Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:44.012Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:47.648Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:40.166Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:57:05.678Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:57:10.660Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:57:15.628Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:57:27.931Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1

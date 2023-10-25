@@ -48,7 +48,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Profile.prototype, "hasSentEmail", void 0);
 __decorate([
-    OneToOne(() => Users, user => user.profile),
+    OneToOne(() => Users, user => user.profile, { onDelete: 'CASCADE' }),
     JoinColumn(),
     __metadata("design:type", Object)
 ], Profile.prototype, "user", void 0);

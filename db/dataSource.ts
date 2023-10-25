@@ -10,7 +10,7 @@ import { Business } from "./entities/Business.js";
 const dataSource = new DataSource({
     type: "mysql",
     host: process.env.DB_HOST,
-    port: 2099,
+    port: Number(process.env.DB_PORT),
     username: process.env.DB_USER_NAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
@@ -19,5 +19,12 @@ const dataSource = new DataSource({
     logging: false,
     synchronize: true
 });
+
+export const initDB = async () =>
+    await dataSource.initialize().then(() => {
+        console.log("Connected to DB!");
+    }).catch(err => {
+        console.error('Failed to connect to DB: ' + err);
+    });
 
 export default dataSource;

@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, deleteUser, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -26,9 +26,11 @@ router.post('/register', validateUser, async (req, res, next) => {
 });
 
 
-router.post('/login', IAMAuth, (req, res, next) => {
-    const {username, password, iamId} = req.body;
+router.post('/login', (req, res, next) => {
+    const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
+
+
     console.log(username);
     console.log(password);
     try {
@@ -41,7 +43,7 @@ router.post('/login', IAMAuth, (req, res, next) => {
     }
 
     if (username && password) {
-        login(username, password,iamId,res).then(data => {
+        login(username, password, iamId, res).then(data => {
             res.cookie("userEmail", data.email, { maxAge: 30 * 60 * 1000 });
             res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });
             res.cookie("loginDate", Date.now(), { maxAge: 30 * 60 * 1000 });
@@ -90,64 +92,84 @@ router.get('/', authMe, async (req, res, next) => {
     }
 });
 
-router.post('/upgrade-to-business', authMe, getCards, async (req, res,next) => {
+router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => {
     try {
         const selectedCard = Number(req.body.card);
         if (!selectedCard || selectedCard < 0 || selectedCard > 2) {
             throw new CustomError(`You must select a valid card.`, 400);
         }
         const card: Gen.card = res.locals.cards[selectedCard];
-        if(card.cardExp <= new Date()) {
+        if (card.cardExp <= new Date()) {
             throw new CustomError(`Card expired.`, 400);
         }
-        if(card.amount < 3000) {
+        if (card.amount < 3000) {
             throw new CustomError(`Insufficient funds.`, 400);
         }
-        const {name,email} = res.locals.user;
-        
+        const { name, email } = res.locals.user;
+
         const customer = await stripe.customers.create({
-        name,
-        email,
-      });
-  
-      const paymentIntent = await stripe.paymentIntents.create({
-        amount: 3000,
-        currency: 'usd',
-        customer: customer.id,
-        payment_method: 'pm_card_visa',
-        automatic_payment_methods: {
-          enabled: true,
-          allow_redirects: 'never',
-        },
-      });
-  
-      const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
-  
-      if (confirmedPaymentIntent.status === 'succeeded') {
-        try {
-            const user = res.locals.user;
-            if(user.profile.role !== 'Member')
-            {
-                if(user.profile.role === 'Root')
-                {
-                    throw new CustomError(`You are already a business user.`, 400);
+            name,
+            email,
+        });
+
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: 3000,
+            currency: 'usd',
+            customer: customer.id,
+            payment_method: 'pm_card_visa',
+            automatic_payment_methods: {
+                enabled: true,
+                allow_redirects: 'never',
+            },
+        });
+
+        const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
+
+        if (confirmedPaymentIntent.status === 'succeeded') {
+            try {
+                const user = res.locals.user;
+                if (user.profile.role !== 'Member') {
+                    if (user.profile.role === 'Root') {
+                        throw new CustomError(`You are already a business user.`, 400);
+                    }
+                    throw new CustomError(`You are not allowed here.`, 400);
                 }
-                throw new CustomError(`You are not allowed here.`, 400);
+                await upgradeToBusiness(res);
+                logger.info(`200 OK - /user/upgrade-to-business - POST - ${req.ip}`);
+                res.status(200).send('Payment succeeded');
+            } catch (err: any) {
+                throw err;
             }
-            await upgradeToBusiness(res);
-            logger.info(`200 OK - /user/upgrade-to-business - POST - ${req.ip}`);
-            res.status(200).send('Payment succeeded');
-        } catch (err: any) {
-            throw err;
+        } else {
+            throw new CustomError(`Payment failed.`, 400);
         }
-      } else {
-        throw new CustomError(`Payment failed.`, 400);
-      }
     } catch (err: any) {
         next(err);
     }
-  });
+});
+
+router.delete('/delete-account', authMe, async (req, res, next) => {
+    const user = res.locals.user;
+    try {
+        if (user.profile.role === 'User')
+            throw new CustomError(`You are not allowed to delete your account.`, 400);
+        deleteUser(res).then(() => {
+            logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+            res.clearCookie("userEmail");
+            res.clearCookie("token");
+            res.clearCookie("loginDate");
+            res.status(200).send(`Your account has been deleted successfully.`);
+        }).catch((err: any) => next(err));
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.use('/business', businessUser);
+router.get('/health', (req, res) => {
+    logger.info('Full HP [200] - /health - GET');
+    res.status(200).send('Full HP');
+
+});
 
 export default router;

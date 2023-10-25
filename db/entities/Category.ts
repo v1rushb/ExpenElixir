@@ -13,9 +13,9 @@ export class Category extends BaseEntity {
     @Column()
     description: string;
 
-    @OneToMany(() => Expense, expense => expense.category)
+    @OneToMany(() => Expense, expense => expense.category, { onDelete: "CASCADE" })
     expenses: Expense[];
 
-    @ManyToOne(() => Users, user => user.expenses)
+    @ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" })
     users: string;
 }

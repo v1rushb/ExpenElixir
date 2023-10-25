@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
-import {Users} from "./Users.js";
+import { Users } from "./Users.js";
 
 
 @Entity()
@@ -17,10 +17,10 @@ export class Profile extends BaseEntity {
     @Column({ nullable: false })
     phoneNumber: string;
 
-    @Column({ default: 'USD'})
+    @Column({ default: 'USD' })
     Currency: string;
 
-    @Column({ 
+    @Column({
         type: 'enum',
         enum: ['Member', 'Root', 'User'],
         default: 'Member'
@@ -33,7 +33,7 @@ export class Profile extends BaseEntity {
     @Column({ nullable: true })
     hasSentEmail: boolean;
 
-    @OneToOne(() => Users, user => user.profile)
+    @OneToOne(() => Users, user => user.profile, { onDelete: 'CASCADE' })
     @JoinColumn()
     user: Partial<Users>;
 }

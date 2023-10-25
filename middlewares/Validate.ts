@@ -4,6 +4,7 @@ import { passwordStrength } from 'check-password-strength';
 import { CustomError } from '../CustomError.js';
 
 
+
 const validateUser = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const values = ['firstName', 'lastName', 'email', 'password', 'phoneNumber', 'username',];
     const errorList: string[] = [];
@@ -36,7 +37,10 @@ const validateExpense = async (req: express.Request, res: express.Response, next
         const errorList: string[] = [];
         values.forEach(iterator => {
             if (!req.body[iterator])
-                return void errorList.push(`${iterator} is Required.`);
+                if (!(iterator === 'amount' && req.body[iterator] === 0)) {
+                    return void errorList.push(`${iterator} is Required.`);
+                }
+
         });
         const expense = req.body;
         if (expense.amount <= 0)

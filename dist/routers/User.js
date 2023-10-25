@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, deleteUser, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -10,7 +10,6 @@ import businessUser from '../middlewares/businessUser.js';
 import { stripe } from '../stripe-config.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
-import IAMAuth from '../middlewares/IAMAuth.js';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -20,7 +19,7 @@ router.post('/register', validateUser, async (req, res, next) => {
         res.status(201).send(`You have been registered successfully ${user.username}!`);
     }).catch(err => next(err));
 });
-router.post('/login', IAMAuth, (req, res, next) => {
+router.post('/login', (req, res, next) => {
     const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
     console.log(username);
@@ -134,6 +133,27 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => 
         next(err);
     }
 });
+router.delete('/delete-account', authMe, async (req, res, next) => {
+    const user = res.locals.user;
+    try {
+        if (user.profile.role === 'User')
+            throw new CustomError(`You are not allowed to delete your account.`, 400);
+        deleteUser(res).then(() => {
+            logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+            res.clearCookie("userEmail");
+            res.clearCookie("token");
+            res.clearCookie("loginDate");
+            res.status(200).send(`Your account has been deleted successfully.`);
+        }).catch((err) => next(err));
+    }
+    catch (err) {
+        next(err);
+    }
+});
 router.use('/business', businessUser);
+router.get('/health', (req, res) => {
+    logger.info('Full HP [200] - /health - GET');
+    res.status(200).send('Full HP');
+});
 export default router;
 //# sourceMappingURL=User.js.map

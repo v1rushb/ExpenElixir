@@ -33,7 +33,7 @@ app.get('/health', (req, res) => {
 
 });
 // app.get('/send', async (req, res) => {
-//     await sendEmail("hii", 'Mohammad')
+//     await sendEmail("cs.bashar.herbawi@gmail.com", "hii", 'Mohammad')
 //     res.status(200).send('Full HP');
 
 // });

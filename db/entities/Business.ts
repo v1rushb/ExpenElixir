@@ -12,6 +12,6 @@ export class Business extends BaseEntity {
   @Column()
   rootUserID: string;
 
-  @OneToMany(() => Users, user => user.business)
+  @OneToMany(() => Users, user => user.business, { onDelete: "CASCADE" })
   users: Users[];
 }

@@ -8,6 +8,8 @@ import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
 import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 import { promises } from 'dns';
+import { type } from 'os';
+import { Between, EqualOperator, LessThan, Like, MoreThan } from 'typeorm';
 
 
 
@@ -92,19 +94,37 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
     try {
         const userId = req.cookies['userId'];
 
-        const expense = await Users.findOne({
-            where: { id: res.locals.user.id },
-            relations: ['expenses'],
-        });
-        if (!expense) throw new CustomError('User not found', 404);
+        // const expense = await Users.findOne({
+        //     where: { id: res.locals.user.id },
+        //     relations: ['expenses'],
+        // });
+        // if (!expense) throw new CustomError('User not found', 404);
+        const expenses = await Expense.find({
+            where: { users: new EqualOperator(res.locals.user.id) }
+        })
         const expenseOnProfileCurrency = await Promise.all(
-            expense.expenses.map(async (expense) => {
+            expenses.map(async (expense) => {
                 const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
                 return { ...expense, amount };
             })
         );
         return expenseOnProfileCurrency as unknown as Promise<Expense[]>;
+
+        // const expenses = Expense
+        //     .createQueryBuilder("expense")
+        //     .where("expense.users = :userId", { userId: res.locals.user.id })
+        //     .getMany();
+
+        // return expenses
+
+
+
+
+
+        // const expenses =Expense
     } catch (err: unknown) {
+        console.log(err);
+
         if (err instanceof CustomError) {
             throw new CustomError(err.message, err.statusCode);
         }
@@ -142,20 +162,19 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
 //     }
 // };
 
-const getFilteredExpenses = async (searchQuery: string,minAmountQuery: string, maxAmountQuery: string, req: express.Request, res: express.Response): Promise<Expense[]> => {
-
+const getFilteredExpenses = async (searchQuery: string, minAmountQuery: string, maxAmountQuery: string, req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const Expenses: Expense[] = await getExpenses(req, res);// put authme in router, else it wont work.
+        const search = searchQuery?.toString().toLowerCase() || '';
+        const minAmount = Number(minAmountQuery) || 0
+        const maxAmount = Number(maxAmountQuery) || 9223372036854775807
 
-        if(!searchQuery && !minAmountQuery && !maxAmountQuery)
-            return Expenses;
-        const search = searchQuery || '';
-        const minAmount = Number(minAmountQuery) || -Infinity;
-        const maxAmount = Number(maxAmountQuery) || Infinity;
+        const filter = { users: new EqualOperator(res.locals.user.id), amount: Between(minAmount, maxAmount), title: Like(`%${search}%`) }
 
-        const filteredExpenses : Expense[] = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        const expenses = await Expense.find({
+            where: filter
+        })
 
-        return filteredExpenses;
+        return expenses
     } catch (err) {
         throw err;
     }

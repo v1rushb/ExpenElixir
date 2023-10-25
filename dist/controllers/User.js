@@ -55,7 +55,7 @@ const login = async (username, password, iamId, res) => {
         if (err instanceof CustomError) {
             throw err;
         }
-        throw new CustomError(`An error occurred during login. Error: ${err}`, 500);
+        throw new CustomError(`An error occurred during login. Error: ${err}`, 501);
     }
 };
 const calculateBalance = async (req) => {
@@ -66,5 +66,17 @@ const calculateBalance = async (req) => {
         throw new CustomError(`Unexpected Error ${err}`, 500);
     }
 };
-export { insertUser, login, calculateBalance, };
+const deleteUser = async (res) => {
+    const user = res.locals.user;
+    if (!user) {
+        throw new CustomError('User not found', 404);
+    }
+    try {
+        await Users.delete(user.id);
+    }
+    catch (err) {
+        throw new CustomError(`Error deleting user: ${err}`, 500);
+    }
+};
+export { insertUser, login, calculateBalance, deleteUser };
 //# sourceMappingURL=User.js.map

@@ -25,11 +25,11 @@ __decorate([
     __metadata("design:type", String)
 ], Category.prototype, "description", void 0);
 __decorate([
-    OneToMany(() => Expense, expense => expense.category),
+    OneToMany(() => Expense, expense => expense.category, { onDelete: "CASCADE" }),
     __metadata("design:type", Array)
 ], Category.prototype, "expenses", void 0);
 __decorate([
-    ManyToOne(() => Users, user => user.expenses),
+    ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" }),
     __metadata("design:type", String)
 ], Category.prototype, "users", void 0);
 Category = __decorate([

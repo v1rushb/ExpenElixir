@@ -270,5 +270,26 @@ const upgradeToBusiness = async (res) => {
         throw (err);
     }
 };
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, };
+const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, userIDQuery, req, res) => {
+    try {
+        const Expenses = await businessExpenses(res); // put authme in router, else it wont work.
+        if (!searchQuery && !minAmountQuery && !maxAmountQuery && !userIDQuery)
+            return Expenses;
+        const search = searchQuery || '';
+        const minAmount = Number(minAmountQuery) || -Infinity;
+        const maxAmount = Number(maxAmountQuery) || Infinity;
+        const userID = userIDQuery;
+        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        if (!userID)
+            return filteredExpenses;
+        else {
+            const newFilteredExpenses = filteredExpenses.filter(expense => expense.userId === userID);
+            return newFilteredExpenses;
+        }
+    }
+    catch (err) {
+        throw err;
+    }
+};
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, };
 //# sourceMappingURL=Business.js.map

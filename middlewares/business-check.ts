@@ -7,17 +7,16 @@ const checkBusiness = async (req: express.Request, res: express.Response, next: 
         const subDate = user.profile.subscription_date;
         const today = new Date();
 
-        const arg = today.getTime() - subDate.getTime()/(1000*60);
+        const arg = today.getTime() - subDate.getTime() / (1000 * 60);
 
-        if(arg > 15)
-        {
-            await sendEmail(user.email,`Your subscription has expired!`, `Subscription Expired!`);
+        if (arg > 15) {
+            //    await sendEmail(user.email,`Your subscription has expired!`, `Subscription Expired!`);
             user.profile.hasSentEmail = true;
             user.profile.role = 'User';
             await user.profile.save();
         }
         next();
-    } catch(err) {
+    } catch (err) {
         next(err);
     }
 }
