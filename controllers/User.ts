@@ -20,7 +20,7 @@ const insertUser = async (payload: Gen.User) => {
               } else {
                   throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
               }
-              if()
+              //if()
           }
         return await dataSource.transaction(async trans => {
             const {firstName, lastName, phoneNumber} = payload;
@@ -90,7 +90,7 @@ const login = async (username: string, password: string, iamId: string | null, r
       if (err instanceof CustomError) {
         throw err;
       }
-      throw new CustomError(`An error occurred during login. Error: ${err}`, 500);
+      throw new CustomError(`An error occurred during login. Error: ${err}`, 501);
     }
   };
 
@@ -103,8 +103,24 @@ const calculateBalance = async (req: express.Request): Promise<string> => {
     }
 }
 
+const deleteUser = async (res: express.Response): Promise<void> => {
+  const user: Users = res.locals.user;
+
+  if (!user) {
+      throw new CustomError('User not found', 404);
+  }
+
+  try {
+      await Users.delete(user.id);
+      res.status(200).send('User deleted successfully.');
+  } catch (err: any) {
+      throw new CustomError(`Error deleting user: ${err}`, 500);
+  }
+};
+
 export {
     insertUser,
     login,
     calculateBalance,
+    deleteUser,
 }

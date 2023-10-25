@@ -448,3 +448,15 @@
 2023-10-24T16:45:16.175Z [info]: 200 OK - /user/verify-email - GET - ::1
 2023-10-24T16:49:28.638Z [info]: 201 Created - /user/register - POST - ::1
 2023-10-24T16:49:34.655Z [error]: 409 - User with email: cs.bashsasrs.herbawisssss@gmail.com already exists. - /user/register - POST - ::1
+2023-10-25T08:05:25.808Z [error]: undefined - jwt must be provided - /user/ - GET - ::1
+2023-10-25T08:05:31.414Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-25T08:05:35.540Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/ - GET - ::1
+2023-10-25T08:05:44.981Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/ - GET - ::1
+2023-10-25T08:06:39.630Z [error]: 400 - Invalid token. - /user/verify-account?token=12a35c45-d104-416f-a6c2-8558dea54b2b - GET - ::1
+2023-10-25T08:06:39.695Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-25T08:06:49.916Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/ - GET - ::1
+2023-10-25T08:06:56.114Z [error]: undefined - Cannot read properties of undefined (reading 'includes') - /user/register - POST - ::1
+2023-10-25T08:07:14.059Z [error]: 401 - You need to verify your email. Please check your mailbox! - /user/ - GET - ::1
+2023-10-25T08:08:00.385Z [error]: 404 Not Found - /user/ - DELETE - ::1
+2023-10-25T08:08:10.406Z [error]: 404 - User not found - /user/delete-account - DELETE - ::1
+2023-10-25T08:08:36.412Z [error]: 500 - Error deleting user: QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`profile`, CONSTRAINT `FK_a24972ebd73b106250713dcddd9` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1

@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, insertUser, login } from '../controllers/User.js';
+import { calculateBalance, deleteUser, insertUser, login } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -170,13 +170,10 @@ router.get('/verify-account', async (req, res, next) => {
     }
 });
 
-router.delete('/', authMe, async (req, res, next) => {
+router.delete('/delete-account', authMe, async (req, res, next) => {
     try {
-        const user = res.locals.user;
-        await Users.remove(user);
-        logger.info(`200 OK - /user/ - DELETE - ${req.ip}`);
-        res.status(200).send(`User ${user.username} has been deleted successfully.`);
-    } catch(err) {
+        await deleteUser(res);
+    } catch (err) {
         next(err);
     }
 });

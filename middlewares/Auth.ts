@@ -13,9 +13,9 @@ const authMe = async (req: express.Request, res: express.Response, next: express
             const user = await Users.findOne({
                 where: { email: decode?.email }
             })
-            if(!user?.isVerified) {
-                throw new CustomError('You need to verify your email. Please check your mailbox!',401);
-            }
+            // if(!user?.isVerified) {
+            //     throw new CustomError('You need to verify your email. Please check your mailbox!',401);
+            // }
             res.locals.user = user;
             return next();
         }
