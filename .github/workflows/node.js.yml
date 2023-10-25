@@ -39,10 +39,10 @@ jobs:
     
     - name: Get list of EC2 instances IPs from ASG
       run: |
-        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region us-east-1 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='Your-ASG-Name'].InstanceId")
+        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='Your-ASG-Name'].InstanceId")
         public_ips=""
         for id in $instance_ids; do
-          ip=$(aws ec2 describe-instances --instance-ids $id --region us-east-1 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+          ip=$(aws ec2 describe-instances --instance-ids $id --region eu-west-2 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
           public_ips+="$ip "
         done
         echo "Public IPs: $public_ips"
