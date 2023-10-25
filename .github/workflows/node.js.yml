@@ -60,9 +60,11 @@ jobs:
       run: |
         echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
         chmod 600 key.pem
-        for ip in $public_ips; do
-          ssh -i 'key.pem' -o StrictHostKeyChecking=no github@$ip "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest"
+        IFS=' ' read -ra ADDR <<< "$public_ips"
+        for ip in "${ADDR[@]}"; do
+          ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@$ip "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest"
           echo "Deployed to $ip"
+          echo 'hi' >> hi_file.txt
         done
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
