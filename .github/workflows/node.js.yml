@@ -23,6 +23,14 @@ jobs:
         docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
+    - name: Set Environment Variables
+      run: |
+        echo "DB_HOST: $DB_HOST"
+        echo "DB_PORT: $DB_PORT"
+        echo "DB_USER_NAME: $DB_USER_NAME"
+        echo "DB_PASSWORD: $DB_PASSWORD"
+        echo "DB_NAME: $DB_NAME"
+
   deploy:
     runs-on: ubuntu-latest
 
@@ -33,16 +41,16 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with: 
-        aws-access-key: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-secret-key: ${{ secrets.AWS_SECRET_KEY }}
+        aws-access-key: ${{SECRETS.AWS_ACCESS_KEY}}
+        aws-secret-key: ${{SECRETS.AWS_SECRET_KEY}}
         aws-region: eu-west-2
     
-    - name: Get EC2 Instances IPs
+    - name: get EC2 Instances IPs
       run: |
-        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='Your-ASG-Name'].InstanceId")
+        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='ExpenElixir-ASG'].InstanceId")
         public_ips=""
         for id in $instance_ids; do
-          ip=$(aws ec2 describe-instances --instance-ids $id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+          ip=$(aws ec2 describe-instances --instance-ids $id --region eu-west-2 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
           public_ips+="$ip "
         done
         echo "Public IPs: $public_ips"
