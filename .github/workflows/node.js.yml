@@ -30,11 +30,37 @@ jobs:
         echo "DB_USER_NAME: $DB_USER_NAME"
         echo "DB_PASSWORD: $DB_PASSWORD"
         echo "DB_NAME: $DB_NAME"
+        
+    - name: Install AWS CLI
+    run: |
+      curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+      unzip awscliv2.zip
+      sudo ./aws/install
 
-    - name: Deployment
+
+    - name: Get list of EC2 instances IPs from ASG
       run: |
-        echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
-        chmod 600 key.pem
-        ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+        instance_ids=$(aws ec2 describe-instances --query 'Reservations[].Instances[?Tags[?Key==`aws:autoscaling:groupName`].Value==`ExpenElixir-ASG`].[InstanceId]' --output text)
+        public_ips=""
+        for id in $instance_ids; do
+          ip=$(aws ec2 describe-instances --instance-ids $id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+          public_ips+="$ip "
+        done
+        echo "Public IPs: $public_ips"
+
+    - name: Deploy to EC2 instances
+      run: |
+        for ip in $public_ips; do
+          ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@$ip 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+        done
       env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
         DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
+    # - name: Deployment
+    #   run: |
+    #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+    #     chmod 600 key.pem
+    #     ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+    #   env:
+    #     DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
