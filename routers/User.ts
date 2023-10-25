@@ -171,13 +171,20 @@ router.get('/verify-account', async (req, res, next) => {
 });
 
 router.delete('/delete-account', authMe, async (req, res, next) => {
-    deleteUser(res).then(() => {
-        logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
-        res.clearCookie("userEmail");
-        res.clearCookie("token");
-        res.clearCookie("loginDate");
-        res.status(200).send(`Your account has been deleted successfully.`);
-    }).catch(err => next(err));
+    const user = res.locals.user;
+    try {
+        if(user.profile.role === 'User')
+            throw new CustomError(`You are not allowed to delete your account.`, 400);
+        deleteUser(res).then(() => {
+            logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+            res.clearCookie("userEmail");
+            res.clearCookie("token");
+            res.clearCookie("loginDate");
+            res.status(200).send(`Your account has been deleted successfully.`);
+        }).catch(err => next(err));
+    } catch(err) {
+        next(err);
+    }
 });
 
 
