@@ -48,8 +48,8 @@ jobs:
         echo "Public IPs: $public_ips"
       env:
         AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS: ${{ secrets.AWS_SECRET_ACCESS }}
-        AWS_REGION: us-east-1
+        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+        AWS_REGION: eu-west-2
     
     - name: Deploy to EC2 instances
       run: |
