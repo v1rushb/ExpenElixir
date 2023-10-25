@@ -16,24 +16,24 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    # - name: Login to Docker Hub
-    #   uses: docker/login-action@v3
-    #   with:
-    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-    #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    # - name: Build and push the Docker image
-    #   run: |
-    #     docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
-    #     docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
+    - name: Build and push the Docker image
+      run: |
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
-    # - name: Set Environment Variables
-    #   run: |
-    #     echo "DB_HOST: $DB_HOST"
-    #     echo "DB_PORT: $DB_PORT"
-    #     echo "DB_USER_NAME: $DB_USER_NAME"
-    #     echo "DB_PASSWORD: $DB_PASSWORD"
-    #     echo "DB_NAME: $DB_NAME"
+    - name: Set Environment Variables
+      run: |
+        echo "DB_HOST: $DB_HOST"
+        echo "DB_PORT: $DB_PORT"
+        echo "DB_USER_NAME: $DB_USER_NAME"
+        echo "DB_PASSWORD: $DB_PASSWORD"
+        echo "DB_NAME: $DB_NAME"
 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
@@ -56,6 +56,7 @@ jobs:
         --query "Reservations[].Instances[].PublicIpAddress" --output text)
         for ip in $public_ips; do
           echo "Processing IP: $ip"
+        done
     
     # - name: Deploy to EC2 instances
     #   run: |
