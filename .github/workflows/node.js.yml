@@ -37,28 +37,22 @@ jobs:
         unzip awscliv2.zip
         sudo ./aws/install --update
     
-    - name: Get list of EC2 instances IPs from ASG
-      run: |
-        instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='Your-ASG-Name'].InstanceId")
-        public_ips=""
-        for id in $instance_ids; do
-          ip=$(aws ec2 describe-instances --instance-ids $id --region eu-west-2 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
-          public_ips+="$ip "
-        done
-        echo "Public IPs: $public_ips"
-      env:
-        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-        AWS_REGION: eu-west-2
-    
+    - name: Retrieve EC2 IPs
+        run: |
+          instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='ExpenElixir-ASG'].InstanceId")
+        env:
+          AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          AWS_REGION: eu-west-2
+      
     - name: Deploy to EC2 instances
       run: |
         for ip in $public_ips; do
           ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@$ip 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
         done
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+        AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
         DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
 
     # - name: Deployment
