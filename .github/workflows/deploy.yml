@@ -50,6 +50,8 @@ jobs:
 
       - name: deploy
         run: |
+          echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+          chmod 600 key.pem
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
           docker run --name ExpenElixirX -d -p 80:2077 \
             -e DB_HOST=${{ secrets.DB_HOST }} \
@@ -59,4 +61,4 @@ jobs:
             -e DB_NAME=${{ secrets.DB_NAME }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
         env:
-          DOCKER_HOST: ssh://github@${{ github.event.client_payload.ip }}:22
+          DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
