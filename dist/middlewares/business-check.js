@@ -1,4 +1,3 @@
-import { sendEmail } from '../utils/sesServiceAws.js';
 const checkBusiness = async (req, res, next) => {
     try {
         const user = res.locals.user;
@@ -6,7 +5,11 @@ const checkBusiness = async (req, res, next) => {
         const today = new Date();
         const arg = today.getTime() - subDate.getTime() / (1000 * 60);
         if (arg > 15) {
+<<<<<<< HEAD
             await sendEmail(`Your subscription has expired!`, `Subscription Expired!`);
+=======
+            //    await sendEmail(user.email,`Your subscription has expired!`, `Subscription Expired!`);
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
             user.profile.hasSentEmail = true;
             user.profile.role = 'User';
             await user.profile.save();

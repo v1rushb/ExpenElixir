@@ -29,7 +29,7 @@ export class Users extends BaseEntity {
     @Column({ nullable: false })
     password: string;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     iamId: string;
 
     @Column({default: false})

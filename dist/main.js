@@ -25,6 +25,13 @@ app.get('/health', (req, res) => {
     logger.info('Full HP [200] - /health - GET');
     res.status(200).send('Full HP');
 });
+<<<<<<< HEAD
+=======
+// app.get('/send', async (req, res) => {
+//     await sendEmail("cs.bashar.herbawi@gmail.com", "hii", 'Mohammad')
+//     res.status(200).send('Full HP');
+// });
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 app.use('/', (req, res) => {
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);
     res.status(404).send('Not Found');

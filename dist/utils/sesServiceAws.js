@@ -29,8 +29,13 @@ const createSendEmailCommand = (toAddress, fromAddress, emailBody, emailSubject)
         Source: fromAddress,
     });
 };
+<<<<<<< HEAD
 export const sendEmail = async (emailBody, emailSubject) => {
     const sendEmailCommand = createSendEmailCommand("cs.bashar.herbawi@gmail.com", "cs.bashar.herbawi@gmail.com", emailBody, emailSubject);
+=======
+export const sendEmail = async (distEmail, sourceEmail, emailBody, emailSubject) => {
+    const sendEmailCommand = createSendEmailCommand(distEmail, sourceEmail, emailBody, emailSubject);
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     try {
         return await sesClient.send(sendEmailCommand);
     }

@@ -10,8 +10,6 @@ import { CustomError } from '../CustomError.js';
 import { Profile } from '../db/entities/Profile.js';
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '../utils/sesServiceAws.js';
-import schedule from 'node-schedule';
-import { LessThan } from 'typeorm';
 import logger from '../logger.js';
 
 const insertUser = async (payload: Gen.User) => {
@@ -50,11 +48,11 @@ const insertUser = async (payload: Gen.User) => {
         }
         throw new CustomError(err, 500);
     }
-};
+    throw new CustomError(err, 500);
+}
 
 const login = async (username: string, password: string, iamId: string | null, res: express.Response): Promise<{ username: string, email: string, token: string }> => {
-    try {
-      //const user = res.locals.user;
+  try {
 
       const user = await Users.findOne({
         where: { username },
@@ -101,13 +99,13 @@ const login = async (username: string, password: string, iamId: string | null, r
     }
   };
 
-const calculateBalance = async (req: express.Request): Promise<string> => {
-    try {
-        return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`
-    }
-    catch (err) {
-        throw new CustomError(`Unexpected Error ${err}`,500);
-    }
+const calculateBalance = async (res: express.Response): Promise<string> => {
+  try {
+    return `Your account Balance : ${await totalIncomes(res) - await totalExpenses(res)}`
+  }
+  catch (err) {
+    throw new CustomError(`Unexpected Error ${err}`, 500);
+  }
 }
 
 const deleteUser = async (res: express.Response): Promise<void> => {
@@ -156,12 +154,11 @@ const sendResetPasswordEmail = async (email: string, token: string): Promise<voi
   await sendEmail(emailBody, emailSubject);
 }
 
-
 export {
-    insertUser,
-    login,
-    calculateBalance,
-    deleteUser,
-    checkForVerification,
-    sendResetPasswordEmail,
+  insertUser,
+  login,
+  calculateBalance,
+  deleteUser,
+  checkForVerification,
+  sendResetPasswordEmail,
 }

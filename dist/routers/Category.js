@@ -6,18 +6,22 @@ import businessCategory from '../middlewares/businessCategory.js';
 import { validateCategory } from '../middlewares/Validate.js';
 const router = express.Router();
 router.post('/', authMe, validateCategory, async (req, res, next) => {
-    insertCategory(req.body, req).then(category => {
+    insertCategory(req.body, res).then(category => {
         res.status(200).send(`You have successfully added a new category!`);
     }).catch(err => next(err));
 });
 router.get('/', authMe, async (req, res, next) => {
+<<<<<<< HEAD
     totalCategory(req).then(category => {
+=======
+    await totalCategory(res).then(category => {
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
         logger.info(`User ${req.body.username} requested all categories!`);
         res.status(200).send(category);
     }).catch(err => next(err));
 });
 router.delete('/deleteAllCategorys', authMe, async (req, res, next) => {
-    deleteAllCategory(req).then(category => {
+    deleteAllCategory(res).then(category => {
         res.status(200).send(`You have successfully deleted all categories!`);
     }).catch(err => next(err));
 });

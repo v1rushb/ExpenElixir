@@ -13,6 +13,7 @@ export class Category extends BaseEntity {
     @Column()
     description: string;
 
+<<<<<<< HEAD
     @Column({ nullable: false })
     budget: number;
 
@@ -20,8 +21,11 @@ export class Category extends BaseEntity {
     totalExpenses: number;
 
     @OneToMany(() => Expense, expense => expense.category)
+=======
+    @OneToMany(() => Expense, expense => expense.category, { onDelete: "CASCADE" })
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     expenses: Expense[];
 
-    @ManyToOne(() => Users, user => user.expenses)
+    @ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" })
     users: string;
 }

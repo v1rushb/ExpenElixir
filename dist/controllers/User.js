@@ -46,7 +46,6 @@ const insertUser = async (payload) => {
 };
 const login = async (username, password, iamId, res) => {
     try {
-        //const user = res.locals.user;
         const user = await Users.findOne({
             where: { username },
         });
@@ -81,26 +80,32 @@ const login = async (username, password, iamId, res) => {
         throw new CustomError(`An error occurred during login. Error: ${err}`, 501);
     }
 };
-const calculateBalance = async (req) => {
+const calculateBalance = async (res) => {
     try {
-        return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`;
+        return `Your account Balance : ${await totalIncomes(res) - await totalExpenses(res)}`;
     }
     catch (err) {
         throw new CustomError(`Unexpected Error ${err}`, 500);
     }
 };
 const deleteUser = async (res) => {
+<<<<<<< HEAD
     const user = res.locals.user;
     if (!user) {
         throw new CustomError('User not found', 404);
     }
     try {
         await Users.delete(user.id);
+=======
+    try {
+        await Users.delete(res.locals.user.id);
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     }
     catch (err) {
         throw new CustomError(`Error deleting user: ${err}`, 500);
     }
 };
+<<<<<<< HEAD
 const checkForVerification = () => {
     setInterval(async () => {
         try {
@@ -128,4 +133,7 @@ const sendResetPasswordEmail = async (email, token) => {
     await sendEmail(emailBody, emailSubject);
 };
 export { insertUser, login, calculateBalance, deleteUser, checkForVerification, sendResetPasswordEmail, };
+=======
+export { insertUser, login, calculateBalance, deleteUser };
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 //# sourceMappingURL=User.js.map

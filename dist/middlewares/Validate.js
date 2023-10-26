@@ -36,7 +36,9 @@ const validateExpense = async (req, res, next) => {
         const errorList = [];
         values.forEach(iterator => {
             if (!req.body[iterator])
-                return void errorList.push(`${iterator} is Required.`);
+                if (!(iterator === 'amount' && req.body[iterator] === 0)) {
+                    return void errorList.push(`${iterator} is Required.`);
+                }
         });
         const expense = req.body;
         if (expense.amount <= 0)

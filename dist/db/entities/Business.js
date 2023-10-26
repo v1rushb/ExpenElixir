@@ -24,7 +24,7 @@ __decorate([
     __metadata("design:type", String)
 ], Business.prototype, "rootUserID", void 0);
 __decorate([
-    OneToMany(() => Users, user => user.business),
+    OneToMany(() => Users, user => user.business, { onDelete: "CASCADE" }),
     __metadata("design:type", Array)
 ], Business.prototype, "users", void 0);
 Business = __decorate([

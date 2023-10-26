@@ -338,6 +338,7 @@ const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, 
         throw err;
     }
 };
+<<<<<<< HEAD
 const modifyUserExpense = async (expenseID, userID, payload, res, picFile) => {
     try {
         if (!userID)
@@ -397,4 +398,7 @@ const modifyUserCategory = async (categoryID, userID, payload, res) => {
     }
 };
 export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, modifyUserIncome, modifyUserCategory, };
+=======
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, };
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 //# sourceMappingURL=Business.js.map

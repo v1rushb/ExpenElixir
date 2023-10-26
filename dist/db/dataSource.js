@@ -17,5 +17,10 @@ const dataSource = new DataSource({
     logging: false,
     synchronize: true
 });
+export const initDB = async () => await dataSource.initialize().then(() => {
+    console.log("Connected to DB!");
+}).catch(err => {
+    console.error('Failed to connect to DB: ' + err);
+});
 export default dataSource;
 //# sourceMappingURL=dataSource.js.map

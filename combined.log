@@ -413,3 +413,368 @@
 2023-10-23T16:24:17.050Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:17.702Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:18.243Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-23T20:07:12.603Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-23T20:07:15.561Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:07:42.236Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:08:35.861Z [info]: User undefined added a new Expense!
+2023-10-23T20:08:37.344Z [info]: User undefined added a new Expense!
+2023-10-23T20:08:39.735Z [info]: User undefined added a new Expense!
+2023-10-23T20:08:45.139Z [info]: User undefined added a new Expense!
+2023-10-23T20:08:47.799Z [info]: User undefined requested all Expenses!
+2023-10-23T20:12:16.649Z [info]: User undefined requested all Expenses!
+2023-10-23T20:12:16.651Z [error]: undefined - Converting circular structure to JSON
+    --> starting at object with constructor 'EntityMetadata'
+    |     property 'ownColumns' -> object with constructor 'Array'
+    |     index 0 -> object with constructor 'ColumnMetadata'
+    --- property 'entityMetadata' closes the circle - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:12:49.654Z [info]: User undefined requested all Expenses!
+2023-10-23T20:17:27.806Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:18:30.412Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:18:31.540Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:19:01.839Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:24:56.788Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:25:51.409Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:26:21.772Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:29:04.244Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:29:20.983Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-23T20:29:26.127Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-23T20:29:27.391Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:29:48.958Z [info]: User undefined added a new Expense!
+2023-10-23T20:29:49.561Z [info]: User undefined added a new Expense!
+2023-10-23T20:29:51.713Z [info]: User undefined added a new Expense!
+2023-10-23T20:29:55.000Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:30:53.722Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:32:31.038Z [info]: User undefined requested all Expenses!
+2023-10-23T20:32:43.945Z [info]: User undefined requested all Expenses!
+2023-10-23T20:33:59.175Z [info]: User undefined requested all Expenses!
+2023-10-23T20:34:22.477Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-23T20:34:35.631Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-23T20:34:37.775Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:34:40.771Z [info]: User undefined requested all Expenses!
+2023-10-23T20:34:41.466Z [info]: User undefined requested all Expenses!
+2023-10-23T20:34:58.078Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-23T20:35:02.019Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:35:05.622Z [info]: User undefined requested all Expenses!
+2023-10-23T20:35:49.649Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:40:39.231Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-23T20:44:31.456Z [info]: User undefined requested all Expenses!
+2023-10-23T20:44:42.827Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-23T20:44:45.009Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:44:47.473Z [info]: User undefined requested all Expenses!
+2023-10-23T20:46:18.867Z [info]: User undefined requested all Expenses!
+2023-10-23T20:46:33.210Z [info]: User undefined requested all Expenses!
+2023-10-23T20:52:05.908Z [info]: User undefined added a new Expense!
+2023-10-23T20:52:45.900Z [info]: User undefined added a new Expense!
+2023-10-23T20:52:46.416Z [info]: User undefined added a new Expense!
+2023-10-23T20:52:46.939Z [info]: User undefined added a new Expense!
+2023-10-23T20:53:08.460Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-23T20:53:10.278Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-23T20:53:15.287Z [info]: User undefined added a new Expense!
+2023-10-23T20:53:15.829Z [info]: User undefined added a new Expense!
+2023-10-23T20:53:16.454Z [info]: User undefined added a new Expense!
+2023-10-24T10:33:07.670Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T10:33:10.788Z [info]: User undefined requested all Expenses!
+2023-10-24T10:34:21.483Z [info]: User undefined requested all Expenses!
+2023-10-24T10:36:41.616Z [info]: User undefined requested all Expenses!
+2023-10-24T10:36:52.410Z [info]: User undefined requested all Expenses!
+2023-10-24T10:37:00.161Z [info]: User undefined requested all Expenses!
+2023-10-24T10:37:05.794Z [info]: User undefined requested all Expenses!
+2023-10-24T10:37:19.701Z [info]: User undefined requested all Expenses!
+2023-10-24T10:37:53.305Z [info]: User undefined requested all Expenses!
+2023-10-24T10:38:10.401Z [info]: User undefined requested all Expenses!
+2023-10-24T10:38:19.952Z [info]: User undefined requested all Expenses!
+2023-10-24T10:40:14.565Z [info]: User undefined requested all Expenses!
+2023-10-24T10:40:16.117Z [info]: User undefined requested all Expenses!
+2023-10-24T10:40:21.425Z [info]: User undefined requested all Expenses!
+2023-10-24T10:43:23.663Z [info]: User undefined requested all Expenses!
+2023-10-24T10:43:41.064Z [info]: User undefined requested all Expenses!
+2023-10-24T10:45:28.310Z [info]: User undefined requested all Expenses!
+2023-10-24T10:45:40.528Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T10:45:58.993Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T10:51:42.671Z [info]: User undefined requested all Expenses!
+2023-10-24T10:54:59.232Z [info]: User undefined requested all Expenses!
+2023-10-24T10:55:52.654Z [info]: User undefined requested all Expenses!
+2023-10-24T10:57:17.400Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T10:57:40.706Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'NaN' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T11:01:57.582Z [error]: undefined - ER_BAD_FIELD_ERROR: Unknown column 'Infinity' in 'where clause' - /expense/search?minAmount=223 - GET - ::ffff:127.0.0.1
+2023-10-24T11:02:11.354Z [info]: User undefined requested all Expenses!
+2023-10-24T11:02:27.176Z [info]: User undefined requested all Expenses!
+2023-10-24T11:28:18.775Z [error]: undefined - jwt must be provided - /expense - POST - ::ffff:127.0.0.1
+2023-10-24T11:28:21.496Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T11:28:24.228Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-24T11:28:45.845Z [info]: User undefined added a new Expense!
+2023-10-24T11:29:46.335Z [info]: User undefined requested all Expenses!
+2023-10-24T11:29:53.579Z [info]: User undefined requested all Expenses!
+2023-10-24T11:30:54.772Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:05.920Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:21.388Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T11:31:25.604Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T11:31:34.315Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:34.984Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:35.268Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:35.449Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:35.620Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:35.784Z [info]: User undefined requested all Expenses!
+2023-10-24T11:31:35.937Z [info]: User undefined requested all Expenses!
+2023-10-24T11:44:24.281Z [info]: User undefined requested all Expenses!
+2023-10-24T11:44:32.314Z [info]: User undefined added a new Expense!
+2023-10-24T11:46:45.625Z [info]: User undefined added a new Expense!
+2023-10-24T11:50:18.701Z [info]: User undefined added a new Expense!
+2023-10-24T12:03:20.090Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T12:03:25.200Z [info]: User undefined requested all Expenses!
+2023-10-24T12:03:31.458Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-24T12:03:35.759Z [info]: User undefined added a new Expense!
+2023-10-24T12:03:50.692Z [info]: User undefined requested all Expenses!
+2023-10-24T12:05:40.657Z [info]: User undefined requested all Expenses!
+2023-10-24T12:06:01.899Z [error]: 404 Not Found - /send - GET - ::ffff:127.0.0.1
+2023-10-24T12:06:23.523Z [info]: User undefined added a new Expense!
+2023-10-24T12:06:45.573Z [info]: User undefined requested all Expenses!
+2023-10-24T17:53:29.829Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T17:59:40.747Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T18:01:09.761Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T18:05:52.509Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T18:07:50.243Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T18:13:24.346Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:13:26.242Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:15:26.225Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:15:28.107Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:15:28.488Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:28:36.185Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T18:29:28.196Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T18:35:14.655Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T18:35:24.969Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-24T18:35:26.650Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T18:35:38.452Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:36:20.144Z [info]: Full HP [200] - /health - GET
+2023-10-24T19:43:46.558Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T19:43:46.737Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:44:46.079Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:45:03.249Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:53:36.687Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:54:32.557Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:58:00.061Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:58:46.739Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T19:59:47.401Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:06:03.166Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:06:29.004Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:30.118Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:33.606Z [error]: 409 - User with email: mo@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:37.000Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-24T20:07:43.506Z [error]: undefined - ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`expenelixir`.`profile`, CONSTRAINT `FK_a24972ebd73b106250713dcddd9` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:52:24.066Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T12:52:26.176Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:52:49.409Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T12:52:54.613Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:53:25.358Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:54:26.010Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:54:56.672Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T12:55:07.954Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T12:55:11.679Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-25T12:55:15.600Z [info]: User undefined requested all Expenses!
+2023-10-25T12:55:36.817Z [error]: undefined - ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`expenelixir`.`expense`, CONSTRAINT `FK_42eea5debc63f4d1bf89881c10a` FOREIGN KEY (`categoryId`) REFERENCES `category` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:57:23.114Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T12:58:09.839Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T12:59:05.796Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:01:18.565Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T13:01:18.630Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T13:01:18.717Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:06:40.267Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:20:03.790Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:20:20.878Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:28:09.692Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:34:50.967Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:44:46.509Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:46:05.774Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:46:42.291Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:49:38.319Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:50:08.716Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:56:39.468Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T13:57:18.090Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:00:02.778Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:11:44.727Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:16:23.501Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:37:12.323Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:38:44.122Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:51:00.304Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T14:51:03.253Z [error]: undefined - jwt must be provided - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T14:51:13.690Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T14:51:15.809Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T14:52:18.362Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:37:51.811Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:38:51.190Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:50:36.834Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:52:19.361Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:54:54.681Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:55:39.884Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T16:56:49.359Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:03:38.382Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:04:19.145Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:05:34.802Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:06:41.242Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:07:22.466Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:09:41.795Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:04.071Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:10.357Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:21.860Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:24.659Z [error]: 409 - User with email: Test@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:10:34.225Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:11:29.599Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:13:54.023Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:15:13.250Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:15:13.328Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:17:12.898Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:17:12.984Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:17:13.066Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:17:46.592Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:17:46.668Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:17:46.750Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:21:28.015Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:26:50.853Z [error]: undefined - Cannot remove, given value must be an entity, instead "null" is given. - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:26:57.530Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:27:05.963Z [info]: 200 OK - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:42:01.761Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:42:01.834Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:42:59.364Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:04.861Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:12.966Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:22.031Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:27.307Z [error]: 404 Not Found - /user/ - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:34.273Z [error]: 404 Not Found - / - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:38.385Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:38.765Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:38.926Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:43:43.325Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:43.803Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:44.012Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:43:47.648Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:44:12.525Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:46:59.404Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:46:59.594Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:48:06.198Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:48:55.631Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:51:16.972Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:53:42.142Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:54:31.673Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:55:24.099Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:26.983Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:40.166Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:49.385Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:52.778Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:55.442Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:56:58.207Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-25T17:57:05.678Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:57:10.660Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:57:13.473Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:57:15.628Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:57:27.931Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:58:15.511Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:58:15.586Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:58:37.543Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:58:37.739Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:58:37.813Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-25T17:58:54.204Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T17:58:54.398Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T17:58:54.471Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-25T18:04:13.299Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T18:04:13.485Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T18:04:13.560Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-25T18:17:38.269Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-25T18:17:38.458Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-25T18:17:38.530Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-26T14:54:56.794Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:13.074Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:23.985Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:25.867Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:56:35.573Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:01.393Z [info]: User undefined requested all Expenses!
+2023-10-26T14:57:17.517Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:19.188Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:21.192Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:23.148Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:25.271Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:27.474Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:34.910Z [info]: User undefined requested all Expenses!
+2023-10-26T14:57:56.714Z [error]: 404 Not Found - /expense/page=2 - GET - ::ffff:127.0.0.1
+2023-10-26T14:58:02.910Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:14.816Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:24.831Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:30.691Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:45.073Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:56.588Z [info]: User undefined requested all Expenses!
+2023-10-26T14:59:03.443Z [info]: User undefined requested all Expenses!
+2023-10-26T15:39:16.411Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T15:39:21.001Z [error]: undefined - Cannot read properties of null (reading 'undefined') - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:39:38.122Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:40:33.953Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:42:16.431Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:42:27.771Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:44:08.113Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:44:40.802Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:46:48.034Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:47:23.048Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:47:40.643Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:00.322Z [info]: User undefined added a new Expense!
+2023-10-26T15:48:02.633Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:14.091Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:26.865Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:28.163Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:33.124Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:52.354Z [info]: User undefined requested all Expenses!
+2023-10-26T15:49:35.501Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T15:49:50.317Z [info]: User undefined added a new Expense!
+2023-10-26T15:49:52.735Z [info]: User undefined requested all Expenses!
+2023-10-26T15:50:13.906Z [info]: User undefined requested all Expenses!
+2023-10-26T15:50:54.966Z [info]: User undefined added a new Expense!
+2023-10-26T15:51:00.736Z [info]: User undefined requested all Expenses!
+2023-10-26T15:52:43.436Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T15:53:12.459Z [info]: User undefined added a new Expense!
+2023-10-26T15:53:22.503Z [info]: User undefined requested all Expenses!
+2023-10-26T16:01:00.137Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:04.476Z [error]: 409 - User with email: ok@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:16.536Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:19.093Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:46.827Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:58.168Z [info]: User undefined added a new Expense!
+2023-10-26T16:02:13.848Z [info]: User undefined requested all Expenses!
+2023-10-26T16:05:50.312Z [info]: User undefined added a new Expense!
+2023-10-26T16:07:12.759Z [info]: User undefined requested all Expenses!
+2023-10-26T16:07:58.422Z [info]: User undefined added a new Expense!
+2023-10-26T16:08:25.079Z [info]: User undefined requested all Expenses!
+2023-10-26T16:08:28.700Z [info]: User undefined requested all Expenses!
+2023-10-26T16:10:09.390Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:10:34.064Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:10:52.307Z [info]: User undefined requested all Expenses!
+2023-10-26T16:11:35.433Z [info]: User undefined added a new Expense!
+2023-10-26T16:11:37.898Z [info]: User undefined requested all Expenses!
+2023-10-26T16:12:10.978Z [info]: User undefined requested all Expenses!
+2023-10-26T16:12:49.260Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:14:45.586Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:15:08.674Z [info]: User undefined requested all Expenses!
+2023-10-26T16:15:24.171Z [info]: User undefined requested all Expenses!
+2023-10-26T16:15:26.992Z [info]: User undefined requested all Expenses!
+2023-10-26T16:17:12.143Z [info]: User undefined added a new Expense!
+2023-10-26T16:17:31.201Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:18:14.392Z [info]: User undefined added a new Expense!
+2023-10-26T16:18:15.044Z [info]: User undefined added a new Expense!
+2023-10-26T16:18:15.684Z [info]: User undefined added a new Expense!
+2023-10-26T16:18:18.836Z [info]: User undefined requested all Expenses!
+2023-10-26T16:18:58.186Z [info]: User undefined requested all Expenses!
+2023-10-26T16:19:18.469Z [info]: User undefined requested all Expenses!
+2023-10-26T16:30:34.691Z [info]: User undefined requested all Expenses!
+2023-10-26T16:31:12.510Z [info]: User undefined requested all Expenses!
+2023-10-26T16:32:27.193Z [error]: undefined - jwt must be provided - /expense/search - GET - ::ffff:127.0.0.1
+2023-10-26T16:32:31.472Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T16:32:34.017Z [info]: User undefined requested all Expenses!
+2023-10-26T16:32:54.246Z [info]: User undefined requested all Expenses!
+2023-10-26T16:34:00.367Z [info]: User undefined requested all Expenses!
+2023-10-26T16:34:28.427Z [error]: undefined - Property "0" was not found in "Category". Make sure your query is correct. - /expense/search?category=d8dc6ce4-745c-4509-9810-c073232dc5ac - GET - ::ffff:127.0.0.1
+2023-10-26T16:35:03.749Z [info]: User undefined requested all Expenses!
+2023-10-26T16:35:46.649Z [info]: User undefined added a new Expense!
+2023-10-26T16:35:47.899Z [info]: User undefined added a new Expense!
+2023-10-26T16:36:02.406Z [info]: User undefined requested all Expenses!
+2023-10-26T16:36:18.380Z [info]: User undefined requested all Expenses!
+2023-10-26T16:45:28.593Z [error]: 404 Not Found - /deleteAllExpenses - DELETE - ::ffff:127.0.0.1
+2023-10-26T16:45:35.533Z [error]: 404 Not Found - /deleteAllExpenses - DELETE - ::ffff:127.0.0.1
+2023-10-26T17:05:00.096Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T17:05:00.275Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T17:05:00.346Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1

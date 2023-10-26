@@ -2,13 +2,17 @@ import dataSource from "../db/dataSource.js";
 import { Expense } from "../db/entities/Expense.js";
 import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
-import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
+<<<<<<< HEAD
 import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 const insertExpense = async (payload, req) => {
+=======
+import { currencyConverterFromOtherToUSD, expenseOnProfileCurrency } from '../utils/currencyConverter.js';
+import { Between, EqualOperator, Like } from 'typeorm';
+const insertExpense = async (payload, res) => {
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     try {
-        const decode = decodeToken(req);
         return dataSource.manager.transaction(async (trans) => {
             const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
             const newExpense = Expense.create({
@@ -16,11 +20,11 @@ const insertExpense = async (payload, req) => {
                 amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                data: currency.currencyData
+                data: JSON.stringify(currency.currencyData),
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
-                where: { id: decode?.id },
+                where: { id: res.locals.user.id },
                 relations: ["expenses"],
             });
             if (!user) {
@@ -63,17 +67,10 @@ const insertExpense = async (payload, req) => {
         throw new CustomError('err', 500);
     }
 };
-const deleteAllExpenses = async (req) => {
-    const decode = decodeToken(req);
-    return dataSource.manager.transaction(async (trans) => {
-        const user = await Users.findOneOrFail({
-            where: { id: decode?.id },
-            relations: ["expenses"],
-        });
-        await Expense.delete({ users: user.id });
-    });
+const deleteAllExpenses = async (res) => {
+    await Expense.delete({ users: new EqualOperator(res.locals.user.id) });
 };
-const deleteExpense = async (id, req) => {
+const deleteExpense = async (id) => {
     try {
         const expense = await Expense.findOne({ where: { id } });
         if (!expense)
@@ -87,31 +84,22 @@ const deleteExpense = async (id, req) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const totalExpenses = async (req) => {
-    const decode = decodeToken(req);
-    const user = await Users.findOne({
-        where: { id: decode?.id }
+const totalExpenses = async (res) => {
+    const expenses = await Expense.find({
+        where: { users: new EqualOperator(res.locals.user.id) }
     });
-    const expenseList = user?.expenses;
-    const total = expenseList ? expenseList.reduce((acc, expense) => acc + expense.amount, 0) : 0;
+    const total = expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0;
     return total;
 };
 const getExpenses = async (req, res) => {
     try {
-        const userId = req.cookies['userId'];
-        const expense = await Users.findOne({
-            where: { id: res.locals.user.id },
-            relations: ['expenses'],
-        });
-        if (!expense)
-            throw new CustomError('User not found', 404);
-        const expenseOnProfileCurrency = await Promise.all(expense.expenses.map(async (expense) => {
-            const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
-            return { ...expense, amount };
-        }));
-        return expenseOnProfileCurrency;
+        const filter = { ...res.locals.filter, where: { users: new EqualOperator(res.locals.user.id) } };
+        const expenses = await Expense.find(filter);
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency);
+        return results;
     }
     catch (err) {
+        console.log(err);
         if (err instanceof CustomError) {
             throw new CustomError(err.message, err.statusCode);
         }
@@ -144,6 +132,7 @@ const getExpenses = async (req, res) => {
 //         throw err;
 //     }
 // };
+<<<<<<< HEAD
 const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, req, res) => {
     try {
         const Expenses = await getExpenses(req, res); // put authme in router, else it wont work.
@@ -154,6 +143,23 @@ const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, 
         const maxAmount = Number(maxAmountQuery) || Infinity;
         const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
         return filteredExpenses;
+=======
+const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, category, req, res) => {
+    try {
+        let filter = {
+            ...res.locals.filter, where: {
+                users: new EqualOperator(res.locals.user.id),
+                amount: Between(Number(minAmountQuery) || 0, Number(maxAmountQuery) || 9223372036854775807),
+                title: Like(`%${searchQuery?.toString().toLowerCase() || ''}%`),
+            }
+        };
+        if (category) {
+            filter.where.category = new EqualOperator(category);
+        }
+        const expenses = await Expense.find(filter);
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency);
+        return results;
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     }
     catch (err) {
         throw err;

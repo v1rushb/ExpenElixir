@@ -1,6 +1,10 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
+<<<<<<< HEAD
 import { calculateBalance, deleteUser, insertUser, login, sendResetPasswordEmail } from '../controllers/User.js';
+=======
+import { calculateBalance, deleteUser, insertUser, login } from '../controllers/User.js';
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 import authMe from '../middlewares/Auth.js';
 import { validatePassword, validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -9,8 +13,11 @@ import { CustomError } from '../CustomError.js';
 import { stripe } from '../stripe-config.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
+<<<<<<< HEAD
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
+=======
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)
@@ -64,7 +71,7 @@ router.post('/logout', (req, res) => {
     }
 });
 router.get('/balance', authMe, async (req, res, next) => {
-    calculateBalance(req).then(data => {
+    calculateBalance(res).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);
     }).catch(err => next(err));
@@ -132,6 +139,7 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => 
         next(err);
     }
 });
+<<<<<<< HEAD
 router.get('/verify-account', async (req, res, next) => {
     try {
         const { token } = req.query;
@@ -150,6 +158,8 @@ router.get('/verify-account', async (req, res, next) => {
         next(err);
     }
 });
+=======
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 router.delete('/delete-account', authMe, async (req, res, next) => {
     const user = res.locals.user;
     try {
@@ -161,12 +171,17 @@ router.delete('/delete-account', authMe, async (req, res, next) => {
             res.clearCookie("token");
             res.clearCookie("loginDate");
             res.status(200).send(`Your account has been deleted successfully.`);
+<<<<<<< HEAD
         }).catch(err => next(err));
+=======
+        }).catch((err) => next(err));
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     }
     catch (err) {
         next(err);
     }
 });
+<<<<<<< HEAD
 router.post('/reset-password', validatePassword, async (req, res, next) => {
     const { email, newPassword } = req.body;
     try {
@@ -239,6 +254,12 @@ router.put('/', authMe, async (req, res, next) => {
     catch (err) {
         next(err);
     }
+=======
+router.use('/business', businessUser);
+router.get('/health', (req, res) => {
+    logger.info('Full HP [200] - /health - GET');
+    res.status(200).send('Full HP');
+>>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 });
 export default router;
 //# sourceMappingURL=User.js.map

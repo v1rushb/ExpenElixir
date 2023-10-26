@@ -1,6 +1,7 @@
 import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Users } from "./Users.js";
 import { Category } from "./Category.js";
+import { Gen } from "../../@types/generic.js";
 
 @Entity()
 export class Expense extends BaseEntity {
@@ -22,12 +23,12 @@ export class Expense extends BaseEntity {
     @Column({ name: 'pictureURL', default: 'http://default' })
     picURL: string;
 
-    @Column({ type: 'json', nullable: true })
-    data: object;
+    @Column({ type: 'text', nullable: true })
+    data: string;
 
-    @ManyToOne(() => Users, user => user.expenses)
+    @ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" })
     users: string;
 
-    @ManyToOne(() => Category, category => category.expenses, { eager: true })
+    @ManyToOne(() => Category, category => category.expenses, { eager: true, onDelete: "CASCADE" })
     category: Category;
 }
