@@ -58,7 +58,5 @@ jobs:
             -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
             -e DB_NAME=${{ secrets.DB_NAME }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
-          docker compose --file docker-compose.yml up -d --remove-orphans
-          docker system prune -af
         env:
           DOCKER_HOST: ssh://github@${{ github.event.client_payload.ip }}:22
