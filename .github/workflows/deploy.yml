@@ -1,6 +1,14 @@
 name: deploy docker
 
 on:
+  workflow_call:
+    inputs:
+      instance_ip:
+        type: string
+        required: true
+      image_version:
+        type: string
+        required: true
   repository_dispatch:
     types: [deploy_event]
 
