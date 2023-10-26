@@ -33,6 +33,6 @@ github_token=$(aws ssm get-parameter --name "GitHubToken" --with-decryption --qu
 curl -X POST "https://api.github.com/repos/V1rushB/ExpenElixir/dispatches" \
      -H "Accept: application/vnd.github.everest-preview+json" \
      -H "Authorization: token $github_token" \
-     --data "{\"event_type\": \"deploy_event\", \"client_payload\": { \"ip\": \"$(curl -s ifconfig.me)\" }}"
+     --data "{\"event_type\": \"deploy_event\", \"client_payload\": { \"ip\": \"$(curl -s ifconfig.me)\", \"image_version\": \"latest\" }}"
 
 sudo reboot
