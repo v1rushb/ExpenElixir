@@ -47,18 +47,19 @@ jobs:
           host: ${{ github.event.client_payload.ip }}
           user: github
 
+      - name: Set Environment Variables
+        run: |
+          echo "DB_HOST: $DB_HOST"
+          echo "DB_PORT: $DB_PORT"
+          echo "DB_USER_NAME: $DB_USER_NAME"
+          echo "DB_PASSWORD: $DB_PASSWORD"
+          echo "DB_NAME: $DB_NAME"
 
       - name: deploy
         run: |
           echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
           chmod 600 key.pem
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
-          docker run --name ExpenElixirX -d -p 80:2077 \
-            -e DB_HOST=${{ secrets.DB_HOST }} \
-            -e DB_PORT=${{ secrets.DB_PORT }} \
-            -e DB_USER_NAME=${{ secrets.DB_USER_NAME }} \
-            -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e DB_NAME=${{ secrets.DB_NAME }} \
-            ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
+          docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
