@@ -50,7 +50,8 @@ jobs:
 
       - name: deploy
         run: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME}}/expenelixir:latest
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
+          docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
           docker compose --file docker-compose.yml up -d --remove-orphans
           docker system prune -af
         env:
