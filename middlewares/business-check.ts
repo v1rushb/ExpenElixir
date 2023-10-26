@@ -11,7 +11,7 @@ const checkBusiness = async (req: express.Request, res: express.Response, next: 
 
         if(arg > 15)
         {
-            await sendEmail(user.email,`Your subscription has expired!`, `Subscription Expired!`);
+            await sendEmail(`Your subscription has expired!`, `Subscription Expired!`);
             user.profile.hasSentEmail = true;
             user.profile.role = 'User';
             await user.profile.save();

@@ -8,7 +8,6 @@ import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
-import logger from '../logger.js';
 import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 
