@@ -11,7 +11,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
     ports:
-      - "80:2077"
+      - "2077:80"
     healthcheck:
       test: ["CMD", "curl", "http://localhost"]
       timeout: 20s
