@@ -43,6 +43,22 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
+        restart-instances:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: eu-west-2
+
+      - name: Scale Down ASG to 0
+        run: aws autoscaling update-auto-scaling-group --auto-scaling-group-name "ExpenElixir-ASG" --min-size 0 --max-size 0 --desired-capacity 0
+
+      - name: Restore ASG to Original Size
+        run: aws autoscaling update-auto-scaling-group --auto-scaling-group-name "ExpenElixir-ASG" --min-size <2> --max-size <3> --desired-capacity <2>
+
   deploy-image:
     needs: build-image
     uses: ./.github/workflows/deploy.yml

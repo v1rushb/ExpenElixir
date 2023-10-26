@@ -230,3 +230,8 @@
 2023-10-23T16:24:17.050Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:17.702Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:18.243Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-26T14:50:31.341Z [error]: 409 - User with email: 2111111@ppu.edu.ps already exists. - /user/register - POST - ::1
+2023-10-26T14:50:42.755Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-26T14:51:36.423Z [error]: 400 - Expected double-quoted property name in JSON at position 78 - /user/login - POST - ::1
+2023-10-26T14:51:37.371Z [error]: 400 - Expected double-quoted property name in JSON at position 78 - /user/login - POST - ::1
+2023-10-26T14:51:46.985Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
