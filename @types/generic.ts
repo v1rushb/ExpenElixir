@@ -25,6 +25,7 @@ export namespace Gen {
         title: string,
         description: string,
         user: User,
+        budget: number,
     }
     export interface Income {
         id: string,

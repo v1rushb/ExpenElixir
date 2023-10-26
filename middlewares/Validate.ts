@@ -5,27 +5,39 @@ import { CustomError } from '../CustomError.js';
 
 
 const validateUser = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const values = ['firstName', 'lastName', 'email', 'password', 'phoneNumber', 'username',];
+    const values = ['firstName', 'lastName', 'email', 'password', 'phoneNumber', 'username'];
     const errorList: string[] = [];
+  
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{10,}$/;
+
     values.forEach(iterator => {
-        if (!req.body[iterator])
-            return void errorList.push(`${iterator} is Required.`);
+        if (!req.body[iterator]) {
+            errorList.push(`${iterator} is Required.`);
+        }
     });
+
     const user = req.body;
+
     try {
-        if (!isEmail.default(user.email))
+        if (!emailRegex.test(user.email)) {
             errorList.push(`Invalid email.`);
-        if (user.password.length < 10 && passwordStrength(user.password).value.toLocaleLowerCase().includes('weak')) {
-            errorList.push(`Password is too weak.`);
+        }
+        
+        if (!passwordRegex.test(user.password)) {
+            errorList.push(`Password must be at least 10 characters and include at least one uppercase letter, one lowercase letter, and one number.`);
         }
     } catch (err) {
         console.error(err);
         return res.status(500).send(`Empty body!`);
     }
-    if (errorList.length)
+
+    if (errorList.length) {
         return res.status(400).send(errorList.join('\n'));
+    }
+  
     next();
-}
+};
 
 const validateExpense = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
@@ -93,9 +105,34 @@ const validateCategory = async (req: express.Request, res: express.Response, nex
     }
 }
 
+const validateEmail = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const email = req.body.email;
+
+    if (!email || !emailRegex.test(email)) {
+        return res.status(400).send('Invalid email.');
+    }
+  
+    next();
+};
+
+const validatePassword = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{10,}$/;
+    const password = req.body.newPassword;
+
+    if (!password || !passwordRegex.test(password)) {
+        return res.status(400).send('Password must be at least 10 characters and include at least one uppercase letter, one lowercase letter, and one number and special characters.');
+    }
+
+    next();
+};
+
+
 export {
     validateUser,
     validateExpense,
     validateIncome,
     validateCategory,
+    validateEmail,
+    validatePassword,
 }

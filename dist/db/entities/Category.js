@@ -25,6 +25,14 @@ __decorate([
     __metadata("design:type", String)
 ], Category.prototype, "description", void 0);
 __decorate([
+    Column({ nullable: false }),
+    __metadata("design:type", Number)
+], Category.prototype, "budget", void 0);
+__decorate([
+    Column({ nullable: true, default: 0 }),
+    __metadata("design:type", Number)
+], Category.prototype, "totalExpenses", void 0);
+__decorate([
     OneToMany(() => Expense, expense => expense.category),
     __metadata("design:type", Array)
 ], Category.prototype, "expenses", void 0);

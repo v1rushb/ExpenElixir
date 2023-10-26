@@ -33,7 +33,7 @@ export class Profile extends BaseEntity {
     @Column({ nullable: true })
     hasSentEmail: boolean;
 
-    @OneToOne(() => Users, user => user.profile)
+    @OneToOne(() => Users, user => user.profile, {onDelete: 'CASCADE'})
     @JoinColumn()
     user: Partial<Users>;
 }

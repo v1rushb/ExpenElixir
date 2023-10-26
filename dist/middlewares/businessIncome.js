@@ -5,6 +5,7 @@ import { addUserIncome, businessIncome, deleteUserIncome } from '../controllers/
 import logger from '../logger.js';
 import { validateIncome } from './Validate.js';
 import checkBusiness from './business-check.js';
+import { modifyIncome } from '../controllers/Income.js';
 const router = express.Router();
 router.post('/add-user-income', authMe, premiumAuth, checkBusiness, validateIncome, async (req, res, next) => {
     addUserIncome(req.body, req.query.id, res).then(() => {
@@ -21,6 +22,12 @@ router.get('/business-income', authMe, premiumAuth, checkBusiness, async (req, r
     businessIncome(res).then(income => {
         logger.info(`User ${res.locals.user.username} requested all Incomes!`);
         res.status(200).send(income);
+    }).catch(err => next(err));
+});
+router.put('/', authMe, premiumAuth, checkBusiness, validateIncome, async (req, res, next) => {
+    modifyIncome(req.query.id, req.body, res).then(() => {
+        logger.info(`User ${res.locals.user.username} modified income ${req.params.id}!`);
+        res.status(200).send(`You have successfully modified the income!`);
     }).catch(err => next(err));
 });
 export default router;

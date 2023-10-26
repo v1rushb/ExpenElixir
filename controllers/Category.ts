@@ -13,7 +13,7 @@ const insertCategory = async (payload: Gen.Category, req: express.Request) => {
         return dataSource.manager.transaction(async trans => {
 
             const newCategory = Category.create({
-                title: payload.title, description: payload.description,
+                title: payload.title, description: payload.description,budget: payload.budget,
             });
             await trans.save(newCategory);
             const user = await Users.findOne({
@@ -76,10 +76,31 @@ const totalCategory = async (req: express.Request): Promise<Category[]> => {
     }
 }
 
+const modifyCategory = async (id: string, payload: Gen.Category, res: express.Response): Promise<void> => {
+    try {
+        const userCategories: Category[] = res.locals.user.categories
+        if(!userCategories) 
+            throw new CustomError(`No categories were found!`, 404);
+
+        const category = userCategories.find(category => category.id === id);
+        if(!category)
+            throw new CustomError(`Category with id: ${id} was not found!`, 404);
+        category.budget = payload.budget;
+        category.title = payload.title;
+        category.description = payload.description;
+        await category.save();
+        return res.locals.user.username;
+    } catch (err) {
+        if (err instanceof CustomError)
+            throw err;
+        throw new CustomError(`Internal Server Error`, 500);
+    }
+}
 
 export {
     insertCategory,
     deleteAllCategory,
     deleteCategory,
     totalCategory,
+    modifyCategory,
 }

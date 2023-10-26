@@ -1,4 +1,4 @@
-import { BaseEntity, BeforeInsert, Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import bcrypt from 'bcrypt';
 import { Expense } from "./Expense.js";
 import { Income } from "./Income.js";
@@ -17,13 +17,13 @@ export class Users extends BaseEntity {
     @Column({ length: 255, nullable: false, unique: true })
     username: string;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ nullable: false })
     email: string;
 
     @BeforeInsert()
     async hashPassword() {
         if (this.password) {
-            this.password = await bcrypt.hash(this.password, 10)
+            this.password = await bcrypt.hash(this.password, 10);
         }
     }
     @Column({ nullable: false })
@@ -32,6 +32,26 @@ export class Users extends BaseEntity {
     @Column({nullable: true})
     iamId: string;
 
+    @Column({default: false})
+    isVerified: boolean;
+
+    @Column()
+    verificationToken: string;
+
+    @Column({ type: 'varchar', length: 255, nullable: true })
+    resetToken: string;
+  
+    @Column({ type: 'timestamp', nullable: true })
+    resetTokenExpiration?: Date;
+
+    @Column({ nullable: true })
+    newHashedPassword?: string;
+
+    @CreateDateColumn({
+        type: 'timestamp',
+        default: () => "CURRENT_TIMESTAMP(6)"
+    })
+    createdAt: Date;
 
     @OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true })
     expenses: Expense[];

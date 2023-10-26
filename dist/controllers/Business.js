@@ -5,7 +5,6 @@ import { CustomError } from '../CustomError.js';
 import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
-import { Business } from '../db/entities/Business.js';
 const createUserUnderRoot = async (payload, res) => {
     return await dataSource.transaction(async (trans) => {
         const newProfile = Profile.create({
@@ -247,49 +246,5 @@ const businessCategories = async (res) => {
     const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
     return result;
 };
-const upgradeToBusiness = async (res) => {
-    try {
-        const user = res.locals.user;
-        console.log(`profiles are ${user.profile}`);
-        if (user.profile) {
-            user.profile.role = 'Root';
-            user.profile.subscription_date = new Date();
-            user.profile.hasSentEmail = false;
-            await user.profile.save();
-            const newBusiness = Business.create({
-                businessName: user.profile.firstName + "'s Business",
-                rootUserID: user.id,
-                users: [user],
-            });
-            await newBusiness.save();
-            user.business = newBusiness;
-            await user.save();
-        }
-    }
-    catch (err) {
-        throw (err);
-    }
-};
-const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, userIDQuery, req, res) => {
-    try {
-        const Expenses = await businessExpenses(res); // put authme in router, else it wont work.
-        if (!searchQuery && !minAmountQuery && !maxAmountQuery && !userIDQuery)
-            return Expenses;
-        const search = searchQuery || '';
-        const minAmount = Number(minAmountQuery) || -Infinity;
-        const maxAmount = Number(maxAmountQuery) || Infinity;
-        const userID = userIDQuery;
-        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
-        if (!userID)
-            return filteredExpenses;
-        else {
-            const newFilteredExpenses = filteredExpenses.filter(expense => expense.userId === userID);
-            return newFilteredExpenses;
-        }
-    }
-    catch (err) {
-        throw err;
-    }
-};
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, };
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, };
 //# sourceMappingURL=Business.js.map

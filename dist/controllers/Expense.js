@@ -5,6 +5,7 @@ import { Category } from '../db/entities/Category.js';
 import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
 import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
+import { sendEmail } from '../utils/sesServiceAws.js';
 const insertExpense = async (payload, req) => {
     try {
         const decode = decodeToken(req);
@@ -34,8 +35,26 @@ const insertExpense = async (payload, req) => {
             }
             user.expenses.push(newExpense);
             category.expenses.push(newExpense);
+            category.totalExpenses += newExpense.amount;
             await trans.save(user);
             await trans.save(category);
+            if (category.totalExpenses >= (category.budget * 0.9)) {
+                let emailBody = '';
+                let emailSubject = '';
+                if (category.totalExpenses < category.budget) {
+                    emailBody = `You are about to reach your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    emailSubject = `You are about to reach your budget limit for ${category.title}`;
+                }
+                else if (category.totalExpenses === category.budget) {
+                    emailBody = `You have reached your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    emailSubject = `You have reached your budget limit for ${category.title}`;
+                }
+                else {
+                    emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    emailSubject = `You have exceeded your budget limit for ${category.title}`;
+                }
+                await sendEmail(emailBody, emailSubject);
+            }
         });
     }
     catch (err) {

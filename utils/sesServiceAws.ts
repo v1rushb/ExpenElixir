@@ -9,6 +9,7 @@ const sesClient = new SESClient({
         secretAccessKey: `${process.env.AWS_SECRET_KEY}`,
     }
 });
+
 const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBody: string, emailSubject: string) => {
     return new SendEmailCommand({
         Destination: {
@@ -37,10 +38,10 @@ const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBod
     });
 };
 
-export const sendEmail = async (distEmail: string,emailBody: string, emailSubject: string) => {
+export const sendEmail = async (emailBody: string, emailSubject: string) => {
     const sendEmailCommand = createSendEmailCommand(
-        "mo.r.husini@gmail.com",
-        distEmail,
+        "cs.bashar.herbawi@gmail.com",
+        "cs.bashar.herbawi@gmail.com",
         emailBody,
         emailSubject
     );
@@ -48,7 +49,7 @@ export const sendEmail = async (distEmail: string,emailBody: string, emailSubjec
     try {
         return await sesClient.send(sendEmailCommand);
     } catch (e) {
-        console.error("Failed to send email.");
+        console.error("Failed to send email." + e);
         return e;
     }
 };

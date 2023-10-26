@@ -1,6 +1,6 @@
+import { Expense } from '../db/entities/Expense.js';
 import { ChatGPTAPI } from 'chatgpt';
 const getExpensesByCategory = async (res) => {
-    console.log(res.locals.user.expenses);
     const expensesByCategory = {};
     const result = [];
     res.locals.user.expenses.forEach((expense) => {
@@ -36,9 +36,27 @@ const makeGraphicalData = (data) => {
     return graphicalData;
 };
 const getAdvice = async (graph) => {
-    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
-    const res = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`);
-    return res.text.toString();
+    if (graph.length === 0) {
+        return "I can't give you advice without data";
+    }
+    console.log(graph.length);
+    //const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
+    // const res : ChatMessage = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`)
+    //return res.text.toString();
 };
-export { getExpensesByCategory, isValidDate, sortQueryByAmount, makeGraphicalData, getAdvice, };
+const getPrediction = async (res) => {
+    const userId = res.locals.user.id;
+    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
+    const expenses = await Expense.find({
+        select: ['expenseDate', 'amount'],
+        where: { users: userId },
+        order: {
+            expenseDate: 'ASC'
+        }
+    });
+    const expensesString = expenses.map(expense => `${expense.expenseDate.toDateString()} - ${expense.amount}`).join('\n');
+    const response = await api.sendMessage("I will provide you with some data of this form: {date : amount spent during this date} and I want you to predict my spending. Here is the data: " + expensesString + " and I also want you to tell me my spending velocity. which is avg of how much I spent during this time interval and tell me if it's good or not.");
+    return response.text.toString();
+};
+export { getExpensesByCategory, isValidDate, sortQueryByAmount, makeGraphicalData, getAdvice, getPrediction, };
 //# sourceMappingURL=Analytics.js.map

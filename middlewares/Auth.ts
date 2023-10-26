@@ -8,11 +8,16 @@ const authMe = async (req: express.Request, res: express.Response, next: express
         const token = req.cookies["token"] || "";
         const isValidToken = jwt.verify(token, process.env.SECRET_KEY || "");
 
-        if (isValidToken) {
+        if (isValidToken ) {
             const decode = jwt.decode(token, { json: true });
             const user = await Users.findOne({
                 where: { email: decode?.email }
             })
+            if(!user)
+                throw new CustomError('Unauthorized', 401);
+            if(!user?.isVerified) {
+                throw new CustomError('You need to verify your email. Please check your mailbox!',401);
+            }
             res.locals.user = user;
             return next();
         }

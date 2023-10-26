@@ -1,6 +1,6 @@
 import express from 'express';
 import authMe from './Auth.js';
-import { addUserCategory, businessCategories, deleteUserCategory } from '../controllers/Business.js';
+import { addUserCategory, businessCategories, deleteUserCategory, modifyUserCategory } from '../controllers/Business.js';
 import logger from '../logger.js';
 import premiumAuth from './PremiumAuth.js';
 import { validateCategory } from './Validate.js';
@@ -27,6 +27,13 @@ router.post('add-user-category', authMe, premiumAuth, checkBusiness, validateCat
         logger.info(`User ${res.locals.user.username} added a new category for user with id ${req.query.userID}!`);
         res.status(200).send(`You have successfully added a new category!`);
     }).catch(err=> next(err));
+});
+
+router.put('/modify', authMe, premiumAuth, checkBusiness, validateCategory, async (req, res, next) => {
+    modifyUserCategory(req.query.id as string, req.query.userID as string, req.body, res).then(() => {
+        logger.info(`User ${res.locals.user.username} modified category ${req.params.id} for user with id ${req.query.userID}!`);
+        res.status(200).send(`You have successfully modified the category!`);
+    }).catch(err => next(err));
 });
 
 export default router;

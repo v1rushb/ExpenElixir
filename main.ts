@@ -9,8 +9,7 @@ import expenseRouter from './routers/Expense.js';
 import cookieParser from 'cookie-parser';
 import logger from './logger.js';
 import ErrorHandler from './middlewares/ErrorHandler.js';
-import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from './utils/currencyConverter.js';
-import { sendEmail } from './utils/sesServiceAws.js';
+import { checkForVerification } from './controllers/User.js';
 
 const app = express();
 app.use(express.json());
@@ -32,11 +31,6 @@ app.get('/health', (req, res) => {
     res.status(200).send('Full HP');
 
 });
-// app.get('/send', async (req, res) => {
-//     await sendEmail("hii", 'Mohammad')
-//     res.status(200).send('Full HP');
-
-// });
 
 app.use('/', (req, res) => {
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);
@@ -50,6 +44,7 @@ app.listen(PORT, () => {
     console.log(`Server is ON and running on PORT: ${PORT}`);
     db.initialize().then(() => {
         console.log(`Connected to DB dude!`);
+        checkForVerification();
     }).catch(err => {
         console.error(`Failed to connect to the database. Error: ${err}`);
     });
