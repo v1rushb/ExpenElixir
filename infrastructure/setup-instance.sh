@@ -28,11 +28,12 @@ sudo usermod --append --groups docker github
 sudo usermod --append --groups docker ubuntu
 sudo chown github:github -R /home/app
 
-github_pubkey="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM+pNBrYA5qN/PFsK7J5dCDMpfHPGdV7lEgGiF8mcINk 211111@ppu.edu.ps"
+github_pubkey="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBbZCNZaIOeEpTjiV7VeNfgk/8HTN5BafA6UcslURQDL 211111@ppu.edu.ps"
 
 sudo -u github sh -c "mkdir -p /home/app/.ssh && echo $github_pubkey > /home/app/.ssh/authorized_keys"
 
-sudo reboot
+sudo apt install unzip -y
+
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 sudo ./aws/install --update

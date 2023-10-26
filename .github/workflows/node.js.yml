@@ -1,84 +1,85 @@
-name: Docker Image CI
+# name: Docker Image CI
 
-on:
-  push:
-    branches: [ "main" ]
-  repository_dispatch:
-    types: [deploy_event]
+# on:
+#   push:
+#     branches: [ "main" ]
+#   repository_dispatch:
+#     types: [deploy_event]
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
 
-    permissions:
-      id-token: write
-      contents: read
+#     permissions:
+#       id-token: write
+#       contents: read
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v3
-      with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+#     - name: Login to Docker Hub
+#       uses: docker/login-action@v3
+#       with:
+#         username: ${{ secrets.DOCKERHUB_USERNAME }}
+#         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    - name: Build and push the Docker image
-      run: |
-        docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
+#     - name: Build and push the Docker image
+#       run: |
+#         docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
+#         docker push ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir
 
-    - name: Set Environment Variables
-      run: |
-        echo "DB_HOST: $DB_HOST"
-        echo "DB_PORT: $DB_PORT"
-        echo "DB_USER_NAME: $DB_USER_NAME"
-        echo "DB_PASSWORD: $DB_PASSWORD"
-        echo "DB_NAME: $DB_NAME"
+#     - name: Set Environment Variables
+#       run: |
+#         echo "DB_HOST: $DB_HOST"
+#         echo "DB_PORT: $DB_PORT"
+#         echo "DB_USER_NAME: $DB_USER_NAME"
+#         echo "DB_PASSWORD: $DB_PASSWORD"
+#         echo "DB_NAME: $DB_NAME"
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-        aws-region: eu-west-2
+#     - name: Configure AWS Credentials
+#       uses: aws-actions/configure-aws-credentials@v1
+#       with:
+#         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+#         aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+#         aws-region: eu-west-2
 
-    - name: Install AWS CLI
-      run: |
-        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-        unzip awscliv2.zip
-        sudo ./aws/install --update
+#     - name: Install AWS CLI
+#       run: |
+#         curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+#         unzip awscliv2.zip
+#         sudo ./aws/install --update
 
-    - name: Deploy to EC2 Instance (Optional)
-      if: github.event_name == 'repository_dispatch'
-      run: |
-        ip="${{ github.event.client_payload.ip }}"
-        echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
-        chmod 600 key.pem
-        ssh -i 'key.pem' -o StrictHostKeyChecking=no github@$ip "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest"
+#     - name: Deploy to EC2 Instance
+#       if: github.event_name == 'push' || github.event_name == 'repository_dispatch'
+
+#       run: |
+#         ip="${{ github.event.client_payload.ip }}"
+#         echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+#         chmod 600 key.pem
+#         ssh -i 'key.pem' -o StrictHostKeyChecking=no github@$ip "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest"
 
     
-    #old code
-    # - name: Deploy to EC2 instances
-    #   run: |
-    #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
-    #     chmod 600 key.pem
-    #     IFS=' ' read -ra ADDR <<< "$public_ips"
-    #     for ip in "${ADDR[@]}"; do
-    #       ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@$ip "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest"
-    #       echo "Deployed to $ip"
-    #       echo 'hi' >> hi_file.txt
-    #     done
-    #   env:
-    #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-    #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
-    #     DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
+#     #old code
+#     # - name: Deploy to EC2 instances
+#     #   run: |
+#     #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+#     #     chmod 600 key.pem
+#     #     IFS=' ' read -ra ADDR <<< "$public_ips"
+#     #     for ip in "${ADDR[@]}"; do
+#     #       ssh -i 'key.pem' -o StrictHostKeyChecking=no ubuntu@$ip "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest"
+#     #       echo "Deployed to $ip"
+#     #       echo 'hi' >> hi_file.txt
+#     #     done
+#     #   env:
+#     #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+#     #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+#     #     DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
 
-    # - name: Deployment
-    #   run: |
-    #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
-    #     chmod 600 key.pem
-    #     ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
-    #   env:
-    #     DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
+#     # - name: Deployment
+#     #   run: |
+#     #     echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+#     #     chmod 600 key.pem
+#     #     ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir && docker run --name ExpenElixirX -d -p 80:2077 ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest'
+#     #   env:
+#     #     DEPLOYMENT_PRIVATE_KEY: ${{ secrets.DEPLOYMENT_KEY }}
