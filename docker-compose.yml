@@ -1,21 +1,6 @@
 version: '3'
 
 services:
-  mysql:
-    container_name: db
-    image: mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=$DB_PASSWORD
-      - MYSQL_DATABASE=express-docker
-    volumes:
-      - db-data:/var/lib/mysql
-    ports:
-      - "3307:3306"
-    healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      timeout: 20s
-      retries: 10
-
   app:
     profiles:
       - ExpenElixir
@@ -23,19 +8,14 @@ services:
     build: .
     environment:
       - PORT=80
-      - DB_HOST=db
-      - DB_USER=root
-      - DB_PASSWORD=$DB_PASSWORD
-      - DB_NAME=e
+      - DB_HOST=process.env.DB_HOST
+      - DB_USER=process.env.DB_USER_NAME
+      - DB_PASSWORD=process.env.DB_PASSWORD
+      - DB_NAME=process.env.DB_NAME
     ports:
-      - "3000:80"
+      - "2077:80"
     healthcheck:
       test: ["CMD", "curl", "http://localhost"]
       timeout: 20s
       retries: 5
-    depends_on:
-      mysql:
-        condition: service_healthy
-
-volumes:
-  db-data:
+    restart: always
