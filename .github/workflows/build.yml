@@ -49,7 +49,9 @@ jobs:
           aws-region: eu-west-2
 
       - name: Scale Down ASG to 0
-        run: aws autoscaling update-auto-scaling-group --auto-scaling-group-name "ExpenElixir-ASG" --min-size 0 --max-size 0 --desired-capacity 0
+        run: |
+          aws autoscaling update-auto-scaling-group --auto-scaling-group-name "ExpenElixir-ASG" --min-size 0 --max-size 0 --desired-capacity 0
+          sleep 20
 
       - name: Restore ASG to Original Size
         run: aws autoscaling update-auto-scaling-group --auto-scaling-group-name "ExpenElixir-ASG" --min-size 2 --max-size 3 --desired-capacity 2

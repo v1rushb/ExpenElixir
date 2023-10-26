@@ -49,6 +49,7 @@ jobs:
 
       - name: deploy
         run: |
+          sleep 60
           echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
           chmod 600 key.pem
           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
