@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: deploy
         run: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME}}/ExpenElixir:${{ inputs.image_version }}
+          docker pull ${{ secrets.DOCKERHUB_USERNAME}}/expenelixir:${{ inputs.image_version }}
           docker compose --file docker-compose-prod.yml up -d --remove-orphans
           docker system prune -af
         env:
