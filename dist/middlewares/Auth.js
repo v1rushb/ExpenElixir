@@ -11,6 +11,10 @@ const authMe = async (req, res, next) => {
                 where: { email: decode?.email }
             });
             res.locals.user = user;
+            res.locals.filter = {
+                skip: (Number(req.query.pageNumber || 1) - 1) * Number(req.query.pageSize || 5),
+                take: Number(req.query.pageSize || 5),
+            };
             return next();
         }
         throw new CustomError(`Unauthorized`, 401);

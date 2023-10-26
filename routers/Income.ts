@@ -17,7 +17,7 @@ router.post('/', authMe, validateIncome, async (req, res, next) => {
 });
 
 router.get('/total', authMe, async (req, res, next) => {
-    totalIncomes(req).then(income => {
+    totalIncomes(res).then(income => {
         logger.info(`Total income : ${income}, user: ${req.cookies["token"]}`)
         res.status(200).send(`Total income : ${income}`);
     }).catch(err => next(err));
@@ -38,13 +38,13 @@ router.get('/', authMe, async (req, res, next) => {
 
 
 router.delete('/deleteAllIncomes', authMe, async (req, res, next) => {
-    deleteAllIncomes(req).then(income => {
+    deleteAllIncomes(res).then(income => {
         res.status(200).send(`You have successfully deleted all incomes!`);
     }).catch(err => next(err));
 });
 
 router.delete('/', authMe, async (req, res, next) => {
-    deleteIncome(req.query.id as string, req).then(income => {
+    deleteIncome(req.query.id as string, res).then(income => {
         logger.info(`User ${income} ${req.params.id} `)
         res.status(200).send(`You have successfully deleted the income with id: ${req.params.id}!`);
     }).catch(err => next(err));

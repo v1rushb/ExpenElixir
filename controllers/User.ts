@@ -31,7 +31,6 @@ const insertUser = async (payload: Gen.User) => {
 
 const login = async (username: string, password: string, iamId: string | null, res: express.Response): Promise<{ username: string, email: string, token: string }> => {
   try {
-    //const user = res.locals.user;
 
     const user = await Users.findOne({
       where: { username },
@@ -74,9 +73,9 @@ const login = async (username: string, password: string, iamId: string | null, r
   }
 };
 
-const calculateBalance = async (req: express.Request): Promise<string> => {
+const calculateBalance = async (res: express.Response): Promise<string> => {
   try {
-    return `Your account Balance : ${await totalIncomes(req) - await totalExpenses(req)}`
+    return `Your account Balance : ${await totalIncomes(res) - await totalExpenses(res)}`
   }
   catch (err) {
     throw new CustomError(`Unexpected Error ${err}`, 500);
@@ -84,15 +83,8 @@ const calculateBalance = async (req: express.Request): Promise<string> => {
 }
 
 const deleteUser = async (res: express.Response): Promise<void> => {
-  const user: Users = res.locals.user;
-
-
-  if (!user) {
-    throw new CustomError('User not found', 404);
-  }
-
   try {
-    await Users.delete(user.id);
+    await Users.delete(res.locals.user.id);
   } catch (err: any) {
     throw new CustomError(`Error deleting user: ${err}`, 500);
   }

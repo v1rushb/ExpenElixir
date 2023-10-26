@@ -37,8 +37,8 @@ __decorate([
     __metadata("design:type", String)
 ], Expense.prototype, "picURL", void 0);
 __decorate([
-    Column({ type: 'json', nullable: true }),
-    __metadata("design:type", Object)
+    Column({ type: 'text', nullable: true }),
+    __metadata("design:type", String)
 ], Expense.prototype, "data", void 0);
 __decorate([
     ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" }),

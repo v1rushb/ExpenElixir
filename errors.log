@@ -295,3 +295,28 @@
 2023-10-25T17:57:10.660Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
 2023-10-25T17:57:15.628Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
 2023-10-25T17:57:27.931Z [error]: 404 Not Found - /user - DELETE - ::ffff:127.0.0.1
+2023-10-26T14:54:56.794Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:13.074Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:57:56.714Z [error]: 404 Not Found - /expense/page=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:39:21.001Z [error]: undefined - Cannot read properties of null (reading 'undefined') - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:39:38.122Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:40:33.953Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:42:16.431Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:42:27.771Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:44:08.113Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:44:40.802Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:46:48.034Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:47:23.048Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:49:35.501Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T15:52:43.436Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:01:04.476Z [error]: 409 - User with email: ok@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:46.827Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-26T16:10:09.390Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:10:34.064Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:12:49.260Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:14:45.586Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:17:31.201Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:32:27.193Z [error]: undefined - jwt must be provided - /expense/search - GET - ::ffff:127.0.0.1
+2023-10-26T16:34:28.427Z [error]: undefined - Property "0" was not found in "Category". Make sure your query is correct. - /expense/search?category=d8dc6ce4-745c-4509-9810-c073232dc5ac - GET - ::ffff:127.0.0.1
+2023-10-26T16:45:28.593Z [error]: 404 Not Found - /deleteAllExpenses - DELETE - ::ffff:127.0.0.1
+2023-10-26T16:45:35.533Z [error]: 404 Not Found - /deleteAllExpenses - DELETE - ::ffff:127.0.0.1

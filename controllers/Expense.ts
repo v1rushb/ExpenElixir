@@ -4,18 +4,15 @@ import { Expense } from "../db/entities/Expense.js";
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { Category } from '../db/entities/Category.js';
-import { decodeToken } from './Income.js';
 import { CustomError } from '../CustomError.js';
-import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
-import { promises } from 'dns';
-import { type } from 'os';
-import { Between, EqualOperator, LessThan, Like, MoreThan } from 'typeorm';
+import { currencyConverterFromOtherToUSD, expenseOnProfileCurrency } from '../utils/currencyConverter.js';
+import { Between, EqualOperator, Like } from 'typeorm';
 
 
 
-const insertExpense = async (payload: Gen.Expense, req: express.Request): Promise<void> => {
+const insertExpense = async (payload: Gen.Expense, res: express.Response): Promise<void> => {
     try {
-        const decode = decodeToken(req);
+
         return dataSource.manager.transaction(async trans => {
             const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD')
             const newExpense = Expense.create({
@@ -23,11 +20,11 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request): Promis
                 amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                data: currency.currencyData
+                data: JSON.stringify(currency.currencyData),
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
-                where: { id: decode?.id },
+                where: { id: res.locals.user.id },
                 relations: ["expenses"],
             });
             if (!user) {
@@ -53,19 +50,11 @@ const insertExpense = async (payload: Gen.Expense, req: express.Request): Promis
     }
 }
 
-const deleteAllExpenses = async (req: express.Request): Promise<void> => {
-    const decode = decodeToken(req);
-    return dataSource.manager.transaction(async trans => {
-        const user = await Users.findOneOrFail({
-            where: { id: decode?.id },
-            relations: ["expenses"],
-        });
-
-        await Expense.delete({ users: user.id });
-    });
+const deleteAllExpenses = async (res: express.Response): Promise<void> => {
+    await Expense.delete({ users: new EqualOperator(res.locals.user.id) });
 }
 
-const deleteExpense = async (id: string, req: express.Request): Promise<Expense> => {
+const deleteExpense = async (id: string): Promise<Expense> => {
     try {
         const expense = await Expense.findOne({ where: { id } }) as Expense;
         if (!expense)
@@ -79,49 +68,27 @@ const deleteExpense = async (id: string, req: express.Request): Promise<Expense>
     }
 }
 
-const totalExpenses = async (req: express.Request): Promise<number> => {
-    const decode = decodeToken(req);
+const totalExpenses = async (res: express.Response): Promise<number> => {
 
-    const user = await Users.findOne({
-        where: { id: decode?.id }
+
+    const expenses = await Expense.find({
+        where: { users: new EqualOperator(res.locals.user.id) }
     });
-    const expenseList = user?.expenses
-    const total = expenseList ? expenseList.reduce((acc, expense) => acc + expense.amount, 0) : 0
+
+    const total = expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0
     return total;
 }
 
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const userId = req.cookies['userId'];
+        const filter = { ...res.locals.filter, where: { users: new EqualOperator(res.locals.user.id) } }
 
-        // const expense = await Users.findOne({
-        //     where: { id: res.locals.user.id },
-        //     relations: ['expenses'],
-        // });
-        // if (!expense) throw new CustomError('User not found', 404);
-        const expenses = await Expense.find({
-            where: { users: new EqualOperator(res.locals.user.id) }
-        })
-        const expenseOnProfileCurrency = await Promise.all(
-            expenses.map(async (expense) => {
-                const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
-                return { ...expense, amount };
-            })
-        );
-        return expenseOnProfileCurrency as unknown as Promise<Expense[]>;
+        const expenses = await Expense.find(filter)
 
-        // const expenses = Expense
-        //     .createQueryBuilder("expense")
-        //     .where("expense.users = :userId", { userId: res.locals.user.id })
-        //     .getMany();
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency)
 
-        // return expenses
+        return results as unknown as Promise<Expense[]>;
 
-
-
-
-
-        // const expenses =Expense
     } catch (err: unknown) {
         console.log(err);
 
@@ -162,19 +129,29 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
 //     }
 // };
 
-const getFilteredExpenses = async (searchQuery: string, minAmountQuery: string, maxAmountQuery: string, req: express.Request, res: express.Response): Promise<Expense[]> => {
+const getFilteredExpenses = async (searchQuery: string, minAmountQuery: string, maxAmountQuery: string, category: string, req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const search = searchQuery?.toString().toLowerCase() || '';
-        const minAmount = Number(minAmountQuery) || 0
-        const maxAmount = Number(maxAmountQuery) || 9223372036854775807
 
-        const filter = { users: new EqualOperator(res.locals.user.id), amount: Between(minAmount, maxAmount), title: Like(`%${search}%`) }
 
-        const expenses = await Expense.find({
-            where: filter
-        })
+        let filter = {
+            ...res.locals.filter, where: {
+                users: new EqualOperator(res.locals.user.id),
+                amount: Between(Number(minAmountQuery) || 0,
+                    Number(maxAmountQuery) || 9223372036854775807),
+                title: Like(`%${searchQuery?.toString().toLowerCase() || ''}%`),
+            }
+        }
+        if (category) {
+            filter.where.category = new EqualOperator(category);
+        }
 
-        return expenses
+
+
+        const expenses = await Expense.find(filter)
+
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency)
+
+        return results as unknown as Promise<Expense[]>;
     } catch (err) {
         throw err;
     }

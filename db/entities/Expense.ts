@@ -23,8 +23,8 @@ export class Expense extends BaseEntity {
     @Column({ name: 'pictureURL', default: 'http://default' })
     picURL: string;
 
-    @Column({ type: 'json', nullable: true })
-    data: Gen.currencyType;
+    @Column({ type: 'text', nullable: true })
+    data: string;
 
     @ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" })
     users: string;

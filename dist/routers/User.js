@@ -65,7 +65,7 @@ router.post('/logout', (req, res) => {
     }
 });
 router.get('/balance', authMe, async (req, res, next) => {
-    calculateBalance(req).then(data => {
+    calculateBalance(res).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data}`);
     }).catch(err => next(err));

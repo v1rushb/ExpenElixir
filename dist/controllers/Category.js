@@ -1,19 +1,17 @@
 import dataSource from "../db/dataSource.js";
 import { Category } from "../db/entities/Category.js";
-import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { CustomError } from '../CustomError.js';
-import { decodeToken } from './Income.js';
-const insertCategory = async (payload, req) => {
+import { EqualOperator } from 'typeorm';
+const insertCategory = async (payload, res) => {
     try {
-        const decode = jwt.decode(req.cookies["token"], { json: true });
         return dataSource.manager.transaction(async (trans) => {
             const newCategory = Category.create({
                 title: payload.title, description: payload.description,
             });
             await trans.save(newCategory);
             const user = await Users.findOne({
-                where: { id: decode?.id },
+                where: { id: res.locals.user.id },
                 relations: ["categories"],
             });
             if (!user) {
@@ -29,15 +27,8 @@ const insertCategory = async (payload, req) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const deleteAllCategory = async (req) => {
-    const decode = jwt.decode(req.cookies["token"], { json: true });
-    return dataSource.manager.transaction(async (trans) => {
-        const user = await Users.findOneOrFail({
-            where: { id: decode?.id },
-            relations: ["categories"],
-        });
-        await Category.delete({ users: user.id });
-    });
+const deleteAllCategory = async (res) => {
+    await Category.delete({ users: new EqualOperator(res.locals.user.id) });
 };
 const deleteCategory = async (id) => {
     try {
@@ -53,15 +44,12 @@ const deleteCategory = async (id) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const totalCategory = async (req) => {
+const totalCategory = async (res) => {
     try {
-        const decode = decodeToken(req);
-        const user = await Users.findOne({
-            where: { id: decode?.id }
+        const categories = await Category.find({
+            where: { users: new EqualOperator(res.locals.user.id) }
         });
-        if (!user)
-            throw new CustomError('User not found', 404);
-        return user?.categories;
+        return categories;
     }
     catch (err) {
         if (err instanceof CustomError)

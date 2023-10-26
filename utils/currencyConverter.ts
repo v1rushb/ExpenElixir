@@ -1,10 +1,14 @@
 import { Gen } from "../@types/generic.js";
+import { Expense } from "../db/entities/Expense.js";
 
 
 
 export const currencyConverterFromUSDtoOther = async (amount: number, currencyType: string, data: Gen.currencyType | any): Promise<number> => {
+    const JsonData = await JSON.parse(data);
 
-    return amount * data[currencyType]
+
+
+    return amount * JsonData[currencyType]
 }
 
 
@@ -14,3 +18,12 @@ export const currencyConverterFromOtherToUSD = async (amount: number, currencyTy
 
     return { amount: amount / currency.data[currencyType], currencyData: currency.data }
 }
+
+export const expenseOnProfileCurrency = async (expenses: Expense[], profileCurrency: string) => {
+    return await Promise.all(
+        expenses.map(async (expense) => {
+            const amount = await currencyConverterFromUSDtoOther(expense.amount, profileCurrency, expense.data);
+            return { ...expense, amount };
+        })
+    )
+};

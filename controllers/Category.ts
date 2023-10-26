@@ -5,11 +5,10 @@ import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { CustomError } from '../CustomError.js';
-import { decodeToken } from './Income.js';
+import { EqualOperator } from 'typeorm';
 
-const insertCategory = async (payload: Gen.Category, req: express.Request) => {
+const insertCategory = async (payload: Gen.Category, res: express.Response) => {
     try {
-        const decode = jwt.decode(req.cookies["token"], { json: true });
         return dataSource.manager.transaction(async trans => {
 
             const newCategory = Category.create({
@@ -17,7 +16,7 @@ const insertCategory = async (payload: Gen.Category, req: express.Request) => {
             });
             await trans.save(newCategory);
             const user = await Users.findOne({
-                where: { id: decode?.id },
+                where: { id: res.locals.user.id },
                 relations: ["categories"],
             });
             if (!user) {
@@ -34,15 +33,8 @@ const insertCategory = async (payload: Gen.Category, req: express.Request) => {
     }
 }
 
-const deleteAllCategory = async (req: express.Request) => {
-    const decode = jwt.decode(req.cookies["token"], { json: true });
-    return dataSource.manager.transaction(async trans => {
-        const user = await Users.findOneOrFail({
-            where: { id: decode?.id },
-            relations: ["categories"],
-        });
-        await Category.delete({ users: user.id });
-    });
+const deleteAllCategory = async (res: express.Response) => {
+    await Category.delete({ users: new EqualOperator(res.locals.user.id) });
 }
 
 const deleteCategory = async (id: string): Promise<Category> => {
@@ -59,16 +51,14 @@ const deleteCategory = async (id: string): Promise<Category> => {
     }
 }
 
-const totalCategory = async (req: express.Request): Promise<Category[]> => {
+const totalCategory = async (res: express.Response): Promise<Category[]> => {
     try {
-        const decode = decodeToken(req);
-        const user = await Users.findOne({
-            where: { id: decode?.id }
+
+        const categories = await Category.find({
+            where: { users: new EqualOperator(res.locals.user.id) }
         });
 
-        if (!user) throw new CustomError('User not found', 404);
-
-        return user?.categories as Category[];
+        return categories as Category[];
     } catch (err) {
         if (err instanceof CustomError)
             throw err;

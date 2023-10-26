@@ -681,3 +681,100 @@
 2023-10-25T18:17:38.269Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
 2023-10-25T18:17:38.458Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
 2023-10-25T18:17:38.530Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-26T14:54:56.794Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of null (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:13.074Z [error]: 400 - Invalid credentials - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:23.985Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T14:55:25.867Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T14:56:35.573Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:01.393Z [info]: User undefined requested all Expenses!
+2023-10-26T14:57:17.517Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:19.188Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:21.192Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:23.148Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:25.271Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:27.474Z [info]: User undefined added a new Expense!
+2023-10-26T14:57:34.910Z [info]: User undefined requested all Expenses!
+2023-10-26T14:57:56.714Z [error]: 404 Not Found - /expense/page=2 - GET - ::ffff:127.0.0.1
+2023-10-26T14:58:02.910Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:14.816Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:24.831Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:30.691Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:45.073Z [info]: User undefined requested all Expenses!
+2023-10-26T14:58:56.588Z [info]: User undefined requested all Expenses!
+2023-10-26T14:59:03.443Z [info]: User undefined requested all Expenses!
+2023-10-26T15:39:16.411Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T15:39:21.001Z [error]: undefined - Cannot read properties of null (reading 'undefined') - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:39:38.122Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:40:33.953Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:42:16.431Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:42:27.771Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:44:08.113Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:44:40.802Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:46:48.034Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:47:23.048Z [error]: 500 - Internal Server Error - /expense?pageNumber=2 - GET - ::ffff:127.0.0.1
+2023-10-26T15:47:40.643Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:00.322Z [info]: User undefined added a new Expense!
+2023-10-26T15:48:02.633Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:14.091Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:26.865Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:28.163Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:33.124Z [info]: User undefined requested all Expenses!
+2023-10-26T15:48:52.354Z [info]: User undefined requested all Expenses!
+2023-10-26T15:49:35.501Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T15:49:50.317Z [info]: User undefined added a new Expense!
+2023-10-26T15:49:52.735Z [info]: User undefined requested all Expenses!
+2023-10-26T15:50:13.906Z [info]: User undefined requested all Expenses!
+2023-10-26T15:50:54.966Z [info]: User undefined added a new Expense!
+2023-10-26T15:51:00.736Z [info]: User undefined requested all Expenses!
+2023-10-26T15:52:43.436Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T15:53:12.459Z [info]: User undefined added a new Expense!
+2023-10-26T15:53:22.503Z [info]: User undefined requested all Expenses!
+2023-10-26T16:01:00.137Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:04.476Z [error]: 409 - User with email: ok@gmail.com already exists. - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:16.536Z [info]: 200 OK - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:19.093Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:46.827Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-26T16:01:58.168Z [info]: User undefined added a new Expense!
+2023-10-26T16:02:13.848Z [info]: User undefined requested all Expenses!
+2023-10-26T16:05:50.312Z [info]: User undefined added a new Expense!
+2023-10-26T16:07:12.759Z [info]: User undefined requested all Expenses!
+2023-10-26T16:07:58.422Z [info]: User undefined added a new Expense!
+2023-10-26T16:08:25.079Z [info]: User undefined requested all Expenses!
+2023-10-26T16:08:28.700Z [info]: User undefined requested all Expenses!
+2023-10-26T16:10:09.390Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:10:34.064Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:10:52.307Z [info]: User undefined requested all Expenses!
+2023-10-26T16:11:35.433Z [info]: User undefined added a new Expense!
+2023-10-26T16:11:37.898Z [info]: User undefined requested all Expenses!
+2023-10-26T16:12:10.978Z [info]: User undefined requested all Expenses!
+2023-10-26T16:12:49.260Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:14:45.586Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:15:08.674Z [info]: User undefined requested all Expenses!
+2023-10-26T16:15:24.171Z [info]: User undefined requested all Expenses!
+2023-10-26T16:15:26.992Z [info]: User undefined requested all Expenses!
+2023-10-26T16:17:12.143Z [info]: User undefined added a new Expense!
+2023-10-26T16:17:31.201Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-26T16:18:14.392Z [info]: User undefined added a new Expense!
+2023-10-26T16:18:15.044Z [info]: User undefined added a new Expense!
+2023-10-26T16:18:15.684Z [info]: User undefined added a new Expense!
+2023-10-26T16:18:18.836Z [info]: User undefined requested all Expenses!
+2023-10-26T16:18:58.186Z [info]: User undefined requested all Expenses!
+2023-10-26T16:19:18.469Z [info]: User undefined requested all Expenses!
+2023-10-26T16:30:34.691Z [info]: User undefined requested all Expenses!
+2023-10-26T16:31:12.510Z [info]: User undefined requested all Expenses!
+2023-10-26T16:32:27.193Z [error]: undefined - jwt must be provided - /expense/search - GET - ::ffff:127.0.0.1
+2023-10-26T16:32:31.472Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T16:32:34.017Z [info]: User undefined requested all Expenses!
+2023-10-26T16:32:54.246Z [info]: User undefined requested all Expenses!
+2023-10-26T16:34:00.367Z [info]: User undefined requested all Expenses!
+2023-10-26T16:34:28.427Z [error]: undefined - Property "0" was not found in "Category". Make sure your query is correct. - /expense/search?category=d8dc6ce4-745c-4509-9810-c073232dc5ac - GET - ::ffff:127.0.0.1
+2023-10-26T16:35:03.749Z [info]: User undefined requested all Expenses!
+2023-10-26T16:35:46.649Z [info]: User undefined added a new Expense!
+2023-10-26T16:35:47.899Z [info]: User undefined added a new Expense!
+2023-10-26T16:36:02.406Z [info]: User undefined requested all Expenses!
+2023-10-26T16:36:18.380Z [info]: User undefined requested all Expenses!
+2023-10-26T16:45:28.593Z [error]: 404 Not Found - /deleteAllExpenses - DELETE - ::ffff:127.0.0.1
+2023-10-26T16:45:35.533Z [error]: 404 Not Found - /deleteAllExpenses - DELETE - ::ffff:127.0.0.1
+2023-10-26T17:05:00.096Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-26T17:05:00.275Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-26T17:05:00.346Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
