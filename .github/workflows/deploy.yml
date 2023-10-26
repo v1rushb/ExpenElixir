@@ -39,11 +39,11 @@ jobs:
           registry: docker.io
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          
+
       - name: configure docker host
         uses: khaledez/configure-docker-host@v1
         with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
           host: ${{ github.event.client_payload.ip }}
           user: github
 
