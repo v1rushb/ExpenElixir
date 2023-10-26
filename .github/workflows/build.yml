@@ -1,8 +1,9 @@
 name: Build Docker Image and Deploy to EC2 Instance
 
-on: 
+on:
   push:
-    branches: ["main"]
+    branches: 
+      - main
 
 
 permissions:
