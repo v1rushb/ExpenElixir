@@ -74,7 +74,6 @@ const getPrediction = async (res: express.Response): Promise<string> => {
           expenseDate: 'ASC'
         }
     });
-
     const expensesString = expenses.map(expense => `${expense.expenseDate.toDateString()} - ${expense.amount}`).join('\n');
     const response: ChatMessage = await api.sendMessage("I will provide you with some data of this form: {date : amount spent during this date} and I want you to predict my spending. Here is the data: " + expensesString + " and I also want you to tell me my spending velocity. which is avg of how much I spent during this time interval and tell me if it's good or not. if I didn't provide you with any data just say 'I cannot do any action without data'");
 
