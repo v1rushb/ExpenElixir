@@ -1,6 +1,6 @@
 import express from 'express';
 import { Expense } from '../db/entities/Expense.js';
-import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses } from '../controllers/Expense.js';
+import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses, updateExpense } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
@@ -11,8 +11,9 @@ import filtering from '../middlewares/filtering.js';
 
 const router = express.Router();
 
-router.post('/', authMe, validateExpense, async (req, res, next) => {
-    insertExpense(req.body, res).then(expense => {
+
+router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
+    insertExpense({...req.body,picURL:req.file as Express.MulterS3.File}, res).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
@@ -49,6 +50,13 @@ router.delete('/:id', authMe, async (req, res, next) => {
 router.get('/all', authMe, async (req, res, next) => { // testing purposes
     const expenses = await Expense.find();
     res.status(200).send(expenses);
+});
+
+router.put('/:id', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
+    updateExpense(req.params.id{...req.body,picURL:req.file as Express.MulterS3.File}, res).then(expense => {
+        logger.info(`User ${req.body.username} modified expense ${req.body.id}!`);
+        res.status(200).send(`You have successfully modified the expense with id: ${req.body.id}!`);
+    }).catch(err=> next(err));
 });
 
 router.use('/search', filtering);

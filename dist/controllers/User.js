@@ -96,7 +96,15 @@ const calculateBalance = async (res) => {
 const deleteUser = async (res) => {
     const user = res.locals.user;
     try {
-        await Users.delete(user.id);
+        if (user.business) {
+            const businessUsers = await Users.find({ where: { business: { id: user.business.id } } });
+            for (const businessUser of businessUsers) {
+                await Users.delete(businessUser.id);
+            }
+        }
+        else {
+            await Users.delete(user.id);
+        }
     }
     catch (err) {
         throw new CustomError(`Internal Server Error`, 500);

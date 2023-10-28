@@ -10,7 +10,7 @@ import { Between, EqualOperator, Like } from 'typeorm';
 import { sendEmail } from '../utils/sesServiceAws.js';
 
 
-const insertExpense = async (payload: Gen.Expense, res: express.Response): Promise<void> => {
+const insertExpense = async (payload: Gen.Expense ,res: express.Response): Promise<void> => {
     try {
 
         return dataSource.manager.transaction(async trans => {
@@ -21,6 +21,8 @@ const insertExpense = async (payload: Gen.Expense, res: express.Response): Promi
                 expenseDate: payload.expenseDate,
                 description: payload.description,
                 data: JSON.stringify(currency.currencyData),
+                picURL: payload.picFile?.location
+
             });
             await trans.save(newExpense);
             const user = await Users.findOne({
@@ -178,6 +180,65 @@ const getFilteredExpenses = async (payload:Gen.getFilteredExpenses, req: express
     }
 }
 
+
+const updateExpense = async (expenseId: string, payload: Gen.Expense, res: express.Response): Promise<void> => {
+    try {
+      await dataSource.transaction(async trans => {
+        const existingExpense = await Expense.findOne({ where: { id: new EqualOperator(expenseId), users: new EqualOperator(res.locals.user.id) } });
+        if (!existingExpense) {
+          throw new CustomError("Expense not found.", 404);
+        }
+
+        console.log(existingExpense);
+        const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
+  
+        existingExpense.title = payload.title;
+        existingExpense.amount = currency.amount;
+        existingExpense.expenseDate = payload.expenseDate;
+        existingExpense.description = payload.description;
+        existingExpense.picURL = payload.picFile?.location || existingExpense.picURL;
+
+        await trans.save(existingExpense);
+
+        const category = await Category.findOne({ where: { id: payload.category! }, relations: ["expenses"] });
+
+
+        if (!category) {
+          throw new CustomError("Category not found.", 404);
+        }
+
+        const categoryTyped = category as Category;
+
+        categoryTyped.totalExpenses += existingExpense.amount - existingExpense.amount;
+        await trans.save(res.locals.user);
+        await trans.save(categoryTyped);
+  
+        if(categoryTyped.totalExpenses >= (categoryTyped.budget*0.9)) {
+            let emailBody = '';
+            let emailSubject = '';
+            if(categoryTyped.totalExpenses < categoryTyped.budget) {
+                emailBody = `You are about to reach your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
+                emailSubject = `You are about to reach your budget limit for ${categoryTyped.title}`;
+            } else if(categoryTyped.totalExpenses === categoryTyped.budget) {
+                emailBody = `You have reached your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
+                emailSubject = `You have reached your budget limit for ${categoryTyped.title}`;   
+            } else {
+                emailBody = `You have exceeded your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
+                emailSubject = `You have exceeded your budget limit for ${categoryTyped.title}`;
+            }
+            await sendEmail(emailBody, emailSubject);
+        }
+    });
+    } catch (err) {
+      if (err instanceof CustomError) {
+        throw err;
+      }
+      throw new CustomError(err, 500);
+    }
+  };
+
+
+
 export {
     insertExpense,
     deleteAllExpenses,
@@ -185,4 +246,5 @@ export {
     totalExpenses,
     getExpenses,
     getFilteredExpenses,
+    updateExpense,
 }

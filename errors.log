@@ -374,3 +374,7 @@
 2023-10-28T14:14:04.608Z [error]: 404 - Your business currently has no signed users! - /expense/business/analytics/recommend-promote - GET - ::1
 2023-10-28T14:17:11.626Z [error]: 404 - Your business currently has no signed users! - /expense/business/analytics/recommend-fire - GET - ::1
 2023-10-28T14:17:34.482Z [error]: 400 - Invalid token. - /user/verify-account?token=5f9550bc-f18c-47f5-9da8-579167fff86e - GET - ::1
+2023-10-28T15:20:06.028Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-28T15:20:23.785Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category/ - POST - ::1
+2023-10-28T15:28:21.855Z [error]: 500 - Internal Server Error - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
+2023-10-28T15:28:57.653Z [error]: 500 - EntityPropertyNotFoundError: Property "0" was not found in "Users". Make sure your query is correct. - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1

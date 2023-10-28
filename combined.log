@@ -2045,3 +2045,36 @@
 2023-10-28T14:38:20.923Z [info]: Scheduled task completed successfully, checked 0 users.
 2023-10-28T14:39:20.947Z [info]: Scheduled task completed successfully, deleted 0 users.
 2023-10-28T14:39:20.948Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:18:52.540Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T15:19:55.355Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:19:55.365Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-28T15:19:58.988Z [info]: User undefined requested all Expenses!
+2023-10-28T15:20:06.028Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-28T15:20:23.785Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category/ - POST - ::1
+2023-10-28T15:20:55.336Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:20:55.350Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:21:10.463Z [info]: User undefined requested all categories!
+2023-10-28T15:23:30.513Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:23:30.519Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:23:51.336Z [info]: User undefined requested all Expenses!
+2023-10-28T15:23:56.718Z [info]: User undefined added a new Expense!
+2023-10-28T15:23:59.467Z [info]: User undefined requested all Expenses!
+2023-10-28T15:24:34.935Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:24:34.936Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:25:34.932Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:25:34.937Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:26:34.931Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:26:34.934Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:27:14.560Z [info]: User undefined added a new Expense!
+2023-10-28T15:28:11.421Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:28:11.423Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:28:13.574Z [info]: User undefined requested all Expenses!
+2023-10-28T15:28:21.855Z [error]: 500 - Internal Server Error - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
+2023-10-28T15:28:57.653Z [error]: 500 - EntityPropertyNotFoundError: Property "0" was not found in "Users". Make sure your query is correct. - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
+2023-10-28T15:29:54.374Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:29:54.381Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:29:57.777Z [info]: User undefined modified expense undefined!
+2023-10-28T15:30:08.679Z [info]: User undefined requested all Expenses!
+2023-10-28T15:30:46.249Z [info]: User undefined modified expense undefined!
+2023-10-28T15:31:42.611Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:31:42.613Z [info]: Scheduled task completed successfully, checked 0 users.

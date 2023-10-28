@@ -12,7 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ChatGPTAPI } from 'chatgpt';
 const createUserUnderRoot = async (payload, res) => {
     try {
-        return await dataSource.transaction(async (trans) => {
+        await dataSource.transaction(async (trans) => {
             const newProfile = Profile.create({
                 firstName: payload.firstName,
                 lastName: payload.lastName,

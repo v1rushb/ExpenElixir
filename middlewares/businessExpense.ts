@@ -6,7 +6,6 @@ import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
 import { validateExpense } from './Validate.js';
 import multer from 'multer';
-import checkBusiness from './business-check.js';
 import { getFilteredExpenses } from '../controllers/Business.js';
 import expenseAnalytics from '../middlewares/business-analytics.js';
 

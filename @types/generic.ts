@@ -19,7 +19,7 @@ export namespace Gen {
         description: string,
         category?: string,
         user: User,
-        picURL?: string,
+        picFile?: Express.MulterS3.File,
         currencyType?: string
     }
     export interface Category {
