@@ -32,6 +32,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+
       - name: Build and Push Container
         uses: docker/build-push-action@v2
         with:
@@ -40,6 +41,8 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:${{ steps.image_version.outputs.gitsha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Get EC2 Instance IPs
         id: instance_ips
