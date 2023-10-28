@@ -53,7 +53,7 @@ const insertUser = async (payload: Gen.User): Promise<Users> => {
 
 const login = async (payload: Gen.login): Promise<Gen.loginReturn> => {
   try {
-    console.log(payload.iamId)
+    
       const user = await Users.findOne({ where: { username: payload.username } }) as Users;
 
       if (!user || user.username !== payload.username) {
@@ -89,7 +89,7 @@ const login = async (payload: Gen.login): Promise<Gen.loginReturn> => {
         },
         process.env.SECRET_KEY || '',
         {
-          expiresIn: '30m',
+          expiresIn: '1m',
         }
       );
   

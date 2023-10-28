@@ -451,3 +451,14 @@
 2023-10-28T17:05:48.049Z [error]: 401 - Unauthorized - /expense/analytics/expenses-by-category - GET - ::1
 2023-10-28T17:19:02.707Z [error]: 404 Not Found - /expense/business/add-user-expense - POST - ::1
 2023-10-28T17:19:08.168Z [error]: undefined - Unexpected field - /expense - POST - ::1
+2023-10-28T18:28:40.753Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:29:03.775Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:32.509Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:33.618Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:34.265Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:34.820Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:35.544Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:39.783Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:30:40.475Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:33:01.577Z [error]: undefined - jwt expired - /user/login - POST - ::1
+2023-10-28T18:34:00.295Z [error]: 401 - hi - /user/login - POST - ::1

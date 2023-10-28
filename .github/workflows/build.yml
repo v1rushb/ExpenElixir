@@ -55,11 +55,3 @@ jobs:
 
       - name: Restore ASG to Original Size
         run: aws autoscaling update-auto-scaling-group --auto-scaling-group-name "ExpenElixir-ASG" --min-size 2 --max-size 3 --desired-capacity 2
-
-  deploy-image:
-    needs: build-image
-    uses: ./.github/workflows/deploy.yml
-    with:
-      instance_ip: ${{ vars.INSTANCE_IP }}
-      image_version: ${{ needs.build-image.outputs.image_version }}
-    secrets: inherit

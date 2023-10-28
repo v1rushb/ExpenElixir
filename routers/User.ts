@@ -35,17 +35,19 @@ router.post('/login', validateLogin,(req, res, next) => {
 
     try {
         if (token) {
-            if(jwt.verify(token, process.env.SECRET_KEY || ''))
+                jwt.verify(token, process.env.SECRET_KEY || '')
                 return res.status(409).send(`You are already logged in.`);
-            throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
-        }
-    } catch (err) {
-        return next(err);
+            }
+    } catch (err: any) {
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        res.status(500).send(`Log in again`);
     }
 
     if (username && password) {
         const payload: Gen.login = {username, password, iamId,res};
-
+        
         login(payload).then(data => {
             res.cookie("userEmail", data.email, { maxAge: 30 * 60 * 1000 });
             res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });

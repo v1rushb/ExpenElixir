@@ -26,13 +26,15 @@ router.post('/login', validateLogin, (req, res, next) => {
     const token = req.cookies["token"];
     try {
         if (token) {
-            if (jwt.verify(token, process.env.SECRET_KEY || ''))
-                return res.status(409).send(`You are already logged in.`);
-            throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
+            jwt.verify(token, process.env.SECRET_KEY || '');
+            return res.status(409).send(`You are already logged in.`);
         }
     }
     catch (err) {
-        return next(err);
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        res.status(500).send(`Log in again`);
     }
     if (username && password) {
         const payload = { username, password, iamId, res };

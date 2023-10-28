@@ -46,7 +46,6 @@ const insertUser = async (payload) => {
 };
 const login = async (payload) => {
     try {
-        console.log(payload.iamId);
         const user = await Users.findOne({ where: { username: payload.username } });
         if (!user || user.username !== payload.username) {
             throw new CustomError('Invalid credentials', 400);
@@ -74,7 +73,7 @@ const login = async (payload) => {
             username: user.username,
             id: user.id,
         }, process.env.SECRET_KEY || '', {
-            expiresIn: '30m',
+            expiresIn: '1m',
         });
         return { username: user.username, email: user.email, token: token };
     }
