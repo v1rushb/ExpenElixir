@@ -38,8 +38,8 @@ const sortQueryByAmount = (result: Gen.getExpenesByCategoryReturn[]): Gen.getExp
     return result.sort((a, b) => b.amount - a.amount);
 }
 
-const makeGraphicalData = (data: Gen.makeGraphicalData[]) => { // simple function for making the impossible graphical presentation of the data in a backend app ;O
-    const maxValue = Math.max(...data.map(d => d.amount)); // just doin' some scales
+const makeGraphicalData = (data: Gen.makeGraphicalData[]) => {
+    const maxValue = Math.max(...data.map(d => d.amount));
     const unitValue = maxValue / 50;
 
     let graphicalData = 'Expense by Categroy:\n';
