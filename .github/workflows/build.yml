@@ -71,7 +71,7 @@ jobs:
         run: |
           echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
           chmod 600 key.pem
-          docker compose -f docker-compose.yml up -d
+          ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker compose -f docker-compose.yml up -d'
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
           DB_HOST: ${{ secrets.DB_HOST }}
