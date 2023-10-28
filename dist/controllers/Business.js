@@ -9,34 +9,42 @@ import { Business } from '../db/entities/Business.js';
 import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import { v4 as uuidv4 } from 'uuid';
+import { ChatGPTAPI } from 'chatgpt';
 const createUserUnderRoot = async (payload, res) => {
-    return await dataSource.transaction(async (trans) => {
-        const newProfile = Profile.create({
-            firstName: payload.firstName,
-            lastName: payload.lastName,
-            phoneNumber: payload.phoneNumber,
-            role: 'User',
+    try {
+        return await dataSource.transaction(async (trans) => {
+            const newProfile = Profile.create({
+                firstName: payload.firstName,
+                lastName: payload.lastName,
+                phoneNumber: payload.phoneNumber,
+                role: 'User',
+            });
+            await trans.save(newProfile);
+            const iamId = `${Date.now()}`;
+            const newUser = Users.create({
+                email: payload.email,
+                username: payload.username,
+                password: payload.password,
+                profile: newProfile,
+                business: res.locals.user.business,
+                iamId,
+            });
+            const verificationToken = uuidv4();
+            newUser.verificationToken = verificationToken;
+            const host = process.env.HOST || 'localhost:2077';
+            const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
+            const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
+            const emailSubject = 'EpenElixir Email Verification';
+            sendEmail(emailBody, emailSubject);
+            await trans.save(newUser.business);
+            return await trans.save(newUser);
         });
-        await trans.save(newProfile);
-        const iamId = `${Date.now()}`;
-        const newUser = Users.create({
-            email: payload.email,
-            username: payload.username,
-            password: payload.password,
-            profile: newProfile,
-            business: res.locals.user.business,
-            iamId,
-        });
-        const verificationToken = uuidv4();
-        newUser.verificationToken = verificationToken;
-        const host = process.env.HOST || 'localhost:2077';
-        const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
-        const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
-        const emailSubject = 'EpenElixir Email Verification';
-        sendEmail(emailBody, emailSubject);
-        await trans.save(newUser.business);
-        return await trans.save(newUser);
-    });
+    }
+    catch (err) {
+        if (err.code?.includes('ER_DUP_ENTRY')) {
+            throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
+        }
+    }
 };
 const rootUserDescendant = async (res, descendantID) => {
     const descendant = await Users.findOne({ where: { business: res.locals.user.business, id: descendantID } });
@@ -303,7 +311,10 @@ const businessCategories = async (res) => {
 const upgradeToBusiness = async (res) => {
     try {
         const user = res.locals.user;
-        console.log(`profiles are ${user.profile}`);
+        if (res.locals.user.business) {
+            user.profile.role = 'Root';
+            return await user.save();
+        }
         if (user.profile) {
             user.profile.role = 'Root';
             user.profile.subscription_date = new Date();
@@ -402,5 +413,39 @@ const modifyUserCategory = async (categoryID, userID, payload, res) => {
         throw err;
     }
 };
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, modifyUserIncome, modifyUserCategory, };
+const recommendation = async (res) => {
+    const users = await businessUsers(res);
+    const result = [];
+    for (const user of users) {
+        const incomeAmount = await user.incomes.reduce((acc, income) => acc + income.amount, 0);
+        const expenseAmount = await user.expenses.reduce((acc, expense) => acc + expense.amount, 0);
+        if (user.profile.role !== 'Root')
+            result.push({ username: user.username, userId: user.id, incomeExpenseDiff: incomeAmount - expenseAmount });
+    }
+    return result;
+};
+const sortRecommendation = (result) => {
+    return result.sort((a, b) => b.incomeExpenseDiff - a.incomeExpenseDiff);
+};
+const getAdvice = async (inputArr) => {
+    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
+    let message = '';
+    for (const user of inputArr) {
+        const { username, incomeExpenseDiff } = user;
+        message += `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
+    }
+    const res = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`);
+    return res.text.toString();
+};
+const getFireAdvice = async (inputArr) => {
+    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
+    let message = '';
+    for (const user of inputArr) {
+        const { username, incomeExpenseDiff } = user;
+        message += `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
+    }
+    const res = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I fire? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`);
+    return res.text.toString();
+};
+export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, modifyUserIncome, modifyUserCategory, modifyUserExpense, recommendation, sortRecommendation, getAdvice, getFireAdvice, };
 //# sourceMappingURL=Business.js.map

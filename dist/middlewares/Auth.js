@@ -12,9 +12,6 @@ const authMe = async (req, res, next) => {
             });
             if (!user)
                 throw new CustomError('Unauthorized', 401);
-            if (!user?.isVerified) {
-                throw new CustomError('You need to verify your email. Please check your mailbox!', 423);
-            }
             res.locals.user = user;
             res.locals.filter = {
                 skip: (Number(req.query.pageNumber || 1) - 1) * Number(req.query.pageSize || 5),
@@ -25,7 +22,7 @@ const authMe = async (req, res, next) => {
         throw new CustomError(`Unauthorized`, 401);
     }
     catch (err) {
-        next(err);
+        next(new CustomError(`Unauthorized`, 401));
     }
 };
 export default authMe;

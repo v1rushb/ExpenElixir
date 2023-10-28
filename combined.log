@@ -1900,3 +1900,148 @@
 2023-10-28T12:37:46.265Z [info]: Scheduled task completed successfully, checked 0 users.
 2023-10-28T12:38:46.295Z [info]: Scheduled task completed successfully, deleted 0 users.
 2023-10-28T12:38:46.295Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T13:29:54.299Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:29:54.304Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T13:30:07.483Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-10-28T13:30:08.748Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-10-28T13:30:19.261Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T13:30:26.634Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T13:31:07.572Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:31:07.577Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:32:07.569Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:32:07.576Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:33:17.949Z [error]: 404 Not Found - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:33:33.970Z [error]: 404 Not Found - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:33:39.308Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:33:39.311Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:34:20.478Z [error]: 404 Not Found - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:34:25.524Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:34:26.416Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:34:34.125Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:35:03.270Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:36:03.054Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:36:03.058Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:36:08.221Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:36:09.011Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:37:07.255Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:37:07.261Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:37:19.159Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:37:35.387Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:38:08.593Z [error]: 404 - Your business currently has no signed users! - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:38:19.799Z [error]: 404 - Your business currently has no signed users! - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:38:23.841Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:39:23.826Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:39:23.829Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:39:57.550Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:40:42.702Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:41:41.089Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:41:41.093Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:42:31.971Z [error]: undefined - Invalid status code: 1 - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:42:33.107Z [error]: undefined - Invalid status code: 1 - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:43:01.783Z [error]: undefined - Invalid status code: 1 - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:44:43.776Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T13:44:59.344Z [error]: 404 Not Found - /expense/business/analytics/fire-recommend - GET - ::1
+2023-10-28T13:45:14.019Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:45:14.021Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:46:39.563Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:46:40.183Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:47:08.769Z [error]: 401 - Unauthorized - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T13:47:22.410Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T13:47:48.042Z [error]: 404 Not Found - /income/business/add-user - POST - ::1
+2023-10-28T13:47:57.252Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'z1rushb' for key 'users.IDX_fe0bb3f6520ee0469504521e71' - /user/business/add-user - POST - ::1
+2023-10-28T13:48:08.856Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:48:08.867Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:49:06.077Z [error]: 409 - User with email: cs.zain.herbawi@gmail.com or username: z1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-28T13:49:32.432Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-28T13:49:40.150Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-28T13:49:58.457Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T13:50:05.721Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:50:05.724Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:54:37.385Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:54:37.398Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:56:36.939Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:56:36.947Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:58:02.945Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:58:02.951Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T13:59:02.919Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T13:59:02.943Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:00:02.942Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:00:02.943Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:01:02.975Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:01:02.977Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:02:02.984Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:02:02.984Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:03:03.008Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:03:03.906Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:04:03.039Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:04:03.040Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:05:03.062Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:05:03.062Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:06:03.092Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:06:03.093Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:07:09.870Z [error]: 404 Not Found - /expense/business/analytics/recommend-promote - GET - ::1
+2023-10-28T14:07:21.385Z [error]: 401 - Unauthorized - /expense/business/analytics/recommend-promote - GET - ::1
+2023-10-28T14:07:26.097Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T14:11:08.338Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:11:08.343Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:11:38.227Z [error]: 401 - You are not a root user - /user/business - GET - ::1
+2023-10-28T14:11:45.486Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T14:11:46.726Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T14:12:08.329Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:12:08.339Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:13:08.329Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:13:08.337Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:13:44.217Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T14:14:04.608Z [error]: 404 - Your business currently has no signed users! - /expense/business/analytics/recommend-promote - GET - ::1
+2023-10-28T14:14:43.358Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:14:43.364Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:15:43.347Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:15:43.353Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:16:43.377Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:16:43.379Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:17:11.626Z [error]: 404 - Your business currently has no signed users! - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-28T14:17:32.222Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-28T14:17:34.482Z [error]: 400 - Invalid token. - /user/verify-account?token=5f9550bc-f18c-47f5-9da8-579167fff86e - GET - ::1
+2023-10-28T14:17:38.750Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-28T14:18:02.538Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:18:02.541Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:19:18.647Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:19:18.659Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:20:18.636Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:20:18.637Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:21:18.670Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:21:18.674Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:23:14.362Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:23:14.365Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:24:14.358Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:24:14.362Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:25:20.675Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:25:20.685Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:26:20.660Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:26:20.666Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:27:20.662Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:27:21.169Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T14:28:20.669Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:28:20.671Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:29:20.699Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:29:20.700Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:30:20.728Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:30:20.729Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:31:20.762Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:31:20.764Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:32:20.771Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:32:20.771Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:33:20.775Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:33:20.775Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:34:20.804Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:34:20.804Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:35:20.834Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:35:20.834Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:36:20.864Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:36:20.864Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:37:20.893Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:37:20.893Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:38:20.923Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:38:20.923Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T14:39:20.947Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T14:39:20.948Z [info]: Scheduled task completed successfully, checked 0 users.
