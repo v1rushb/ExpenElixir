@@ -29,13 +29,13 @@ router.post('/register', validateUser, async (req, res, next) => {
 });
 
 
-router.post('/login', validateLogin,(req, res, next) => {
-    const {username, password, iamId} = req.body;
+router.post('/login', validateLogin, (req, res, next) => {
+    const { username, password, iamId } = req.body;
     const token = req.cookies["token"];
 
     try {
         if (token) {
-            if(jwt.verify(token, process.env.SECRET_KEY || ''))
+            if (jwt.verify(token, process.env.SECRET_KEY || ''))
                 return res.status(409).send(`You are already logged in.`);
             throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
         }
@@ -44,7 +44,7 @@ router.post('/login', validateLogin,(req, res, next) => {
     }
 
     if (username && password) {
-        const payload: Gen.login = {username, password, iamId,res};
+        const payload: Gen.login = { username, password, iamId, res };
 
         login(payload).then(data => {
             res.cookie("userEmail", data.email, { maxAge: 30 * 60 * 1000 });
@@ -81,8 +81,8 @@ router.post('/logout', (req, res) => {
 
 router.get('/balance', authMe, async (req, res, next) => {
     calculateBalance(res).then(data => {
-        logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
-        return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.currency}.}`);
+        logger.info(`200 OK - /user/balance - GET - ${req.ip}`);
+        return res.status(200).send(`${data} ${res.locals.user.profile.Currency}`);
     }).catch(err => next(err));
 });
 
@@ -171,12 +171,12 @@ router.delete('/delete-account', authMe, async (req, res, next) => {
 
 router.get('/verify-account', async (req, res, next) => {
     try {
-        const {token} = req.query;
-        if(!token)
+        const { token } = req.query;
+        if (!token)
             throw new CustomError(`Invalid token.`, 400);
 
-        const user = await Users.findOne({where: {verificationToken: token as string}});
-        if(!user)
+        const user = await Users.findOne({ where: { verificationToken: token as string } });
+        if (!user)
             throw new CustomError(`Invalid token.`, 400);
 
         user.isVerified = true;
@@ -185,7 +185,7 @@ router.get('/verify-account', async (req, res, next) => {
 
         logger.info(`200 OK - /user/verify-email - GET - ${req.ip}`);
         res.status(200).send(`Email verified successfully. Welcome aboard ${user.username}!`);
-    } catch(err) {
+    } catch (err) {
         next(err);
     }
 });
@@ -209,7 +209,7 @@ router.get('/verify-account', async (req, res, next) => {
 
 
 router.post('/reset-password', validatePassword, async (req, res, next) => {
-    const {email,newPassword} = req.body;
+    const { email, newPassword } = req.body;
     try {
         if (!email) {
             throw new CustomError('Email is required', 400);
@@ -222,15 +222,15 @@ router.post('/reset-password', validatePassword, async (req, res, next) => {
         if (!user) {
             throw new CustomError('User not found', 404);
         }
-        
-        if(bcrypt.compareSync(newPassword, user.password))
+
+        if (bcrypt.compareSync(newPassword, user.password))
             throw new CustomError('You cannot use your old password.', 400);
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         user.newHashedPassword = hashedPassword;
         const resetToken = uuidv4();
         user.resetToken = resetToken;
         user.resetTokenExpiration = new Date(Date.now() + 300000);
-        await sendResetPasswordEmail({email: email, token: resetToken});
+        await sendResetPasswordEmail({ email: email, token: resetToken });
         await user.save();
         res.clearCookie("userEmail");
         res.clearCookie("token");
@@ -242,18 +242,18 @@ router.post('/reset-password', validatePassword, async (req, res, next) => {
 });
 
 router.get('/reset-password-email', async (req, res, next) => {
-    const {token} = req.query;
+    const { token } = req.query;
     try {
-        if(!token)
+        if (!token)
             throw new CustomError(`Invalid token.`, 400);
         const user = await Users.findOne({ where: { resetToken: token as string } });
-        if(!user)
+        if (!user)
             throw new CustomError(`Invalid token.`, 400);
 
-        if(user.resetTokenExpiration && user.resetTokenExpiration < new Date(Date.now()))
+        if (user.resetTokenExpiration && user.resetTokenExpiration < new Date(Date.now()))
             throw new CustomError(`Token expired.`, 400);
-        
-        user.password = user.newHashedPassword? user.newHashedPassword : user.password;
+
+        user.password = user.newHashedPassword ? user.newHashedPassword : user.password;
         user.resetToken = '';
         user.resetTokenExpiration = undefined;
         user.newHashedPassword = '';
@@ -262,7 +262,7 @@ router.get('/reset-password-email', async (req, res, next) => {
         res.clearCookie("token");
         res.clearCookie("loginDate");
         res.send('Your password has been changed successfully!');
-    } catch(err) {
+    } catch (err) {
         next(err);
     }
 });
@@ -270,19 +270,19 @@ router.get('/reset-password-email', async (req, res, next) => {
 router.put('/', authMe, async (req, res, next) => {
     try {
         const user = res.locals.user;
-        const {username, email, password} = req.body;
-        if(await bcrypt.compare(password, user.password)) {
-            if(username)
+        const { username, email, password } = req.body;
+        if (await bcrypt.compare(password, user.password)) {
+            if (username)
                 user.username = username;
-            if(email)
+            if (email)
                 user.email = email;
-            if(password)
+            if (password)
                 user.password = await bcrypt.hash(password, 10);
             await user.save();
             res.status(200).send('User updated successfully.');
         }
         throw new CustomError('Invalid password.', 400);
-    } catch(err) {
+    } catch (err) {
         next(err);
     }
 });

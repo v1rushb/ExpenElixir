@@ -378,3 +378,47 @@
 2023-10-28T15:20:23.785Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category/ - POST - ::1
 2023-10-28T15:28:21.855Z [error]: 500 - Internal Server Error - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
 2023-10-28T15:28:57.653Z [error]: 500 - EntityPropertyNotFoundError: Property "0" was not found in "Users". Make sure your query is correct. - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
+2023-10-28T17:26:23.075Z [error]: 409 - Please verify your email address. - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T17:27:01.369Z [error]: 409 - Please verify your email address. - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T17:28:50.910Z [error]: 409 - Please verify your email address. - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T17:29:05.950Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-28T17:29:20.621Z [error]: 404 - Category not found. - /expense - POST - ::ffff:127.0.0.1
+2023-10-28T17:37:07.687Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:37:49.762Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:39:15.168Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:39:51.144Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:42:13.207Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:43:07.451Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:43:25.399Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:44:54.189Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:49:45.762Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:50:38.071Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:50:53.703Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:57:20.648Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:58:10.719Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:59:37.425Z [error]: 401 - Unauthorized - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T17:59:45.189Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T17:59:55.284Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:00:37.064Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:01:04.212Z [error]: 401 - You are not logged in. - /user/logout - POST - ::ffff:127.0.0.1
+2023-10-28T18:01:07.756Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:01:57.541Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:04:50.556Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:06:31.146Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:10:49.243Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::ffff:127.0.0.1
+2023-10-28T18:11:21.826Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /expense - POST - ::ffff:127.0.0.1
+2023-10-28T18:12:28.471Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /expense - POST - ::ffff:127.0.0.1
+2023-10-28T18:12:56.479Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /expense - POST - ::ffff:127.0.0.1
+2023-10-28T18:13:04.285Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /expense - POST - ::ffff:127.0.0.1
+2023-10-28T18:18:08.861Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T18:20:13.394Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T18:21:27.602Z [error]: 500 - Internal Server Error - /expense - GET - ::ffff:127.0.0.1
+2023-10-28T18:37:50.735Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /income - POST - ::ffff:127.0.0.1
+2023-10-28T18:49:47.650Z [error]: 401 - Unauthorized - /income - GET - ::ffff:127.0.0.1
+2023-10-28T18:50:00.081Z [error]: 500 - Internal Server Error - /income - GET - ::ffff:127.0.0.1
+2023-10-28T18:52:29.162Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /income - POST - ::ffff:127.0.0.1
+2023-10-28T18:52:52.394Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /income - POST - ::ffff:127.0.0.1
+2023-10-28T18:54:31.683Z [error]: undefined - Cannot read properties of undefined (reading 'USD') - /income - POST - ::ffff:127.0.0.1
+2023-10-28T18:57:32.304Z [error]: 500 - Internal Server Error - /income - GET - ::ffff:127.0.0.1
+2023-10-28T19:08:23.042Z [error]: 401 - Unauthorized - /expense - POST - ::1
+2023-10-28T19:25:10.833Z [error]: 401 - Unauthorized - /expense/total - GET - ::ffff:127.0.0.1

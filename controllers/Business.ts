@@ -11,7 +11,7 @@ import { Business } from '../db/entities/Business.js';
 import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import { v4 as uuidv4 } from 'uuid';
-import {ChatGPTAPI, ChatMessage} from 'chatgpt';
+import { ChatGPTAPI, ChatMessage } from 'chatgpt';
 
 
 const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Promise<void> => {
@@ -37,18 +37,18 @@ const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Pr
 
             const verificationToken = uuidv4();
             newUser.verificationToken = verificationToken;
-            
+
             const host = process.env.HOST || 'localhost:2077';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
             const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
-            const emailSubject = 'EpenElixir Email Verification';
+            const emailSubject = 'ExpenElixir Email Verification';
             sendEmail(emailBody, emailSubject);
 
             await trans.save(newUser.business);
             return await trans.save(newUser);
-        }); 
-    } catch(err: any) {
-        if(err.code?.includes('ER_DUP_ENTRY')) {
+        });
+    } catch (err: any) {
+        if (err.code?.includes('ER_DUP_ENTRY')) {
             throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
         }
     }
@@ -151,16 +151,16 @@ const totalBusinessIncome = async (res: express.Response): Promise<number> => {
 
 const modifyUserIncome = async (incomeID: string, userID: string, payload: Gen.Income, res: express.Response) => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to modify an income from!`,400);
-        if(!incomeID)
-            throw new CustomError(`You must provide an id for the income you want to modify!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to modify an income from!`, 400);
+        if (!incomeID)
+            throw new CustomError(`You must provide an id for the income you want to modify!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
-        if(!user)
+        if (!user)
             throw new CustomError(`User not found.`, 404);
-        
+
         const userIncomes: Income[] = user.incomes;
         const income = userIncomes.find(income => income.id === incomeID);
         if (!income) {
@@ -211,15 +211,15 @@ const addUserExpense = async (payload: Gen.addUserExpense, res: express.Response
             await trans.save(user);
             await trans.save(category);
 
-            if(category.totalExpenses >= (category.budget*0.9)) {
+            if (category.totalExpenses >= (category.budget * 0.9)) {
                 let emailBody = '';
                 let emailSubject = '';
-                if(category.totalExpenses < category.budget) {
+                if (category.totalExpenses < category.budget) {
                     emailBody = `You are about to reach your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You are about to reach your budget limit for ${category.title}`;
-                } else if(category.totalExpenses === category.budget) {
+                } else if (category.totalExpenses === category.budget) {
                     emailBody = `You have reached your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
-                    emailSubject = `You have reached your budget limit for ${category.title}`;   
+                    emailSubject = `You have reached your budget limit for ${category.title}`;
                 } else {
                     emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You have exceeded your budget limit for ${category.title}`;
@@ -336,8 +336,7 @@ const businessCategories = async (res: express.Response) => {
 const upgradeToBusiness = async (res: express.Response) => {
     try {
         const user = res.locals.user;
-        if(res.locals.user.business)
-        {
+        if (res.locals.user.business) {
             user.profile.role = 'Root';
             return await user.save();
         }
@@ -388,16 +387,16 @@ const getFilteredExpenses = async (payload: Gen.getFilteredBusinessExpenses, req
 
 const modifyUserExpense = async (expenseID: string, userID: string, payload: Gen.Expense, res: express.Response, picFile: Express.MulterS3.File) => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to modify an expense from!`,400);
-        if(!expenseID)
-            throw new CustomError(`You must provide an id for the expense you want to modify!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to modify an expense from!`, 400);
+        if (!expenseID)
+            throw new CustomError(`You must provide an id for the expense you want to modify!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
-        if(!user)
+        if (!user)
             throw new CustomError(`User not found.`, 404);
-        
+
         const userExpenses: Expense[] = user.expenses;
         const expense = userExpenses.find(expense => expense.id === expenseID);
         if (!expense) {
@@ -424,16 +423,16 @@ const modifyUserExpense = async (expenseID: string, userID: string, payload: Gen
 
 const modifyUserCategory = async (categoryID: string, userID: string, payload: Gen.Category, res: express.Response) => {
     try {
-        if(!userID)
-            throw new CustomError(`You must provide an id for the user you want to modify a category from!`,400);
-        if(!categoryID)
-            throw new CustomError(`You must provide an id for the category you want to modify!`,400);
+        if (!userID)
+            throw new CustomError(`You must provide an id for the user you want to modify a category from!`, 400);
+        if (!categoryID)
+            throw new CustomError(`You must provide an id for the category you want to modify!`, 400);
         const user = await Users.findOne({
             where: { business: res.locals.user.business, id: userID },
         });
-        if(!user)
+        if (!user)
             throw new CustomError(`User not found.`, 404);
-        
+
         const userCategories: Category[] = user.categories;
         const category = userCategories.find(category => category.id === categoryID);
         if (!category) {
@@ -449,38 +448,38 @@ const modifyUserCategory = async (categoryID: string, userID: string, payload: G
 
 const recommendation = async (res: express.Response) => {
     const users: Users[] = await businessUsers(res);
-    const result: {username: string, userId: string, incomeExpenseDiff: number}[] = [];
-    for(const user of users) {
+    const result: { username: string, userId: string, incomeExpenseDiff: number }[] = [];
+    for (const user of users) {
 
-        const incomeAmount = await user.incomes.reduce((acc, income) => acc + income.amount, 0); 
+        const incomeAmount = await user.incomes.reduce((acc, income) => acc + income.amount, 0);
         const expenseAmount = await user.expenses.reduce((acc, expense) => acc + expense.amount, 0);
-        if(user.profile.role !== 'Root')
-            result.push({username: user.username, userId: user.id, incomeExpenseDiff: incomeAmount-expenseAmount});
+        if (user.profile.role !== 'Root')
+            result.push({ username: user.username, userId: user.id, incomeExpenseDiff: incomeAmount - expenseAmount });
     }
     return result;
 }
 
-const sortRecommendation = (result: {username: string, userId: string, incomeExpenseDiff: number}[]): {username: string, userId: string, incomeExpenseDiff: number}[] => {
+const sortRecommendation = (result: { username: string, userId: string, incomeExpenseDiff: number }[]): { username: string, userId: string, incomeExpenseDiff: number }[] => {
     return result.sort((a, b) => b.incomeExpenseDiff - a.incomeExpenseDiff);
 }
 
-const getAdvice = async (inputArr: {username: string, userId: string, incomeExpenseDiff: number}[])=> {
-        const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
-        let message = '';
-        for(const user of inputArr) {
-            const {username, incomeExpenseDiff} = user;
-            message+= `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
-        }
-        const res : ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`)
-        return res.text.toString();
+const getAdvice = async (inputArr: { username: string, userId: string, incomeExpenseDiff: number }[]) => {
+    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
+    let message = '';
+    for (const user of inputArr) {
+        const { username, incomeExpenseDiff } = user;
+        message += `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
+    }
+    const res: ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`)
+    return res.text.toString();
 }
 
-const getFireAdvice = async (inputArr: {username: string, userId: string, incomeExpenseDiff: number}[])=> {
-    const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
+const getFireAdvice = async (inputArr: { username: string, userId: string, incomeExpenseDiff: number }[]) => {
+    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
     let message = '';
-    for(const user of inputArr) {
-        const {username, incomeExpenseDiff} = user;
-        message+= `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
+    for (const user of inputArr) {
+        const { username, incomeExpenseDiff } = user;
+        message += `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
     }
     const res: ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I fire? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`)
     return res.text.toString();
@@ -505,7 +504,7 @@ export {
     upgradeToBusiness,
     getFilteredExpenses,
     modifyUserIncome,
-    modifyUserCategory,    
+    modifyUserCategory,
     modifyUserExpense,
     recommendation,
     sortRecommendation,

@@ -34,7 +34,7 @@ const createUserUnderRoot = async (payload, res) => {
             const host = process.env.HOST || 'localhost:2077';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
             const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
-            const emailSubject = 'EpenElixir Email Verification';
+            const emailSubject = 'ExpenElixir Email Verification';
             sendEmail(emailBody, emailSubject);
             await trans.save(newUser.business);
             return await trans.save(newUser);

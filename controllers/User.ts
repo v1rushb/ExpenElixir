@@ -14,94 +14,84 @@ import logger from '../logger.js';
 
 
 const insertUser = async (payload: Gen.User): Promise<Users> => {
-    try {
-          const user = await Users.findOne({ where: { email:payload.email } }) as Users;
-          if (user) {
-              if (!user.isVerified) {
-                  throw new CustomError('Please verify your email address.', 423);
-              } else {
-                  throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
-              }
-          }
-        return await dataSource.transaction(async trans => {
-            const {firstName, lastName, phoneNumber} = payload;
-            const createdAt = new Date();
-            const newProfile = Profile.create({firstName, lastName, phoneNumber, hasSentEmail: false});
-            await trans.save(newProfile);
-            
-            const {email, username, password} = payload;
-            const newUser = Users.create({email, username, password, profile: newProfile, createdAt});
-
-            
-            const verificationToken = uuidv4();
-            newUser.verificationToken = verificationToken;
-            
-            const host = process.env.HOST || 'localhost:2077';
-            const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
-            const emailBody = 'Please verify your account by clicking the link: ' + verificationLink;
-            const emailSubject = 'EpenElixir Email Verification';
-            sendEmail(emailBody, emailSubject);
-            return await trans.save(newUser);
-        });
-    } catch (err: any) {
-        if (err.code?.includes('ER_DUP_ENTRY')) {
-            throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
-        }
-        throw new CustomError(err, 500);
+  try {
+    const user = await Users.findOne({ where: { email: payload.email } }) as Users;
+    if (user) {
+      if (!user.isVerified) {
+        throw new CustomError('Please verify your email address.', 423);
+      } else {
+        throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
+      }
     }
+    return await dataSource.transaction(async trans => {
+      const { firstName, lastName, phoneNumber } = payload;
+      const createdAt = new Date();
+      const newProfile = Profile.create({ firstName, lastName, phoneNumber, hasSentEmail: false });
+      await trans.save(newProfile);
+
+      const { email, username, password } = payload;
+      const newUser = Users.create({ email, username, password, profile: newProfile, createdAt });
+
+
+      const verificationToken = uuidv4();
+      newUser.verificationToken = verificationToken;
+
+      const host = process.env.HOST || 'localhost:2000';
+      const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
+      const emailBody = 'Please verify your account by clicking the link: ' + verificationLink;
+      const emailSubject = 'EpenElixir Email Verification';
+      sendEmail(emailBody, emailSubject);
+      return await trans.save(newUser);
+    });
+  } catch (err: any) {
+    if (err.code?.includes('ER_DUP_ENTRY')) {
+      throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
+    }
+    throw new CustomError(err, 500);
+  }
 };
 
 const login = async (payload: Gen.login): Promise<Gen.loginReturn> => {
   try {
     console.log(payload.iamId)
-      const user = await Users.findOne({ where: { username: payload.username } }) as Users;
+    const user = await Users.findOne({ where: { username: payload.username } }) as Users;
 
-      if (!user || user.username !== payload.username) {
-        throw new CustomError('Invalid credentials', 400);
-      }
-      
-      
-      if (user.profile.role === 'User') {
-        if (!payload.iamId || user.iamId !== payload.iamId) {
-          throw new CustomError('IAM users must provide a valid IAM ID', 401);
-        }
-        if(user.business.rootUserID) {
-          const rootUser = await Users.findOne({where: {id: user.business.rootUserID}});
-          if(rootUser?.profile.role !== 'Root') {
-            throw new CustomError('Unauthorized', 401);
-          }
-        }
-      }
-      
-      const isPasswordMatch = await bcrypt.compare(payload.password, user.password);
-      if (!isPasswordMatch) {
-        throw new CustomError('Invalid password', 401);
-      }
-      
-      if(!user.isVerified) {
-        throw new CustomError('Please verify your email address.', 409);
-      }
-      const token = jwt.sign(
-        {
-          email: user.email,
-          username: user.username,
-          id: user.id,
-        },
-        process.env.SECRET_KEY || '',
-        {
-          expiresIn: '30m',
-        }
-      );
-  
-      return { username: user.username, email: user.email, token: token };
-  
-    } catch (err) {
-      if (err instanceof CustomError) {
-        throw err;
-      }
-      throw new CustomError(`An error occurred during login. Error: ${err}`, 501);
+    if (!user || user.username !== payload.username) {
+      throw new CustomError('Invalid credentials', 400);
     }
-  };
+
+
+
+
+    const isPasswordMatch = await bcrypt.compare(payload.password, user.password);
+    if (!isPasswordMatch) {
+      throw new CustomError('Invalid password', 401);
+    }
+
+    if (!user.isVerified) {
+      throw new CustomError('Please verify your email address.', 409);
+    }
+    const token = jwt.sign(
+      {
+        email: user.email,
+        username: user.username,
+        id: user.id,
+      },
+      process.env.SECRET_KEY || '',
+      {
+        expiresIn: '30m',
+      }
+    );
+
+    return { username: user.username, email: user.email, token: token };
+
+  } catch (err) {
+    if (err instanceof CustomError) {
+      throw err;
+    }
+    throw new CustomError(`An error occurred during login. Error: ${err}`, 501);
+  }
+};
 
 const calculateBalance = async (res: express.Response): Promise<string> => {
   try {
@@ -116,16 +106,16 @@ const deleteUser = async (res: express.Response): Promise<void> => {
   const user: Users = res.locals.user;
 
   try {
-      if(user.business) {
-        const businessUsers = await Users.find({where: {business: {id: user.business.id}}});
-        for(const businessUser of businessUsers) {
-          await Users.delete(businessUser.id);
-        }
-      } else {
-      await Users.delete(user.id);
+    if (user.business) {
+      const businessUsers = await Users.find({ where: { business: { id: user.business.id } } });
+      for (const businessUser of businessUsers) {
+        await Users.delete(businessUser.id);
       }
+    } else {
+      await Users.delete(user.id);
+    }
   } catch (err: any) {
-      throw new CustomError(`Internal Server Error`, 500);
+    throw new CustomError(`Internal Server Error`, 500);
   }
 };
 
@@ -139,8 +129,8 @@ const checkForVerification = () => {
         const userCreationTime = new Date(user.createdAt);
         return (currentTime.getTime() - userCreationTime.getTime()) >= 60000;
       });
-      
-      
+
+
       for (const user of expiredUsers) {
         await Users.delete({ id: user.id });
       }
@@ -155,12 +145,12 @@ const checkForVerification = () => {
 const checkForSubscriptionValidation = () => {
   setInterval(async () => {
     try {
-      const users = await Users.find({where: {profile: {role: 'Root'}}});
+      const users = await Users.find({ where: { profile: { role: 'Root' } } });
 
       const now = new Date().getTime();
-      for(const user of users) {
-        const {profile} = user;
-        
+      for (const user of users) {
+        const { profile } = user;
+
         if (profile?.role === 'Root' && profile.subscription_date) {
           const subscriptionDate = new Date(profile.subscription_date).getTime();
           const diff = (now - subscriptionDate) / (1000 * 60);
@@ -178,17 +168,17 @@ const checkForSubscriptionValidation = () => {
 
       }
       logger.info(`Scheduled task completed successfully, checked ${users.length} users.`);
-    } catch(err) {
+    } catch (err) {
       logger.error(`Scheduled task failed. Error: ${err}`);
     }
-  },60000);
+  }, 60000);
 
 }
 
 const sendResetPasswordEmail = async (payload: Gen.sendResetPasswordEmail): Promise<void> => {
-  const host = process.env.HOST || 'localhost:2077';
+  const host = process.env.HOST || 'localhost:2000';
   const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
-  const emailSubject = 'EpenElixir User Password Reset';
+  const emailSubject = 'ExpenElixir User Password Reset';
   const emailBody = 'Please reset your password by clicking the link: ' + resetLink;
 
   await sendEmail(emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)

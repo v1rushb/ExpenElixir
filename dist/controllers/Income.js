@@ -2,7 +2,7 @@ import dataSource from "../db/dataSource.js";
 import { Income } from "../db/entities/Income.js";
 import { Users } from '../db/entities/Users.js';
 import { CustomError } from '../CustomError.js';
-import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
+import { currencyConverterFromOtherToUSD, incomeOnProfileCurrency } from '../utils/currencyConverter.js';
 import { EqualOperator } from 'typeorm';
 const insertIncome = async (payload, res) => {
     try {
@@ -13,6 +13,7 @@ const insertIncome = async (payload, res) => {
                 amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
+                currencyData: JSON.stringify(currency.currencyData),
             });
             await trans.save(newIncome);
             const user = await Users.findOne({
@@ -51,7 +52,8 @@ const totalIncomes = async (res) => {
     const incomes = await Income.find({
         where: { user: new EqualOperator(res.locals.user.id) }
     });
-    const total = incomes ? incomes.reduce((acc, income) => acc + income.amount, 0) : 0;
+    const results = await incomeOnProfileCurrency(incomes, res.locals.user);
+    const total = results ? results.reduce((acc, income) => acc + income.amount, 0) : 0;
     return total;
 };
 const modifyIncome = async (payload, res) => {
@@ -74,5 +76,24 @@ const modifyIncome = async (payload, res) => {
     }
     return res.locals.user.username;
 };
-export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, modifyIncome, };
+const getIncome = async (req, res) => {
+    try {
+        const filter = {
+            ...res.locals.filter,
+            where: { user: new EqualOperator(res.locals.user.id) },
+            select: { id: true, title: true, amount: true, incomeDate: true, description: true, currencyData: false }
+        };
+        const incomes = await Income.find(filter);
+        const results = await incomeOnProfileCurrency(incomes, res.locals.user);
+        return results;
+    }
+    catch (err) {
+        console.log(err);
+        if (err instanceof CustomError) {
+            throw new CustomError(err.message, err.statusCode);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
+    }
+};
+export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, modifyIncome, getIncome, };
 //# sourceMappingURL=Income.js.map

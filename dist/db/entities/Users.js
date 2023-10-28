@@ -75,19 +75,19 @@ __decorate([
     __metadata("design:type", Date)
 ], Users.prototype, "createdAt", void 0);
 __decorate([
-    OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true }),
+    OneToMany(() => Expense, expense => expense.users, { cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "expenses", void 0);
 __decorate([
-    OneToMany(() => Category, category => category.users, { eager: true, cascade: true }),
+    OneToMany(() => Category, category => category.users, { cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "categories", void 0);
 __decorate([
-    OneToMany(() => Income, income => income.user, { eager: true, cascade: true }),
+    OneToMany(() => Income, income => income.user, { cascade: true }),
     __metadata("design:type", Array)
 ], Users.prototype, "incomes", void 0);
 __decorate([
-    ManyToOne(() => Business, business => business.users, { eager: true }),
+    ManyToOne(() => Business, business => business.users),
     __metadata("design:type", Business)
 ], Users.prototype, "business", void 0);
 __decorate([

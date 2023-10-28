@@ -30,7 +30,7 @@ const createSendEmailCommand = (toAddress, fromAddress, emailBody, emailSubject)
     });
 };
 export const sendEmail = async (emailBody, emailSubject) => {
-    const sendEmailCommand = createSendEmailCommand("cs.bashar.herbawi@gmail.com", "cs.bashar.herbawi@gmail.com", emailBody, emailSubject);
+    const sendEmailCommand = createSendEmailCommand("mo.r.husini@gmail.com", "mo.r.husini@gmail.com", emailBody, emailSubject);
     try {
         return await sesClient.send(sendEmailCommand);
     }

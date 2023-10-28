@@ -29,7 +29,7 @@ const insertUser = async (payload) => {
             const newUser = Users.create({ email, username, password, profile: newProfile, createdAt });
             const verificationToken = uuidv4();
             newUser.verificationToken = verificationToken;
-            const host = process.env.HOST || 'localhost:2077';
+            const host = process.env.HOST || 'localhost:2000';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
             const emailBody = 'Please verify your account by clicking the link: ' + verificationLink;
             const emailSubject = 'EpenElixir Email Verification';
@@ -50,17 +50,6 @@ const login = async (payload) => {
         const user = await Users.findOne({ where: { username: payload.username } });
         if (!user || user.username !== payload.username) {
             throw new CustomError('Invalid credentials', 400);
-        }
-        if (user.profile.role === 'User') {
-            if (!payload.iamId || user.iamId !== payload.iamId) {
-                throw new CustomError('IAM users must provide a valid IAM ID', 401);
-            }
-            if (user.business.rootUserID) {
-                const rootUser = await Users.findOne({ where: { id: user.business.rootUserID } });
-                if (rootUser?.profile.role !== 'Root') {
-                    throw new CustomError('Unauthorized', 401);
-                }
-            }
         }
         const isPasswordMatch = await bcrypt.compare(payload.password, user.password);
         if (!isPasswordMatch) {
@@ -158,9 +147,9 @@ const checkForSubscriptionValidation = () => {
     }, 60000);
 };
 const sendResetPasswordEmail = async (payload) => {
-    const host = process.env.HOST || 'localhost:2077';
+    const host = process.env.HOST || 'localhost:2000';
     const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
-    const emailSubject = 'EpenElixir User Password Reset';
+    const emailSubject = 'ExpenElixir User Password Reset';
     const emailBody = 'Please reset your password by clicking the link: ' + resetLink;
     await sendEmail(emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)
 };

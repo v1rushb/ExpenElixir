@@ -15,7 +15,7 @@ const insertExpense = async (payload, res) => {
                 amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                data: JSON.stringify(currency.currencyData),
+                currencyData: JSON.stringify(currency.currencyData),
                 picURL: payload.picFile?.location
             });
             await trans.save(newExpense);
@@ -88,14 +88,19 @@ const totalExpenses = async (res) => {
     const expenses = await Expense.find({
         where: { users: new EqualOperator(res.locals.user.id) }
     });
-    const total = expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0;
+    const results = await expenseOnProfileCurrency(expenses, res.locals.user);
+    const total = results ? results.reduce((acc, expense) => acc + expense.amount, 0) : 0;
     return total;
 };
 const getExpenses = async (req, res) => {
     try {
-        const filter = { ...res.locals.filter, where: { users: new EqualOperator(res.locals.user.id) } };
+        const filter = {
+            ...res.locals.filter,
+            where: { users: new EqualOperator(res.locals.user.id) },
+            select: { id: true, title: true, amount: true, expenseDate: true, description: true, picURL: true, currencyData: false }
+        };
         const expenses = await Expense.find(filter);
-        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency);
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user);
         return results;
     }
     catch (err) {
@@ -139,13 +144,14 @@ const getFilteredExpenses = async (payload, req, res) => {
                 users: new EqualOperator(res.locals.user.id),
                 amount: Between(Number(payload.minAmountQuery) || 0, Number(payload.maxAmountQuery) || 9223372036854775807),
                 title: Like(`%${payload.searchQuery?.toString().toLowerCase() || ''}%`),
-            }
+            },
+            select: { id: true, title: true, amount: true, expenseDate: true, description: true, picURL: true, currencyData: false }
         };
         if (payload.category) {
             filter.where.category = new EqualOperator(payload.category);
         }
         const expenses = await Expense.find(filter);
-        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency);
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user);
         return results;
     }
     catch (err) {

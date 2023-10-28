@@ -14,7 +14,7 @@ const dataSource = new DataSource({
     database: process.env.DB_NAME,
     entities: [Users, Expense, Category, Income, Profile, Business],
     //migrations: ['./**/migration/*.ts'],
-    logging: false,
+    logging: true,
     synchronize: true
 });
 export const initDB = async () => await dataSource.initialize().then(() => {

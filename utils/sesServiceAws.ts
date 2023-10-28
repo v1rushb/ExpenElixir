@@ -40,8 +40,8 @@ const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBod
 
 export const sendEmail = async (emailBody: string, emailSubject: string) => {
     const sendEmailCommand = createSendEmailCommand(
-        "cs.bashar.herbawi@gmail.com",
-        "cs.bashar.herbawi@gmail.com",
+        "mo.r.husini@gmail.com",
+        "mo.r.husini@gmail.com",
         emailBody,
         emailSubject
     );

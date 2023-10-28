@@ -4,8 +4,8 @@ import { Income } from "../db/entities/Income.js";
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { CustomError } from '../CustomError.js';
-import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
-import { EqualOperator } from 'typeorm';
+import { currencyConverterFromOtherToUSD, incomeOnProfileCurrency } from '../utils/currencyConverter.js';
+import { EqualOperator, In } from 'typeorm';
 
 
 const insertIncome = async (payload: Gen.insertIncome, res: express.Response) => {
@@ -17,6 +17,7 @@ const insertIncome = async (payload: Gen.insertIncome, res: express.Response) =>
                 amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
+                currencyData: JSON.stringify(currency.currencyData),
             });
             await trans.save(newIncome);
             const user = await Users.findOne({
@@ -39,7 +40,7 @@ const deleteAllIncomes = async (res: express.Response): Promise<void> => {
     await Income.delete({ user: new EqualOperator(res.locals.user.id) });
 }
 
-const deleteIncome = async (payload: Gen.deleteIncome,res: express.Response): Promise<string> => {
+const deleteIncome = async (payload: Gen.deleteIncome, res: express.Response): Promise<string> => {
     if (!payload.id)
         throw new CustomError("ID is required.", 400);
     try {
@@ -58,8 +59,8 @@ const totalIncomes = async (res: express.Response): Promise<number> => {
     const incomes = await Income.find({
         where: { user: new EqualOperator(res.locals.user.id) }
     });
-
-    const total = incomes ? incomes.reduce((acc, income) => acc + income.amount, 0) : 0
+    const results = await incomeOnProfileCurrency(incomes, res.locals.user)
+    const total = results ? results.reduce((acc, income) => acc + income.amount, 0) : 0
 
     return total
 }
@@ -77,16 +78,40 @@ const modifyIncome = async (payload: Gen.modifyIncome, res: express.Response): P
         income.amount = currency.amount;
         income.incomeDate = payload.incomeDate;
         income.description = payload.description;
+
         await income.save();
     } catch (err) {
         throw new CustomError(`${err}`, 500);
     }
     return res.locals.user.username;
 }
+const getIncome = async (req: express.Request, res: express.Response): Promise<Income[]> => {
+    try {
+        const filter = {
+            ...res.locals.filter,
+            where: { user: new EqualOperator(res.locals.user.id) },
+            select: { id: true, title: true, amount: true, incomeDate: true, description: true, currencyData: false }
+        }
+
+        const incomes = await Income.find(filter)
+        const results = await incomeOnProfileCurrency(incomes, res.locals.user)
+
+        return results as unknown as Promise<Income[]>;
+
+    } catch (err: unknown) {
+        console.log(err);
+
+        if (err instanceof CustomError) {
+            throw new CustomError(err.message, err.statusCode);
+        }
+        throw new CustomError(`Internal Server Error`, 500);
+    }
+};
 export {
     insertIncome,
     deleteAllIncomes,
     deleteIncome,
     totalIncomes,
     modifyIncome,
+    getIncome,
 }

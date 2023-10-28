@@ -35,6 +35,10 @@ __decorate([
     ManyToOne(() => Users, user => user.incomes),
     __metadata("design:type", String)
 ], Income.prototype, "user", void 0);
+__decorate([
+    Column({ type: 'text', nullable: true }),
+    __metadata("design:type", String)
+], Income.prototype, "currencyData", void 0);
 Income = __decorate([
     Entity()
 ], Income);
