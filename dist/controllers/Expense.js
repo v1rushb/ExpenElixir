@@ -159,7 +159,6 @@ const updateExpense = async (expenseId, payload, res) => {
             if (!existingExpense) {
                 throw new CustomError("Expense not found.", 404);
             }
-            console.log(existingExpense);
             const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
             existingExpense.title = payload.title;
             existingExpense.amount = currency.amount;

@@ -2078,3 +2078,323 @@
 2023-10-28T15:30:46.249Z [info]: User undefined modified expense undefined!
 2023-10-28T15:31:42.611Z [info]: Scheduled task completed successfully, deleted 0 users.
 2023-10-28T15:31:42.613Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:44:12.980Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T15:44:31.493Z [info]: User undefined requested all Expenses!
+2023-10-28T15:45:05.295Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:45:05.789Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T15:46:05.300Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:46:05.303Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:47:05.303Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:47:05.305Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:48:05.309Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:48:05.310Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:49:05.331Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:49:05.332Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:49:53.807Z [error]: 401 - Unauthorized - /expense/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:50:05.332Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:50:05.333Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:50:27.327Z [error]: 401 - Unauthorized - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:50:49.201Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T15:50:55.513Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:51:02.491Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T15:51:04.710Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:51:15.416Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:51:20.809Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:51:21.217Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T15:51:31.372Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:52:31.411Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:52:31.412Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:52:38.073Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T15:52:45.704Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:52:51.434Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:52:52.111Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:53:09.834Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:53:11.348Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:53:12.144Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:09.456Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:54:09.873Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T15:54:30.207Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:46.916Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T15:54:49.366Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:50.279Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:50.854Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:51.279Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:51.822Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:52.395Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:52.906Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:53.426Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:53.910Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:54.369Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:54.966Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:08.339Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:08.964Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:09.547Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:10.101Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:10.596Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:11.179Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:11.736Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:12.226Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:12.775Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:13.219Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:13.704Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:14.170Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:57:02.435Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:57:02.887Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T15:58:02.420Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:58:02.429Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T15:58:33.982Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:58:43.138Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T15:58:55.209Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:59:02.419Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T15:59:02.430Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T15:59:02.845Z [info]: User undefined requested all Expenses!
+2023-10-28T15:59:20.623Z [info]: User undefined deleted expense de553647-b32e-4797-9c8d-98ab89fac878!
+2023-10-28T15:59:21.796Z [error]: 404 - Expense not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T16:00:02.419Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:00:02.431Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:01:02.457Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:01:02.459Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:02:02.481Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:02:02.482Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:03:02.512Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:03:02.515Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:04:02.541Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:04:02.541Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:04:17.825Z [info]: User undefined requested all Expenses!
+2023-10-28T16:04:40.746Z [info]: User undefined requested all Expenses!
+2023-10-28T16:05:02.559Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:05:02.562Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:06:02.564Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:06:02.565Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:07:02.586Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:07:02.587Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:08:49.747Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:08:49.757Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:09:49.708Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:09:49.746Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:10:30.000Z [error]: 404 Not Found - /category/business/de553647-b32e-4797-9c8d-98ab89fac878 - POST - ::1
+2023-10-28T16:10:48.363Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T16:10:49.712Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:10:49.752Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:11:05.410Z [error]: 404 Not Found - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:11:20.441Z [error]: 400 - You must provide an id for the user you want to add a category to! - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:11:49.239Z [error]: 400 - You must provide an id for the user you want to add a category to! - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:12:24.103Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:12:25.188Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:12:43.287Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:13:24.060Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:13:24.062Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:14:24.061Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:14:24.569Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:15:24.078Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:15:24.079Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T16:16:24.088Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:16:24.089Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T16:16:28.852Z [error]: 401 - You are not a root user - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:16:54.688Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T16:16:56.877Z [info]: User v1rushbb added a new category for user with id undefined!
+2023-10-28T16:17:28.047Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:17:28.050Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:19:01.148Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:19:01.160Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:20:01.135Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:20:01.149Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:20:32.109Z [error]: 404 Not Found - /category/business - GET - ::1
+2023-10-28T16:20:43.332Z [info]: User undefined requested all categories!
+2023-10-28T16:21:42.869Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:21:42.874Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:23:34.092Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:23:34.102Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:24:23.140Z [error]: 401 - Unauthorized - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - DELETE - ::1
+2023-10-28T16:24:27.383Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T16:24:30.577Z [error]: 400 - You must provide an id for the user you want to delete a category from! - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - DELETE - ::1
+2023-10-28T16:24:34.053Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:24:34.097Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:24:55.616Z [info]: User undefined requested all categories!
+2023-10-28T16:25:06.775Z [error]: 400 - You must provide an id for the user you want to delete a category from! - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:25:14.518Z [error]: 404 - Income not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:25:25.885Z [info]: User undefined requested all categories!
+2023-10-28T16:25:34.053Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:25:34.090Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:26:34.075Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:26:34.089Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:26:40.059Z [info]: User undefined requested all categories!
+2023-10-28T16:26:45.951Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:26:55.437Z [error]: 404 Not Found - /category/business/541ed414-f418-4a98-978b-4589e351d744 - GET - ::1
+2023-10-28T16:26:59.443Z [info]: User undefined requested all categories!
+2023-10-28T16:27:18.466Z [error]: 404 Not Found - /category/business/541ed414-f418-4a98-978b-4589e351d744 - GET - ::1
+2023-10-28T16:27:21.188Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:27:39.862Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:27:39.872Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:28:09.101Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:18.486Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:19.143Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:31.374Z [info]: User v1rushbb deleted category 541ed414-f418-4a98-978b-4589e351d744 for user with id 54a2d3d8-7e3f-4883-aa45-185ca059f905!
+2023-10-28T16:29:32.896Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:39.973Z [error]: 404 Not Found - /category/business/541ed414-f418-4a98-978b-4589e351d744 - GET - ::1
+2023-10-28T16:29:44.005Z [info]: User undefined requested all categories!
+2023-10-28T16:29:53.515Z [info]: User v1rushbb deleted category 6408f54b-144b-4f28-b4ec-314ea073e35c for user with id 54a2d3d8-7e3f-4883-aa45-185ca059f905!
+2023-10-28T16:30:31.034Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:30:31.041Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:31:31.024Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:31:31.028Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:32:52.039Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:32:52.512Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:32:55.090Z [error]: 401 - You are not a root user - /category/business/ - GET - ::1
+2023-10-28T16:33:03.801Z [error]: 401 - You are not a root user - /category/business/ - GET - ::1
+2023-10-28T16:33:04.062Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T16:33:04.478Z [info]: User undefined requested all categories!
+2023-10-28T16:33:52.028Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:33:52.044Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:33:53.443Z [info]: User v1rushbb modified category f6f91e39-0f95-45e6-9b45-a594baed7644 for user with id undefined!
+2023-10-28T16:34:05.930Z [info]: User undefined requested all categories!
+2023-10-28T16:34:41.602Z [error]: 400 - Expected double-quoted property name in JSON at position 81 - /category/business/f6f91e39-0f95-45e6-9b45-a594baed7644 - PUT - ::1
+2023-10-28T16:34:52.023Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:34:52.039Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:34:53.753Z [error]: 400 - You must provide an id for the user you want to modify a category from! - /category/business/f6f91e39-0f95-45e6-9b45-a594baed7644 - PUT - ::1
+2023-10-28T16:35:01.667Z [error]: 404 - Category with id: business was not found! - /category/business/ - PUT - ::1
+2023-10-28T16:35:52.048Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:35:52.050Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:37:17.091Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:37:17.098Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:38:17.063Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:38:17.086Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:39:17.090Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:39:17.093Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:40:17.122Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:40:17.123Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:41:17.154Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:41:17.158Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:42:17.181Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:42:17.182Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:43:17.197Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:43:17.199Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:44:17.227Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:44:17.229Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:45:17.252Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:45:17.253Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:46:17.251Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:46:17.254Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:47:17.281Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:47:17.282Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:48:17.306Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:48:17.753Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:48:34.038Z [error]: 401 - You are not a root user - /expense/business/analytics/recommend-promote - GET - ::1
+2023-10-28T16:48:41.516Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T16:48:44.672Z [error]: 404 - Category with id: business was not found! - /category/business/ - PUT - ::1
+2023-10-28T16:49:30.811Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:49:30.819Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:50:30.807Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:50:30.809Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:51:30.804Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:51:30.806Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:52:30.830Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:52:30.832Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:53:30.858Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:53:30.860Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:54:30.892Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:54:30.893Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:55:30.918Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:55:30.919Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:56:30.953Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:56:30.956Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:57:57.895Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:57:57.902Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:58:57.890Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:58:57.896Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T16:59:57.920Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T16:59:57.924Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T17:00:57.941Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:00:57.942Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T17:01:15.707Z [error]: 401 - Unauthorized - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-28T17:01:58.238Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-28T17:02:02.224Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:02:02.229Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T17:02:03.309Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-28T17:02:11.434Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-28T17:02:18.348Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T17:02:30.559Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:03:02.227Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:03:02.228Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T17:04:04.308Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:04:28.256Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:05:25.929Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:05:26.444Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T17:05:48.049Z [error]: 401 - Unauthorized - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-28T17:05:56.489Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:06:17.722Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:06:19.514Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:06:48.130Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:06:48.132Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:07:25.390Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:07:39.459Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:08:37.798Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:08:37.800Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:09:37.798Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:09:37.804Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:10:37.824Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:10:37.825Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:11:37.838Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:11:37.838Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:12:37.864Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:12:37.865Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:13:37.897Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:13:37.899Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:14:37.912Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:14:37.912Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:16:22.076Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:16:23.442Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:17:19.720Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:17:19.722Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:18:19.716Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:18:19.718Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:18:52.139Z [info]: User undefined requested all categories!
+2023-10-28T17:19:02.707Z [error]: 404 Not Found - /expense/business/add-user-expense - POST - ::1
+2023-10-28T17:19:08.168Z [error]: undefined - Unexpected field - /expense - POST - ::1
+2023-10-28T17:19:19.724Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:19:19.724Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:20:19.757Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:20:19.759Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:20:58.350Z [info]: User undefined added a new Expense!
+2023-10-28T17:21:06.076Z [info]: User undefined added a new Expense!
+2023-10-28T17:21:07.856Z [info]: User undefined added a new Expense!
+2023-10-28T17:21:12.204Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:21:19.755Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:21:19.759Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:21:55.823Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:22:54.088Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:22:54.090Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:23:54.093Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:23:54.099Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:24:54.109Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:24:54.110Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:25:54.139Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:25:54.140Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:26:54.167Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:26:54.168Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:26:57.278Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-28T17:27:56.997Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:27:57.000Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:28:56.999Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:28:57.000Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:29:43.634Z [info]: 200 OK - /analytics/predict-me - GET - ::1
+2023-10-28T17:29:57.008Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:29:57.009Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:30:57.039Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:30:57.041Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:32:33.245Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:32:33.253Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:33:33.211Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:33:33.240Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:34:33.243Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:34:33.244Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:35:33.272Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:35:33.273Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:36:33.304Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:36:33.306Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:37:33.326Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:37:33.327Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:38:33.356Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:38:33.357Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T17:39:33.387Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T17:39:33.389Z [info]: Scheduled task completed successfully, checked 0 users.

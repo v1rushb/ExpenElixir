@@ -208,6 +208,7 @@ router.get('/verify-account', async (req, res, next) => {
 // });
 
 
+
 router.post('/reset-password', validatePassword, async (req, res, next) => {
     const {email,newPassword} = req.body;
     try {

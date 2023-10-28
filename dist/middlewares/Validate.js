@@ -75,7 +75,7 @@ const validateCategory = async (req, res, next) => {
     try {
         if (!req.body)
             throw new CustomError(`Empty body!`, 400);
-        const values = ['title'];
+        const values = ['title', 'budget'];
         const errorList = [];
         values.forEach(iterator => {
             if (!req.body[iterator])

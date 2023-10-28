@@ -12,6 +12,7 @@ import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import { v4 as uuidv4 } from 'uuid';
 import {ChatGPTAPI, ChatMessage} from 'chatgpt';
+import { EqualOperator } from 'typeorm';
 
 
 const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Promise<void> => {
@@ -289,7 +290,7 @@ const addUserCategory = async (payload: Gen.Category, userID: string, res: expre
         return dataSource.manager.transaction(async trans => {
 
             const newCategory = Category.create({
-                title: payload.title, description: payload.description,
+                title: payload.title, description: payload.description,budget: payload.budget
             });
             await trans.save(newCategory);
             user.categories.push(newCategory);
@@ -315,11 +316,10 @@ const deleteUserCategory = async (categoryID: string, userID: string, res: expre
             throw new CustomError(`User not found.`, 404);
         }
         const category = await Category.findOne({
-            where: { id: categoryID },
+            where: { id: new EqualOperator(categoryID), users: new EqualOperator(userID) },
         });
-
-        if (!category || category.users !== user.id) {
-            throw new CustomError("Income not found.", 404);
+        if (!category) {
+            throw new CustomError("category not found.", 404);
         }
 
         await Category.remove(category);
@@ -339,6 +339,7 @@ const upgradeToBusiness = async (res: express.Response) => {
         if(res.locals.user.business)
         {
             user.profile.role = 'Root';
+            user.profile.subscription_date = new Date();
             return await user.save();
         }
         if (user.profile) {
@@ -471,7 +472,7 @@ const getAdvice = async (inputArr: {username: string, userId: string, incomeExpe
             const {username, incomeExpenseDiff} = user;
             message+= `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
         }
-        const res : ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`)
+        const res : ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason. Dont include 'Section 1 or Section 2' in your response. just give the information`)
         return res.text.toString();
 }
 
@@ -482,7 +483,7 @@ const getFireAdvice = async (inputArr: {username: string, userId: string, income
         const {username, incomeExpenseDiff} = user;
         message+= `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
     }
-    const res: ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I fire? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason.`)
+    const res: ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I fire? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason. Dont include 'Section 1 or Section 2' in your response. just give the information`)
     return res.text.toString();
 }
 

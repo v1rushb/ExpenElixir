@@ -11,23 +11,23 @@ import expenseAnalytics from '../middlewares/business-analytics.js';
 
 const router = express.Router();
 
-router.get('/business-expenses', authMe, premiumAuth, async (req, res, next): Promise<void> => {
+router.get('/', authMe, premiumAuth, async (req, res, next): Promise<void> => {
     businessExpenses(res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);
     }).catch(err => next(err));
 });
 
-router.post('/add-user-expense/:id', authMe, premiumAuth, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+router.post('/add-user-expense/:id', authMe, premiumAuth, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     addUserExpense({...req.body,id:req.query.id as string, picFile:req.file as Express.MulterS3.File},res).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
 });
 
-router.delete('/delete-user-expense/:id', authMe, premiumAuth, async (req, res, next) => {
-    deleteUserExpense({expenseID:req.params.id as string, userID:req.query.userID as string},res).then(expense => {
-        logger.info(`User ${req.body.username} deleted expense ${req.query.id}!`);
+router.delete('/:id', authMe, premiumAuth, async (req, res, next) => {
+    deleteUserExpense({expenseID:req.params.id as string, userID:req.body.userID as string},res).then(expense => {
+        logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
         res.status(200).send(`You have successfully deleted the expense!`);
     }).catch(err => next(err));
 });

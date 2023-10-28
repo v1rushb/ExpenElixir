@@ -378,3 +378,76 @@
 2023-10-28T15:20:23.785Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category/ - POST - ::1
 2023-10-28T15:28:21.855Z [error]: 500 - Internal Server Error - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
 2023-10-28T15:28:57.653Z [error]: 500 - EntityPropertyNotFoundError: Property "0" was not found in "Users". Make sure your query is correct. - /expense/dd606543-9047-41cb-ab5b-a257069ce09c - PUT - ::1
+2023-10-28T15:49:53.807Z [error]: 401 - Unauthorized - /expense/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:50:27.327Z [error]: 401 - Unauthorized - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:50:55.513Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:51:04.710Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:51:15.416Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:51:31.372Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:52:45.704Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:52:51.434Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:52:52.111Z [error]: 400 - You must provide an id for the user you want to delete an expense from! - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:53:09.834Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:53:11.348Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:53:12.144Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:30.207Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:49.366Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:50.279Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:50.854Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:51.279Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:51.822Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:52.395Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:52.906Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:53.426Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:53.910Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:54.369Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:54:54.966Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:08.339Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:08.964Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:09.547Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:10.101Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:10.596Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:11.179Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:11.736Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:12.226Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:12.775Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:13.219Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:13.704Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:55:14.170Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:58:33.982Z [error]: 401 - You are not a root user - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:58:55.209Z [error]: 404 - User not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T15:59:21.796Z [error]: 404 - Expense not found. - /expense/business/de553647-b32e-4797-9c8d-98ab89fac878 - DELETE - ::1
+2023-10-28T16:10:30.000Z [error]: 404 Not Found - /category/business/de553647-b32e-4797-9c8d-98ab89fac878 - POST - ::1
+2023-10-28T16:11:05.410Z [error]: 404 Not Found - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:11:20.441Z [error]: 400 - You must provide an id for the user you want to add a category to! - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:11:49.239Z [error]: 400 - You must provide an id for the user you want to add a category to! - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:12:24.103Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:12:25.188Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:12:43.287Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:16:28.852Z [error]: 401 - You are not a root user - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T16:20:32.109Z [error]: 404 Not Found - /category/business - GET - ::1
+2023-10-28T16:24:23.140Z [error]: 401 - Unauthorized - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - DELETE - ::1
+2023-10-28T16:24:30.577Z [error]: 400 - You must provide an id for the user you want to delete a category from! - /category/business/54a2d3d8-7e3f-4883-aa45-185ca059f905 - DELETE - ::1
+2023-10-28T16:25:06.775Z [error]: 400 - You must provide an id for the user you want to delete a category from! - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:25:14.518Z [error]: 404 - Income not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:26:45.951Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:26:55.437Z [error]: 404 Not Found - /category/business/541ed414-f418-4a98-978b-4589e351d744 - GET - ::1
+2023-10-28T16:27:18.466Z [error]: 404 Not Found - /category/business/541ed414-f418-4a98-978b-4589e351d744 - GET - ::1
+2023-10-28T16:27:21.188Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:28:09.101Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:18.486Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:19.143Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:32.896Z [error]: 404 - category not found. - /category/business/541ed414-f418-4a98-978b-4589e351d744 - DELETE - ::1
+2023-10-28T16:29:39.973Z [error]: 404 Not Found - /category/business/541ed414-f418-4a98-978b-4589e351d744 - GET - ::1
+2023-10-28T16:32:55.090Z [error]: 401 - You are not a root user - /category/business/ - GET - ::1
+2023-10-28T16:33:03.801Z [error]: 401 - You are not a root user - /category/business/ - GET - ::1
+2023-10-28T16:34:41.602Z [error]: 400 - Expected double-quoted property name in JSON at position 81 - /category/business/f6f91e39-0f95-45e6-9b45-a594baed7644 - PUT - ::1
+2023-10-28T16:34:53.753Z [error]: 400 - You must provide an id for the user you want to modify a category from! - /category/business/f6f91e39-0f95-45e6-9b45-a594baed7644 - PUT - ::1
+2023-10-28T16:35:01.667Z [error]: 404 - Category with id: business was not found! - /category/business/ - PUT - ::1
+2023-10-28T16:48:34.038Z [error]: 401 - You are not a root user - /expense/business/analytics/recommend-promote - GET - ::1
+2023-10-28T16:48:44.672Z [error]: 404 - Category with id: business was not found! - /category/business/ - PUT - ::1
+2023-10-28T17:01:15.707Z [error]: 401 - Unauthorized - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-28T17:01:58.238Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-28T17:05:48.049Z [error]: 401 - Unauthorized - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-28T17:19:02.707Z [error]: 404 Not Found - /expense/business/add-user-expense - POST - ::1
+2023-10-28T17:19:08.168Z [error]: undefined - Unexpected field - /expense - POST - ::1

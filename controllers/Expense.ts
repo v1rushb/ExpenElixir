@@ -189,7 +189,6 @@ const updateExpense = async (expenseId: string, payload: Gen.Expense, res: expre
           throw new CustomError("Expense not found.", 404);
         }
 
-        console.log(existingExpense);
         const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
   
         existingExpense.title = payload.title;
@@ -229,7 +228,7 @@ const updateExpense = async (expenseId: string, payload: Gen.Expense, res: expre
             await sendEmail(emailBody, emailSubject);
         }
     });
-    } catch (err) {
+    } catch (err: any) {
       if (err instanceof CustomError) {
         throw err;
       }

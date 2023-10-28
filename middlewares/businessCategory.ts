@@ -4,33 +4,32 @@ import { addUserCategory, businessCategories, deleteUserCategory, modifyUserCate
 import logger from '../logger.js';
 import premiumAuth from './PremiumAuth.js';
 import { validateCategory } from './Validate.js';
-import checkBusiness from './business-check.js';
 
 const router = express.Router();
 
-router.get('/business-categories', authMe, premiumAuth, checkBusiness, async (req, res, next): Promise<void> => { // testing purposes
+router.get('/', authMe, premiumAuth, async (req, res, next): Promise<void> => {
     businessCategories(res).then(categories => {
         logger.info(`User ${req.body.username} requested all categories!`);
         res.status(200).send(categories);
     }).catch(err => next(err));
 });
 
-router.delete('/delete-user-category', authMe, premiumAuth, checkBusiness, async (req, res, next): Promise<void> => {
-    deleteUserCategory(req.query.id as string, req.query.userID as string, res).then(() => {
-        logger.info(`User ${res.locals.user.username} deleted category ${req.params.id} for user with id ${req.query.userID}!`);
+router.delete('/:id', authMe, premiumAuth, async (req, res, next): Promise<void> => {
+    deleteUserCategory(req.params.id as string, req.body.userID as string, res).then(() => {
+        logger.info(`User ${res.locals.user.username} deleted category ${req.params.id} for user with id ${req.body.userID}!`);
         res.status(200).send(`You have successfully deleted the category with id: ${req.params.id}!`);
     }).catch(err => next(err));
 });
 
-router.post('add-user-category', authMe, premiumAuth, checkBusiness, validateCategory, async (req, res, next): Promise<void> => {
-    addUserCategory(req.body, req.query.userID as string, res).then(() => {
-        logger.info(`User ${res.locals.user.username} added a new category for user with id ${req.query.userID}!`);
+router.post('/:id', authMe, premiumAuth, validateCategory, async (req, res, next): Promise<void> => {
+    addUserCategory(req.body, req.params.id as string, res).then(() => {
+        logger.info(`User ${res.locals.user.username} added a new category for user with id ${req.params.userID}!`);
         res.status(200).send(`You have successfully added a new category!`);
     }).catch(err=> next(err));
 });
 
-router.put('/modify', authMe, premiumAuth, checkBusiness, validateCategory, async (req, res, next): Promise<void> => {
-    modifyUserCategory(req.query.id as string, req.query.userID as string, req.body, res).then(() => {
+router.put('/:id', authMe, premiumAuth, validateCategory, async (req, res, next): Promise<void> => {
+    modifyUserCategory(req.params.id as string, req.body.userID as string, req.body, res).then(() => {
         logger.info(`User ${res.locals.user.username} modified category ${req.params.id} for user with id ${req.query.userID}!`);
         res.status(200).send(`You have successfully modified the category!`);
     }).catch(err => next(err));

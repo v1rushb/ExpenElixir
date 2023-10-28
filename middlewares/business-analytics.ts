@@ -18,7 +18,6 @@ router.get('/recommend-fire',async (req, res, next) => {
 
 router.get('/recommend-promote', async (req, res, next) => {
     recommendation(res).then(async list=> {
-        console.log(list);
         if(!list.length)
             throw new CustomError('Your business currently has no signed users!',404); 
         const sortedRecommendation: {username: string, userId: string, incomeExpenseDiff: number}[] = sortRecommendation(list);

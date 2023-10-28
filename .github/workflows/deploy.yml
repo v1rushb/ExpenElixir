@@ -58,7 +58,10 @@ jobs:
             -e DB_PORT=${{ secrets.DB_PORT }} \
             -e DB_USER_NAME=${{ secrets.DB_USER_NAME }} \
             -e DB_PASSWORD=${{ secrets.DB_PASSWORD }} \
-            -e DB_NAME=${{ secrets.DB_NAME }} \
+            -e FREE_CURRENCY_API=${{ secrets.FREE_CURRENCY_API }} \
+            -e SECRET_KEY=${{ secrets.SECRET_KEY }} \
+            -e STRIPE_SECRET_KEY=${{ secrets.STRIPE_SECRET_KEY }} \
+            -e CHATGPTAPI_SECRET_KEY=${{ secrets.CHATGPTAPI_SECRET_KEY }} \
             ${{ secrets.DOCKERHUB_USERNAME }}/expenelixir:latest
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}

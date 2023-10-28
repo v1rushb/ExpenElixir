@@ -1,10 +1,14 @@
 import { Expense } from '../db/entities/Expense.js';
 import { ChatGPTAPI } from 'chatgpt';
 import { EqualOperator } from 'typeorm';
-const getExpensesByCategory = async (res) => {
+const getExpensesByCategory = async (startDate, endDate, res) => {
     const expensesByCategory = {};
     const result = [];
-    res.locals.user.expenses.forEach((expense) => {
+    const filteredExpenses = res.locals.user.expenses.filter((expense) => {
+        const expenseDate = new Date(expense.expenseDate);
+        return expenseDate >= startDate && expenseDate <= endDate;
+    });
+    filteredExpenses.forEach((expense) => {
         if (expense.category) {
             if (expensesByCategory[expense.category.title]) {
                 expensesByCategory[expense.category.title] += expense.amount;
@@ -29,20 +33,21 @@ const makeGraphicalData = (data) => {
     const maxValue = Math.max(...data.map(d => d.amount)); // just doin' some scales
     const unitValue = maxValue / 50;
     let graphicalData = 'Expense by Categroy:\n';
+    const size = graphicalData.length;
     data.forEach(iterator => {
         const barLength = Math.floor(iterator.amount / unitValue);
         const bar = '='.repeat(barLength);
         graphicalData += `${iterator.category.padEnd(20, ' ')} | ${bar} ${iterator.amount}\n`;
     });
-    return graphicalData;
+    return graphicalData.length === size ? '' : graphicalData;
 };
 const getAdvice = async (graph) => {
-    if (graph.length <= 20) {
+    if (!graph.length) {
         return "I can't give you advice without data";
     }
     else {
         const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
-        const res = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`);
+        const res = await api.sendMessage(`I will give you an ASCII graph. very easy for you to read. here are its properities: Category | =====(increasing '=' based on how much is the value of expenses for this category)===== amount (and after all the '=' you'll see the amount of spent money in this category) so I wish for you to analyze this graph and tell me breifly with a small paragraph how can if get better at spending money and gaining profit OR any general advice. I just want you to include your advice in the answer NOTHING else. here's the graph ${graph}`);
         return res.text.toString();
     }
 };
@@ -57,7 +62,7 @@ const getPrediction = async (res) => {
         }
     });
     const expensesString = expenses.map(expense => `${expense.expenseDate.toDateString()} - ${expense.amount}`).join('\n');
-    const response = await api.sendMessage("I will provide you with some data of this form: {date : amount spent during this date} and I want you to predict my spending. Here is the data: " + expensesString + " and I also want you to tell me my spending velocity. which is avg of how much I spent during this time interval and tell me if it's good or not.");
+    const response = await api.sendMessage("I will provide you with some data of this form: {date : amount spent during this date} and I want you to predict my spending. Here is the data: " + expensesString + " and I also want you to tell me my spending velocity. which is avg of how much I spent during this time interval and tell me if it's good or not. if I didn't provide you with any data just say 'I cannot do any action without data'");
     return response.text.toString();
 };
 export { getExpensesByCategory, isValidDate, sortQueryByAmount, makeGraphicalData, getAdvice, getPrediction, };
