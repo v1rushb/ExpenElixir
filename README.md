@@ -20,7 +20,7 @@ Endpoint for user registration.
 | `firstName`      | String | First name of the User | Yes   |
 | `lastName`      | String | Last name of the User | Yes   |
 | `phoneNumber`      | String | Phone number of the User | No   |
-| `phoneNumber`      | String | User's currency, default is USD | No   |
+| `Currency`      | String | User's currency, default is USD | No   |
 
 ### Responses
 
@@ -943,7 +943,61 @@ User tried to access without being logged in.
 
 
 
-## Insert an Expense API Documentation
+
+## Modify an Expense API Documentation
+
+### Endpoint
+`PUT /expense`
+
+### Description
+Endpoint for a user to modify and existing expense.
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `title` | String | Expense's title   | Yes      |             |
+| `amount` | String | Expense's amount  | Yes      |            |
+| `expenseDate`    | String | Expense's date | Yes  |             |
+| `description`    | String | Expense's description | No  |             |
+| `category`    | String | category id in which expense lies in | No  |             |
+| `picURL`    | String | a picture attached to the Expense | No  |             |
+
+### Responses
+
+- `200`: OK
+Expense has been modified.
+**Example Value**:
+```json
+{
+  "title": "very huge bill",
+  "amount": "1002336",
+  "expenseDate": "2023-10-10T15:11:54.000Z",
+  "description": "a bill that costed me a lot",
+  "category":"c2fb359b-3840-4c71-b2e6-aa41e77d5b9f"
+}
+```
+
+```json
+You have successfully modified the expense!
+```
+
+- `400`: Bad request
+Empty body
+Any empty attribute
+
+- `404`: Not found
+Expense wasn't found.
+Category not found.
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+## Insert a category API Documentation
 
 ### Endpoint
 `POST /category`
@@ -1163,5 +1217,1016 @@ User tried to access the service before verifying email
 
 - `401`: Unauthorized
 User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+# Business API documentation
+
+## Add a user API Documentation
+
+### Endpoint
+`POST /user/business/add-user`
+
+### Description
+Endpoint for a business user to add a user under their business 
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `username` | String | Username of the new user.   | Yes      |
+| `password` | String | Password for the new user.  | Yes      |
+| `email`    | String | Email address of the new user. | Yes   |
+| `firstName`      | String | First name of the User | Yes   |
+| `lastName`      | String | Last name of the User | Yes   |
+| `phoneNumber`      | String | Phone number of the User | No   |
+| `Currency`      | String | User's currency, default is USD | No   |
+### Responses
+
+- `201`: Created
+Descendant user has been created
+**Example Value**:
+```json
+{
+  "firstName": "Zain",
+  "lastName": "Herbawi",
+  "email": "cs.zain.herbawi@gmail.com",
+  "username": "z1rushb",
+  "password": "!@R4F324DSdFgh#@5%fg@j#FSDFasd2",
+  "phoneNumber": "05999999245"
+}
+```
+
+```json
+z1rushb has been successfully added to your business. A verification email has been sent to cs.zain.herbawi@gmail.com!
+```
+
+- `400`: Bad request
+Empty body
+Any empty attribute
+
+
+- `423`: Locked
+User tried to access the service before verifying email
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `500`: Internal Server Error
+
+
+
+## Get business's users API Documentation
+
+### Endpoint
+`GET /user/business/`
+
+### Description
+Endpoint for a business user to get all the users under their business. 
+
+### Request Body
+
+Empty
+
+### Responses
+
+- `200`: OK
+Sends the business user all the users in their business including themselves.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+{
+[
+    {
+        "id": "5357e5e2-ce8b-470c-846d-d1848b83fa8c",
+        "username": "z1rushb",
+        "email": "cs.zain.herbawi@gmail.com",
+        "password": "$2b$10$NCVYw3bkWTzq8wtGrl7GI.TSrQwZSraXLcbqpbYsrpXe/sCe/cAoS",
+        "iamId": "1698492870296",
+        "isVerified": true,
+        "verificationToken": " ",
+        "resetToken": null,
+        "resetTokenExpiration": null,
+        "newHashedPassword": null,
+        "createdAt": "2023-10-28T15:34:30.384Z",
+        "business": {
+            "id": "394dc8e3-9e32-4782-89ee-e86e2e50491e",
+            "businessName": "Basharr's Business",
+            "rootUserID": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+        },
+        "expenses": [],
+        "categories": [],
+        "incomes": [],
+        "profile": {
+            "id": "9b9ec30a-8938-4fde-be26-570577e1847d",
+            "firstName": "Zain",
+            "lastName": "Herbawi",
+            "phoneNumber": "05999999245",
+            "Currency": "USD",
+            "role": "User",
+            "subscription_date": null,
+            "hasSentEmail": null
+        }
+    },
+    {
+        "id": "54a2d3d8-7e3f-4883-aa45-185ca059f905",
+        "username": "v1rushbb",
+        "email": "cs.basharr.herbawi@gmail.com",
+        "password": "$2b$10$SxQKhUzY3SnU8njAFudx3u1sLgumWGfMlU7.GvIS/uM.DUtU/K/JG",
+        "iamId": null,
+        "isVerified": true,
+        "verificationToken": " ",
+        "resetToken": null,
+        "resetTokenExpiration": null,
+        "newHashedPassword": null,
+        "createdAt": "2023-10-27T19:43:40.303Z",
+        "business": {
+            "id": "394dc8e3-9e32-4782-89ee-e86e2e50491e",
+            "businessName": "Basharr's Business",
+            "rootUserID": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+        },
+        "expenses": [],
+        "categories": [
+            {
+                "id": "f6f91e39-0f95-45e6-9b45-a594baed7644",
+                "title": "Palestine",
+                "description": "love <3",
+                "budget": 100000,
+                "totalExpenses": 0
+            }
+        ],
+        "incomes": [
+            {
+                "id": "c0bbbf41-18aa-48d8-b9b4-859e6cd056cf",
+                "title": "Footfill",
+                "amount": 40000,
+                "incomeDate": "2023-10-10T15:11:54.000Z",
+                "description": "some income"
+            }
+        ],
+        "profile": {
+            "id": "6b39c160-feda-4c75-b519-2805fec9fbf0",
+            "firstName": "Basharr",
+            "lastName": "Herbawi",
+            "phoneNumber": "0599999999",
+            "Currency": "USD",
+            "role": "Root",
+            "subscription_date": "2023-10-28T11:34:26.000Z",
+            "hasSentEmail": false
+        }
+    }
+]
+}
+```
+
+- `423`: Locked
+User tried to access the service before verifying email
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `500`: Internal Server Error
+
+
+
+## Get business's balance API Documentation
+
+### Endpoint
+`GET /user/business/balance`
+
+### Description
+Endpoint for a business user to get total balance under their business. 
+
+### Request Body
+
+Empty
+
+### Responses
+
+- `200`: OK
+Sends the business user all the users in their business including themselves.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+Your business balance is: 40000
+```
+
+- `423`: Locked
+User tried to access the service before verifying email
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `500`: Internal Server Error
+
+
+
+## Add an income to a user API Documentation
+
+### Endpoint
+`POST /income/business/add-user-income`
+
+### Description
+Endpoint for a business user to add an income to any user under their business
+
+### Request Params
+
+id: string
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `title` | String | Income's title   | Yes      |             |
+| `amount` | String | Income's amount  | Yes      |            |
+| `incomeDate`    | String | Income's date | Yes  |             |
+| `description`    | String | Income's description | No  |             |
+
+### Responses
+
+- `201`: Created
+An income has been created and assigned to that user.
+**Example Value**:
+```json
+{
+  "title": "Footfill",
+  "amount": "40000",
+  "incomeDate": "2023-10-10T15:11:54.000Z",
+  "description": "some income"
+}
+```
+
+```json
+You have successfully added a new income!
+```
+
+- `400`: Bad request
+Any empty attribute
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `500`: Internal Server Error
+
+
+
+## Delete user's income API Documentation
+
+### Endpoint
+`DELETE /income/business/add-user-income`
+
+### Description
+Endpoint for a business user to delete an income of a user under their business.
+
+### Request Params
+
+id: string
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `userid` | String | target user's id   | Yes      |             |
+
+### Responses
+
+- `201`: Created
+targets an exact income for a certain user and deletes it.
+**Example Value**:
+```json
+{
+    "userid": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+}
+```
+
+```json
+You have successfully added a new income!
+```
+
+- `400`: Bad request
+Any missing attribute
+
+- `404`: Not found
+Income not found.
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `500`: Internal Server Error
+
+
+
+
+## Get business income to a user API Documentation
+
+### Endpoint
+`GET /income/business`
+
+### Description
+Endpoint for a business user to get all business's incomes.
+
+### Request Body
+
+Empty body.
+
+### Responses
+
+- `200`: OK
+Sends the business user all business's incomes
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+[
+    {
+        "id": "99ae0e91-c14b-4b4a-a6b0-75667ebaa464",
+        "title": "Footfill",
+        "amount": 40000,
+        "incomeDate": "2023-10-10T15:11:54.000Z",
+        "description": "some income",
+        "userId": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+    }
+]
+```
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `500`: Internal Server Error
+
+
+
+## Modify income to a user API Documentation
+
+### Endpoint
+`PUT /income/business`
+
+### Request Params
+
+id: string
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `title` | String | Income's title   | Yes      |             |
+| `amount` | String | Income's amount  | Yes      |            |
+| `incomeDate`    | String | Income's date | Yes  |             |
+| `description`    | String | Income's description | No  |             |
+### Responses
+
+- `200`: OK
+Sends the business user all business's incomes
+**Example Value**:
+```json
+{
+  "title": "Footfill",
+  "amount": "80000",
+  "incomeDate": "2023-10-10T15:11:54.000Z",
+  "description": "some income"
+}
+```
+
+```json
+You have successfully modified the income!
+```
+- `400`: Bad request
+Missing attributes
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+IAM or Normal users tried to access.
+
+- `404`: Not found
+Specified user wasn't found.
+
+- `500`: Internal Server Error
+
+
+
+## Insert a user expense for API Documentation
+
+### Endpoint
+`POST /expense/business/add-user-expense`
+
+### Description
+Endpoint for a user to add a new expense for a user.
+
+### Request Params
+
+id: string => user's id.
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `title` | String | Expense's title   | Yes      |             |
+| `amount` | String | Expense's amount  | Yes      |            |
+| `expenseDate`    | String | Expense's date | Yes  |             |
+| `description`    | String | Expense's description | No  |             |
+| `category`    | String | category id in which expense lies in | No  |             |
+| `picURL`    | String | a picture attached to the Expense | No  |             |
+
+### Responses
+
+- `200`: OK
+Expense has been created
+**Example Value**:
+```json
+{
+  "title": "very huge bill",
+  "amount": "1002336",
+  "expenseDate": "2023-10-10T15:11:54.000Z",
+  "description": "a bill that costed me a lot",
+  "category":"c2fb359b-3840-4c71-b2e6-aa41e77d5b9f"
+}
+```
+
+```json
+You have successfully added a new Expense!
+```
+
+- `400`: Bad request
+Empty body
+Any missing attribute
+
+- `404`: Not found
+Category not found.
+User not found.
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+
+## Get business's expenses for API Documentation
+
+### Endpoint
+`GET /expense/business/`
+
+### Description
+Endpoint for a business user to get all expenses under their business.
+
+### Request Body
+
+Empty body.
+
+### Responses
+
+- `200`: OK
+Expenses has been sent to the business user.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+[
+    {
+        "id": "de553647-b32e-4797-9c8d-98ab89fac878",
+        "title": "very huge bill",
+        "amount": 1002336,
+        "expenseDate": "2023-10-10T15:11:54.000Z",
+        "description": "a bill that represents everything I have bought in the USA part 2",
+        "picURL": "http://default",
+        "category": {
+            "id": "541ed414-f418-4a98-978b-4589e351d744",
+            "title": "huge",
+            "description": "huge",
+            "budget": 300,
+            "totalExpenses": 2004672
+        },
+        "userId": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+    }
+]
+```
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+## delete user's expense for API Documentation
+
+### Endpoint
+`DELETE /expense/business/`
+
+### Description
+Endpoint for a business user to delete a user's expense. 
+
+### Request Params
+
+id: string => user's id.
+
+### Request Params
+
+id: string => expense ID
+
+### Request Body
+
+{
+    "userID": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+}
+
+### Responses
+
+- `200`: OK
+You have successfully deleted the expense!
+**Example Value**:
+```json
+{
+"
+}
+```
+
+```json
+You have successfully added a new Expense!
+```
+
+- `400`: Bad request
+Empty body
+Any missing attribute
+
+- `404`: Not found
+User not found.
+Expense not found
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+## Filtered Search API Documentation
+
+### Endpoint
+`GET /expense/business/search`
+
+### Description
+Endpoint for a business user to delete a user's expense. 
+
+### Request Query
+
+search
+minAmount
+maxAmount
+userID
+
+### Responses
+
+- `200`: OK
+Sends filtered expenses accross all business.
+**Example Value**:
+```json
+/expense/business/search?search=huge&userid=dd606543-9047-41cb-ab5b-a257069ce09c
+```
+
+```json
+[
+    {
+        "id": "dd606543-9047-41cb-ab5b-a257069ce09c",
+        "title": "very huge bill",
+        "amount": 1002336,
+        "expenseDate": "2023-10-10T15:11:54.000Z",
+        "description": "a bill that represents everything I have bought in the USA part 2",
+        "picURL": "http://default",
+        "category": {
+            "id": "541ed414-f418-4a98-978b-4589e351d744",
+            "title": "huge",
+            "description": "huge",
+            "budget": 300,
+            "totalExpenses": 2004672
+        },
+        "userId": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+    }
+]
+```
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+## Insert a category API Documentation
+
+### Endpoint
+`POST /category/business`
+
+### Description
+Endpoint for a business user to add a new category for a user in their business
+
+### Request Params
+
+useerID: string 
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `title` | String | Category's title   | Yes      |             |
+| `budget` | String | Category's lookup limit budget   | Yes      |             
+| `description`    | String | Category's description | No  |             |
+
+### Responses
+
+- `200`: OK
+Category has been created and assigned to that user.
+**Example Value**:
+```json
+{
+    "title" : "USA",
+    "description" : "my cat bro",
+    "budget": "100000"
+}
+```
+
+```json
+You have successfully added a new category!
+```
+
+- `400`: Bad request
+Any empty attribute
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+
+## Get categories API Documentation
+
+### Endpoint
+`GET /category/business`
+
+### Description
+Endpoint for a business user to get all categories in their business
+
+### Request Body
+
+Empty body.
+
+### Responses
+
+- `200`: OK
+Sends business user all the categories.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+[
+    {
+        "id": "541ed414-f418-4a98-978b-4589e351d744",
+        "title": "huge",
+        "description": "huge",
+        "budget": 300,
+        "totalExpenses": 2004672,
+        "userId": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+    },
+    {
+        "id": "6408f54b-144b-4f28-b4ec-314ea073e35c",
+        "title": "USA",
+        "description": "my cat bro",
+        "budget": 100000,
+        "totalExpenses": 0,
+        "userId": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+    },
+    {
+        "id": "f6f91e39-0f95-45e6-9b45-a594baed7644",
+        "title": "Palestine",
+        "description": "love <3",
+        "budget": 100000,
+        "totalExpenses": 0,
+        "userId": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+    }
+]
+```
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+
+## Delete a category API Documentation
+
+### Endpoint
+`DELETE /category/business/:id`
+
+### Description
+Endpoint for a business user to delete a category for a user in their business. 
+
+### Request Params
+
+id: string represents 
+
+category id (id): string 
+
+### Request Body
+
+userID
+
+### Responses
+
+- `200`: OK
+Category has been created and assigned to that user.
+**Example Value**:
+```json
+{
+  "userid": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+}
+```
+
+```json
+You have successfully deleted the category with id: 6408f54b-144b-4f28-b4ec-314ea073e35c!
+```
+
+- `400`: Bad request
+Any missing attribute
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `404`: Not found
+User not found
+Category not found
+
+- `500`: Internal Server Error
+
+
+
+
+## Modify a category API Documentation
+
+### Endpoint
+`PUT /category/business`
+
+### Description
+Endpoint for a business user to add a new category for a user in their business
+
+### Request Params
+
+category ID: string 
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `title` | String | Category's title   | Yes      |             |
+| `budget` | String | Category's lookup limit budget   | Yes      |             
+| `description`    | String | Category's description | No  |             |
+| `userID`    | String | Target User's id | Yes  |             |
+
+### Responses
+
+- `200`: OK
+Category has been modified.
+**Example Value**:
+```json
+{
+    "title" : "Palestine",
+    "description" : "hi",
+    "budget": "10000220",
+    "userID": "54a2d3d8-7e3f-4883-aa45-185ca059f905"
+}
+```
+
+```json
+You have successfully modified the category!
+```
+
+- `400`: Bad request
+Any empty attribute
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `500`: Internal Server Error
+
+
+
+
+## Get a recommendation to fire API Documentation
+
+### Endpoint
+`GET /expense/business/analytics/recommend-fire`
+
+### Description
+Endpoint for a business user to get consultion of an AI model to fire somebody in the business, based on your business history.
+
+
+### Request Body
+
+Empty body.
+
+### Responses
+
+- `200`: OK
+Response has been generated and sent to the user.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+Name of the User: z1ruisbhb
+
+Reason for firing: The user "z1ruisbhb" should be fired because their income-expense difference is 0, indicating that
+they are not generating any profit or contributing positively to the business. It is essential for the business to
+maintain a positive income-expense difference to sustain and grow.
+```
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `404`: Not found
+Business currently has 0 users (Business user excluded).
+
+- `500`: Internal Server Error
+
+
+
+
+## Get a recommendation to promote API Documentation
+
+### Endpoint
+`GET /expense/business/analytics/recommend-promote`
+
+### Description
+Endpoint for a business user to get consultion of an AI model to promoite somebody in the business, based on their business history.
+
+
+### Request Body
+
+Empty body.
+
+### Responses
+
+- `200`: OK
+Response has been generated and sent to the user.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+The user who should be given a promotion is v1rushb.
+
+User v1rushb should be given a promotion because they have an income-expense difference of 15234. This indicates that they
+have effectively managed their finances, ensuring that their income matches their expenses. Their ability to maintain a
+balance between the money brought into the business and the money taken out demonstrates their proficiency in financial
+management. Promoting them would not only recognize their skills but also motivate other employees to achieve similar
+financial stability.
+```
+
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+- `404`: Not found
+Business currently has 0 users (Business user excluded).
+
+- `500`: Internal Server Error
+
+
+
+
+## Get analytics API Documentation
+
+### Endpoint
+`GET /expense/analytics/expenses-by-category`
+
+### Description
+Endpoint for a user to get a graph that will contain all categories and for each category will be the amount for all expenses lies in that category and an AI consultion that will give some advices for the future.
+
+
+### Request Body
+
+| Field      | Type   | Description                 | Required |
+|------------|--------|-----------------------------|----------|
+| `startDate` | Date | beggining of time interval   | Yes      |
+| `endDate` | Date | Ending of time interval   | Yes      |
+
+### Responses
+
+- `200`: OK
+Response has been generated and sent to the user.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+Expense by Categroy:
+huge | ================================================== 103500
+
+
+Based on the given ASCII graph, it seems that the "huge" category has the highest expense with a value of 103,500. To
+improve spending and increase profitability, it is essential to focus on this specific category. Analyzing the expenses
+within the "huge" category and identifying areas where costs can be reduced or optimized would be a good starting point.
+By carefully reviewing the expenditures associated with this category, you can identify potential cost-saving measures
+and evaluate their impact on overall profitability. It may also be beneficial to explore opportunities for increasing
+revenue or finding ways to generate additional income. Striving for efficiency in managing expenses while maximizing
+revenue streams will help in achieving better financial results.
+```
+- `400`: Bad request
+Any missing attribute
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
+
+- `500`: Internal Server Error
+
+
+
+## Get a prediction to promote API Documentation
+
+### Endpoint
+`GET /expense/analytics/predict-me`
+
+### Description
+Endpoint for a user to get a prediction from an AI model that analyze history and give a prediction for future spending.
+
+
+### Request Body
+
+Empty body.
+
+### Responses
+
+- `200`: OK
+Response has been generated and sent to the user.
+**Example Value**:
+```json
+{
+
+}
+```
+
+```json
+Based on the provided data, it seems that you spent 34,500 units of currency on October 10, 2023, three times in a row.
+If this is the complete dataset, there is not enough information to predict your future spending accurately or calculate
+the spending velocity.
+
+To make predictions and determine spending velocity, more historical data covering a range of dates and amounts would be
+required. Additionally, factors such as income, expenses, and personal financial goals should be taken into account to
+provide a comprehensive analysis of your spending behavior and evaluate whether it is considered good or not.
+```
+
+- `401`: Unauthorized
+User tried to access without being logged in.
+
 
 - `500`: Internal Server Error
