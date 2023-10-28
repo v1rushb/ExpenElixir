@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ip: ${{ needs.build-image.outputs.ips }}
+        ip: ${{ fromJson(needs.build-image.outputs.ips) }}
     steps:
       - uses: actions/checkout@v2
 
