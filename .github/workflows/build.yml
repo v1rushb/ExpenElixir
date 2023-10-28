@@ -45,7 +45,7 @@ jobs:
         id: instance_ips
         run: | 
          instances=$(aws ec2 describe-instances --filters 'Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG' --query 'Reservations[*].Instances[*].PublicIpAddress' --output json')
-          echo "::set-output name=ips::$instances"
+          echo "ips=$instances" >> $GITHUB_OUTPUT
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
