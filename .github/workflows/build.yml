@@ -75,8 +75,12 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Deploy
-        run: docker compose -f docker-compose.yml up -d
+        run: |
+          echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+          chmod 600 key.pem
+          docker compose -f docker-compose.yml up -d
         env:
+          DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
           DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
