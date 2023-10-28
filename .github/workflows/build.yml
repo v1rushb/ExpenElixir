@@ -42,7 +42,9 @@ jobs:
         id: instance_ips
         run: | 
           instances=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=expenelixir" --query "Reservations[*].Instances[*].PublicIpAddress" --output=text)
-          echo "::set-output name=ips::[\"${instances//$'\n'/\",\"}\"]"
+          instances_array=($instances)
+          json_instances=$(echo "${instances_array[@]}" | jq -R -c -s 'split(" ")')
+          echo "ips=${json_instances}" >> $GITHUB_OUTPUT
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
