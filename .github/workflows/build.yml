@@ -65,7 +65,7 @@ jobs:
         uses: khaledez/configure-docker-host@v1
         with:
           host: ${{ matrix.ip }}
-          user: ubuntu
+          user: github
           ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
 
       - name: Login to Docker Hub
