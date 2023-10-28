@@ -48,6 +48,9 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: eu-west-2
 
+      - name: Debug IPs Output
+        run: echo "IPs Output: ${{ steps.instance_ips.outputs.ec2_ips }}"
+
   deploy:
     needs: ["build-image"]
     runs-on: ubuntu-latest
