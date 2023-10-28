@@ -49,7 +49,8 @@ jobs:
           AWS_REGION: eu-west-2
 
       - name: Debug IPs Output
-        run: echo "IPs Output: ${{ steps.instance_ips.outputs.ec2_ips }}"
+        run: |
+          echo "IPs Output: ${{ steps.instance_ips.outputs.ec2_ips }}"
 
   deploy:
     needs: ["build-image"]
