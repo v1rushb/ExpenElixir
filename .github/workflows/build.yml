@@ -48,10 +48,6 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: eu-west-2
 
-      - name: Debug IPs Output
-        run: |
-          echo "IPs Output: ${{ steps.instance_ips.outputs.ec2_ips }}"
-
   deploy:
     needs: ["build-image"]
     runs-on: ubuntu-latest
@@ -71,7 +67,7 @@ jobs:
         run: |
           echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
           chmod 600 key.pem
-          ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{secrets.EC2_IP}} 'docker compose -f docker-compose.yml up -d'
+          ssh -i 'key.pem' -o StrictHostKeyChecking=no github@${{matrix.ip}} 'docker compose -f docker-compose.yml up -d'
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
           DB_HOST: ${{ secrets.DB_HOST }}
