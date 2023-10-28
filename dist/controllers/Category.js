@@ -30,13 +30,15 @@ const insertCategory = async (payload, res) => {
 const deleteAllCategory = async (res) => {
     await Category.delete({ users: new EqualOperator(res.locals.user.id) });
 };
-const deleteCategory = async (id) => {
+const deleteCategory = async (payload) => {
     try {
-        const category = await Category.findOne({ where: { id } });
+        const { id } = payload;
+        const category = await Category.findOne({ where: { id: id } });
         if (!category)
             throw new CustomError(`category with id: ${id} was not found!`, 404);
+        const categoryName = category.title;
         await Category.remove(category);
-        return category;
+        return categoryName;
     }
     catch (err) {
         if (err instanceof CustomError)
@@ -57,14 +59,14 @@ const totalCategory = async (res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const modifyCategory = async (id, payload, res) => {
+const modifyCategory = async (payload, res) => {
     try {
         const userCategories = res.locals.user.categories;
         if (!userCategories)
             throw new CustomError(`No categories were found!`, 404);
-        const category = userCategories.find(category => category.id === id);
+        const category = userCategories.find(category => category.id === payload.id);
         if (!category)
-            throw new CustomError(`Category with id: ${id} was not found!`, 404);
+            throw new CustomError(`Category with id: ${payload.id} was not found!`, 404);
         category.budget = payload.budget;
         category.title = payload.title;
         category.description = payload.description;

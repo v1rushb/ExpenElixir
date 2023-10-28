@@ -10,7 +10,6 @@ import { Between, EqualOperator, Like } from 'typeorm';
 import { sendEmail } from '../utils/sesServiceAws.js';
 
 
-
 const insertExpense = async (payload: Gen.Expense, res: express.Response): Promise<void> => {
     try {
 
@@ -72,13 +71,17 @@ const deleteAllExpenses = async (res: express.Response): Promise<void> => {
     await Expense.delete({ users: new EqualOperator(res.locals.user.id) });
 }
 
-const deleteExpense = async (id: string): Promise<Expense> => {
+const deleteExpense = async (payload: Gen.deleteExpense): Promise<string> => {
     try {
-        const expense = await Expense.findOne({ where: { id } }) as Expense;
+        const { id } = payload;
+        if(!id)
+            throw new CustomError("ID is required.", 400);
+        const expense = await Expense.findOne({ where: { id: id } }) as Expense;
         if (!expense)
             throw new CustomError(`Expense with id: ${id} was not found!`, 404);
+        const expenseName = expense.title;
         await Expense.remove(expense);
-        return expense;
+        return expenseName;
     } catch (err) {
         if (err instanceof CustomError)
             throw err;
@@ -147,20 +150,20 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
 //     }
 // };
 
-const getFilteredExpenses = async (searchQuery: string, minAmountQuery: string, maxAmountQuery: string, category: string, req: express.Request, res: express.Response): Promise<Expense[]> => {
+const getFilteredExpenses = async (payload:Gen.getFilteredExpenses, req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
 
 
         let filter = {
             ...res.locals.filter, where: {
                 users: new EqualOperator(res.locals.user.id),
-                amount: Between(Number(minAmountQuery) || 0,
-                    Number(maxAmountQuery) || 9223372036854775807),
-                title: Like(`%${searchQuery?.toString().toLowerCase() || ''}%`),
+                amount: Between(Number(payload.minAmountQuery) || 0,
+                    Number(payload.maxAmountQuery) || 9223372036854775807),
+                title: Like(`%${payload.searchQuery?.toString().toLowerCase() || ''}%`),
             }
         }
-        if (category) {
-            filter.where.category = new EqualOperator(category);
+        if (payload.category) {
+            filter.where.category = new EqualOperator(payload.category);
         }
 
 

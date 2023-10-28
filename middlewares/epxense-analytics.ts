@@ -8,11 +8,11 @@ import { sendEmail } from '../utils/sesServiceAws.js';
 
 const router = express.Router();
 
-router.get('/expenses-by-category', authMe, async (req, res, next) => { // time consuming ;O
+router.get('/expenses-by-category', authMe, async (req, res, next): Promise<void> => { // time consuming ;O
     try {
-        // const {startDate, endDate} = req.query;
-        const startDate = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30);
-        const endDate = new Date(Date.now());
+        const {startDate, endDate} = req.query;
+        // const startDate = new Date(Date.now() - 1000 * 60 * 60 * 24 * 30);
+        // const endDate = new Date(Date.now());
         if(!startDate || !endDate)
             throw new CustomError(`Please provide a start date and an end date.`, 400);
 
@@ -45,7 +45,7 @@ router.get('/expenses-by-category', authMe, async (req, res, next) => { // time 
 //     res.status(200).send(result);
 // });
 
-router.get('/predict-me', authMe, async (req, res, next) => { 
+router.get('/predict-me', authMe, async (req, res, next): Promise<void> => { 
     getPrediction(res).then(async data => {
         logger.info(`200 OK - /analytics/predict-me - GET - ${req.ip}`);
         res.status(200).send(data);

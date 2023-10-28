@@ -8,8 +8,7 @@ import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { EqualOperator } from 'typeorm';
 
 
-
-const insertIncome = async (payload: Gen.Income, res: express.Response) => {
+const insertIncome = async (payload: Gen.insertIncome, res: express.Response) => {
     try {
         return dataSource.manager.transaction(async trans => {
             const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD")
@@ -36,25 +35,25 @@ const insertIncome = async (payload: Gen.Income, res: express.Response) => {
     }
 }
 
-const deleteAllIncomes = async (res: express.Response) => {
+const deleteAllIncomes = async (res: express.Response): Promise<void> => {
     await Income.delete({ user: new EqualOperator(res.locals.user.id) });
 }
 
-const deleteIncome = async (id: string, res: express.Response): Promise<string> => {
-    if (!id)
+const deleteIncome = async (payload: Gen.deleteIncome,res: express.Response): Promise<string> => {
+    if (!payload.id)
         throw new CustomError("ID is required.", 400);
     try {
-        const income = await Income.findOne({ where: { id } });
+        const income = await Income.findOne({ where: { id: payload.id } });
         if (!income)
-            throw new CustomError(`Income with id: ${id} was not found!`, 404);
+            throw new CustomError(`Income with id: ${payload.id} was not found!`, 404);
         await Income.remove(income);
+        return income.title;
     } catch (err) {
         throw new CustomError(`${err}`, 500);
     }
-    return res.locals.res.username;
 }
 
-const totalIncomes = async (res: express.Response) => {
+const totalIncomes = async (res: express.Response): Promise<number> => {
 
     const incomes = await Income.find({
         where: { user: new EqualOperator(res.locals.user.id) }
@@ -65,14 +64,14 @@ const totalIncomes = async (res: express.Response) => {
     return total
 }
 
-const modifyIncome = async (id: string, payload: Gen.Income, res: express.Response) => {
+const modifyIncome = async (payload: Gen.modifyIncome, res: express.Response): Promise<string> => {
     const userIncomes: Income[] = res.locals.user.incomes;
-    if (!id)
+    if (!payload.id)
         throw new CustomError("ID is required.", 400);
     try {
-        const income = userIncomes.find(income => income.id === id);
+        const income = userIncomes.find(income => income.id === payload.id);
         if (!income)
-            throw new CustomError(`Income with id: ${id} was not found!`, 404);
+            throw new CustomError(`Income with id: ${payload.id} was not found!`, 404);
         const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD")
         income.title = payload.title;
         income.amount = currency.amount;

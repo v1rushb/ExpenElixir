@@ -4,13 +4,23 @@ import { CustomError } from '../CustomError.js';
 
 const IAMAuth = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
-        const rootUserID = res.locals.user.business.rootUserID;
-        console.log(rootUserID);
-        const rootUser = await Users.findOne({where: {id: rootUserID}});
 
-        if(rootUser?.profile.role !== 'Root') {
-            throw new CustomError('You are not authorized here!', 401);
+        
+
+        if (!res.locals.user?.business) 
+            return next();
+    
+        const rootUserID = res.locals.user.business.rootUserID;
+    
+        if (!rootUserID) throw new CustomError('Root User ID not found', 401);
+    
+        const rootUser = await Users.findOne({ where: { id: rootUserID } });
+    
+        if (!rootUser || rootUser.profile?.role !== 'Root') {
+          throw new CustomError('You are not authorized here!', 401);
         }
+    
+        next();
     } catch(err) {
         next(err);
     }

@@ -1,7 +1,6 @@
 import express from 'express';
-import { deleteAllIncomes, deleteIncome, insertIncome, totalIncomes } from '../controllers/Income.js';
+import { deleteAllIncomes, deleteIncome, insertIncome, modifyIncome, totalIncomes } from '../controllers/Income.js';
 import authMe from '../middlewares/Auth.js';
-import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import logger from '../logger.js';
 import incomeBusiness from '../middlewares/businessIncome.js';
@@ -15,14 +14,13 @@ router.post('/', authMe, validateIncome, async (req, res, next) => {
 router.get('/total', authMe, async (req, res, next) => {
     totalIncomes(res).then(income => {
         logger.info(`Total income : ${income}, user: ${req.cookies["token"]}`);
-        res.status(200).send(`Total income : ${income}`);
+        res.status(200).send(`Total income : ${income} ${res.locals.user.profile.currency}`);
     }).catch(err => next(err));
 });
 router.get('/', authMe, async (req, res, next) => {
     try {
-        const decode = jwt.decode(req.cookies["token"], { json: true });
         const incomes = await Users.findOne({
-            where: { id: decode?.id }
+            where: { id: res.locals.user.id }
         });
         res.status(200).send(incomes?.incomes);
     }
@@ -30,21 +28,21 @@ router.get('/', authMe, async (req, res, next) => {
         next(err);
     }
 });
-router.delete('/deleteAllIncomes', authMe, async (req, res, next) => {
-    deleteAllIncomes(res).then(income => {
+router.delete('/all-incomes', authMe, async (req, res, next) => {
+    deleteAllIncomes(res).then(() => {
         res.status(200).send(`You have successfully deleted all incomes!`);
     }).catch(err => next(err));
 });
-router.delete('/', authMe, async (req, res, next) => {
-    deleteIncome(req.query.id, res).then(income => {
-        logger.info(`User ${income} ${req.params.id} `);
-        res.status(200).send(`You have successfully deleted the income with id: ${req.params.id}!`);
+router.delete('/:id', authMe, async (req, res, next) => {
+    deleteIncome({ id: req.params.id }, res).then(income => {
+        logger.info(`User ${res.locals.user}} has deleted income ${income} with id [${req.params.id}]`);
+        res.status(200).send(`You have successfully deleted the income with id [${req.params.id}]!`);
     }).catch(err => next(err));
 });
-router.put('/', authMe, validateIncome, async (req, res, next) => {
-    deleteIncome(req.query.id, req).then(income => {
+router.put('/:id', authMe, validateIncome, async (req, res, next) => {
+    modifyIncome({ id: req.params.id, ...req.body }, res).then(income => {
         logger.info(`User ${income} ${req.params.id} `);
-        res.status(200).send(`You have successfully deleted the income with id: ${req.params.id}!`);
+        res.status(200).send(`You have successfully modified your income.`);
     }).catch(err => next(err));
 });
 router.use('/business', incomeBusiness);

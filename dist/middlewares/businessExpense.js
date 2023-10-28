@@ -13,20 +13,26 @@ router.get('/business-expenses', authMe, premiumAuth, checkBusiness, async (req,
         res.status(200).send(expense);
     }).catch(err => next(err));
 });
-router.post('/add-user-expense', authMe, premiumAuth, checkBusiness, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
-    addUserExpense(req.body, req.query.userID, res, req.file).then(expense => {
+router.post('/add-user-expense/:id', authMe, premiumAuth, checkBusiness, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+    addUserExpense({ ...req.body, id: req.query.id, picFile: req.file }, res).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
 });
-router.delete('/delete-user-expense', authMe, premiumAuth, checkBusiness, async (req, res, next) => {
-    deleteUserExpense(req.query.expenseID, req.query.userID, res).then(expense => {
+router.delete('/delete-user-expense/:id', authMe, premiumAuth, checkBusiness, async (req, res, next) => {
+    deleteUserExpense({ expenseID: req.params.id, userID: req.query.userID }, res).then(expense => {
         logger.info(`User ${req.body.username} deleted expense ${req.query.id}!`);
         res.status(200).send(`You have successfully deleted the expense!`);
     }).catch(err => next(err));
 });
 router.get('/search', authMe, premiumAuth, checkBusiness, async (req, res, next) => {
-    getFilteredExpenses(req.query.search, req.query.minAmount, req.query.maxAmount, req.query.userID, req, res).then(expense => {
+    const payload = {
+        searchQuery: req.query.search,
+        minAmountQuery: req.query.minAmount,
+        maxAmountQuery: req.query.maxAmount,
+        userIDQuery: req.query.userID
+    };
+    getFilteredExpenses(payload, req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);
     }).catch(err => next(err));

@@ -16,7 +16,7 @@ const authMe = async (req: express.Request, res: express.Response, next: express
             if(!user)
                 throw new CustomError('Unauthorized', 401);
             if(!user?.isVerified) {
-                throw new CustomError('You need to verify your email. Please check your mailbox!',401);
+                throw new CustomError('You need to verify your email. Please check your mailbox!',423);
             }
             res.locals.user = user;
             res.locals.filter = {

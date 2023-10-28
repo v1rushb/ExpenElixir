@@ -4,7 +4,6 @@ import { CustomError } from '../CustomError.js';
 const premiumAuth = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
         const user = res.locals.user;
-        console.log(user.profile);
         if (!user) 
             throw new CustomError('User not found', 404);
 

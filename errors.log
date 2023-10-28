@@ -230,3 +230,115 @@
 2023-10-23T16:24:17.050Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:17.702Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
 2023-10-23T16:24:18.243Z [error]: 409 - User with email: Basharxxxxxxxxxx@gmail.com already exists. - /user/register - POST - ::1
+2023-10-26T19:55:15.812Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-26T19:55:47.444Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-26T19:55:48.105Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-26T19:55:48.829Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-26T19:56:56.034Z [error]: undefined - ER_WARN_DATA_OUT_OF_RANGE: Out of range value for column 'amount' at row 1 - /income/ - POST - ::1
+2023-10-26T19:59:25.263Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category/ - POST - ::1
+2023-10-26T20:00:19.368Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/ - POST - ::1
+2023-10-26T20:04:52.455Z [error]: 404 Not Found - /income/total-income - GET - ::1
+2023-10-26T20:10:06.648Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'USA' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category/ - POST - ::1
+2023-10-26T20:10:43.028Z [error]: 404 Not Found - /category/d582505c-9532-437d-9d63-9353b7fe3ae1 - PUT - ::1
+2023-10-26T20:13:19.365Z [error]: 404 Not Found - /category/d582505c-9532-437d-9d63-9353b7fe3ae1 - PUT - ::1
+2023-10-26T20:20:03.761Z [error]: 404 Not Found - /expense/analytics/get-prediction - GET - ::1
+2023-10-26T20:20:26.032Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/analytics/predict-me - GET - ::1
+2023-10-26T20:23:52.266Z [error]: 404 Not Found - /upgrade-to-business - POST - ::1
+2023-10-26T20:24:59.264Z [error]: 404 - User not found - /user/reset-password - POST - ::1
+2023-10-26T20:26:48.486Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-26T20:26:56.198Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-26T20:28:04.931Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Bashar's Business' for key 'business.IDX_b485ad884cd5182b8ba80f0331' - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:29:36.413Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:32:09.829Z [error]: undefined - Cannot save, given value must be an entity, instead "null" is given. - /user/business/add-user - POST - ::1
+2023-10-26T20:33:34.645Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:33:41.461Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:33:42.140Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:33:42.752Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:35:48.500Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:36:02.231Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:36:08.945Z [error]: 400 - You are not allowed here. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:36:35.111Z [error]: 400 - You are not allowed to delete your account. - /user/delete-account - DELETE - ::1
+2023-10-26T20:37:34.507Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:38:38.619Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'verificationToken' doesn't have a default value - /user/business/add-user - POST - ::1
+2023-10-26T20:39:27.292Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:30.069Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:30.812Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:37.798Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:38.463Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:40:46.992Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-27T10:46:23.969Z [error]: 500 - Error: User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-27T10:47:08.434Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-27T10:54:31.640Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:55:03.861Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:55:32.553Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:55:50.943Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:56:32.292Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:56:39.037Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T11:33:40.470Z [error]: undefined - jwt must be provided - /user - GET - ::1
+2023-10-27T11:33:46.167Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T11:37:50.860Z [error]: 400 - You cannot use your old password. - /user/reset-password - POST - ::1
+2023-10-27T13:28:20.472Z [error]: 500 - Error: DataSource is not set for this entity. - /user/register - POST - ::1
+2023-10-27T13:28:54.034Z [error]: 500 - Error: DataSource is not set for this entity. - /user/register - POST - ::1
+2023-10-27T13:30:03.209Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-27T13:30:50.316Z [error]: 404 Not Found - /user/business - GET - ::1
+2023-10-27T13:30:55.869Z [error]: 401 - You are not a root user - /user/business/business-users - GET - ::1
+2023-10-27T13:31:13.348Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:31:24.796Z [error]: 404 Not Found - /user/upgrade-to-business - GET - ::1
+2023-10-27T13:31:29.251Z [error]: 404 Not Found - /user/upgrade-to-business - GET - ::1
+2023-10-27T13:31:38.436Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-27T17:38:16.208Z [error]: 400 - Expected ',' or '}' after property value in JSON at position 76 - /user/login - POST - ::1
+2023-10-27T17:39:57.828Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-27T18:09:11.590Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-27T18:10:06.179Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-27T19:27:31.841Z [error]: 400 - Expected ',' or '}' after property value in JSON at position 26 - /income - POST - ::1
+2023-10-27T19:28:17.018Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:28:18.153Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:38:59.394Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:40:03.167Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:41:37.609Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-27T19:42:08.235Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-27T19:42:15.004Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-27T19:42:19.910Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-27T19:42:21.123Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-27T19:43:04.581Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-27T19:43:34.020Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-27T19:43:48.573Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-27T19:44:46.822Z [error]: undefined - jwt must be provided - /income - POST - ::1
+2023-10-27T19:45:02.078Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /income - POST - ::1
+2023-10-27T19:47:30.160Z [error]: undefined - Cannot read properties of undefined (reading 'locals') - /income - POST - ::1
+2023-10-27T19:48:36.550Z [error]: undefined - Cannot read properties of undefined (reading 'locals') - /income - POST - ::1
+2023-10-27T19:48:54.026Z [error]: undefined - Cannot read properties of undefined (reading 'locals') - /income - POST - ::1
+2023-10-27T19:53:22.826Z [error]: 500 - Error: Income with id: all-incomes was not found! - /income/all-incomes - DELETE - ::1
+2023-10-27T20:02:15.630Z [error]: 400 - ID is required. - /income/ - PUT - ::1
+2023-10-27T20:02:28.909Z [error]: 404 Not Found - /income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - PUT - ::1
+2023-10-27T20:14:17.314Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-27T20:17:01.941Z [error]: undefined - jwt must be provided - /expense - POST - ::1
+2023-10-27T20:17:15.354Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-27T20:18:17.393Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category - POST - ::1
+2023-10-27T20:18:48.000Z [error]: 400 - Expected ',' or '}' after property value in JSON at position 236 - /expense - POST - ::1
+2023-10-27T20:34:40.859Z [error]: 404 Not Found - /expense/all-expenses - DELETE - ::1
+2023-10-27T20:40:37.108Z [error]: 404 Not Found - /expense/0ba4ccff-035a-45de-bcb5-e842aee22139 - DELETE - ::1
+2023-10-27T20:50:09.085Z [error]: undefined - jwt must be provided - /category - GET - ::1
+2023-10-27T20:50:12.760Z [error]: undefined - jwt must be provided - /category - POST - ::1
+2023-10-27T20:58:18.650Z [error]: 404 Not Found - /category/d70a57f2-f6a0-4109-b6fd-4e4a6787d535 - DELETE - ::1
+2023-10-27T21:01:38.788Z [error]: 404 Not Found - /category/ - PUT - ::1
+2023-10-28T11:11:20.587Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-28T11:11:26.537Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:12:47.287Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:14:03.439Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-28T11:19:50.510Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-28T11:21:00.588Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:21:06.217Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:29:32.904Z [error]: 401 - Unauthorized - /user/login - POST - ::1
+2023-10-28T11:29:34.584Z [error]: 401 - Unauthorized - /user/login - POST - ::1
+2023-10-28T11:33:44.008Z [error]: undefined - jwt must be provided - /user/business/add-user - POST - ::1
+2023-10-28T11:50:35.197Z [error]: 400 - Expected double-quoted property name in JSON at position 46 - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:50:49.658Z [error]: 401 - You are not a root user - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:51:27.653Z [error]: 400 - Expected double-quoted property name in JSON at position 25 - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:52:29.021Z [error]: undefined - jwt must be provided - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:52:48.645Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-28T11:59:20.325Z [error]: 404 Not Found - /income/business/delete-user-income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - POST - ::1
+2023-10-28T11:59:32.169Z [error]: 404 Not Found - /income/business/delete-user-income/99ae0e91-c14b-4b4a-a6b0-75667ebaa464 - POST - ::1
+2023-10-28T12:00:07.483Z [error]: 404 Not Found - /income/business/delete-user-income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - POST - ::1
+2023-10-28T12:00:25.817Z [error]: 404 - Income not found. - /income/business/delete-user-income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - DELETE - ::1
+2023-10-28T12:07:26.580Z [error]: 401 - You are not a root user - /income/business/99ae0e91-c14b-4b4a-a6b0-75667ebaa464 - PUT - ::1

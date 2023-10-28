@@ -16,7 +16,7 @@ __decorate([
     __metadata("design:type", String)
 ], Business.prototype, "id", void 0);
 __decorate([
-    Column({ nullable: false, unique: true }),
+    Column({ nullable: false }),
     __metadata("design:type", String)
 ], Business.prototype, "businessName", void 0);
 __decorate([

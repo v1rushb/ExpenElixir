@@ -12,12 +12,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import logger from '../logger.js';
 
-const insertUser = async (payload: Gen.User) => {
+
+const insertUser = async (payload: Gen.User): Promise<Users> => {
     try {
-          const user = await Users.findOne({ where: { email:payload.email } });
+          const user = await Users.findOne({ where: { email:payload.email } }) as Users;
           if (user) {
               if (!user.isVerified) {
-                  throw new CustomError('Please verify your email address.', 409);
+                  throw new CustomError('Please verify your email address.', 423);
               } else {
                   throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
               }
@@ -44,39 +45,42 @@ const insertUser = async (payload: Gen.User) => {
         });
     } catch (err: any) {
         if (err.code?.includes('ER_DUP_ENTRY')) {
-            throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
+            throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
         }
         throw new CustomError(err, 500);
     }
-    throw new CustomError(err, 500);
-}
+};
 
-const login = async (username: string, password: string, iamId: string | null, res: express.Response): Promise<{ username: string, email: string, token: string }> => {
+const login = async (payload: Gen.login): Promise<Gen.loginReturn> => {
   try {
+    console.log(payload.iamId)
+      const user = await Users.findOne({ where: { username: payload.username } }) as Users;
 
-      const user = await Users.findOne({
-        where: { username },
-      }) as Users;
-
-      if (!user || user.username !== username) {
+      if (!user || user.username !== payload.username) {
         throw new CustomError('Invalid credentials', 400);
       }
-      if(user.isVerified === false) {
-        throw new CustomError('Please verify your email address.', 409);
-      }
-  
-  
+      
+      
       if (user.profile.role === 'User') {
-        if (!iamId || user.iamId !== iamId) {
+        if (!payload.iamId || user.iamId !== payload.iamId) {
           throw new CustomError('IAM users must provide a valid IAM ID', 401);
         }
+        if(user.business.rootUserID) {
+          const rootUser = await Users.findOne({where: {id: user.business.rootUserID}});
+          if(rootUser?.profile.role !== 'Root') {
+            throw new CustomError('Unauthorized', 401);
+          }
+        }
       }
-  
-      const isPasswordMatch = await bcrypt.compare(password, user.password);
+      
+      const isPasswordMatch = await bcrypt.compare(payload.password, user.password);
       if (!isPasswordMatch) {
         throw new CustomError('Invalid password', 401);
       }
-  
+      
+      if(!user.isVerified) {
+        throw new CustomError('Please verify your email address.', 409);
+      }
       const token = jwt.sign(
         {
           email: user.email,
@@ -89,7 +93,7 @@ const login = async (username: string, password: string, iamId: string | null, r
         }
       );
   
-      return { username: user.username, email: user.email, token };
+      return { username: user.username, email: user.email, token: token };
   
     } catch (err) {
       if (err instanceof CustomError) {
@@ -111,14 +115,10 @@ const calculateBalance = async (res: express.Response): Promise<string> => {
 const deleteUser = async (res: express.Response): Promise<void> => {
   const user: Users = res.locals.user;
 
-  if (!user) {
-      throw new CustomError('User not found', 404);
-  }
-
   try {
       await Users.delete(user.id);
   } catch (err: any) {
-      throw new CustomError(`Error deleting user: ${err}`, 500);
+      throw new CustomError(`Internal Server Error`, 500);
   }
 };
 
@@ -145,13 +145,46 @@ const checkForVerification = () => {
   }, 60000);
 };
 
-const sendResetPasswordEmail = async (email: string, token: string): Promise<void> => {
+const checkForSubscriptionValidation = () => {
+  setInterval(async () => {
+    try {
+      const users = await Users.find({where: {profile: {role: 'Root'}}});
+
+      const now = new Date().getTime();
+      for(const user of users) {
+        const {profile} = user;
+        
+        if (profile?.role === 'Root' && profile.subscription_date) {
+          const subscriptionDate = new Date(profile.subscription_date).getTime();
+          const diff = (now - subscriptionDate) / (1000 * 60);
+          if (diff > 15) {
+            await sendEmail(`Your subscription has expired!`, `Subscription Expired!`);
+
+            if (profile) {
+              profile.hasSentEmail = true;
+              profile.role = 'Member';
+              user.profile = profile;
+              await user.save();
+            }
+          }
+        }
+
+      }
+      logger.info(`Scheduled task completed successfully, checked ${users.length} users.`);
+    } catch(err) {
+      logger.error(`Scheduled task failed. Error: ${err}`);
+    }
+  },60000);
+
+}
+
+const sendResetPasswordEmail = async (payload: Gen.sendResetPasswordEmail): Promise<void> => {
   const host = process.env.HOST || 'localhost:2077';
-  const resetLink = 'http://' + host + '/user/reset-password-email?token=' + token;
+  const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
   const emailSubject = 'EpenElixir User Password Reset';
   const emailBody = 'Please reset your password by clicking the link: ' + resetLink;
 
-  await sendEmail(emailBody, emailSubject);
+  await sendEmail(emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)
 }
 
 export {
@@ -161,4 +194,5 @@ export {
   deleteUser,
   checkForVerification,
   sendResetPasswordEmail,
+  checkForSubscriptionValidation,
 }

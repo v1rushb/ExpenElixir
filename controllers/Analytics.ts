@@ -2,9 +2,11 @@ import express from 'express';
 import {Expense} from '../db/entities/Expense.js';
 import {ChatGPTAPI, ChatMessage} from 'chatgpt';
 import { Category } from '../db/entities/Category.js';
-import exp from 'constants';
+import { EqualOperator } from 'typeorm';
+import { Gen } from '../@types/generic.js';
 
-const getExpensesByCategory = async (res: express.Response): Promise<{category: string, amount: number}[]>=> {
+
+const getExpensesByCategory = async (res: express.Response): Promise<Gen.getExpenesByCategoryReturn[]>=> {
     const expensesByCategory: { [key: string]: number } = {};
     const result: {category: string, amount: number}[] = [];
     res.locals.user.expenses.forEach((expense: Expense)=> {
@@ -26,11 +28,11 @@ const isValidDate = (date: string): boolean => {
     return !isNaN(Date.parse(date));
 }
 
-const sortQueryByAmount = (result:{category: string, amount: number}[]): any=> {
+const sortQueryByAmount = (result: Gen.getExpenesByCategoryReturn[]): Gen.getExpenesByCategoryReturn[]=> {
     return result.sort((a, b) => b.amount - a.amount);
 }
 
-const makeGraphicalData = (data: {category: string, amount: number}[]) => { // simple function for making the impossible graphical presentation of the data in a backend app ;O
+const makeGraphicalData = (data: Gen.makeGraphicalData[]) => { // simple function for making the impossible graphical presentation of the data in a backend app ;O
     const maxValue = Math.max(...data.map(d => d.amount)); // just doin' some scales
     const unitValue = maxValue / 50;
 
@@ -45,13 +47,14 @@ const makeGraphicalData = (data: {category: string, amount: number}[]) => { // s
 }
 
 const getAdvice = async (graph : string)=> {
-    if(graph.length ===0) {
+    if(graph.length <= 20) {
         return "I can't give you advice without data";
     }
-    console.log(graph.length);
-    //const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
-   // const res : ChatMessage = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`)
-    //return res.text.toString();
+    else {
+        const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
+        const res : ChatMessage = await api.sendMessage(`I will give you a graph showing 3 things, first off it's a very simple ascii graph showing your expenses by category, secondly it shows your income by category and lastly it shows your total expenses and income. I want you to give me 2 thngs. first off. answer these questions respectively: first question is: did I spend too much money? second: what do you adivse me to do? and then give me a graph showing your expenses by category. Here is the graph ${graph}`)
+        return res.text.toString();
+    }
 }
 
 const getPrediction = async (res: express.Response): Promise<string> => {
@@ -60,7 +63,7 @@ const getPrediction = async (res: express.Response): Promise<string> => {
 
     const expenses: Expense[] = await Expense.find({
         select: ['expenseDate', 'amount'],
-        where: { users: userId },
+        where: { users: new EqualOperator(userId) },
         order: {
           expenseDate: 'ASC'
         }

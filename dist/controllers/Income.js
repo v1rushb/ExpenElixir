@@ -33,19 +33,19 @@ const insertIncome = async (payload, res) => {
 const deleteAllIncomes = async (res) => {
     await Income.delete({ user: new EqualOperator(res.locals.user.id) });
 };
-const deleteIncome = async (id, res) => {
-    if (!id)
+const deleteIncome = async (payload, res) => {
+    if (!payload.id)
         throw new CustomError("ID is required.", 400);
     try {
-        const income = await Income.findOne({ where: { id } });
+        const income = await Income.findOne({ where: { id: payload.id } });
         if (!income)
-            throw new CustomError(`Income with id: ${id} was not found!`, 404);
+            throw new CustomError(`Income with id: ${payload.id} was not found!`, 404);
         await Income.remove(income);
+        return income.title;
     }
     catch (err) {
         throw new CustomError(`${err}`, 500);
     }
-    return res.locals.res.username;
 };
 const totalIncomes = async (res) => {
     const incomes = await Income.find({
@@ -54,15 +54,14 @@ const totalIncomes = async (res) => {
     const total = incomes ? incomes.reduce((acc, income) => acc + income.amount, 0) : 0;
     return total;
 };
-<<<<<<< HEAD
-const modifyIncome = async (id, payload, res) => {
+const modifyIncome = async (payload, res) => {
     const userIncomes = res.locals.user.incomes;
-    if (!id)
+    if (!payload.id)
         throw new CustomError("ID is required.", 400);
     try {
-        const income = userIncomes.find(income => income.id === id);
+        const income = userIncomes.find(income => income.id === payload.id);
         if (!income)
-            throw new CustomError(`Income with id: ${id} was not found!`, 404);
+            throw new CustomError(`Income with id: ${payload.id} was not found!`, 404);
         const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD");
         income.title = payload.title;
         income.amount = currency.amount;
@@ -75,8 +74,5 @@ const modifyIncome = async (id, payload, res) => {
     }
     return res.locals.user.username;
 };
-export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, decodeToken, modifyIncome, };
-=======
-export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, };
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
+export { insertIncome, deleteAllIncomes, deleteIncome, totalIncomes, modifyIncome, };
 //# sourceMappingURL=Income.js.map

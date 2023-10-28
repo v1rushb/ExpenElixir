@@ -35,7 +35,7 @@ export class Users extends BaseEntity {
     @Column({default: false})
     isVerified: boolean;
 
-    @Column()
+    @Column({nullable: true})
     verificationToken: string;
 
     @Column({ type: 'varchar', length: 255, nullable: true })

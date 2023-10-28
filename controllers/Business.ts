@@ -10,9 +10,10 @@ import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
 import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
+import { v4 as uuidv4 } from 'uuid';
 
 
-const createUserUnderRoot = async (payload: Gen.User, res: express.Response) => {
+const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Promise<Users> => {
     return await dataSource.transaction(async trans => {
         const newProfile = Profile.create({
             firstName: payload.firstName,
@@ -31,6 +32,16 @@ const createUserUnderRoot = async (payload: Gen.User, res: express.Response) => 
             business: res.locals.user.business,
             iamId,
         });
+
+        const verificationToken = uuidv4();
+        newUser.verificationToken = verificationToken;
+        
+        const host = process.env.HOST || 'localhost:2077';
+        const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
+        const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
+        const emailSubject = 'EpenElixir Email Verification';
+        sendEmail(emailBody, emailSubject);
+
         await trans.save(newUser.business);
         return await trans.save(newUser);
     });
@@ -41,7 +52,7 @@ const rootUserDescendant = async (res: express.Response, descendantID: string): 
     return descendant;
 }
 
-const deleteDescendant = async (descendantID: string, res: express.Response): Promise<void> => {
+const deleteDescendant = async (res: express.Response, descendantID: string): Promise<void> => {
     try {
         return await dataSource.transaction(async trans => {
             const descendant = await rootUserDescendant(res, descendantID);
@@ -57,8 +68,7 @@ const deleteDescendant = async (descendantID: string, res: express.Response): Pr
 };
 
 const businessUsers = async (res: express.Response): Promise<Users[]> => {
-    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
-    return users;
+    return await Users.find({ where: { business: res.locals.user.business } }) as Users[];
 }
 
 const businessBalance = async (res: express.Response): Promise<number> => {
@@ -70,7 +80,7 @@ const businessBalance = async (res: express.Response): Promise<number> => {
     }
 }
 
-const addUserIncome = async (payload: Gen.Income, userID: string, res: express.Response) => {
+const addUserIncome = async (payload: Gen.Income, userID: string, res: express.Response): Promise<void> => {
     try {
         if (!userID)
             throw new CustomError(`You must provide an id for the user you want to add an income to!`, 400);
@@ -97,7 +107,7 @@ const addUserIncome = async (payload: Gen.Income, userID: string, res: express.R
     }
 }
 
-const deleteUserIncome = async (incomeID: string, userID: string, res: express.Response) => {
+const deleteUserIncome = async (incomeID: string, userID: string, res: express.Response): Promise<void> => {
     try {
         if (!userID)
             throw new CustomError(`You must provide an id for the user you want to delete an income from!`, 400);
@@ -122,15 +132,14 @@ const deleteUserIncome = async (incomeID: string, userID: string, res: express.R
     }
 }
 
-const businessIncome = async (res: express.Response): Promise<any> => { // do the typing later in gen
+const businessIncome = async (res: express.Response) => {
     const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
-    const result = users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
-    return result;
+    return users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
 }
 
-const totalBusinessIncome = async (res: express.Response): Promise<number> => { // fix error handling and typing later (for now it's any)
+const totalBusinessIncome = async (res: express.Response): Promise<number> => {
     const incomes = await businessIncome(res);
-    return incomes ? incomes.reduce((acc: any, income: { amount: any; }) => acc + income.amount, 0) : 0
+    return incomes ? incomes.reduce((acc: any, income: { amount: number; }) => acc + income.amount, 0) : 0
 }
 
 const modifyUserIncome = async (incomeID: string, userID: string, payload: Gen.Income, res: express.Response) => {
@@ -161,13 +170,13 @@ const modifyUserIncome = async (incomeID: string, userID: string, payload: Gen.I
     }
 }
 
-const addUserExpense = async (payload: Gen.Expense, userID: string, res: express.Response, picFile: Express.MulterS3.File | undefined) => {
+const addUserExpense = async (payload: Gen.addUserExpense, res: express.Response) => {
 
     try {
-        if (!userID)
+        if (!payload.userID)
             throw new CustomError(`You must provide an id for the user you want to add an expense to!`, 400);
         const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
+            where: { business: res.locals.user.business, id: payload.userID },
         });
         if (!user) {
             throw new CustomError(`User not found.`, 404);
@@ -179,7 +188,7 @@ const addUserExpense = async (payload: Gen.Expense, userID: string, res: express
                 amount: Number(payload.amount),
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location
+                picURL: payload.picFile?.location
             });
             await trans.save(newExpense);
             const category = await Category.findOne({
@@ -216,20 +225,20 @@ const addUserExpense = async (payload: Gen.Expense, userID: string, res: express
     }
 }
 
-const deleteUserExpense = async (expenseID: string, userID: string, res: express.Response): Promise<void> => {
+const deleteUserExpense = async (payload: Gen.deleteUserExpense, res: express.Response): Promise<void> => {
     try {
-        if (!userID)
+        if (!payload.userID)
             throw new CustomError(`You must provide an id for the user you want to delete an expense from!`, 400);
-        if (!expenseID)
+        if (!payload.expenseID)
             throw new CustomError(`You must provide an id for the expense you want to delete!`, 400);
         const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
+            where: { business: res.locals.user.business, id: payload.userID },
         });
         if (!user) {
             throw new CustomError(`User not found.`, 404);
         }
         const expense = await Expense.findOne({
-            where: { id: expenseID },
+            where: { id: payload.expenseID },
         });
         if (expense) {
             const correctExpense = await Users.findOne({
@@ -245,7 +254,7 @@ const deleteUserExpense = async (expenseID: string, userID: string, res: express
     }
 }
 
-const businessExpenses = async (res: express.Response) => { //add typing later
+const businessExpenses = async (res: express.Response) => {
     try {
         const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
         const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
@@ -284,6 +293,7 @@ const addUserCategory = async (payload: Gen.Category, userID: string, res: expre
     }
 }
 
+
 const deleteUserCategory = async (categoryID: string, userID: string, res: express.Response): Promise<void> => {
     try {
         if (!userID)
@@ -310,7 +320,6 @@ const deleteUserCategory = async (categoryID: string, userID: string, res: expre
         throw err;
     }
 }
-
 const businessCategories = async (res: express.Response) => {
     const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
     const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
@@ -342,17 +351,17 @@ const upgradeToBusiness = async (res: express.Response) => {
     }
 }
 
-const getFilteredExpenses = async (searchQuery: string, minAmountQuery: string, maxAmountQuery: string, userIDQuery: string, req: express.Request, res: express.Response) => {
+const getFilteredExpenses = async (payload: Gen.getFilteredBusinessExpenses, req: express.Request, res: express.Response) => {
 
     try {
         const Expenses = await businessExpenses(res);// put authme in router, else it wont work.
 
-        if (!searchQuery && !minAmountQuery && !maxAmountQuery && !userIDQuery)
+        if (!payload.searchQuery && !payload.minAmountQuery && !payload.maxAmountQuery && !payload.userIDQuery)
             return Expenses;
-        const search = searchQuery || '';
-        const minAmount = Number(minAmountQuery) || -Infinity;
-        const maxAmount = Number(maxAmountQuery) || Infinity;
-        const userID = userIDQuery;
+        const search = payload.searchQuery || '';
+        const minAmount = Number(payload.minAmountQuery) || -Infinity;
+        const maxAmount = Number(payload.maxAmountQuery) || Infinity;
+        const userID = payload.userIDQuery;
 
         const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
         if (!userID)

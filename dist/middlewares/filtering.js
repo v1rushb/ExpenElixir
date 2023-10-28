@@ -4,11 +4,14 @@ import { getFilteredExpenses } from '../controllers/Expense.js';
 import logger from '../logger.js';
 const router = express.Router();
 router.get('/', authMe, async (req, res, next) => {
-<<<<<<< HEAD
-    getFilteredExpenses(req.query.search, req.query.minAmount, req.query.maxAmount, req, res).then(expense => {
-=======
-    getFilteredExpenses(req.query.search, req.query.minAmount, req.query.maxAmount, req.query.category, req, res).then(expense => {
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
+    const { query } = req;
+    const payload = {
+        searchQuery: query.search,
+        minAmountQuery: query.minAmount,
+        maxAmountQuery: query.maxAmount,
+        category: query.category,
+    };
+    getFilteredExpenses(payload, req, res).then(expense => {
         logger.info(`User ${req.body.username} requested all Expenses!`);
         res.status(200).send(expense);
     }).catch(err => next(err));

@@ -11,28 +11,29 @@ import { modifyIncome } from '../controllers/Income.js';
 const router = express.Router();
 
 
-router.post('/add-user-income', authMe, premiumAuth, checkBusiness, validateIncome, async (req,res,next) => {
-    addUserIncome(req.body,req.query.id as string,res).then(()=> {
-        res.status(200).send(`You have successfully added a new income!`);
+router.post('/add-user-income/:id', authMe, premiumAuth, checkBusiness, validateIncome, async (req,res,next): Promise<void> => {
+    addUserIncome(req.body,req.params.id as string,res).then(()=> {
+        logger.info(`User ${res.locals.user.username} added income ${req.params.id} for user with id ${req.params.id}!`);
+        res.status(201).send(`You have successfully added a new income!`);
     }).catch(err => next(err));
 });
 
-router.delete('/delete-user-income', authMe, premiumAuth, checkBusiness, async (req,res,next) => {
-    deleteUserIncome(req.query.id as string,req.query.userID as string,res).then(()=> {
+router.delete('/delete-user-income/:id', authMe, premiumAuth, checkBusiness, async (req,res,next): Promise<void> => {
+    deleteUserIncome(req.params.id as string,req.body.userid as string,res).then(()=> {
         logger.info(`User ${res.locals.user.username} deleted income ${req.params.id} for user with id ${req.query.userID}!`);
         res.status(200).send(`You have successfully deleted the income!`);
     }).catch(err=> next(err));
 });
 
-router.get('/business-income',authMe, premiumAuth, checkBusiness, async (req, res, next) => {
+router.get('/',authMe, premiumAuth, checkBusiness, async (req, res, next): Promise<void> => {
     businessIncome(res).then(income => {
         logger.info(`User ${res.locals.user.username} requested all Incomes!`);
         res.status(200).send(income);
     }).catch(err => next(err));
 });
 
-router.put('/',authMe, premiumAuth, checkBusiness, validateIncome, async (req, res, next) => {
-    modifyIncome(req.query.id as string,req.body,res).then(()=> {
+router.put('/:id',authMe, premiumAuth, checkBusiness, validateIncome, async (req, res, next): Promise<void> => {
+    modifyIncome({...req.body,id: req.params.id},res).then(()=> {
         logger.info(`User ${res.locals.user.username} modified income ${req.params.id}!`);
         res.status(200).send(`You have successfully modified the income!`);
     }).catch(err => next(err));

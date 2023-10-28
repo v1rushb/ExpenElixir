@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Users.prototype, "isVerified", void 0);
 __decorate([
-    Column(),
+    Column({ nullable: true }),
     __metadata("design:type", String)
 ], Users.prototype, "verificationToken", void 0);
 __decorate([

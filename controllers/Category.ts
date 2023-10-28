@@ -7,7 +7,8 @@ import { Gen } from '../@types/generic.js';
 import { CustomError } from '../CustomError.js';
 import { EqualOperator } from 'typeorm';
 
-const insertCategory = async (payload: Gen.Category, res: express.Response) => {
+
+const insertCategory = async (payload: Gen.Category, res: express.Response): Promise<void> => {
     try {
         return dataSource.manager.transaction(async trans => {
 
@@ -37,13 +38,15 @@ const deleteAllCategory = async (res: express.Response) => {
     await Category.delete({ users: new EqualOperator(res.locals.user.id) });
 }
 
-const deleteCategory = async (id: string): Promise<Category> => {
+const deleteCategory = async (payload: Gen.deleteCategory): Promise<string> => {
     try {
-        const category = await Category.findOne({ where: { id } });
+        const {id} = payload;
+        const category = await Category.findOne({ where: { id: id } });
         if (!category)
             throw new CustomError(`category with id: ${id} was not found!`, 404);
+        const categoryName = category.title;
         await Category.remove(category);
-        return category;
+        return categoryName;
     } catch (err) {
         if (err instanceof CustomError)
             throw err;
@@ -66,15 +69,15 @@ const totalCategory = async (res: express.Response): Promise<Category[]> => {
     }
 }
 
-const modifyCategory = async (id: string, payload: Gen.Category, res: express.Response): Promise<void> => {
+const modifyCategory = async (payload: Gen.modifyCategory, res: express.Response): Promise<void> => {
     try {
         const userCategories: Category[] = res.locals.user.categories
         if(!userCategories) 
             throw new CustomError(`No categories were found!`, 404);
 
-        const category = userCategories.find(category => category.id === id);
+        const category = userCategories.find(category => category.id === payload.id);
         if(!category)
-            throw new CustomError(`Category with id: ${id} was not found!`, 404);
+            throw new CustomError(`Category with id: ${payload.id} was not found!`, 404);
         category.budget = payload.budget;
         category.title = payload.title;
         category.description = payload.description;

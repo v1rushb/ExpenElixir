@@ -9,7 +9,7 @@ import expenseRouter from './routers/Expense.js';
 import cookieParser from 'cookie-parser';
 import logger from './logger.js';
 import ErrorHandler from './middlewares/ErrorHandler.js';
-import { checkForVerification } from './controllers/User.js';
+import { checkForSubscriptionValidation, checkForVerification } from './controllers/User.js';
 
 const app = express();
 app.use(express.json());
@@ -45,6 +45,7 @@ app.listen(PORT, () => {
     db.initialize().then(() => {
         console.log(`Connected to DB dude!`);
         checkForVerification();
+        checkForSubscriptionValidation();
     }).catch(err => {
         console.error(`Failed to connect to the database. Error: ${err}`);
     });

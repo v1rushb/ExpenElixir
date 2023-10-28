@@ -3,15 +3,10 @@ import { Expense } from "../db/entities/Expense.js";
 import { Users } from '../db/entities/Users.js';
 import { Category } from '../db/entities/Category.js';
 import { CustomError } from '../CustomError.js';
-<<<<<<< HEAD
-import { currencyConverterFromOtherToUSD, currencyConverterFromUSDtoOther } from '../utils/currencyConverter.js';
-import { sendEmail } from '../utils/sesServiceAws.js';
-const insertExpense = async (payload, req) => {
-=======
 import { currencyConverterFromOtherToUSD, expenseOnProfileCurrency } from '../utils/currencyConverter.js';
 import { Between, EqualOperator, Like } from 'typeorm';
+import { sendEmail } from '../utils/sesServiceAws.js';
 const insertExpense = async (payload, res) => {
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     try {
         return dataSource.manager.transaction(async (trans) => {
             const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
@@ -70,13 +65,17 @@ const insertExpense = async (payload, res) => {
 const deleteAllExpenses = async (res) => {
     await Expense.delete({ users: new EqualOperator(res.locals.user.id) });
 };
-const deleteExpense = async (id) => {
+const deleteExpense = async (payload) => {
     try {
-        const expense = await Expense.findOne({ where: { id } });
+        const { id } = payload;
+        if (!id)
+            throw new CustomError("ID is required.", 400);
+        const expense = await Expense.findOne({ where: { id: id } });
         if (!expense)
             throw new CustomError(`Expense with id: ${id} was not found!`, 404);
+        const expenseName = expense.title;
         await Expense.remove(expense);
-        return expense;
+        return expenseName;
     }
     catch (err) {
         if (err instanceof CustomError)
@@ -132,34 +131,21 @@ const getExpenses = async (req, res) => {
 //         throw err;
 //     }
 // };
-<<<<<<< HEAD
-const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, req, res) => {
-    try {
-        const Expenses = await getExpenses(req, res); // put authme in router, else it wont work.
-        if (!searchQuery && !minAmountQuery && !maxAmountQuery)
-            return Expenses;
-        const search = searchQuery || '';
-        const minAmount = Number(minAmountQuery) || -Infinity;
-        const maxAmount = Number(maxAmountQuery) || Infinity;
-        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
-        return filteredExpenses;
-=======
-const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, category, req, res) => {
+const getFilteredExpenses = async (payload, req, res) => {
     try {
         let filter = {
             ...res.locals.filter, where: {
                 users: new EqualOperator(res.locals.user.id),
-                amount: Between(Number(minAmountQuery) || 0, Number(maxAmountQuery) || 9223372036854775807),
-                title: Like(`%${searchQuery?.toString().toLowerCase() || ''}%`),
+                amount: Between(Number(payload.minAmountQuery) || 0, Number(payload.maxAmountQuery) || 9223372036854775807),
+                title: Like(`%${payload.searchQuery?.toString().toLowerCase() || ''}%`),
             }
         };
-        if (category) {
-            filter.where.category = new EqualOperator(category);
+        if (payload.category) {
+            filter.where.category = new EqualOperator(payload.category);
         }
         const expenses = await Expense.find(filter);
         const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency);
         return results;
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     }
     catch (err) {
         throw err;

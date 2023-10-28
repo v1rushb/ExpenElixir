@@ -778,3 +778,1125 @@
 2023-10-26T17:05:00.096Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
 2023-10-26T17:05:00.275Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
 2023-10-26T17:05:00.346Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-26T19:55:09.794Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-26T19:55:15.729Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-26T19:55:15.812Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-26T19:55:16.297Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T19:55:35.958Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-26T19:55:46.678Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-26T19:55:47.444Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-26T19:55:48.105Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-26T19:55:48.829Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-26T19:55:52.248Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-26T19:56:16.294Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T19:56:32.158Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-26T19:56:56.034Z [error]: undefined - ER_WARN_DATA_OUT_OF_RANGE: Out of range value for column 'amount' at row 1 - /income/ - POST - ::1
+2023-10-26T19:57:16.295Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T19:57:36.985Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-26T19:58:16.296Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T19:58:26.779Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-26T19:59:16.296Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T19:59:25.263Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /category/ - POST - ::1
+2023-10-26T20:00:16.296Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:00:19.368Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category/ - POST - ::1
+2023-10-26T20:01:16.305Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:01:29.826Z [info]: User undefined requested all categories!
+2023-10-26T20:01:59.981Z [info]: User undefined added a new Expense!
+2023-10-26T20:02:12.773Z [info]: User undefined added a new Expense!
+2023-10-26T20:02:16.303Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:02:38.518Z [info]: User undefined requested all categories!
+2023-10-26T20:03:06.764Z [info]: User undefined added a new Expense!
+2023-10-26T20:03:07.989Z [info]: User undefined added a new Expense!
+2023-10-26T20:03:15.070Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-26T20:03:15.894Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-26T20:03:16.306Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:04:16.333Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:04:52.455Z [error]: 404 Not Found - /income/total-income - GET - ::1
+2023-10-26T20:05:01.380Z [info]: Total income : 220417754, user: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IjIxMTExMUBwcHUuZWR1LnBzIiwidXNlcm5hbWUiOiJ6aGVyb2Z4eCIsImlkIjoiZmJkMDM3ZGUtNjA4OS00NDk2LThhYmUtOWEyYzEzMzQ5MjczIiwiaWF0IjoxNjk4MzUwMTUyLCJleHAiOjE2OTgzNTE5NTJ9.E4QlpYaXZwGae3lAzug74xheyxMTspEa72Oqrug8G0Y
+2023-10-26T20:05:11.319Z [info]: User undefined requested total Expenses!
+2023-10-26T20:05:16.332Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:06:16.362Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:08:31.312Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:09:31.300Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:10:06.648Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'USA' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category/ - POST - ::1
+2023-10-26T20:10:25.974Z [info]: User undefined requested all categories!
+2023-10-26T20:10:31.300Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:10:43.028Z [error]: 404 Not Found - /category/d582505c-9532-437d-9d63-9353b7fe3ae1 - PUT - ::1
+2023-10-26T20:11:56.397Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:12:56.386Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:13:19.365Z [error]: 404 Not Found - /category/d582505c-9532-437d-9d63-9353b7fe3ae1 - PUT - ::1
+2023-10-26T20:13:50.988Z [info]: User zherofxx modified category d582505c-9532-437d-9d63-9353b7fe3ae1!
+2023-10-26T20:13:59.533Z [info]: User undefined requested all categories!
+2023-10-26T20:15:26.424Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:16:07.134Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-26T20:16:26.417Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:17:13.393Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-26T20:17:26.414Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:18:26.423Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:19:12.422Z [info]: 200 OK - /analytics/expenses-by-category - GET - ::1
+2023-10-26T20:20:03.761Z [error]: 404 Not Found - /expense/analytics/get-prediction - GET - ::1
+2023-10-26T20:20:09.932Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:20:26.032Z [error]: undefined - Property "0" was not found in "Users". Make sure your query is correct. - /expense/analytics/predict-me - GET - ::1
+2023-10-26T20:21:09.930Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:21:41.420Z [info]: 200 OK - /analytics/predict-me - GET - ::1
+2023-10-26T20:22:32.431Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:23:32.431Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:23:52.266Z [error]: 404 Not Found - /upgrade-to-business - POST - ::1
+2023-10-26T20:24:04.394Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:24:32.428Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:24:59.264Z [error]: 404 - User not found - /user/reset-password - POST - ::1
+2023-10-26T20:25:16.104Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-26T20:25:32.429Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:25:41.415Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-26T20:25:54.680Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-26T20:26:07.291Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-26T20:26:32.431Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:26:48.486Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-26T20:26:56.198Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-26T20:27:31.629Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-26T20:27:32.430Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:28:04.931Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Bashar's Business' for key 'business.IDX_b485ad884cd5182b8ba80f0331' - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:28:32.431Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:29:36.413Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:30:28.346Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:31:28.337Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:32:09.829Z [error]: undefined - Cannot save, given value must be an entity, instead "null" is given. - /user/business/add-user - POST - ::1
+2023-10-26T20:32:33.136Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:33:33.136Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:33:34.645Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:33:41.461Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:33:42.140Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:33:42.752Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:34:33.133Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:35:48.500Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:36:02.231Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:36:08.945Z [error]: 400 - You are not allowed here. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:36:30.845Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:36:35.111Z [error]: 400 - You are not allowed to delete your account. - /user/delete-account - DELETE - ::1
+2023-10-26T20:36:58.321Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-26T20:37:04.205Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-26T20:37:30.848Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:37:34.507Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:38:30.843Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:38:38.619Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'verificationToken' doesn't have a default value - /user/business/add-user - POST - ::1
+2023-10-26T20:39:27.292Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:30.069Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:30.812Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:37.798Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:39:38.463Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:40:24.078Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-26T20:40:25.520Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:40:38.333Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-26T20:40:46.992Z [error]: 401 - You are not a root user - /user/business/add-user - POST - ::1
+2023-10-26T20:41:25.520Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-26T20:42:25.520Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:46:23.969Z [error]: 500 - Error: User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-27T10:46:49.430Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-27T10:47:07.609Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-27T10:47:08.394Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-27T10:47:08.434Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-27T10:47:33.907Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-27T10:48:07.587Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:49:29.636Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-27T10:50:29.599Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:51:29.604Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:52:29.635Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:53:29.666Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:54:31.640Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:55:03.861Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:55:32.553Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:55:50.943Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:56:32.292Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:56:39.037Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T10:57:31.415Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:58:31.402Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T10:59:31.411Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:00:31.440Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:01:31.469Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:02:31.504Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:03:31.520Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:04:31.547Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:05:31.578Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:06:31.594Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:07:31.626Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:08:31.659Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:09:31.683Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:10:31.715Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:11:31.743Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:12:31.774Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:14:14.832Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:15:14.827Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:16:14.846Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:17:14.872Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:18:14.907Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:19:14.937Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:20:14.962Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:21:14.996Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:22:52.188Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:23:52.156Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:24:56.184Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:26:41.558Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:27:41.542Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:29:24.748Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:30:59.118Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:30:59.123Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:31:59.108Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:31:59.116Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:32:18.344Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:32:24.345Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:32:30.356Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:32:36.345Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:32:54.572Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:00.563Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:06.581Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:12.566Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:18.565Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:24.571Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:30.575Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:36.573Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:40.470Z [error]: undefined - jwt must be provided - /user - GET - ::1
+2023-10-27T11:33:42.575Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:46.167Z [error]: undefined - Cannot read properties of undefined (reading 'business') - /user/login - POST - ::1
+2023-10-27T11:33:48.555Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:33:48.576Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:33:54.580Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:00.579Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:06.587Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:12.590Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:18.590Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:24.592Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:30.604Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:36.606Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:42.607Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:48.555Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:34:48.614Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:34:54.620Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:00.626Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:06.632Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:12.635Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:18.636Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:24.643Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:30.647Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:36.651Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:42.657Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:48.558Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:35:48.661Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:35:54.667Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:00.664Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:06.672Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:12.679Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:19.454Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T11:36:24.339Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:30.338Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:36.349Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:42.345Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:48.353Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:36:54.352Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:00.364Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:06.370Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:12.374Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:18.335Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:37:18.373Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:24.378Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:30.384Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:36.390Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:42.395Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:48.395Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:37:50.860Z [error]: 400 - You cannot use your old password. - /user/reset-password - POST - ::1
+2023-10-27T11:37:54.399Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:00.406Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:06.404Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:12.409Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:18.333Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:38:18.408Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:24.417Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:30.422Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:36.425Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:42.429Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:48.430Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:38:54.439Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:00.438Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:06.447Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:12.453Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:18.332Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T11:39:18.453Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:24.458Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:30.462Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:36.462Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:42.465Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:48.466Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:39:54.468Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:00.475Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:06.479Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:20.631Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:26.617Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:32.618Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:38.632Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:44.618Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:50.619Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:40:56.629Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:41:02.630Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:41:13.451Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:41:23.327Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:41:29.326Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:41:35.333Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T11:41:41.334Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:28:20.472Z [error]: 500 - Error: DataSource is not set for this entity. - /user/register - POST - ::1
+2023-10-27T13:28:54.034Z [error]: 500 - Error: DataSource is not set for this entity. - /user/register - POST - ::1
+2023-10-27T13:29:45.310Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-27T13:29:55.384Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:01.372Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:03.137Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-27T13:30:03.209Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-27T13:30:07.374Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:13.392Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:19.378Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:24.505Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T13:30:25.381Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:30.905Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:30:31.771Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:30:37.382Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:43.384Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:49.364Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:30:49.385Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:50.316Z [error]: 404 Not Found - /user/business - GET - ::1
+2023-10-27T13:30:55.385Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:30:55.869Z [error]: 401 - You are not a root user - /user/business/business-users - GET - ::1
+2023-10-27T13:31:01.385Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:07.387Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:13.348Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:31:13.387Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:19.394Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:24.796Z [error]: 404 Not Found - /user/upgrade-to-business - GET - ::1
+2023-10-27T13:31:25.391Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:29.251Z [error]: 404 Not Found - /user/upgrade-to-business - GET - ::1
+2023-10-27T13:31:31.388Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:34.428Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:31:37.794Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:31:38.436Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:31:43.394Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:49.364Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:31:49.392Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:31:55.400Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:01.400Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:07.406Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:13.412Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:26.225Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:32.204Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:38.217Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:44.203Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:32:54.069Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:00.074Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:06.076Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:12.077Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:18.074Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:24.079Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:30.089Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:36.086Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:42.090Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:48.057Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:33:48.094Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:33:54.094Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:00.100Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:06.100Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:12.108Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:18.109Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:24.115Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:30.116Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:36.123Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:42.128Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:48.060Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:34:48.124Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:34:54.132Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:00.132Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:06.143Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:12.144Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:15.942Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:35:18.529Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:35:24.143Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:30.145Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:36.150Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:42.154Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:35:49.857Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:35:52.494Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:35:58.035Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:36:26.033Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:36:29.819Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:36:35.378Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:36:41.393Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:36:47.385Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:36:53.380Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:36:59.946Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:37:02.483Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:37:08.138Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:37:14.138Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:37:27.755Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:37:34.748Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T13:37:37.658Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:37:43.667Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:37:49.671Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:37:55.672Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:01.665Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:13.728Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:19.714Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:25.723Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:31.717Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:37.715Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:43.718Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:49.728Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:38:55.729Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:01.727Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:07.703Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:39:07.731Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:13.735Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:19.745Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:25.741Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:31.750Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:37.747Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:43.751Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:49.753Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:39:55.758Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:40:01.762Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:40:07.702Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:40:07.767Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:40:13.768Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:40:19.770Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:40:25.776Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:41:32.842Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:41:32.852Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:42:32.834Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:42:32.849Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:43:32.834Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:43:32.846Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:44:32.834Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:44:32.847Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:45:32.866Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:45:32.870Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:47:37.700Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:47:37.708Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:49:55.126Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:49:55.134Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:50:55.128Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:50:55.134Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:51:55.161Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:51:55.166Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:52:55.188Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:52:56.321Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T13:53:55.207Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:53:55.208Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:54:55.234Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:54:55.235Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:55:55.270Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T13:55:55.271Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:56:55.291Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T13:56:55.292Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:03:42.721Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:03:42.727Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:04:42.710Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:04:42.718Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:11:31.987Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:11:31.995Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:16:56.576Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:16:56.581Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:17:56.568Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:17:56.577Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:18:56.593Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:18:56.596Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:19:56.624Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:19:56.625Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:20:56.651Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:20:56.652Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:21:56.680Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:21:56.681Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:23:48.050Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:23:48.055Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:24:48.042Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:24:48.054Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:25:48.053Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:25:48.055Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:26:48.090Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:26:48.093Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:27:48.118Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:27:48.120Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:28:48.147Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:28:48.150Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:29:48.178Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:29:48.180Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T14:31:32.385Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T14:31:32.391Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:26:53.240Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:26:53.245Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:27:53.222Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:27:53.236Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:28:53.228Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:28:53.241Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:29:53.247Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:29:53.248Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:30:53.283Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:30:53.286Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:32:33.309Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:32:33.314Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:33:33.264Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:33:33.302Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:34:33.292Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:34:33.303Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:35:33.328Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:35:33.332Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:35:48.122Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T17:36:33.360Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:36:33.362Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:37:33.372Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:37:33.374Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:38:16.208Z [error]: 400 - Expected ',' or '}' after property value in JSON at position 76 - /user/login - POST - ::1
+2023-10-27T17:38:33.381Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:38:33.382Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:38:54.338Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-27T17:38:58.400Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T17:39:16.920Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-27T17:39:33.394Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:39:33.395Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:39:57.828Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-27T17:40:03.905Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T17:40:11.066Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T17:40:33.411Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:40:33.414Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:41:33.416Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:41:33.417Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:42:33.444Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:42:33.448Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:43:33.476Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:43:33.479Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:44:46.777Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:44:46.784Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:45:46.753Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:45:46.783Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:46:46.771Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:46:46.775Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:47:46.802Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:47:46.803Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:48:46.827Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:48:46.830Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:49:46.850Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:49:46.851Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:50:46.885Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:50:46.889Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:51:46.911Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:51:46.913Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:53:10.569Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:53:10.577Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:54:10.537Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:54:10.560Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:55:02.931Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-27T17:55:20.336Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:55:21.758Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T17:56:20.318Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:56:20.335Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:57:20.328Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:57:20.339Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:58:20.352Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:58:20.353Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T17:59:20.388Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T17:59:20.390Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:00:20.391Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:00:20.392Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:01:20.416Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:01:20.417Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:02:20.448Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:02:20.449Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:03:20.456Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:03:20.459Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:04:20.485Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:04:20.487Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:05:20.515Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:05:20.517Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:06:41.050Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:06:41.056Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:07:41.015Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:07:41.043Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:08:41.018Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:08:41.042Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:09:03.437Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T18:09:11.590Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-27T18:09:25.319Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-27T18:09:41.015Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:09:41.044Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:10:06.179Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-27T18:10:41.042Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:10:41.051Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:11:41.062Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:11:41.065Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:12:41.090Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:12:41.093Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:14:41.266Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:14:41.279Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:15:41.254Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:15:41.272Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:16:41.253Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:16:41.263Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:17:41.279Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:17:41.282Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:18:41.312Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:18:41.315Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:19:41.346Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:19:41.350Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:21:15.514Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:21:15.525Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:23:05.586Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:23:05.596Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:24:05.555Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:24:05.589Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:25:05.580Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:25:07.307Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T18:26:05.618Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:26:05.622Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:27:05.640Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:27:05.642Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:28:05.663Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:28:05.666Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:29:05.691Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:29:05.694Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:30:05.719Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:30:05.720Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:31:05.733Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:31:05.736Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:32:05.763Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:32:05.765Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:33:05.774Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:33:05.776Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:34:05.799Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:34:05.799Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:35:05.828Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:35:05.829Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:36:05.859Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:36:05.859Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:37:05.888Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:37:05.889Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:38:05.900Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:38:05.902Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:39:05.931Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:39:05.932Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:40:05.955Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:40:05.955Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:41:05.987Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:41:05.988Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:42:06.015Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:42:06.016Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:43:06.041Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:43:06.042Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:44:06.072Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:44:06.074Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:45:06.102Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:45:06.103Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:46:06.105Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:46:06.105Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:47:06.132Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:47:06.132Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:48:06.165Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:48:06.167Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:49:06.195Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:49:06.196Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:50:06.215Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:50:06.216Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:51:06.251Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:51:06.252Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:52:06.280Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:52:06.282Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:53:06.309Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:53:06.310Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:54:06.338Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:54:06.338Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:55:06.371Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:55:06.372Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:56:06.401Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:56:06.402Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:57:06.425Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:57:06.426Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:58:06.456Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:58:06.456Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T18:59:06.488Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T18:59:06.489Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:00:06.490Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:00:06.490Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:01:06.519Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:01:06.520Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:02:42.907Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:02:42.912Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:03:42.880Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:03:42.905Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:04:42.909Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:04:42.910Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:05:42.939Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:05:42.940Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:06:42.972Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:06:42.974Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:07:42.999Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:07:43.000Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:08:43.032Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:08:43.035Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:09:43.054Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:09:43.055Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:10:43.089Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:10:43.089Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:11:43.118Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:11:43.120Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:12:43.151Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:12:43.153Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:13:43.169Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:13:43.170Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:14:43.198Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:14:43.199Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:15:43.218Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:15:43.219Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:16:43.251Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:16:43.252Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:17:43.282Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:17:43.282Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:18:43.300Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:18:43.301Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:19:43.309Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:19:43.309Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:20:43.339Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:20:43.340Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:21:43.365Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:21:43.366Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:22:43.394Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:22:43.395Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:23:43.419Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:23:43.420Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:24:43.440Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:24:43.441Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:25:43.476Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:25:43.477Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:26:43.505Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:26:43.506Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:27:07.405Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T19:27:31.841Z [error]: 400 - Expected ',' or '}' after property value in JSON at position 26 - /income - POST - ::1
+2023-10-27T19:27:43.506Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:27:43.507Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:28:17.018Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:28:18.153Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:38:59.394Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:40:03.167Z [error]: undefined - Connection is not established with mysql database - /income - POST - ::1
+2023-10-27T19:41:37.609Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-27T19:42:02.323Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-27T19:42:08.235Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-27T19:42:15.004Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-27T19:42:19.910Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-27T19:42:21.123Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-27T19:42:35.193Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:42:35.754Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-27T19:43:04.581Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-27T19:43:34.020Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-27T19:43:35.188Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:43:35.192Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:43:40.392Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-27T19:43:48.516Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-27T19:43:48.573Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-27T19:44:35.196Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:44:35.204Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:44:46.822Z [error]: undefined - jwt must be provided - /income - POST - ::1
+2023-10-27T19:44:58.385Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T19:45:02.078Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /income - POST - ::1
+2023-10-27T19:45:35.188Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:45:35.200Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:46:50.936Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:46:50.941Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:47:30.160Z [error]: undefined - Cannot read properties of undefined (reading 'locals') - /income - POST - ::1
+2023-10-27T19:47:50.926Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:47:50.935Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:48:36.550Z [error]: undefined - Cannot read properties of undefined (reading 'locals') - /income - POST - ::1
+2023-10-27T19:48:54.026Z [error]: undefined - Cannot read properties of undefined (reading 'locals') - /income - POST - ::1
+2023-10-27T19:50:11.100Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:50:11.102Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:51:11.104Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:51:11.112Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:52:11.105Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:52:11.109Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:53:11.134Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:53:11.137Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:53:22.826Z [error]: 500 - Error: Income with id: all-incomes was not found! - /income/all-incomes - DELETE - ::1
+2023-10-27T19:54:30.654Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:54:30.664Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:56:20.800Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:56:20.809Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:57:20.767Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:57:20.794Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:58:20.769Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:58:20.793Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T19:59:20.770Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T19:59:20.793Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:00:20.793Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:00:20.796Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:01:20.834Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:01:20.837Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:02:15.630Z [error]: 400 - ID is required. - /income/ - PUT - ::1
+2023-10-27T20:02:20.822Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:02:20.826Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:02:28.909Z [error]: 404 Not Found - /income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - PUT - ::1
+2023-10-27T20:03:18.186Z [info]: User v1rushbb c0bbbf41-18aa-48d8-b9b4-859e6cd056cf 
+2023-10-27T20:04:13.873Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:04:13.875Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:05:13.860Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:05:13.872Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:06:13.852Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:06:13.869Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:07:13.859Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:07:13.873Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:08:13.890Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:08:13.893Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:09:13.885Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:09:13.886Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:10:13.917Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:10:13.920Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:11:13.948Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:11:13.950Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:12:13.977Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:12:13.979Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:13:14.002Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:13:14.002Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:14:14.027Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:14:14.028Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:14:17.314Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-27T20:15:14.067Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:15:14.068Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:16:14.091Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:16:14.094Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:17:01.941Z [error]: undefined - jwt must be provided - /expense - POST - ::1
+2023-10-27T20:17:10.869Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T20:17:14.085Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:17:14.087Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:17:15.354Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-27T20:18:14.115Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:18:14.115Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:18:17.393Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'budget' doesn't have a default value - /category - POST - ::1
+2023-10-27T20:18:38.005Z [info]: User undefined requested all categories!
+2023-10-27T20:18:48.000Z [error]: 400 - Expected ',' or '}' after property value in JSON at position 236 - /expense - POST - ::1
+2023-10-27T20:18:55.318Z [info]: User undefined added a new Expense!
+2023-10-27T20:19:14.130Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:19:14.130Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:20:14.155Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:20:14.157Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:22:14.184Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:22:14.189Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:23:14.144Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:23:14.179Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:24:14.166Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:24:14.177Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:24:19.657Z [info]: User undefined added a new Expense!
+2023-10-27T20:24:22.460Z [info]: User undefined requested all Expenses!
+2023-10-27T20:25:14.172Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:25:14.177Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:26:14.205Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:26:14.207Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:27:14.204Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:27:14.210Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:28:14.225Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:28:14.225Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:29:14.264Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:29:14.266Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:30:14.291Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:30:14.291Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:31:07.811Z [info]: User undefined requested total Expenses!
+2023-10-27T20:32:03.503Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:32:03.505Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:33:03.508Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:33:03.513Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:34:03.508Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:34:03.516Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:34:28.794Z [info]: User undefined requested all Expenses!
+2023-10-27T20:34:40.859Z [error]: 404 Not Found - /expense/all-expenses - DELETE - ::1
+2023-10-27T20:35:08.299Z [info]: User undefined requested all Expenses!
+2023-10-27T20:35:52.544Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:35:52.550Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:36:52.540Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:36:52.545Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:37:52.555Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:37:52.556Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:38:52.588Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:38:52.589Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:39:52.615Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:39:52.616Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:40:28.834Z [info]: User undefined added a new Expense!
+2023-10-27T20:40:30.948Z [info]: User undefined requested all Expenses!
+2023-10-27T20:40:37.108Z [error]: 404 Not Found - /expense/0ba4ccff-035a-45de-bcb5-e842aee22139 - DELETE - ::1
+2023-10-27T20:40:52.451Z [info]: User undefined deleted expense 0ba4ccff-035a-45de-bcb5-e842aee22139!
+2023-10-27T20:40:58.511Z [info]: User undefined requested all Expenses!
+2023-10-27T20:41:51.108Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:41:51.112Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:42:51.087Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:42:51.097Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:43:51.099Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:43:51.100Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:44:51.134Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:44:51.137Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:45:51.163Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:45:51.165Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:47:26.276Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:47:26.282Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:48:26.240Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:48:26.268Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:49:26.257Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:49:26.263Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:50:09.085Z [error]: undefined - jwt must be provided - /category - GET - ::1
+2023-10-27T20:50:12.760Z [error]: undefined - jwt must be provided - /category - POST - ::1
+2023-10-27T20:50:18.680Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-27T20:50:26.263Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:50:26.269Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:51:26.290Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:51:26.292Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:52:26.318Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:52:26.319Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:53:26.350Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:53:26.351Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:54:26.389Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:54:26.392Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:54:44.401Z [info]: User undefined requested all categories!
+2023-10-27T20:56:29.303Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:56:29.307Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:57:29.300Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:57:29.308Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:58:11.190Z [info]: User undefined requested all categories!
+2023-10-27T20:58:18.650Z [error]: 404 Not Found - /category/d70a57f2-f6a0-4109-b6fd-4e4a6787d535 - DELETE - ::1
+2023-10-27T20:58:29.292Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:58:29.305Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T20:58:32.149Z [info]: User undefined deleted category d70a57f2-f6a0-4109-b6fd-4e4a6787d535!
+2023-10-27T20:59:31.862Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T20:59:31.867Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:00:31.841Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:00:31.853Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:01:31.843Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:01:31.855Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:01:38.788Z [error]: 404 Not Found - /category/ - PUT - ::1
+2023-10-27T21:01:45.949Z [info]: User undefined requested all categories!
+2023-10-27T21:01:52.932Z [info]: User v1rushbb modified category f6f91e39-0f95-45e6-9b45-a594baed7644!
+2023-10-27T21:02:31.869Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:02:31.873Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:03:31.889Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:03:31.891Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:04:31.920Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:04:31.922Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:05:31.939Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:05:31.941Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:06:31.977Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:06:31.979Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:07:32.003Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:07:32.005Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:08:32.035Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:08:32.037Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-27T21:09:32.062Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-27T21:09:32.064Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:09:10.514Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T11:09:27.229Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T11:09:57.568Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-28T11:10:12.491Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:10:12.510Z [info]: Scheduled task completed successfully, deleted 5 users.
+2023-10-28T11:10:28.901Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T11:10:55.702Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-28T11:11:12.479Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:11:12.484Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:11:20.587Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-28T11:11:26.537Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:12:12.481Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:12:12.483Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:12:47.287Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:13:45.332Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:13:45.336Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:14:03.439Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-28T11:14:45.330Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:14:45.334Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:15:45.327Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:15:45.340Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:16:45.350Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:16:45.351Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:17:45.381Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:17:45.382Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:19:06.552Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T11:19:29.487Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-28T11:19:46.770Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:19:46.773Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:19:50.472Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-28T11:19:50.510Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-28T11:20:12.513Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T11:20:36.880Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-28T11:20:46.775Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:20:46.780Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:21:00.588Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:21:06.217Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-28T11:21:11.188Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T11:21:46.774Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:21:46.776Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:22:46.771Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:22:46.773Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:23:46.777Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:23:46.778Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:24:46.808Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:24:47.300Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:25:46.840Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:25:46.841Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:26:46.863Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:26:46.864Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:28:16.471Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:28:16.474Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:29:16.454Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:29:16.466Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:29:27.211Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-28T11:29:32.904Z [error]: 401 - Unauthorized - /user/login - POST - ::1
+2023-10-28T11:29:34.584Z [error]: 401 - Unauthorized - /user/login - POST - ::1
+2023-10-28T11:30:16.476Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:30:16.477Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:31:16.506Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:31:16.509Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:32:16.526Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:32:16.526Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:33:16.553Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:33:16.555Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:33:44.008Z [error]: undefined - jwt must be provided - /user/business/add-user - POST - ::1
+2023-10-28T11:34:16.580Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:34:16.582Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T11:34:20.204Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T11:34:25.989Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T11:34:30.398Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-28T11:34:36.962Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-28T11:35:16.587Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:35:16.588Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:37:08.376Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:37:08.384Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:38:48.729Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:38:48.734Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:39:48.722Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:39:48.729Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:40:48.746Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:40:48.747Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:41:16.817Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T11:42:11.794Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:42:11.796Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:43:11.793Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:43:11.802Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:44:11.816Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:44:11.818Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:44:51.358Z [info]: 200 OK - /user/businessBalance - GET - ::1
+2023-10-28T11:45:47.235Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:45:47.237Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:46:47.224Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:46:47.232Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:47:47.248Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:47:47.252Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:48:46.819Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-28T11:48:47.239Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:48:47.242Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:48:59.758Z [info]: User v1rushbb added income 54a2d3d8-7e3f-4883-aa45-185ca059f905 for user with id 54a2d3d8-7e3f-4883-aa45-185ca059f905!
+2023-10-28T11:50:35.197Z [error]: 400 - Expected double-quoted property name in JSON at position 46 - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:50:41.423Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:50:41.912Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:50:49.658Z [error]: 401 - You are not a root user - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:51:14.648Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T11:51:27.653Z [error]: 400 - Expected double-quoted property name in JSON at position 25 - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:51:41.416Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:51:41.424Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:52:12.172Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-28T11:52:23.036Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-28T11:52:29.021Z [error]: undefined - jwt must be provided - /income/business/add-user-income/54a2d3d8-7e3f-4883-aa45-185ca059f905 - POST - ::1
+2023-10-28T11:52:41.417Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:52:41.422Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:52:48.645Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-28T11:53:41.430Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:53:41.438Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-28T11:54:41.440Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:54:41.442Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:55:41.472Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:55:41.473Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:57:10.557Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:57:10.564Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:57:33.246Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-28T11:58:10.513Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:58:10.555Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:59:07.152Z [info]: User v1rushbb requested all Incomes!
+2023-10-28T11:59:10.515Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T11:59:10.554Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T11:59:20.325Z [error]: 404 Not Found - /income/business/delete-user-income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - POST - ::1
+2023-10-28T11:59:32.169Z [error]: 404 Not Found - /income/business/delete-user-income/99ae0e91-c14b-4b4a-a6b0-75667ebaa464 - POST - ::1
+2023-10-28T12:00:07.483Z [error]: 404 Not Found - /income/business/delete-user-income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - POST - ::1
+2023-10-28T12:00:10.511Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:00:10.550Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:00:24.208Z [info]: User v1rushbb deleted income c0bbbf41-18aa-48d8-b9b4-859e6cd056cf for user with id undefined!
+2023-10-28T12:00:25.817Z [error]: 404 - Income not found. - /income/business/delete-user-income/c0bbbf41-18aa-48d8-b9b4-859e6cd056cf - DELETE - ::1
+2023-10-28T12:01:10.509Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:01:10.549Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:02:10.519Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:02:10.555Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:03:45.579Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:03:45.584Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:04:05.569Z [info]: User v1rushbb requested all Incomes!
+2023-10-28T12:04:45.563Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:04:45.575Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:05:45.586Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:05:45.589Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:06:45.611Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:06:46.083Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:07:26.580Z [error]: 401 - You are not a root user - /income/business/99ae0e91-c14b-4b4a-a6b0-75667ebaa464 - PUT - ::1
+2023-10-28T12:07:35.654Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-28T12:07:36.151Z [info]: User v1rushbb modified income 99ae0e91-c14b-4b4a-a6b0-75667ebaa464!
+2023-10-28T12:07:45.615Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:07:45.616Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:08:45.629Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:08:45.633Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:09:45.628Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:09:45.629Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:10:45.660Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:10:45.663Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:11:45.689Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:11:45.690Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:12:45.701Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:12:45.704Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:13:45.723Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:13:45.724Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:14:45.753Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:14:45.756Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:15:45.757Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:15:45.758Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:16:45.776Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:16:45.778Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:17:45.805Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:17:45.808Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:18:45.833Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:18:45.834Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:19:45.835Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:19:45.835Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:20:45.868Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:20:45.869Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:21:45.885Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:21:45.889Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:22:45.890Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:22:46.298Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-28T12:23:45.922Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:23:45.923Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:24:45.948Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:24:45.948Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:25:45.954Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:25:45.954Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:26:45.983Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:26:45.984Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:27:45.984Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:27:45.987Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:28:46.014Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:28:46.014Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:29:46.040Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:29:46.040Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:30:46.070Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:30:46.070Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:31:46.096Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:31:46.097Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:32:46.115Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:32:46.115Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:33:46.144Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:33:46.145Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:34:46.175Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:34:46.176Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:35:46.205Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:35:46.206Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:36:46.232Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:36:46.232Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:37:46.265Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:37:46.265Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-28T12:38:46.295Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-28T12:38:46.295Z [info]: Scheduled task completed successfully, checked 0 users.

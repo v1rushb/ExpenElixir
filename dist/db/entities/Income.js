@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", Date)
 ], Income.prototype, "incomeDate", void 0);
 __decorate([
-    Column(),
+    Column({ nullable: true }),
     __metadata("design:type", String)
 ], Income.prototype, "description", void 0);
 __decorate([

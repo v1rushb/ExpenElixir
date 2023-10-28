@@ -1,8 +1,8 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, deleteUser, deleteUser, insertUser, login, sendResetPasswordEmail } from '../controllers/User.js';
+import { calculateBalance, deleteUser, insertUser, login, sendResetPasswordEmail } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
-import { validatePassword, validateUser } from '../middlewares/Validate.js';
+import { validateLogin, validatePassword, validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
 import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
@@ -29,22 +29,24 @@ router.post('/register', validateUser, async (req, res, next) => {
 });
 
 
-router.post('/login', (req, res, next) => {
+router.post('/login', validateLogin,(req, res, next) => {
     const {username, password, iamId} = req.body;
     const token = req.cookies["token"];
 
-
     try {
         if (token) {
-            jwt.verify(token, process.env.SECRET_KEY || '');
-            return res.status(400).send(`You are already logged in.`);
+            if(jwt.verify(token, process.env.SECRET_KEY || ''))
+                return res.status(409).send(`You are already logged in.`);
+            throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
         }
     } catch (err) {
-        return next(new CustomError(`Your session has expired or is invalid. Please log in again.`, 400));
+        return next(err);
     }
 
     if (username && password) {
-        login(username, password, iamId, res).then(data => {
+        const payload: Gen.login = {username, password, iamId,res};
+
+        login(payload).then(data => {
             res.cookie("userEmail", data.email, { maxAge: 30 * 60 * 1000 });
             res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });
             res.cookie("loginDate", Date.now(), { maxAge: 30 * 60 * 1000 });
@@ -73,18 +75,18 @@ router.post('/logout', (req, res) => {
         logger.info(`200 OK - /user/logout - POST - ${req.ip}`);
         res.status(200).send(`You have been logged out. See you soon ${decoded?.username}!`);
     } catch (err) {
-        throw new CustomError(`Your session has expired or is invalid. Please log in again.`, 400);
+        throw new CustomError(`err`, 401);
     }
 });
 
 router.get('/balance', authMe, async (req, res, next) => {
     calculateBalance(res).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
-        return res.status(200).send(`Your total income is: ${data}`);
+        return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.currency}.}`);
     }).catch(err => next(err));
 });
 
-router.get('/', authMe, async (req, res, next) => {
+router.get('/', authMe, async (req, res, next) => { //delete this
     try {
         const users = await Users.find();
         res.status(200).send(users);
@@ -99,6 +101,7 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => 
         if (!selectedCard || selectedCard < 0 || selectedCard > 2) {
             throw new CustomError(`You must select a valid card.`, 400);
         }
+
         const card: Gen.card = res.locals.cards[selectedCard];
         if (card.cardExp <= new Date()) {
             throw new CustomError(`Card expired.`, 400);
@@ -133,7 +136,7 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => 
                     if (user.profile.role === 'Root') {
                         throw new CustomError(`You are already a business user.`, 400);
                     }
-                    throw new CustomError(`You are not allowed here.`, 400);
+                    throw new CustomError(`You are not allowed here.`, 401);
                 }
                 await upgradeToBusiness(res);
                 logger.info(`200 OK - /user/upgrade-to-business - POST - ${req.ip}`);
@@ -153,7 +156,7 @@ router.delete('/delete-account', authMe, async (req, res, next) => {
     const user = res.locals.user;
     try {
         if (user.profile.role === 'User')
-            throw new CustomError(`You are not allowed to delete your account.`, 400);
+            throw new CustomError(`You are not allowed to delete your account.`, 401);
         deleteUser(res).then(() => {
             logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
             res.clearCookie("userEmail");
@@ -187,22 +190,22 @@ router.get('/verify-account', async (req, res, next) => {
     }
 });
 
-router.delete('/delete-account', authMe, async (req, res, next) => {
-    const user = res.locals.user;
-    try {
-        if(user.profile.role === 'User')
-            throw new CustomError(`You are not allowed to delete your account.`, 400);
-        deleteUser(res).then(() => {
-            logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
-            res.clearCookie("userEmail");
-            res.clearCookie("token");
-            res.clearCookie("loginDate");
-            res.status(200).send(`Your account has been deleted successfully.`);
-        }).catch(err => next(err));
-    } catch(err) {
-        next(err);
-    }
-});
+// router.delete('/delete-account', authMe, async (req, res, next) => {
+//     const user = res.locals.user;
+//     try {
+//         if(user.profile.role === 'User')
+//             throw new CustomError(`You are not allowed to delete your account.`, 400);
+//         deleteUser(res).then(() => {
+//             logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+//             res.clearCookie("userEmail");
+//             res.clearCookie("token");
+//             res.clearCookie("loginDate");
+//             res.status(200).send(`Your account has been deleted successfully.`);
+//         }).catch(err => next(err));
+//     } catch(err) {
+//         next(err);
+//     }
+// });
 
 
 router.post('/reset-password', validatePassword, async (req, res, next) => {
@@ -226,13 +229,13 @@ router.post('/reset-password', validatePassword, async (req, res, next) => {
         user.newHashedPassword = hashedPassword;
         const resetToken = uuidv4();
         user.resetToken = resetToken;
-        user.resetTokenExpiration = new Date(Date.now() + 1800000);
-        await sendResetPasswordEmail(email,resetToken);
+        user.resetTokenExpiration = new Date(Date.now() + 300000);
+        await sendResetPasswordEmail({email: email, token: resetToken});
         await user.save();
         res.clearCookie("userEmail");
         res.clearCookie("token");
         res.clearCookie("loginDate");
-        res.send('Please check your mailbox for to continue in resetting your passwrd.');
+        res.status(200).send('Please check your mailbox for to continue in resetting your passwrd.');
     } catch (err) {
         next(err);
     }
@@ -246,6 +249,10 @@ router.get('/reset-password-email', async (req, res, next) => {
         const user = await Users.findOne({ where: { resetToken: token as string } });
         if(!user)
             throw new CustomError(`Invalid token.`, 400);
+
+        if(user.resetTokenExpiration && user.resetTokenExpiration < new Date(Date.now()))
+            throw new CustomError(`Token expired.`, 400);
+        
         user.password = user.newHashedPassword? user.newHashedPassword : user.password;
         user.resetToken = '';
         user.resetTokenExpiration = undefined;
@@ -279,10 +286,7 @@ router.put('/', authMe, async (req, res, next) => {
         next(err);
     }
 });
-router.get('/health', (req, res) => {
-    logger.info('Full HP [200] - /health - GET');
-    res.status(200).send('Full HP');
 
-});
+router.use('/business', businessUser);
 
 export default router;

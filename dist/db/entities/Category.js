@@ -25,7 +25,6 @@ __decorate([
     __metadata("design:type", String)
 ], Category.prototype, "description", void 0);
 __decorate([
-<<<<<<< HEAD
     Column({ nullable: false }),
     __metadata("design:type", Number)
 ], Category.prototype, "budget", void 0);
@@ -35,9 +34,6 @@ __decorate([
 ], Category.prototype, "totalExpenses", void 0);
 __decorate([
     OneToMany(() => Expense, expense => expense.category),
-=======
-    OneToMany(() => Expense, expense => expense.category, { onDelete: "CASCADE" }),
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     __metadata("design:type", Array)
 ], Category.prototype, "expenses", void 0);
 __decorate([

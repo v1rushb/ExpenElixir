@@ -16,7 +16,7 @@ export class Income extends BaseEntity {
     @Column({ name: 'income_date' })
     incomeDate: Date;
 
-    @Column()
+    @Column({nullable:true})
     description: string;
 
     @ManyToOne(() => Users, user => user.incomes)

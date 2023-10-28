@@ -8,6 +8,7 @@ import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
 import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
+import { v4 as uuidv4 } from 'uuid';
 const createUserUnderRoot = async (payload, res) => {
     return await dataSource.transaction(async (trans) => {
         const newProfile = Profile.create({
@@ -26,6 +27,13 @@ const createUserUnderRoot = async (payload, res) => {
             business: res.locals.user.business,
             iamId,
         });
+        const verificationToken = uuidv4();
+        newUser.verificationToken = verificationToken;
+        const host = process.env.HOST || 'localhost:2077';
+        const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
+        const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
+        const emailSubject = 'EpenElixir Email Verification';
+        sendEmail(emailBody, emailSubject);
         await trans.save(newUser.business);
         return await trans.save(newUser);
     });
@@ -34,7 +42,7 @@ const rootUserDescendant = async (res, descendantID) => {
     const descendant = await Users.findOne({ where: { business: res.locals.user.business, id: descendantID } });
     return descendant;
 };
-const deleteDescendant = async (descendantID, res) => {
+const deleteDescendant = async (res, descendantID) => {
     try {
         return await dataSource.transaction(async (trans) => {
             const descendant = await rootUserDescendant(res, descendantID);
@@ -49,8 +57,7 @@ const deleteDescendant = async (descendantID, res) => {
     }
 };
 const businessUsers = async (res) => {
-    const users = await Users.find({ where: { business: res.locals.user.business } });
-    return users;
+    return await Users.find({ where: { business: res.locals.user.business } });
 };
 const businessBalance = async (res) => {
     try {
@@ -111,8 +118,7 @@ const deleteUserIncome = async (incomeID, userID, res) => {
 };
 const businessIncome = async (res) => {
     const users = await Users.find({ where: { business: res.locals.user.business } });
-    const result = users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
-    return result;
+    return users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
 };
 const totalBusinessIncome = async (res) => {
     const incomes = await businessIncome(res);
@@ -145,12 +151,12 @@ const modifyUserIncome = async (incomeID, userID, payload, res) => {
         throw err;
     }
 };
-const addUserExpense = async (payload, userID, res, picFile) => {
+const addUserExpense = async (payload, res) => {
     try {
-        if (!userID)
+        if (!payload.userID)
             throw new CustomError(`You must provide an id for the user you want to add an expense to!`, 400);
         const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
+            where: { business: res.locals.user.business, id: payload.userID },
         });
         if (!user) {
             throw new CustomError(`User not found.`, 404);
@@ -161,7 +167,7 @@ const addUserExpense = async (payload, userID, res, picFile) => {
                 amount: Number(payload.amount),
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                picURL: picFile?.location
+                picURL: payload.picFile?.location
             });
             await trans.save(newExpense);
             const category = await Category.findOne({
@@ -199,20 +205,20 @@ const addUserExpense = async (payload, userID, res, picFile) => {
         throw err;
     }
 };
-const deleteUserExpense = async (expenseID, userID, res) => {
+const deleteUserExpense = async (payload, res) => {
     try {
-        if (!userID)
+        if (!payload.userID)
             throw new CustomError(`You must provide an id for the user you want to delete an expense from!`, 400);
-        if (!expenseID)
+        if (!payload.expenseID)
             throw new CustomError(`You must provide an id for the expense you want to delete!`, 400);
         const user = await Users.findOne({
-            where: { business: res.locals.user.business, id: userID },
+            where: { business: res.locals.user.business, id: payload.userID },
         });
         if (!user) {
             throw new CustomError(`User not found.`, 404);
         }
         const expense = await Expense.findOne({
-            where: { id: expenseID },
+            where: { id: payload.expenseID },
         });
         if (expense) {
             const correctExpense = await Users.findOne({
@@ -317,15 +323,15 @@ const upgradeToBusiness = async (res) => {
         throw (err);
     }
 };
-const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, userIDQuery, req, res) => {
+const getFilteredExpenses = async (payload, req, res) => {
     try {
         const Expenses = await businessExpenses(res); // put authme in router, else it wont work.
-        if (!searchQuery && !minAmountQuery && !maxAmountQuery && !userIDQuery)
+        if (!payload.searchQuery && !payload.minAmountQuery && !payload.maxAmountQuery && !payload.userIDQuery)
             return Expenses;
-        const search = searchQuery || '';
-        const minAmount = Number(minAmountQuery) || -Infinity;
-        const maxAmount = Number(maxAmountQuery) || Infinity;
-        const userID = userIDQuery;
+        const search = payload.searchQuery || '';
+        const minAmount = Number(payload.minAmountQuery) || -Infinity;
+        const maxAmount = Number(payload.maxAmountQuery) || Infinity;
+        const userID = payload.userIDQuery;
         const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
         if (!userID)
             return filteredExpenses;
@@ -338,7 +344,6 @@ const getFilteredExpenses = async (searchQuery, minAmountQuery, maxAmountQuery, 
         throw err;
     }
 };
-<<<<<<< HEAD
 const modifyUserExpense = async (expenseID, userID, payload, res, picFile) => {
     try {
         if (!userID)
@@ -398,7 +403,4 @@ const modifyUserCategory = async (categoryID, userID, payload, res) => {
     }
 };
 export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, modifyUserIncome, modifyUserCategory, };
-=======
-export { createUserUnderRoot, deleteDescendant, businessUsers, businessBalance, addUserIncome, deleteUserIncome, businessIncome, totalBusinessIncome, addUserExpense, deleteUserExpense, businessExpenses, totalBusinessExpenses, addUserCategory, deleteUserCategory, businessCategories, upgradeToBusiness, getFilteredExpenses, };
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
 //# sourceMappingURL=Business.js.map

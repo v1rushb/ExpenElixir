@@ -14,7 +14,7 @@ const insertUser = async (payload) => {
         const user = await Users.findOne({ where: { email: payload.email } });
         if (user) {
             if (!user.isVerified) {
-                throw new CustomError('Please verify your email address.', 409);
+                throw new CustomError('Please verify your email address.', 423);
             }
             else {
                 throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
@@ -39,30 +39,35 @@ const insertUser = async (payload) => {
     }
     catch (err) {
         if (err.code?.includes('ER_DUP_ENTRY')) {
-            throw new CustomError(`User with email: ${payload.email} already exists.`, 409);
+            throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
         }
         throw new CustomError(err, 500);
     }
 };
-const login = async (username, password, iamId, res) => {
+const login = async (payload) => {
     try {
-        const user = await Users.findOne({
-            where: { username },
-        });
-        if (!user || user.username !== username) {
+        console.log(payload.iamId);
+        const user = await Users.findOne({ where: { username: payload.username } });
+        if (!user || user.username !== payload.username) {
             throw new CustomError('Invalid credentials', 400);
         }
-        if (user.isVerified === false) {
-            throw new CustomError('Please verify your email address.', 409);
-        }
         if (user.profile.role === 'User') {
-            if (!iamId || user.iamId !== iamId) {
+            if (!payload.iamId || user.iamId !== payload.iamId) {
                 throw new CustomError('IAM users must provide a valid IAM ID', 401);
             }
+            if (user.business.rootUserID) {
+                const rootUser = await Users.findOne({ where: { id: user.business.rootUserID } });
+                if (rootUser?.profile.role !== 'Root') {
+                    throw new CustomError('Unauthorized', 401);
+                }
+            }
         }
-        const isPasswordMatch = await bcrypt.compare(password, user.password);
+        const isPasswordMatch = await bcrypt.compare(payload.password, user.password);
         if (!isPasswordMatch) {
             throw new CustomError('Invalid password', 401);
+        }
+        if (!user.isVerified) {
+            throw new CustomError('Please verify your email address.', 409);
         }
         const token = jwt.sign({
             email: user.email,
@@ -71,7 +76,7 @@ const login = async (username, password, iamId, res) => {
         }, process.env.SECRET_KEY || '', {
             expiresIn: '30m',
         });
-        return { username: user.username, email: user.email, token };
+        return { username: user.username, email: user.email, token: token };
     }
     catch (err) {
         if (err instanceof CustomError) {
@@ -89,23 +94,14 @@ const calculateBalance = async (res) => {
     }
 };
 const deleteUser = async (res) => {
-<<<<<<< HEAD
     const user = res.locals.user;
-    if (!user) {
-        throw new CustomError('User not found', 404);
-    }
     try {
         await Users.delete(user.id);
-=======
-    try {
-        await Users.delete(res.locals.user.id);
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
     }
     catch (err) {
-        throw new CustomError(`Error deleting user: ${err}`, 500);
+        throw new CustomError(`Internal Server Error`, 500);
     }
 };
-<<<<<<< HEAD
 const checkForVerification = () => {
     setInterval(async () => {
         try {
@@ -125,15 +121,40 @@ const checkForVerification = () => {
         }
     }, 60000);
 };
-const sendResetPasswordEmail = async (email, token) => {
+const checkForSubscriptionValidation = () => {
+    setInterval(async () => {
+        try {
+            const users = await Users.find({ where: { profile: { role: 'Root' } } });
+            const now = new Date().getTime();
+            for (const user of users) {
+                const { profile } = user;
+                if (profile?.role === 'Root' && profile.subscription_date) {
+                    const subscriptionDate = new Date(profile.subscription_date).getTime();
+                    const diff = (now - subscriptionDate) / (1000 * 60);
+                    if (diff > 15) {
+                        await sendEmail(`Your subscription has expired!`, `Subscription Expired!`);
+                        if (profile) {
+                            profile.hasSentEmail = true;
+                            profile.role = 'Member';
+                            user.profile = profile;
+                            await user.save();
+                        }
+                    }
+                }
+            }
+            logger.info(`Scheduled task completed successfully, checked ${users.length} users.`);
+        }
+        catch (err) {
+            logger.error(`Scheduled task failed. Error: ${err}`);
+        }
+    }, 60000);
+};
+const sendResetPasswordEmail = async (payload) => {
     const host = process.env.HOST || 'localhost:2077';
-    const resetLink = 'http://' + host + '/user/reset-password-email?token=' + token;
+    const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
     const emailSubject = 'EpenElixir User Password Reset';
     const emailBody = 'Please reset your password by clicking the link: ' + resetLink;
-    await sendEmail(emailBody, emailSubject);
+    await sendEmail(emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)
 };
-export { insertUser, login, calculateBalance, deleteUser, checkForVerification, sendResetPasswordEmail, };
-=======
-export { insertUser, login, calculateBalance, deleteUser };
->>>>>>> cb0ba2cd9df643339156b91aebbf2ed32f3b63cd
+export { insertUser, login, calculateBalance, deleteUser, checkForVerification, sendResetPasswordEmail, checkForSubscriptionValidation, };
 //# sourceMappingURL=User.js.map

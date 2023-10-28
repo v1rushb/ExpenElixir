@@ -6,7 +6,7 @@ export class Business extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column({ nullable: false, unique: true })
+  @Column({ nullable: false})
   businessName: string;
 
   @Column()
