@@ -28,37 +28,6 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo ./aws/install --update
 
-github_token=$(aws ssm get-parameter --name "GitHubToken" --with-decryption --query "Parameter.Value" --output text)
-
-# Trigger GitHub Actions workflow
-curl -X POST "https://api.github.com/repos/V1rushB/ExpenElixir/dispatches" \
-     -H "Accept: application/vnd.github.everest-preview+json" \
-     -H "Authorization: token $github_token" \
-     --data "{\"event_type\": \"deploy_event\", \"client_payload\": { \"ip\": \"$(curl -s ifconfig.me)\", \"image_version\": \"latest\" }}"
-
-# Create the script to run after reboot
-cat <<EOL > /home/app/rebootScript.sh
-#!/bin/bash
-
-sudo systemctl start docker.service
-sudo systemctl enable docker.service
-
-docker stop ExpenElixirX
-docker rm ExpenElixirX
-
-github_token=$(aws ssm get-parameter --name "GitHubToken" --with-decryption --query "Parameter.Value" --output text)
-
-# Trigger GitHub Actions workflow
-curl -X POST "https://api.github.com/repos/V1rushB/ExpenElixir/dispatches" \
-     -H "Accept: application/vnd.github.everest-preview+json" \
-     -H "Authorization: token $github_token" \
-     --data "{\"event_type\": \"deploy_event\", \"client_payload\": { \"ip\": \"$(curl -s ifconfig.me)\", \"image_version\": \"latest\" }}"
-EOL
-
-chmod +x /home/app/rebootScript.sh
-
-# Schedule the script to run on every reboot
-(crontab -l 2>/dev/null; echo "@reboot /home/app/rebootScript.sh") | crontab -
 
 # Reboot the instance
 sudo reboot
