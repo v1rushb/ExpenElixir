@@ -5,18 +5,18 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  packages: write
-
 jobs:
   build-image:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     concurrency: build-docker
     outputs:
       ec2_ips: ${{ steps.instance_ips.outputs.ips }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup docker build
         uses: docker/setup-buildx-action@v2
@@ -41,10 +41,8 @@ jobs:
       - name: Get EC2 Instance IPs
         id: instance_ips
         run: | 
-          instances=$(aws ec2 describe-instances --filters "Name=tag:Name,Values=expenelixir" --query "Reservations[*].Instances[*].PublicIpAddress" --output=text)
-          instances_array=($instances)
-          json_instances=$(echo "${instances_array[@]}" | jq -R -c -s 'split(" ")')
-          echo "ips=${json_instances}" >> $GITHUB_OUTPUT
+          instances=$(aws ec2 describe-instances --filters "Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG" --query "Reservations[*].Instances[*].PublicIpAddress" --output text)
+          echo "ips=${instances}" >> $GITHUB_OUTPUT
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
@@ -55,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ip: ${{ fromJson(needs.build-image.outputs.ips) }}
+        ip: ${{ fromJson(needs.build-image.outputs.ec2_ips) }}
     steps:
       - uses: actions/checkout@v2
 
