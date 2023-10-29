@@ -5,7 +5,7 @@ services:
     container_name: ExpenElixir
     image: basharherbawi/expenelixir:latest
     environment:
-      - PORT=80
+      - PORT=2077
       - DB_HOST=${DB_HOST}
       - DB_USER=${DB_USER_NAME}
       - DB_PASSWORD=${DB_PASSWORD}
@@ -17,7 +17,7 @@ services:
       - FREE_CURRENCY_API=${FREE_CURRENCY_API}
 
     ports:
-      - "2077:80"
+      - "80:2077"
     healthcheck:
       test: ["CMD", "curl", "http://localhost"]
       timeout: 20s
