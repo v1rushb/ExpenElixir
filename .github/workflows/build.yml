@@ -41,7 +41,7 @@ jobs:
       - name: Get EC2 Instance IPs
         id: instance_ips
         run: | 
-          instances=$(aws ec2 describe-instances --filters 'Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG' --query 'Reservations[*].Instances[*].PublicIpAddress' --output json | jq -c .)
+          instances=$(aws ec2 describe-instances --filters 'Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG' --query 'Reservations[*].Instances[*].PublicIpAddress' --output json)
           echo "ips=$instances" >> $GITHUB_OUTPUT
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
@@ -72,7 +72,9 @@ jobs:
 
       - name: Deploy
         run: |
-          ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ matrix.ip }} "docker compose -f docker-compose.yml up -d"
+          ipn=${{ matrix.ip }}
+          echo $ipn
+          ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ipn}} "docker compose -f docker-compose.yml up -d"
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
           DB_HOST: ${{ secrets.DB_HOST }}
