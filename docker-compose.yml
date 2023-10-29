@@ -17,7 +17,7 @@ services:
       - FREE_CURRENCY_API=${FREE_CURRENCY_API}
 
     ports:
-      - "80:2077"
+      - "2077:80"
     healthcheck:
       test: ["CMD", "curl", "http://localhost"]
       timeout: 20s
