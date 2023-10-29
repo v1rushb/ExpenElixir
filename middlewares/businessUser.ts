@@ -27,7 +27,7 @@ router.get('/balance', authMe, PremiumAuth, async (req, res, next): Promise<void
     businessBalance(res).then(balance => {
         logger.info(`200 OK - /user/businessBalance - GET - ${req.ip}`);
         res.status(200).send(`Your business balance is: ${balance}`);
-    }).catch(err => next(err));
+    }).catch(err => next(err)); 
 });
 
 export default router;

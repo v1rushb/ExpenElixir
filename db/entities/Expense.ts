@@ -24,11 +24,11 @@ export class Expense extends BaseEntity {
     picURL: string;
 
     @Column({ type: 'text', nullable: true })
-    data: string;
+    currencyData: string;
 
     @ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" })
     users: string;
 
-    @ManyToOne(() => Category, category => category.expenses, { eager: true, onDelete: "CASCADE" })
+    @ManyToOne(() => Category, category => category.expenses, { onDelete: "CASCADE" })
     category: Category;
 }

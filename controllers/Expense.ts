@@ -10,17 +10,18 @@ import { Between, EqualOperator, Like } from 'typeorm';
 import { sendEmail } from '../utils/sesServiceAws.js';
 
 
-const insertExpense = async (payload: Gen.Expense ,res: express.Response): Promise<void> => {
+const insertExpense = async (payload: Gen.Expense, res: express.Response): Promise<void> => {
     try {
 
         return dataSource.manager.transaction(async trans => {
+
             const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD')
             const newExpense = Expense.create({
                 title: payload.title,
                 amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
-                data: JSON.stringify(currency.currencyData),
+                currencyData: JSON.stringify(currency.currencyData),
                 picURL: payload.picFile?.location
 
             });
@@ -45,15 +46,15 @@ const insertExpense = async (payload: Gen.Expense ,res: express.Response): Promi
             await trans.save(user);
             await trans.save(category);
 
-            if(category.totalExpenses >= (category.budget*0.9)) {
+            if (category.totalExpenses >= (category.budget * 0.9)) {
                 let emailBody = '';
                 let emailSubject = '';
-                if(category.totalExpenses < category.budget) {
+                if (category.totalExpenses < category.budget) {
                     emailBody = `You are about to reach your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You are about to reach your budget limit for ${category.title}`;
-                } else if(category.totalExpenses === category.budget) {
+                } else if (category.totalExpenses === category.budget) {
                     emailBody = `You have reached your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
-                    emailSubject = `You have reached your budget limit for ${category.title}`;   
+                    emailSubject = `You have reached your budget limit for ${category.title}`;
                 } else {
                     emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You have exceeded your budget limit for ${category.title}`;
@@ -76,7 +77,7 @@ const deleteAllExpenses = async (res: express.Response): Promise<void> => {
 const deleteExpense = async (payload: Gen.deleteExpense): Promise<string> => {
     try {
         const { id } = payload;
-        if(!id)
+        if (!id)
             throw new CustomError("ID is required.", 400);
         const expense = await Expense.findOne({ where: { id: id } }) as Expense;
         if (!expense)
@@ -97,18 +98,21 @@ const totalExpenses = async (res: express.Response): Promise<number> => {
     const expenses = await Expense.find({
         where: { users: new EqualOperator(res.locals.user.id) }
     });
-
-    const total = expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0
+    const results = await expenseOnProfileCurrency(expenses, res.locals.user)
+    const total = results ? results.reduce((acc, expense) => acc + expense.amount, 0) : 0
     return total;
 }
 
 const getExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
-        const filter = { ...res.locals.filter, where: { users: new EqualOperator(res.locals.user.id) } }
+        const filter = {
+            ...res.locals.filter,
+            where: { users: new EqualOperator(res.locals.user.id) },
+            select: { id: true, title: true, amount: true, expenseDate: true, description: true, picURL: true, currencyData: false }
+        }
 
         const expenses = await Expense.find(filter)
-
-        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency)
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user)
 
         return results as unknown as Promise<Expense[]>;
 
@@ -150,7 +154,7 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
 //     }
 // };
 
-const getFilteredExpenses = async (payload:Gen.getFilteredExpenses, req: express.Request, res: express.Response): Promise<Expense[]> => {
+const getFilteredExpenses = async (payload: Gen.getFilteredExpenses, req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
 
 
@@ -160,17 +164,15 @@ const getFilteredExpenses = async (payload:Gen.getFilteredExpenses, req: express
                 amount: Between(Number(payload.minAmountQuery) || 0,
                     Number(payload.maxAmountQuery) || 9223372036854775807),
                 title: Like(`%${payload.searchQuery?.toString().toLowerCase() || ''}%`),
-            }
+            },
+            select: { id: true, title: true, amount: true, expenseDate: true, description: true, picURL: true, currencyData: false }
         }
         if (payload.category) {
             filter.where.category = new EqualOperator(payload.category);
         }
 
-
-
         const expenses = await Expense.find(filter)
-
-        const results = await expenseOnProfileCurrency(expenses, res.locals.user.profile.Currency)
+        const results = await expenseOnProfileCurrency(expenses, res.locals.user)
 
         return results as unknown as Promise<Expense[]>;
     } catch (err) {
@@ -181,11 +183,11 @@ const getFilteredExpenses = async (payload:Gen.getFilteredExpenses, req: express
 
 const updateExpense = async (expenseId: string, payload: Gen.Expense, res: express.Response): Promise<void> => {
     try {
-      await dataSource.transaction(async trans => {
-        const existingExpense = await Expense.findOne({ where: { id: new EqualOperator(expenseId), users: new EqualOperator(res.locals.user.id) } });
-        if (!existingExpense) {
-          throw new CustomError("Expense not found.", 404);
-        }
+        await dataSource.transaction(async trans => {
+            const existingExpense = await Expense.findOne({ where: { id: new EqualOperator(expenseId), users: new EqualOperator(res.locals.user.id) } });
+            if (!existingExpense) {
+                throw new CustomError("Expense not found.", 404);
+            }
 
         const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
   
@@ -195,16 +197,16 @@ const updateExpense = async (expenseId: string, payload: Gen.Expense, res: expre
         existingExpense.description = payload.description;
         existingExpense.picURL = payload.picFile?.location || existingExpense.picURL;
 
-        await trans.save(existingExpense);
+            await trans.save(existingExpense);
 
-        const category = await Category.findOne({ where: { id: payload.category! }, relations: ["expenses"] });
+            const category = await Category.findOne({ where: { id: payload.category! }, relations: ["expenses"] });
 
 
-        if (!category) {
-          throw new CustomError("Category not found.", 404);
-        }
+            if (!category) {
+                throw new CustomError("Category not found.", 404);
+            }
 
-        const categoryTyped = category as Category;
+            const categoryTyped = category as Category;
 
         categoryTyped.totalExpenses += existingExpense.amount - existingExpense.amount;
         await trans.save(res.locals.user);
@@ -232,8 +234,7 @@ const updateExpense = async (expenseId: string, payload: Gen.Expense, res: expre
       }
       throw new CustomError(err, 500);
     }
-  };
-
+};
 
 
 export {

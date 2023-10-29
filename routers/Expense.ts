@@ -6,14 +6,15 @@ import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
 import expenseBusiness from '../middlewares/businessExpense.js';
 import { validateExpense } from '../middlewares/Validate.js';
-import expenseAnalytics from '../middlewares/epxense-analytics.js';
+import expenseAnalytics from '../middlewares/expense-analytics.js';
 import filtering from '../middlewares/filtering.js';
 
 const router = express.Router();
 
 
 router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
-    insertExpense({...req.body,picURL:req.file as Express.MulterS3.File}, res).then(expense => {
+
+    insertExpense({ ...req.body, picFile: req.file as Express.MulterS3.File }, res).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
@@ -29,7 +30,7 @@ router.get('/', authMe, async (req, res, next) => {
 router.get('/total', authMe, async (req, res, next) => {
     totalExpenses(res).then(expense => {
         logger.info(`User ${req.body.username} requested total Expenses!`);
-        res.status(200).send(`Total expenses: ${expense}`);
+        res.status(200).send(`Total expenses: ${expense} ${res.locals.user.profile.Currency}`);
     }).catch(err => next(err));
 });
 
@@ -41,7 +42,7 @@ router.delete('/all-expenses', authMe, async (req, res, next) => {
 });
 
 router.delete('/:id', authMe, async (req, res, next) => {
-    deleteExpense({id:req.params.id}).then(expense => {
+    deleteExpense({ id: req.params.id }).then(expense => {
         logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
         res.status(200).send(`You have successfully deleted the expense with id: ${req.params.id}!`);
     }).catch(err => next(err));
@@ -53,10 +54,10 @@ router.get('/all', authMe, async (req, res, next) => { // testing purposes
 });
 
 router.put('/:id', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
-    updateExpense(req.params.id{...req.body,picURL:req.file as Express.MulterS3.File}, res).then(expense => {
+    updateExpense(req.params.id, { ...req.body, picURL: req.file as Express.MulterS3.File }, res).then(expense => {
         logger.info(`User ${req.body.username} modified expense ${req.body.id}!`);
         res.status(200).send(`You have successfully modified the expense with id: ${req.body.id}!`);
-    }).catch(err=> next(err));
+    }).catch(err => next(err));
 });
 
 router.use('/search', filtering);

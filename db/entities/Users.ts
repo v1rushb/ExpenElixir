@@ -32,15 +32,15 @@ export class Users extends BaseEntity {
     @Column({ nullable: true })
     iamId: string;
 
-    @Column({default: false})
+    @Column({ default: false })
     isVerified: boolean;
 
-    @Column({nullable: true})
+    @Column({ nullable: true })
     verificationToken: string;
 
     @Column({ type: 'varchar', length: 255, nullable: true })
     resetToken: string;
-  
+
     @Column({ type: 'timestamp', nullable: true })
     resetTokenExpiration?: Date;
 
@@ -53,16 +53,16 @@ export class Users extends BaseEntity {
     })
     createdAt: Date;
 
-    @OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true })
+    @OneToMany(() => Expense, expense => expense.users, { cascade: true })
     expenses: Expense[];
 
-    @OneToMany(() => Category, category => category.users, { eager: true, cascade: true })
+    @OneToMany(() => Category, category => category.users, { cascade: true })
     categories: Category[];
 
-    @OneToMany(() => Income, income => income.user, { eager: true, cascade: true })
+    @OneToMany(() => Income, income => income.user, { cascade: true })
     incomes: Income[];
 
-    @ManyToOne(() => Business, business => business.users, { eager: true })
+    @ManyToOne(() => Business, business => business.users)
     business: Business;
 
     @OneToOne(() => Profile, profile => profile.user, { eager: true, cascade: true })

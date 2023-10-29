@@ -8,12 +8,12 @@ const authMe = async (req: express.Request, res: express.Response, next: express
         const token = req.cookies["token"] || "";
         const isValidToken = jwt.verify(token, process.env.SECRET_KEY || "");
 
-        if (isValidToken ) {
+        if (isValidToken) {
             const decode = jwt.decode(token, { json: true });
             const user = await Users.findOne({
                 where: { email: decode?.email }
             })
-            if(!user)
+            if (!user)
                 throw new CustomError('Unauthorized', 401);
             res.locals.user = user;
             res.locals.filter = {

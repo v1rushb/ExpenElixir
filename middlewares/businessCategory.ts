@@ -25,7 +25,7 @@ router.post('/:id', authMe, premiumAuth, validateCategory, async (req, res, next
     addUserCategory(req.body, req.params.id as string, res).then(() => {
         logger.info(`User ${res.locals.user.username} added a new category for user with id ${req.params.userID}!`);
         res.status(200).send(`You have successfully added a new category!`);
-    }).catch(err=> next(err));
+    }).catch(err => next(err));
 });
 
 router.put('/:id', authMe, premiumAuth, validateCategory, async (req, res, next): Promise<void> => {

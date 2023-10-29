@@ -16,9 +16,12 @@ export class Income extends BaseEntity {
     @Column({ name: 'income_date' })
     incomeDate: Date;
 
-    @Column({nullable:true})
+    @Column({ nullable: true })
     description: string;
 
     @ManyToOne(() => Users, user => user.incomes)
     user: string;
+
+    @Column({ type: 'text', nullable: true })
+    currencyData: string;
 }
