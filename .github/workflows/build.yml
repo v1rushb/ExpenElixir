@@ -58,7 +58,7 @@ jobs:
           echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
           chmod 600 key.pem
           for ip in $public_ips; do
-          ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ipn}} "docker compose -f docker-compose.yml up -d"
+          ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ip}} "docker compose -f docker-compose.yml up -d"
           done
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
