@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-image:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -53,7 +53,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        ip: ${{ fromJson(needs.build-image.outputs.ec2_ips) }}
+        ip: ${{ fromJson(needs.build.outputs.ec2_ips) }}
     steps:
       - uses: actions/checkout@v2
 
