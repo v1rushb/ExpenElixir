@@ -11,7 +11,11 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_NAME=${DB_NAME}
       - DB_PORT=${DB_PORT}
-      - SECRET_KEY_BASE=${SECRET_KEY_BASE}
+      - SECRET_KEY=${SECRET_KEY}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - CHATGPTAPI_SECRET_KEY=${CHATGPTAPI_SECRET_KEY}
+      - FREE_CURRENCY_API=${FREE_CURRENCY_API}
+
     ports:
       - "80:2077"
     healthcheck:
