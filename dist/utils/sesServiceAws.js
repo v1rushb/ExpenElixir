@@ -1,7 +1,5 @@
 import { SESClient } from "@aws-sdk/client-ses";
 import { SendEmailCommand } from "@aws-sdk/client-ses";
-
-
 const REGION = "eu-west-2";
 const sesClient = new SESClient({
     region: REGION, credentials: {
@@ -9,20 +7,15 @@ const sesClient = new SESClient({
         secretAccessKey: `${process.env.AWS_SECRET_KEY}`,
     }
 });
-
-const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBody: string, emailSubject: string) => {
+const createSendEmailCommand = (toAddress, fromAddress, emailBody, emailSubject) => {
     return new SendEmailCommand({
         Destination: {
-
             ToAddresses: [
                 toAddress,
             ],
         },
         Message: {
-
             Body: {
-
-
                 Text: {
                     Charset: "UTF-8",
                     Data: emailBody,
@@ -34,23 +27,16 @@ const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBod
             },
         },
         Source: fromAddress,
-
     });
 };
-
-export const sendEmail = async (dist: string, emailBody: string, emailSubject: string) => {
-    const sendEmailCommand = createSendEmailCommand(
-        dist,
-        "211111@ppu.edu.ps",
-        emailBody,
-        emailSubject
-    );
-
+export const sendEmail = async (dist, emailBody, emailSubject) => {
+    const sendEmailCommand = createSendEmailCommand(dist, "211111@ppu.edu.ps", emailBody, emailSubject);
     try {
         return await sesClient.send(sendEmailCommand);
-    } catch (e) {
+    }
+    catch (e) {
         console.error("Failed to send email." + e);
         return e;
     }
 };
-
+//# sourceMappingURL=sesServiceAws.js.map

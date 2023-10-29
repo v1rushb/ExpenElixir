@@ -61,7 +61,7 @@ const login = async (payload: Gen.login): Promise<Gen.loginReturn> => {
       }
       
       
-      if (user.profile.role === 'User') {
+      if (user?.profile?.role === 'User') {
         if (!payload.iamId || user.iamId !== payload.iamId) {
           throw new CustomError('IAM users must provide a valid IAM ID', 401);
         }
@@ -114,16 +114,8 @@ const calculateBalance = async (res: express.Response): Promise<string> => {
 
 const deleteUser = async (res: express.Response): Promise<void> => {
   const user: Users = res.locals.user;
-
   try {
-    if (user.business) {
-      const businessUsers = await Users.find({ where: { business: { id: user.business.id } } });
-      for (const businessUser of businessUsers) {
-        await Users.delete(businessUser.id);
-      }
-    } else {
       await Users.delete(user.id);
-    }
   } catch (err: any) {
     throw new CustomError(`Internal Server Error`, 500);
   }

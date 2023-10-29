@@ -1,4 +1,4 @@
-import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Users } from "./Users.js";
 
 @Entity()
@@ -12,6 +12,10 @@ export class Business extends BaseEntity {
   @Column()
   rootUserID: string;
 
-  @OneToMany(() => Users, user => user.business, { onDelete: "CASCADE" })
+  @OneToOne(() => Users, user => user.businessb, { onDelete: "CASCADE" })
+  @JoinColumn()
+  userb: Partial<Users>;
+
+  @OneToMany(() => Users, user => user.business)
   users: Users[];
 }

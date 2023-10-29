@@ -580,3 +580,34 @@
 2023-10-28T18:57:32.304Z [error]: 500 - Internal Server Error - /income - GET - ::ffff:127.0.0.1
 2023-10-28T19:08:23.042Z [error]: 401 - Unauthorized - /expense - POST - ::1
 2023-10-28T19:25:10.833Z [error]: 401 - Unauthorized - /expense/total - GET - ::ffff:127.0.0.1
+2023-10-29T17:46:21.683Z [error]: 501 - An error occurred during login. Error: Error: DataSource is not set for this entity. - /user/login - POST - ::1
+2023-10-29T17:48:05.905Z [error]: 500 - Internal Server Error - /user/delete-account - DELETE - ::1
+2023-10-29T17:49:29.150Z [error]: 500 - Internal Server Error - /user/delete-account - DELETE - ::1
+2023-10-29T17:50:48.976Z [error]: 401 - Unauthorized - /user - GET - ::1
+2023-10-29T17:51:30.096Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-29T17:51:34.166Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T17:59:28.812Z [error]: 409 - User with email: 211111@ppu.edu.ps or username: z1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:00:53.226Z [error]: 409 - User with email: 211112334213421@ppu.edu.ps or username: zz1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:01:13.200Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:04:53.937Z [error]: 409 - User with email: 211112334213421@ppu.edu.ps or username: zz1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:08:51.637Z [error]: 500 - Error: User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-29T18:08:59.989Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:09:06.088Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T18:15:35.114Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-29T18:34:15.793Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T18:46:54.259Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/business/add-user - POST - ::1
+2023-10-29T18:47:18.526Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:32.641Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:33.392Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:33.997Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:34.431Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:48:22.233Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/business/add-user - POST - ::1
+2023-10-29T18:48:40.822Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/business/add-user - POST - ::1
+2023-10-29T18:50:37.262Z [error]: 409 - User with email: 21111s23@ppu.edu.ps or username: z1russshb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:52:32.340Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/delete-account - DELETE - ::1
+2023-10-29T18:54:12.567Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:54:20.310Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:59:15.309Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:59:17.825Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T19:01:50.607Z [error]: 404 Not Found - /user/logoin - POST - ::1
+2023-10-29T19:01:56.461Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1

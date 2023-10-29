@@ -19,7 +19,7 @@ export class Income extends BaseEntity {
     @Column({ nullable: true })
     description: string;
 
-    @ManyToOne(() => Users, user => user.incomes)
+    @ManyToOne(() => Users, user => user.incomes, { onDelete: 'CASCADE' })
     user: string;
 
     @Column({ type: 'text', nullable: true })

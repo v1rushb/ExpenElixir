@@ -62,10 +62,13 @@ export class Users extends BaseEntity {
     @OneToMany(() => Income, income => income.user, { cascade: true })
     incomes: Income[];
 
-    @ManyToOne(() => Business, business => business.users)
+    @ManyToOne(() => Business, business => business.users, { eager: true,onDelete: 'CASCADE' })
     business: Business;
 
-    @OneToOne(() => Profile, profile => profile.user, { eager: true, cascade: true })
+    @OneToOne(() => Profile, profile => profile.user)
     profile: Partial<Profile>;
+
+    @OneToOne(() => Business, business => business.userb, {onDelete: "CASCADE" })
+    businessb: Partial<Business>;
 
 }

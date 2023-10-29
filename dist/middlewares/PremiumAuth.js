@@ -1,19 +1,16 @@
-import express from 'express';
 import { CustomError } from '../CustomError.js';
-
-const premiumAuth = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+const premiumAuth = async (req, res, next) => {
     try {
         const user = await res.locals.user;
-        if (!user) 
+        if (!user)
             throw new CustomError('User not found', 404);
-
-        if(user?.profile?.role !== 'Root') 
+        if (user?.profile?.role !== 'Root')
             throw new CustomError('You are not a root user', 401);
         return next();
     }
-    catch(err) {
+    catch (err) {
         return next(err);
     }
-}
-
+};
 export default premiumAuth;
+//# sourceMappingURL=PremiumAuth.js.map

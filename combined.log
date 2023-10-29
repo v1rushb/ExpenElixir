@@ -3177,3 +3177,245 @@
 2023-10-28T20:03:18.383Z [info]: Scheduled task completed successfully, checked 0 users.
 2023-10-28T20:04:18.395Z [info]: Scheduled task completed successfully, deleted 0 users.
 2023-10-28T20:04:18.395Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:46:21.683Z [error]: 501 - An error occurred during login. Error: Error: DataSource is not set for this entity. - /user/login - POST - ::1
+2023-10-29T17:46:58.480Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T17:48:01.591Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:48:01.597Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:48:05.905Z [error]: 500 - Internal Server Error - /user/delete-account - DELETE - ::1
+2023-10-29T17:49:01.589Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:49:01.592Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:49:29.150Z [error]: 500 - Internal Server Error - /user/delete-account - DELETE - ::1
+2023-10-29T17:50:01.589Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:50:01.592Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:50:43.923Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T17:50:48.976Z [error]: 401 - Unauthorized - /user - GET - ::1
+2023-10-29T17:51:21.680Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T17:51:30.040Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-29T17:51:30.096Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-29T17:51:34.166Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T17:51:39.582Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T17:51:42.162Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:51:42.165Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:52:42.163Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:52:42.164Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:53:42.162Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:53:42.164Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T17:54:41.475Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T17:54:47.786Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T17:54:51.479Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T17:55:21.472Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:55:21.479Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T17:56:42.014Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T17:56:43.620Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T17:57:09.381Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:57:09.385Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T17:59:28.812Z [error]: 409 - User with email: 211111@ppu.edu.ps or username: z1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T17:59:34.276Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T17:59:34.279Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:00:34.273Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:00:34.276Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:00:51.430Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:00:53.226Z [error]: 409 - User with email: 211112334213421@ppu.edu.ps or username: zz1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:01:11.656Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:01:13.200Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:01:17.014Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:01:26.195Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-29T18:01:30.320Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:01:34.273Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:01:34.276Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:02:34.284Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:02:34.286Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:03:34.278Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:03:34.284Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:04:34.301Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:04:34.301Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:04:48.799Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T18:04:53.937Z [error]: 409 - User with email: 211112334213421@ppu.edu.ps or username: zz1rushb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:04:57.500Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:05:27.803Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:05:33.444Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:05:37.746Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-29T18:05:42.916Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:05:42.919Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:05:45.573Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:06:42.915Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:06:42.918Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:07:42.915Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:07:42.917Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:08:51.637Z [error]: 500 - Error: User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-29T18:08:59.028Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:08:59.989Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:09:03.703Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:09:06.088Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T18:09:17.935Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:09:17.939Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:10:17.933Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:10:17.945Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-29T18:11:17.935Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:11:17.936Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:12:17.962Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:12:17.962Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:13:17.993Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:13:17.993Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:15:33.078Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:15:35.114Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-29T18:16:02.358Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:16:10.871Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T18:16:23.119Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:16:30.442Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:16:30.444Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:16:31.091Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:16:38.293Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:16:42.235Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:16:48.323Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:16:57.904Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:17:04.553Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T18:17:19.348Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:17:30.441Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:17:30.443Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:18:30.440Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:18:30.442Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:19:30.440Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:19:30.442Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:20:30.440Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:20:30.443Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:21:30.457Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:21:30.458Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:22:30.487Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:22:30.487Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:23:30.518Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:23:30.520Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:24:30.540Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:24:30.541Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:25:30.570Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:25:30.571Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:26:30.597Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:26:30.597Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:27:30.626Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:27:30.626Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:28:30.656Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:28:30.657Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:30:48.866Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:30:48.872Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:32:44.533Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:32:45.008Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:33:53.086Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:34:15.793Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T18:34:18.607Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:34:32.737Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T18:34:50.847Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:34:50.850Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:35:04.936Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:35:18.228Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:35:50.847Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:35:50.847Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:37:28.195Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:37:38.317Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:37:42.630Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T18:38:07.283Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:38:31.934Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:38:31.935Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:39:31.934Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:39:31.936Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:39:39.592Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:40:04.120Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:40:10.172Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T18:40:19.845Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:40:31.933Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:40:31.934Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:41:31.934Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:41:31.935Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:43:03.540Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:43:03.547Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:44:20.331Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:44:20.344Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:45:20.310Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:45:20.324Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:46:20.344Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:46:20.346Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:46:54.259Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/business/add-user - POST - ::1
+2023-10-29T18:47:14.979Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-29T18:47:18.526Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:32.641Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:33.392Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:33.997Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:34.431Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T18:47:48.769Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:47:48.772Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:48:12.551Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:48:22.233Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/business/add-user - POST - ::1
+2023-10-29T18:48:40.822Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/business/add-user - POST - ::1
+2023-10-29T18:49:28.427Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:50:27.922Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:50:27.926Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:50:37.262Z [error]: 409 - User with email: 21111s23@ppu.edu.ps or username: z1russshb already exists. - /user/business/add-user - POST - ::1
+2023-10-29T18:50:40.885Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:52:01.212Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T18:52:32.340Z [error]: undefined - Cannot read properties of undefined (reading 'role') - /user/delete-account - DELETE - ::1
+2023-10-29T18:52:47.526Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:52:47.528Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T18:53:30.892Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:54:12.567Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:54:16.086Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T18:54:19.071Z [info]: 200 OK - /user/delete-account - DELETE - ::1
+2023-10-29T18:54:20.310Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:55:12.074Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:55:12.080Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:57:51.422Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:57:51.426Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:58:06.907Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T18:58:51.394Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T18:58:51.414Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T18:59:15.309Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T18:59:17.825Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T19:00:08.681Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:00:08.683Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:00:26.417Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T19:01:23.126Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:01:23.127Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:01:48.224Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-29T19:01:50.607Z [error]: 404 Not Found - /user/logoin - POST - ::1
+2023-10-29T19:01:56.461Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
+2023-10-29T19:03:01.995Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:03:02.000Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:04:07.398Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:04:07.403Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:05:07.388Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:05:07.393Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:06:10.669Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:06:10.673Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:07:34.405Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T19:08:12.231Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:08:12.233Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:09:12.217Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:09:12.223Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:10:12.217Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:10:12.224Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:11:12.217Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:11:12.224Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:12:12.245Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:12:12.245Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:13:12.274Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:13:12.275Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:14:12.305Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:14:12.305Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:15:12.335Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:15:12.337Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:16:12.365Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:16:12.366Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:17:12.399Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:17:12.401Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:18:12.400Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:18:12.400Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:19:12.427Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:19:12.427Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:20:12.454Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:20:12.455Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:21:12.485Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:21:12.485Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:22:12.515Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:22:12.515Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:23:12.541Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:23:12.541Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T19:24:12.567Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T19:24:12.568Z [info]: Scheduled task completed successfully, checked 0 users.
