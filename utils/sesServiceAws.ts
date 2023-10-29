@@ -41,7 +41,7 @@ const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBod
 export const sendEmail = async (dist: string, emailBody: string, emailSubject: string) => {
     const sendEmailCommand = createSendEmailCommand(
         dist,
-        "211111@ppu.edu.ps",
+        "cs.bashar.herbawi@gmail.com",
         emailBody,
         emailSubject
     );

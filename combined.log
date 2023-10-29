@@ -3435,3 +3435,86 @@
 2023-10-29T20:50:33.401Z [info]: Scheduled task completed successfully, deleted 1 users.
 2023-10-29T20:51:33.267Z [info]: Scheduled task completed successfully, checked 0 users.
 2023-10-29T20:51:33.272Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:00:57.033Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T21:01:43.028Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:01:43.196Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:02:43.040Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:02:43.171Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-29T21:03:28.450Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T21:04:06.447Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-29T21:04:18.298Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T21:04:59.365Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-29T21:04:59.390Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:05:33.393Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T21:06:05.279Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rueshb already exists. - /user/register - POST - ::1
+2023-10-29T21:06:52.080Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:06:52.172Z [info]: Scheduled task completed successfully, deleted 2 users.
+2023-10-29T21:07:51.818Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:07:51.852Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:08:51.867Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:08:51.868Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:09:51.833Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:09:51.864Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:10:51.832Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:10:51.883Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:11:51.829Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:11:51.830Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:12:51.894Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:12:51.895Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:13:51.839Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:13:51.849Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:14:51.856Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:14:51.857Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:15:51.865Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:15:51.866Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:16:51.867Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:16:51.868Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:17:51.955Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:17:51.956Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:18:51.825Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:18:51.830Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:19:51.941Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:19:51.941Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:20:51.832Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:20:51.836Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:21:51.831Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:21:51.832Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:22:51.852Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:22:51.853Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:23:51.835Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:23:51.851Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:24:51.841Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:24:51.842Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:25:51.835Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:25:51.903Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:26:51.832Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:26:51.837Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:31:04.606Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:31:04.787Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:32:04.596Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:32:04.622Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:33:04.603Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:33:04.616Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T21:34:55.202Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T21:34:55.374Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T22:16:45.955Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:19:09.711Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:21:12.765Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:25:30.836Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:26:23.101Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:26:23.263Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:27:37.551Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:29:11.149Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:29:11.242Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-29T22:31:10.765Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:31:11.064Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:31:11.200Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-29T22:32:12.284Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:32:12.533Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:32:12.705Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-29T22:39:00.727Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:39:01.046Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:39:01.178Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-29T22:39:22.646Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-29T22:39:22.952Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-29T22:39:23.080Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1

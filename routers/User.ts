@@ -161,7 +161,7 @@ router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => 
 router.delete('/delete-account', authMe, async (req, res, next) => {
     const user = res.locals.user;
     try {
-        if(user.profile.role === 'User')
+        if(user?.profile?.role === 'User')
             throw new CustomError(`You are not allowed to delete your account.`, 400);
 
         deleteUser(res).then(() => {

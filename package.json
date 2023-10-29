@@ -5,7 +5,7 @@
   "main": "./dist/main.js",
   "type": "module",
   "scripts": {
-    "test": "tsc && jest",
+    "test": "tsc && NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' DOTENV_CONFIG_PATH=.env.test --silent jest",
     "build-tsc": "tsc -w",
     "run-watch": "nodemon ./dist/app.js",
     "dev": "concurrently \"npm:build-tsc\"  \"npm:run-watch\""

@@ -44,7 +44,7 @@ const insertUser = async (payload: Gen.User): Promise<Users> => {
             return await trans.save(newUser);
         });
     } catch (err: any) {
-        if (err.code?.includes('ER_DUP_ENTRY')) {
+        if (err.code?.includes('ER_DUP_ENTRY') || err instanceof CustomError) {
             throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
         }
         throw new CustomError(err, 500);
