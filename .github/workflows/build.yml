@@ -61,7 +61,7 @@ jobs:
       - name: Configure Docker Host
         uses: khaledez/configure-docker-host@v1
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
           host: ${{ matrix.ip }}
           user: github
       
