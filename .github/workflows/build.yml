@@ -79,8 +79,6 @@ jobs:
 
       - name: Deploy
         run: |
-          ipn="${{ matrix.ip }}"
-          echo $ipn
           ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ipn}} "docker compose -f docker-compose.yml up -d"
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
