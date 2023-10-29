@@ -30,7 +30,7 @@ const sortQueryByAmount = (result) => {
     return result.sort((a, b) => b.amount - a.amount);
 };
 const makeGraphicalData = (data) => {
-    const maxValue = Math.max(...data.map(d => d.amount)); // just doin' some scales
+    const maxValue = Math.max(...data.map(d => d.amount));
     const unitValue = maxValue / 50;
     let graphicalData = 'Expense by Categroy:\n';
     const size = graphicalData.length;
