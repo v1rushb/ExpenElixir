@@ -15,6 +15,7 @@ jobs:
     concurrency: build-docker
     outputs:
       ec2_ips: ${{ steps.instance_ips.outputs.ips }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
 
@@ -41,12 +42,18 @@ jobs:
       - name: Get EC2 Instance IPs
         id: instance_ips
         run: | 
-          instances=$(aws ec2 describe-instances --filters 'Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG' --query 'Reservations[*].Instances[*].PublicIpAddress' --output json)
-          echo "ips=$instances" >> $GITHUB_OUTPUT
+          echo "Fetching public IPs..."
+          ips=$(aws autoscaling describe-auto-scaling-instances --query 'AutoScalingInstances[].InstanceId' --output json | xargs -I {} aws ec2 describe-instances --instance-ids {} --query 'Reservations[].Instances[].PublicIpAddress' --output json)
+          echo "Fetched IPs: $ips"
+          echo "$ips" > public_ips.json
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: eu-west-2
+
+      - name: Set Matrix
+        id: set-matrix
+        run: echo "::set-output name=matrix::$(jq -c . < public_ips.json)"
 
   deploy:
     needs: ["build-image"]
