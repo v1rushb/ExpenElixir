@@ -15,7 +15,6 @@ jobs:
     concurrency: build-docker
     outputs:
       ec2_ips: ${{ steps.instance_ips.outputs.ips }}
-      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v3
 
@@ -42,44 +41,25 @@ jobs:
       - name: Get EC2 Instance IPs
         id: instance_ips
         run: | 
-          echo "Fetching public IPs..."
-          ips=$(aws autoscaling describe-auto-scaling-instances --query 'AutoScalingInstances[].InstanceId' --output json | xargs -I {} aws ec2 describe-instances --instance-ids {} --query 'Reservations[].Instances[].PublicIpAddress' --output json)
-          echo "Fetched IPs: $ips"
-          echo "$ips" > public_ips.json
+          instance_ids=$(aws autoscaling describe-auto-scaling-instances --region eu-west-2 --output text --query "AutoScalingInstances[?AutoScalingGroupName=='ExpenElixir-ASG'].InstanceId")
+          public_ips=""
+          for id in $instance_ids; do
+          ip=$(aws ec2 describe-instances --instance-ids $id --region eu-west-2 --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+          public_ips+="$ip "
+          done
+          echo "::set-output name=ips::$public_ips"
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
           AWS_REGION: eu-west-2
-
-      - name: Set Matrix
-        id: set-matrix
-        run: echo "::set-output name=matrix::$(jq -c . < public_ips.json)"
-
-  deploy:
-    needs: ["build-image"]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        ip: ${{ fromJson(needs.build.outputs.ec2_ips) }}
-    steps:
-      - uses: actions/checkout@v2
-
-      # - name: configure docker host
-      #   uses: khaledez/configure-docker-host@v1
-      #   with:
-      #     host: ${{ matrix.ip }}
-      #     user: github
-      #     ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
-      - name: Deploy
+      
+      - name: deploy
         run: |
+          echo "${{ secrets.DEPLOYMENT_KEY }}" > key.pem
+          chmod 600 key.pem
+          for ip in $public_ips; do
           ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ipn}} "docker compose -f docker-compose.yml up -d"
+          done
         env:
           DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
           DB_HOST: ${{ secrets.DB_HOST }}
@@ -91,3 +71,39 @@ jobs:
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           CHATGPTAPI_SECRET_KEY: ${{ secrets.CHATGPTAPI_SECRET_KEY }}
           FREE_CURRENCY_API: ${{ secrets.FREE_CURRENCY_API }}
+  # deploy:
+  #   needs: ["build-image"]
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       ip: ${{ fromJson(needs.build.outputs.ec2_ips) }}
+  #   steps:
+  #     - uses: actions/checkout@v2
+
+  #     # - name: configure docker host
+  #     #   uses: khaledez/configure-docker-host@v1
+  #     #   with:
+  #     #     host: ${{ matrix.ip }}
+  #     #     user: github
+  #     #     ssh-private-key: ${{ secrets.DEPLOYMENT_KEY }}
+
+  #     - name: Login to Docker Hub
+  #       uses: docker/login-action@v1
+  #       with:
+  #         username: ${{ secrets.DOCKERHUB_USERNAME }}
+  #         password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+  #     - name: Deploy
+  #       run: |
+  #         ssh -o StrictHostKeyChecking=no -i "${{ secrets.DEPLOYMENT_KEY }}" github@${{ipn}} "docker compose -f docker-compose.yml up -d"
+  #       env:
+  #         DEPLOYMENT_KEY: ${{ secrets.DEPLOYMENT_KEY }}
+  #         DB_HOST: ${{ secrets.DB_HOST }}
+  #         DB_PORT: ${{ secrets.DB_PORT }}
+  #         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+  #         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  #         DB_NAME: ${{ secrets.DB_NAME }}
+  #         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  #         STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+  #         CHATGPTAPI_SECRET_KEY: ${{ secrets.CHATGPTAPI_SECRET_KEY }}
+  #         FREE_CURRENCY_API: ${{ secrets.FREE_CURRENCY_API }}
