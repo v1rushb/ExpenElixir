@@ -1,7 +1,6 @@
 import express from 'express';
 import {Expense} from '../db/entities/Expense.js';
 import {ChatGPTAPI, ChatMessage} from 'chatgpt';
-import { Category } from '../db/entities/Category.js';
 import { EqualOperator } from 'typeorm';
 import { Gen } from '../@types/generic.js';
 

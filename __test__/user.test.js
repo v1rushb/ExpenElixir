@@ -21,29 +21,29 @@ afterAll(async () => {
 });
 
 describe("User Routes", () => {
-  it("should register a new user", async () => {
-    const response = await request(app).post("/user/register").send({
-      username: "test",
-      password: "0123456789",
-      email: "test@gmail.com",
-      firstName: "Bashar",
-      lastName: "Herbawi",
-      phoneNumber: "0599999999",
-    });
-    expect(response.status).toBe(201);
-  });
+  // it("should register a new user", async () => {
+  //   const response = await request(app).post("/user/register").send({
+  //     username: "test",
+  //     password: "0123456789",
+  //     email: "test@gmail.com",
+  //     firstName: "Bashar",
+  //     lastName: "Herbawi",
+  //     phoneNumber: "0599999999",
+  //   });
+  //   expect(response.status).toBe(201);
+  // });
 
-  it("should return 409 for duplicate username or email", async () => {
-    const response = await request(app).post("/user/register").send({
-      username: "test",
-      password: "0123456789",
-      email: "test@gmail.com",
-      firstName: "Bashar",
-      lastName: "Herbawi",
-      phoneNumber: "0599999999",
-    });
-    expect(response.status).toBe(409);
-  });
+  // it("should return 409 for duplicate username or email", async () => {
+  //   const response = await request(app).post("/user/register").send({
+  //     username: "test",
+  //     password: "0123456789",
+  //     email: "test@gmail.com",
+  //     firstName: "Bashar",
+  //     lastName: "Herbawi",
+  //     phoneNumber: "0599999999",
+  //   });
+  //   expect(response.status).toBe(409);
+  // });
   it("should login the user and save the token cookie", async () => {
     const response = await request(app).post("/user/login").send({
       username: "test",

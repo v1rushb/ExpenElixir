@@ -13,7 +13,7 @@ describe("validateUser Middleware", () => {
         lastName: "test",
         email: "Test@gmail.com",
         username: "Test",
-        password: "0123456789",
+        password: "!@R4F324DSdFgh#@5%fg@j#FSDFasd2",
         phoneNumber: "059775566",
       },
     };
@@ -42,7 +42,7 @@ describe("validateUser Middleware", () => {
     await validateUser(req, res, next);
 
     expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.send).toHaveBeenCalledWith("Password is too weak.");
+    expect(res.send).toHaveBeenCalledWith("Password must be at least 10 characters and include at least one uppercase letter, one lowercase letter, and one number.");
     expect(next).not.toHaveBeenCalled();
   });
 

@@ -1,6 +1,6 @@
 import express from 'express';
 import { Users } from '../db/entities/Users.js';
-import { calculateBalance, insertUser, login, sendResetPasswordEmail } from '../controllers/User.js';
+import { calculateBalance, deleteUser, insertUser, login, sendResetPasswordEmail } from '../controllers/User.js';
 import authMe from '../middlewares/Auth.js';
 import { validateLogin, validatePassword, validateUser } from '../middlewares/Validate.js';
 import jwt from 'jsonwebtoken';
@@ -145,13 +145,13 @@ router.delete('/delete-account', authMe, async (req, res, next) => {
     try {
         if (user.profile.role === 'User')
             throw new CustomError(`You are not allowed to delete your account.`, 400);
-        // deleteUser(res).then(() => {
-        //     logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
-        //     res.clearCookie("userEmail");
-        //     res.clearCookie("token");
-        //     res.clearCookie("loginDate");
-        //     res.status(200).send(`Your account has been deleted successfully.`);
-        // }).catch((err: any) => next(err));
+        deleteUser(res).then(() => {
+            logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+            res.clearCookie("userEmail");
+            res.clearCookie("token");
+            res.clearCookie("loginDate");
+            res.status(200).send(`Your account has been deleted successfully.`);
+        }).catch((err) => next(err));
     }
     catch (err) {
         next(err);
