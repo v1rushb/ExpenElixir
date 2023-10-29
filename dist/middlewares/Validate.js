@@ -107,7 +107,6 @@ const validatePassword = async (req, res, next) => {
 };
 const validateLogin = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
         const values = ['password', 'username'];
         const errorList = [];
         values.forEach(iterator => {

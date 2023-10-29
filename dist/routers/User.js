@@ -34,7 +34,7 @@ router.post('/login', validateLogin, (req, res, next) => {
         res.clearCookie("userEmail");
         res.clearCookie("token");
         res.clearCookie("loginDate");
-        res.status(500).send(`Log in again`);
+        res.status(500).send(`An error occured. please login again.`);
     }
     if (username && password) {
         const payload = { username, password, iamId, res };
@@ -65,13 +65,16 @@ router.post('/logout', (req, res) => {
         res.status(200).send(`You have been logged out. See you soon ${decoded?.username}!`);
     }
     catch (err) {
-        throw new CustomError(`err`, 401);
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        throw new CustomError(`Your session has already been expired.`, 401);
     }
 });
 router.get('/balance', authMe, async (req, res, next) => {
     calculateBalance(res).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
-        return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.currency}.}`);
+        return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.Currency}.`);
     }).catch(err => next(err));
 });
 router.get('/', authMe, async (req, res, next) => {
@@ -207,7 +210,7 @@ router.post('/reset-password', validatePassword, async (req, res, next) => {
         user.newHashedPassword = hashedPassword;
         const resetToken = uuidv4();
         user.resetToken = resetToken;
-        user.resetTokenExpiration = new Date(Date.now() + 300000);
+        user.resetTokenExpiration = new Date(Date.now() + 30000);
         await sendResetPasswordEmail({ email: email, token: resetToken });
         await user.save();
         res.clearCookie("userEmail");

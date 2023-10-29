@@ -462,3 +462,77 @@
 2023-10-28T18:30:40.475Z [error]: undefined - jwt expired - /user/login - POST - ::1
 2023-10-28T18:33:01.577Z [error]: undefined - jwt expired - /user/login - POST - ::1
 2023-10-28T18:34:00.295Z [error]: 401 - hi - /user/login - POST - ::1
+2023-10-29T13:26:02.407Z [error]: 400 - Expected double-quoted property name in JSON at position 76 - /user/login - POST - ::1
+2023-10-29T13:26:12.252Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-29T13:34:43.977Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:34:45.650Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:34:46.270Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:34:46.827Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:36:59.717Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-29T13:37:07.744Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-29T13:37:14.149Z [error]: 500 - Error: User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-29T13:39:30.165Z [error]: 401 - Unauthorized - /user - GET - ::1
+2023-10-29T13:39:39.159Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:43:03.515Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:44:12.245Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:13.915Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:14.639Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:15.142Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:15.689Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:45:30.379Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-10-29T13:45:31.821Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:32.538Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:33.079Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:33.509Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:50.331Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:50.832Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:51.254Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:58.112Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:58.697Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:48:26.228Z [error]: 404 Not Found - /user/balance - POST - ::1
+2023-10-29T13:48:29.864Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:50:51.872Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:50:52.507Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:50:53.040Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:51:21.061Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:51:22.705Z [error]: 404 Not Found - /user/balance - PUT - ::1
+2023-10-29T13:51:25.900Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:53:25.040Z [error]: 404 Not Found - /user/login - GET - ::1
+2023-10-29T13:53:28.793Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:56:47.765Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:56:50.198Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:56:51.479Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:58:06.185Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:58:11.456Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:58:17.645Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T13:59:48.558Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:59:50.565Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T14:02:13.652Z [error]: 404 Not Found - /user/delete-account - POST - ::1
+2023-10-29T14:02:17.561Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T14:02:45.961Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T14:02:49.956Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T14:02:56.165Z [error]: 500 - Internal Server Error - /user/delete-account - DELETE - ::1
+2023-10-29T14:04:13.239Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:05:32.289Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:05:33.439Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:08:38.543Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:08:39.942Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:09:18.951Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:00.586Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:22.086Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:23.361Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:48.039Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:13:33.732Z [error]: 404 Not Found - /user/verify-token - DELETE - ::1
+2023-10-29T14:13:38.344Z [error]: 404 Not Found - /user/verify-token - POST - ::1
+2023-10-29T14:13:40.582Z [error]: 404 Not Found - /user/verify-token - GET - ::1
+2023-10-29T14:13:41.503Z [error]: 404 Not Found - /user/verify-token - GET - ::1
+2023-10-29T14:13:46.727Z [error]: 400 - Invalid token. - /user/verify-account - GET - ::1
+2023-10-29T14:13:47.714Z [error]: 400 - Invalid token. - /user/verify-account - GET - ::1
+2023-10-29T14:19:23.586Z [error]: 400 - Token expired. - /user/reset-password-email?token=18971ca7-bd8d-4020-953c-a68c680b7d50 - GET - ::1
+2023-10-29T14:19:54.329Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T14:22:20.266Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T14:46:14.592Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:46:15.961Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:46:16.507Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:46:17.139Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:50:49.918Z [error]: 401 - Invalid password - /user/login - POST - ::1

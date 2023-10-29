@@ -53,7 +53,7 @@ const insertExpense = async (payload, res) => {
                     emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You have exceeded your budget limit for ${category.title}`;
                 }
-                await sendEmail(emailBody, emailSubject);
+                await sendEmail(user.email, emailBody, emailSubject);
             }
         });
     }
@@ -99,7 +99,6 @@ const getExpenses = async (req, res) => {
         return results;
     }
     catch (err) {
-        console.log(err);
         if (err instanceof CustomError) {
             throw new CustomError(err.message, err.statusCode);
         }
@@ -189,7 +188,7 @@ const updateExpense = async (expenseId, payload, res) => {
                     emailBody = `You have exceeded your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
                     emailSubject = `You have exceeded your budget limit for ${categoryTyped.title}`;
                 }
-                await sendEmail(emailBody, emailSubject);
+                await sendEmail(res.locals.user.email, emailBody, emailSubject);
             }
         });
     }

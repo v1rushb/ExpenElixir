@@ -31,9 +31,9 @@ const insertUser = async (payload) => {
             newUser.verificationToken = verificationToken;
             const host = process.env.HOST || 'localhost:2077';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
-            const emailBody = 'Please verify your account by clicking the link: ' + verificationLink;
-            const emailSubject = 'EpenElixir Email Verification';
-            sendEmail(emailBody, emailSubject);
+            const emailBody = "Dear User,\n\nThank you for registering. To complete your account setup, please verify your account by clicking the link below:\n" + verificationLink + "\n\nIf you didn't create this account, you can safely ignore this email.\n\nBest regards,\nYour Company Support Team";
+            const emailSubject = 'ExpenElixir Email Verification';
+            sendEmail(email, emailBody, emailSubject);
             return await trans.save(newUser);
         });
     }
@@ -73,7 +73,7 @@ const login = async (payload) => {
             username: user.username,
             id: user.id,
         }, process.env.SECRET_KEY || '', {
-            expiresIn: '1m',
+            expiresIn: '15m',
         });
         return { username: user.username, email: user.email, token: token };
     }
@@ -139,7 +139,7 @@ const checkForSubscriptionValidation = () => {
                     const subscriptionDate = new Date(profile.subscription_date).getTime();
                     const diff = (now - subscriptionDate) / (1000 * 60);
                     if (diff > 15) {
-                        await sendEmail(`Your subscription has expired!`, `Subscription Expired!`);
+                        await sendEmail(user.email, `Your subscription has expired!`, `Subscription Expired!`);
                         if (profile) {
                             profile.hasSentEmail = true;
                             profile.role = 'Member';
@@ -159,9 +159,9 @@ const checkForSubscriptionValidation = () => {
 const sendResetPasswordEmail = async (payload) => {
     const host = process.env.HOST || 'localhost:2077';
     const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
-    const emailSubject = 'EpenElixir User Password Reset';
-    const emailBody = 'Please reset your password by clicking the link: ' + resetLink;
-    await sendEmail(emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)
+    const emailSubject = 'ExpenElixir User Password Reset';
+    const emailBody = "Dear User,\n\nWe received a request to reset your password. If you didn't make the request, please ignore this email.\n\nTo reset your password, click the link below:\n" + resetLink + "\n\nThis link will expire in 30 minutes.\n\nBest regards,\nExpenElixir Support team.";
+    await sendEmail(payload.email, emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)
 };
 export { insertUser, login, calculateBalance, deleteUser, checkForVerification, sendResetPasswordEmail, checkForSubscriptionValidation, };
 //# sourceMappingURL=User.js.map

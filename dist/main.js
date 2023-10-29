@@ -27,7 +27,7 @@ app.get('/health', (req, res) => {
 });
 app.use('/', (req, res) => {
     logger.error(`404 Not Found - ${req.originalUrl} - ${req.method} - ${req.ip}`);
-    res.status(404).send('Not Found');
+    res.status(404).send('Route Does not exist');
 });
 app.use(ErrorHandler);
 app.listen(PORT, () => {

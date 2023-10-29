@@ -38,10 +38,10 @@ const createSendEmailCommand = (toAddress: string, fromAddress: string, emailBod
     });
 };
 
-export const sendEmail = async (emailBody: string, emailSubject: string) => {
+export const sendEmail = async (dist: string, emailBody: string, emailSubject: string) => {
     const sendEmailCommand = createSendEmailCommand(
-        "cs.bashar.herbawi@gmail.com",
-        "cs.bashar.herbawi@gmail.com",
+        dist,
+        "ExpenElixir@gmail.com",
         emailBody,
         emailSubject
     );

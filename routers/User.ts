@@ -42,7 +42,7 @@ router.post('/login', validateLogin,(req, res, next) => {
         res.clearCookie("userEmail");
         res.clearCookie("token");
         res.clearCookie("loginDate");
-        res.status(500).send(`Log in again`);
+        res.status(500).send(`An error occured. please login again.`);
     }
 
     if (username && password) {
@@ -67,6 +67,7 @@ router.post('/logout', (req, res) => {
     if (!token) {
         throw new CustomError(`You are not logged in.`, 401);
     }
+
     try {
         jwt.verify(token, process.env.SECRET_KEY || '');
         const decoded = jwt.decode(token || '', { json: true });
@@ -77,14 +78,17 @@ router.post('/logout', (req, res) => {
         logger.info(`200 OK - /user/logout - POST - ${req.ip}`);
         res.status(200).send(`You have been logged out. See you soon ${decoded?.username}!`);
     } catch (err) {
-        throw new CustomError(`err`, 401);
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        throw new CustomError(`Your session has already been expired.`, 401);
     }
 });
 
 router.get('/balance', authMe, async (req, res, next) => {
     calculateBalance(res).then(data => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
-        return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.currency}.}`);
+        return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.Currency}.`);
     }).catch(err => next(err));
 });
 

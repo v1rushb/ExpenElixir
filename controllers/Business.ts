@@ -41,9 +41,9 @@ const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Pr
             
             const host = process.env.HOST || 'localhost:2077';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
-            const emailBody = 'Please verify your account by clicking the link: \n' + verificationLink;
+            const emailBody = "Dear User,\n\nThank you for registering. To complete your account setup, please verify your account by clicking the link below:\n" + verificationLink + "\n\nIf you didn't create this account, you can safely ignore this email.\n\nBest regards,\nYour Company Support Team";
             const emailSubject = 'EpenElixir Email Verification';
-            sendEmail(emailBody, emailSubject);
+            sendEmail(payload.email,emailBody, emailSubject);
 
             await trans.save(newUser.business);
             return await trans.save(newUser);
@@ -215,17 +215,28 @@ const addUserExpense = async (payload: Gen.addUserExpense, res: express.Response
             if(category.totalExpenses >= (category.budget*0.9)) {
                 let emailBody = '';
                 let emailSubject = '';
+                let rootEmailBody = '';
+                let rootEmailSubject = '';
+
                 if(category.totalExpenses < category.budget) {
                     emailBody = `You are about to reach your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You are about to reach your budget limit for ${category.title}`;
+                    rootEmailBody = `User ${user.username} is about to reach their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    rootEmailSubject = `User ${user.username} is about to reach their budget limit for ${category.title}`;
                 } else if(category.totalExpenses === category.budget) {
                     emailBody = `You have reached your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
-                    emailSubject = `You have reached your budget limit for ${category.title}`;   
+                    emailSubject = `You have reached your budget limit for ${category.title}`;  
+                    rootEmailBody = `User ${user.username} has reached their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`; 
+                    rootEmailSubject = `User ${user.username} has reached their budget limit for ${category.title}`;
                 } else {
                     emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You have exceeded your budget limit for ${category.title}`;
+                    rootEmailBody = `User ${user.username} has exceeded their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
+                    rootEmailSubject = `User ${user.username} has exceeded their budget limit for ${category.title}`;
                 }
-                await sendEmail(emailBody, emailSubject);
+                await sendEmail(user.email,emailBody, emailSubject);
+                if(user.id !== res.locals.user.id)
+                    await sendEmail(res.locals.user.email,rootEmailBody, rootEmailSubject);
             }
         });
     } catch (err) {

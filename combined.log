@@ -2541,3 +2541,292 @@
 2023-10-28T19:19:22.367Z [info]: Scheduled task completed successfully, checked 0 users.
 2023-10-28T19:20:22.398Z [info]: Scheduled task completed successfully, deleted 0 users.
 2023-10-28T19:20:22.399Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:26:02.407Z [error]: 400 - Expected double-quoted property name in JSON at position 76 - /user/login - POST - ::1
+2023-10-29T13:26:12.252Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-29T13:30:06.782Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:30:06.785Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:31:06.763Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:31:06.776Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:32:06.789Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:32:06.790Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:33:12.610Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:33:12.613Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:34:09.297Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T13:34:12.604Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:34:12.609Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:34:43.977Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:34:45.650Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:34:46.270Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:34:46.827Z [error]: 409 - Please verify your email address. - /user/login - POST - ::1
+2023-10-29T13:35:39.005Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:35:39.016Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-29T13:36:39.005Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:36:39.006Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:36:58.071Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T13:36:59.717Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-29T13:37:07.698Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-29T13:37:07.744Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-29T13:37:14.149Z [error]: 500 - Error: User with email: cs.bashar.herbawi@gmail.com already exists. - /user/register - POST - ::1
+2023-10-29T13:37:23.103Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:37:49.730Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:37:49.733Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:38:49.727Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:38:49.733Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:39:30.165Z [error]: 401 - Unauthorized - /user - GET - ::1
+2023-10-29T13:39:39.159Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:39:47.410Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:39:49.728Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:39:49.730Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:40:49.759Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:40:49.759Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:41:49.782Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:41:49.783Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:42:49.817Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:42:49.817Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:43:03.515Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:43:05.244Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:43:56.624Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:43:56.626Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:44:12.245Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:13.915Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:14.639Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:15.142Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:15.689Z [error]: 401 - err - /user/logout - POST - ::1
+2023-10-29T13:44:56.617Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:44:56.628Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:45:30.379Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-10-29T13:45:31.821Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:32.538Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:33.079Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:33.509Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:43.960Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:45:49.783Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-29T13:45:50.331Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:50.832Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:51.254Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:54.095Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:45:57.549Z [info]: 200 OK - /user/logout - POST - ::1
+2023-10-29T13:45:58.112Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:45:58.697Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-29T13:46:29.972Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:46:29.978Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:47:29.966Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:47:29.967Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:48:26.228Z [error]: 404 Not Found - /user/balance - POST - ::1
+2023-10-29T13:48:29.864Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:48:29.959Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:48:29.963Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:49:29.990Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:49:29.991Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:50:30.015Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:50:30.015Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:50:51.872Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:50:52.507Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:50:53.040Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:51:21.061Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:51:22.705Z [error]: 404 Not Found - /user/balance - PUT - ::1
+2023-10-29T13:51:25.900Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:51:48.389Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:51:53.815Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:51:55.626Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:51:56.154Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:51:56.690Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:51:57.134Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:52:18.305Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:52:19.543Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:53:16.300Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:53:16.303Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:53:25.040Z [error]: 404 Not Found - /user/login - GET - ::1
+2023-10-29T13:53:28.793Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:53:31.374Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:54:08.719Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:54:16.297Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:54:16.303Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:55:16.299Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:55:16.301Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:56:47.765Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:56:50.198Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:56:51.479Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:56:53.780Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:56:54.923Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:56:58.701Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:56:58.702Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:57:03.558Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:57:04.200Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:57:04.857Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:58:03.199Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:58:03.201Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:58:06.185Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:58:11.456Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:58:17.645Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T13:58:19.715Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:59:03.189Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T13:59:03.196Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T13:59:48.558Z [error]: 401 - Unauthorized - /user/balance - GET - ::1
+2023-10-29T13:59:50.565Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T13:59:51.135Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T13:59:53.299Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:59:53.941Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T13:59:54.573Z [info]: 200 OK - /user/totalIncome - GET - ::1
+2023-10-29T14:00:03.190Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:00:03.197Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:01:03.221Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:01:03.223Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:02:13.652Z [error]: 404 Not Found - /user/delete-account - POST - ::1
+2023-10-29T14:02:17.561Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T14:02:45.961Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-29T14:02:49.956Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-29T14:02:51.638Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T14:02:52.004Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:02:52.006Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:02:56.165Z [error]: 500 - Internal Server Error - /user/delete-account - DELETE - ::1
+2023-10-29T14:03:52.004Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:03:52.006Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:04:13.239Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:05:13.068Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:05:13.070Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:05:32.289Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:05:33.439Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:06:28.751Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:06:28.754Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:07:28.749Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:07:28.752Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:08:28.750Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:08:28.750Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:08:38.543Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:08:39.942Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:09:18.951Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:10:18.306Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:10:18.308Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:11:00.586Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:22.086Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:23.361Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:11:48.039Z [error]: 500 - QueryFailedError: ER_ROW_IS_REFERENCED_2: Cannot delete or update a parent row: a foreign key constraint fails (`ExpenElixir`.`income`, CONSTRAINT `FK_0965fe0d5faa3b2e7518d7bb244` FOREIGN KEY (`userId`) REFERENCES `users` (`id`)) - /user/delete-account - DELETE - ::1
+2023-10-29T14:12:47.217Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:12:47.224Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:13:33.732Z [error]: 404 Not Found - /user/verify-token - DELETE - ::1
+2023-10-29T14:13:38.344Z [error]: 404 Not Found - /user/verify-token - POST - ::1
+2023-10-29T14:13:40.582Z [error]: 404 Not Found - /user/verify-token - GET - ::1
+2023-10-29T14:13:41.503Z [error]: 404 Not Found - /user/verify-token - GET - ::1
+2023-10-29T14:13:46.727Z [error]: 400 - Invalid token. - /user/verify-account - GET - ::1
+2023-10-29T14:13:47.714Z [error]: 400 - Invalid token. - /user/verify-account - GET - ::1
+2023-10-29T14:14:02.288Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:14:02.290Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:15:02.281Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:15:02.288Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:16:02.293Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:16:02.294Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:17:09.501Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:17:09.506Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:18:09.484Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:18:09.497Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:19:09.491Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:19:09.500Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:19:23.586Z [error]: 400 - Token expired. - /user/reset-password-email?token=18971ca7-bd8d-4020-953c-a68c680b7d50 - GET - ::1
+2023-10-29T14:19:54.329Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T14:20:09.483Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:20:09.496Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:21:09.484Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:21:09.496Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:22:09.519Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:22:09.520Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:22:20.266Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T14:22:23.781Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T14:23:09.549Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:23:09.551Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:24:13.647Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:24:13.656Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:25:13.627Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:25:13.643Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:26:13.662Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:26:13.666Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:27:13.683Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:27:13.684Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:28:58.013Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:28:58.018Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:29:57.997Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:29:58.012Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:31:39.019Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:31:39.031Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:32:39.011Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:32:39.016Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:33:39.011Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:33:39.015Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:34:39.036Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:34:39.037Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:35:39.063Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:35:39.064Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:36:39.092Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:36:39.092Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:37:39.119Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:37:39.120Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:38:39.151Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:38:39.153Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:39:39.153Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:39:39.155Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:40:39.176Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:40:39.176Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:41:39.208Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:41:39.209Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:42:39.234Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:42:39.236Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:43:39.256Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:43:39.256Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:45:00.520Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:45:00.525Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:46:00.524Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:46:00.529Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:46:14.592Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:46:15.961Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:46:16.507Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:46:17.139Z [error]: 401 - Unauthorized - /income - POST - ::1
+2023-10-29T14:47:00.554Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:47:00.556Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:48:00.583Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:48:00.585Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:49:00.614Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:49:00.616Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:50:00.644Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:50:00.646Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:50:49.918Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-29T14:50:53.828Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T14:51:00.646Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:51:00.651Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T14:51:01.944Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-10-29T14:52:00.674Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:52:00.678Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:52:49.394Z [info]: 201 Created - /user/addUser - POST - ::1
+2023-10-29T14:53:00.681Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:53:00.685Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:53:23.229Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-29T14:54:00.705Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:54:00.709Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:54:21.785Z [info]: 200 OK - /user/businessUsers - GET - ::1
+2023-10-29T14:55:05.465Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:55:05.474Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:56:05.460Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:56:05.467Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:57:05.465Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:57:05.467Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:58:05.489Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:58:05.493Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T14:59:05.500Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T14:59:05.504Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:00:05.516Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:00:05.518Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:01:05.527Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:01:05.528Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:02:05.559Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:02:05.564Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:03:05.586Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:03:05.590Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:04:05.609Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:04:05.610Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:05:05.639Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:05:05.640Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:06:05.658Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:06:06.164Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-10-29T15:07:05.684Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:07:05.684Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T15:08:05.711Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T15:08:05.712Z [info]: Scheduled task completed successfully, checked 0 users.
