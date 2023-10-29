@@ -41,8 +41,8 @@ jobs:
       - name: Get EC2 Instance IPs
         id: instance_ips
         run: | 
-          aws ec2 describe-instances --filters 'Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG' --query 'Reservations[*].Instances[*].PublicIpAddress' --output json | jq --compact-output 'flatten'
-          echo "::set-output name=ips::$instances"
+          instances=$(aws ec2 describe-instances --filters 'Name=tag:aws:autoscaling:groupName,Values=ExpenElixir-ASG' --query 'Reservations[*].Instances[*].PublicIpAddress' --output json | jq --compact-output 'flatten')
+          echo "ips=$instances" >> $GITHUB_OUTPUT
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
