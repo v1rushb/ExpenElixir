@@ -5,16 +5,17 @@ import { EqualOperator } from 'typeorm';
 import { Gen } from '../@types/generic.js';
 
 
-const getExpensesByCategory = async (startDate: Date, endDate: Date, res: express.Response): Promise<Gen.getExpenesByCategoryReturn[]>=> {
+const getExpensesByCategory = async (res: express.Response): Promise<Gen.getExpenesByCategoryReturn[]>=> {
     const expensesByCategory: { [key: string]: number } = {};
     const result: {category: string, amount: number}[] = [];
 
-    const filteredExpenses = res.locals.user.expenses.filter((expense: Expense) => {
-        const expenseDate = new Date(expense.expenseDate);
-        return expenseDate >= startDate && expenseDate <= endDate;
-      });
+    // const filteredExpenses = res.locals.user.expenses.filter((expense: Expense) => {
+    //     const expenseDate = new Date(expense.expenseDate);
+    //     return expenseDate >= startDate && expenseDate <= endDate;
+    //   });
 
-    filteredExpenses.forEach((expense: Expense)=> {
+    console.log(res.locals.user.expenses.category);
+    res.locals.user.expenses.forEach((expense: Expense)=> {
         if (expense.category) {
             if (expensesByCategory[expense.category.title]) {
                 expensesByCategory[expense.category.title] += expense.amount;
@@ -26,6 +27,7 @@ const getExpensesByCategory = async (startDate: Date, endDate: Date, res: expres
     for(const [category,amount] of Object.entries(expensesByCategory)) {
         result.push({category,amount});
     }
+    console.log(result);
     return result;
 }
 
@@ -42,13 +44,12 @@ const makeGraphicalData = (data: Gen.makeGraphicalData[]) => {
     const unitValue = maxValue / 50;
 
     let graphicalData = 'Expense by Categroy:\n';
-    const size = graphicalData.length;
     data.forEach(iterator => {
         const barLength = Math.floor(iterator.amount/ unitValue);
         const bar = '='.repeat(barLength);
         graphicalData += `${iterator.category.padEnd(20, ' ')} | ${bar} ${iterator.amount}\n`;
     });
-    return graphicalData.length === size? '': graphicalData;
+    return graphicalData;
 }
 
 const getAdvice = async (graph : string)=> {
@@ -57,7 +58,7 @@ const getAdvice = async (graph : string)=> {
     }
     else {
         const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
-        const res : ChatMessage = await api.sendMessage(`I will give you an ASCII graph. very easy for you to read. here are its properities: Category | =====(increasing '=' based on how much is the value of expenses for this category)===== amount (and after all the '=' you'll see the amount of spent money in this category) so I wish for you to analyze this graph and tell me breifly with a small paragraph how can if get better at spending money and gaining profit OR any general advice. I just want you to include your advice in the answer NOTHING else. here's the graph ${graph}`)
+        const res : ChatMessage = await api.sendMessage(`I will give you an ASCII graph. very easy for you to read. here are its properities: Category | =====(increasing '=' based on how much is the value of expenses for this category)===== amount (and after all the '=' you'll see the amount of spent money in this category) so I wish for you to analyze this graph and tell me breifly with a small paragraph how can if get better at spending money and gaining profit OR any general advice. I just want you to include your advice in the answer NOTHING else. here's the graph ${graph}, IF NO DATA PROVIDED just tell me to provide data!`)
         return res.text.toString();
     }
 }

@@ -10,9 +10,9 @@ export class Income extends BaseEntity {
     @Column()
     title: string;
 
-    @Column()
+    @Column({ type: 'double' })
     amount: number;
-
+        
     @Column({ name: 'income_date' })
     incomeDate: Date;
 

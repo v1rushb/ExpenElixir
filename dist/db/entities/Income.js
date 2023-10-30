@@ -20,7 +20,7 @@ __decorate([
     __metadata("design:type", String)
 ], Income.prototype, "title", void 0);
 __decorate([
-    Column(),
+    Column({ type: 'double' }),
     __metadata("design:type", Number)
 ], Income.prototype, "amount", void 0);
 __decorate([

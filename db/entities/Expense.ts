@@ -17,7 +17,7 @@ export class Expense extends BaseEntity {
     @Column()
     expenseDate: Date;
 
-    @Column({ length: 255 })
+    @Column({ length: 255, nullable: true })
     description: string;
 
     @Column({ name: 'pictureURL', default: 'http://default' })
@@ -29,6 +29,6 @@ export class Expense extends BaseEntity {
     @ManyToOne(() => Users, user => user.expenses, { onDelete: "CASCADE" })
     users: string;
 
-    @ManyToOne(() => Category, category => category.expenses, { onDelete: "CASCADE" })
+    @ManyToOne(() => Category, category => category.expenses, { eager: true, onDelete: "CASCADE" })
     category: Category;
 }

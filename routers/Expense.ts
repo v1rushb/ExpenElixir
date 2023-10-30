@@ -54,9 +54,9 @@ router.get('/all', authMe, async (req, res, next) => { // testing purposes
 });
 
 router.put('/:id', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
-    updateExpense(req.params.id, { ...req.body, picURL: req.file as Express.MulterS3.File }, res).then(expense => {
+    updateExpense(req.params.id, { ...req.body, picFile: req.file as Express.MulterS3.File }, res).then(expense => {
         logger.info(`User ${req.body.username} modified expense ${req.body.id}!`);
-        res.status(200).send(`You have successfully modified the expense with id: ${req.body.id}!`);
+        res.status(200).send(`You have successfully modified the expense with id: ${req.params.id}!`);
     }).catch(err => next(err));
 });
 

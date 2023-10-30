@@ -658,3 +658,70 @@
 2023-10-30T11:29:16.504Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
 2023-10-30T11:32:44.709Z [error]: 401 - Unauthorized - /expense/business - GET - ::1
 2023-10-30T11:32:55.688Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-10-30T13:14:21.873Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-30T13:14:29.493Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T13:17:45.735Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T13:17:53.352Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T13:18:28.701Z [error]: 400 - Expected double-quoted property name in JSON at position 76 - /user/login - POST - ::1
+2023-10-30T13:18:59.357Z [error]: 400 - Expected double-quoted property name in JSON at position 52 - /user/register - POST - ::1
+2023-10-30T13:19:15.485Z [error]: 400 - Expected double-quoted property name in JSON at position 27 - /user/login - POST - ::1
+2023-10-30T13:19:44.745Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-30T13:19:49.356Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T13:38:08.396Z [error]: 401 - Unauthorized - /expense - POST - ::1
+2023-10-30T13:38:14.961Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T13:39:57.914Z [error]: undefined - Unexpected field - /expense - POST - ::1
+2023-10-30T13:40:12.052Z [error]: undefined - Unexpected field - /expense - POST - ::1
+2023-10-30T13:53:29.826Z [error]: 401 - Unauthorized - /income/8938fa44-ed4b-4ab3-8804-91b966ba3878 - PUT - ::1
+2023-10-30T13:53:36.895Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T13:55:01.293Z [error]: 400 - Expected double-quoted property name in JSON at position 121 - /income/8938fa44-ed4b-4ab3-8804-91b966ba3878 - PUT - ::1
+2023-10-30T14:09:05.405Z [error]: 401 - Unauthorized - /expense - GET - ::1
+2023-10-30T14:09:11.534Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T14:09:14.084Z [error]: 401 - Unauthorized - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:09:15.092Z [error]: 401 - Unauthorized - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:20:58.567Z [error]: 400 - ID is required. - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:21:17.658Z [error]: 500 - TypeError: Cannot read properties of undefined (reading 'find') - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:21:52.866Z [error]: 404 - Expense with id: undefined was not found! - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:22:37.527Z [error]: 404 - Expense with id: 00c0b409-605c-45b7-b2f4-dc794c871887 was not found! - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:23:54.394Z [error]: 500 - TypeError: Cannot read properties of undefined (reading 'totalExpenses') - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:24:55.039Z [error]: 401 - Unauthorized - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:24:59.447Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T14:25:04.257Z [error]: 404 - Category with id: 5dfaeefd-11a9-4014-b274-e28ad35f360s was not found! - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:28:04.080Z [error]: 404 - Category with id: 5dfaeefd-11a9-4014-b274-e28ad35f360q was not found! - /expense/00c0b409-605c-45b7-b2f4-dc794c871887 - PUT - ::1
+2023-10-30T14:32:56.262Z [error]: 404 Not Found - /income/pageNumber=2 - GET - ::1
+2023-10-30T14:34:44.954Z [error]: 404 Not Found - /income/pageNumber=3 - GET - ::1
+2023-10-30T14:34:49.514Z [error]: 404 Not Found - /income/pageNumber=2 - GET - ::1
+2023-10-30T14:37:07.827Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-30T14:38:52.635Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-30T14:38:58.664Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-30T14:40:11.835Z [error]: 401 - Unauthorized - /category - POST - ::1
+2023-10-30T14:40:16.030Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T14:40:20.079Z [error]: 401 - Unauthorized - /category - POST - ::1
+2023-10-30T14:40:20.922Z [error]: 401 - Unauthorized - /category - POST - ::1
+2023-10-30T14:40:27.313Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-30T14:40:28.830Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-30T14:41:31.164Z [error]: undefined - ER_DUP_ENTRY: Duplicate entry 'Palestine' for key 'category.IDX_9f16dbbf263b0af0f03637fa7b' - /category - POST - ::1
+2023-10-30T14:42:11.091Z [error]: 404 Not Found - /category - DELETE - ::1
+2023-10-30T14:43:04.746Z [error]: 404 Not Found - /category - DELETE - ::1
+2023-10-30T14:45:34.999Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-30T14:55:40.377Z [error]: 401 - Unauthorized - /expense - POST - ::1
+2023-10-30T14:55:44.872Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T15:01:25.147Z [error]: 404 Not Found - /usere/upgrade-to-business - POST - ::1
+2023-10-30T15:01:31.266Z [error]: 400 - You must select a valid card. - /user/upgrade-to-business - POST - ::1
+2023-10-30T15:01:37.401Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-30T15:02:51.030Z [error]: 400 - Card expired. - /user/upgrade-to-business - POST - ::1
+2023-10-30T15:02:54.506Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-30T15:15:44.052Z [error]: 404 Not Found - /user/business/search?search=ni - GET - ::1
+2023-10-30T15:15:59.311Z [error]: 404 Not Found - /expenese/business/search?search=ni - GET - ::1
+2023-10-30T15:18:36.257Z [error]: 404 Not Found - /expense/business/balance - GET - ::1
+2023-10-30T15:21:00.007Z [error]: 401 - You are not a root user - /income/business - GET - ::1
+2023-10-30T15:21:23.686Z [error]: 401 - You are not a root user - /income/business - GET - ::1
+2023-10-30T15:30:30.751Z [error]: 404 Not Found - /user/business/predict-me - GET - ::1
+2023-10-30T15:30:36.750Z [error]: 404 Not Found - /expense/business/predict-me - GET - ::1
+2023-10-30T15:30:47.223Z [error]: 401 - Unauthorized - /expense/analytics/predict-me - GET - ::1
+2023-10-30T15:30:53.506Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T15:42:04.046Z [error]: 401 - You are not a root user - /expense/business/analytics/recommend-fire - GET - ::1
+2023-10-30T15:44:08.126Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-30T15:44:12.490Z [error]: 401 - IAM users must provide a valid IAM ID - /user/login - POST - ::1
+2023-10-30T15:54:14.635Z [error]: undefined - Cannot read properties of undefined (reading 'user') - /expense/analytics/expenses-by-category - GET - ::1
+2023-10-30T16:00:57.431Z [error]: 401 - Unauthorized - /category - GET - ::1
+2023-10-30T16:01:02.841Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1

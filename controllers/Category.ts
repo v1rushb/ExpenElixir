@@ -27,9 +27,9 @@ const insertCategory = async (payload: Gen.Category, res: express.Response): Pro
             await trans.save(user);
         });
     }
-    catch (err) {
-        if (err instanceof CustomError)
-            throw err;
+    catch (err: any) {
+        if (err.code?.includes('ER_DUP_ENTRY'))
+            throw new CustomError(`Category with title: ${payload.title} already exists!`, 409);
         throw new CustomError(`Internal Server Error`, 500);
     }
 }

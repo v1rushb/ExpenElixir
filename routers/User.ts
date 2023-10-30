@@ -104,7 +104,7 @@ router.get('/', authMe, async (req, res, next) => { //delete this
 router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => {
     try {
         const selectedCard = Number(req.body.card);
-        if (!selectedCard || selectedCard < 0 || selectedCard > 2) {
+        if ((!selectedCard && selectedCard !==0) || selectedCard < 0 && selectedCard > 2) {
             throw new CustomError(`You must select a valid card.`, 400);
         }
 

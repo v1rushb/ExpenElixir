@@ -159,44 +159,44 @@ const getFilteredExpenses = async (payload, req, res) => {
 };
 const updateExpense = async (expenseId, payload, res) => {
     try {
-        await dataSource.transaction(async (trans) => {
-            const existingExpense = await Expense.findOne({ where: { id: new EqualOperator(expenseId), users: new EqualOperator(res.locals.user.id) } });
-            if (!existingExpense) {
-                throw new CustomError("Expense not found.", 404);
+        const userExpenses = res.locals.user.expenses;
+        console.log(userExpenses);
+        if (!expenseId)
+            throw new CustomError("ID is required.", 400);
+        const expense = userExpenses?.find(expense => expense.id === expenseId);
+        if (!expense)
+            throw new CustomError(`Expense with id: ${expenseId} was not found!`, 404);
+        const category = await res.locals.user.categories.find((category) => category.id === payload.category);
+        if (!category)
+            throw new CustomError(`Category with id: ${payload.category} was not found!`, 404);
+        const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD");
+        expense.title = payload.title;
+        expense.amount = currency.amount;
+        expense.expenseDate = payload.expenseDate;
+        expense.description = payload.description;
+        expense.picURL = payload.picFile?.location;
+        const categoryTyped = category;
+        categoryTyped.totalExpenses += expense.amount - expense.amount;
+        expense.category = categoryTyped;
+        await categoryTyped.save();
+        await expense.save();
+        if (categoryTyped.totalExpenses >= (categoryTyped.budget * 0.9)) {
+            let emailBody = '';
+            let emailSubject = '';
+            if (categoryTyped.totalExpenses < categoryTyped.budget) {
+                emailBody = `You are about to reach your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
+                emailSubject = `You are about to reach your budget limit for ${categoryTyped.title}`;
             }
-            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
-            existingExpense.title = payload.title;
-            existingExpense.amount = currency.amount;
-            existingExpense.expenseDate = payload.expenseDate;
-            existingExpense.description = payload.description;
-            existingExpense.picURL = payload.picFile?.location || existingExpense.picURL;
-            await trans.save(existingExpense);
-            const category = await Category.findOne({ where: { id: payload.category }, relations: ["expenses"] });
-            if (!category) {
-                throw new CustomError("Category not found.", 404);
+            else if (categoryTyped.totalExpenses === categoryTyped.budget) {
+                emailBody = `You have reached your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
+                emailSubject = `You have reached your budget limit for ${categoryTyped.title}`;
             }
-            const categoryTyped = category;
-            categoryTyped.totalExpenses += existingExpense.amount - existingExpense.amount;
-            await trans.save(res.locals.user);
-            await trans.save(categoryTyped);
-            if (categoryTyped.totalExpenses >= (categoryTyped.budget * 0.9)) {
-                let emailBody = '';
-                let emailSubject = '';
-                if (categoryTyped.totalExpenses < categoryTyped.budget) {
-                    emailBody = `You are about to reach your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
-                    emailSubject = `You are about to reach your budget limit for ${categoryTyped.title}`;
-                }
-                else if (categoryTyped.totalExpenses === categoryTyped.budget) {
-                    emailBody = `You have reached your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
-                    emailSubject = `You have reached your budget limit for ${categoryTyped.title}`;
-                }
-                else {
-                    emailBody = `You have exceeded your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
-                    emailSubject = `You have exceeded your budget limit for ${categoryTyped.title}`;
-                }
-                await sendEmail(res.locals.user.email, emailBody, emailSubject);
+            else {
+                emailBody = `You have exceeded your budget limit for ${categoryTyped.title}. You have spent ${categoryTyped.totalExpenses} out of ${categoryTyped.budget} for ${categoryTyped.title}.`;
+                emailSubject = `You have exceeded your budget limit for ${categoryTyped.title}`;
             }
-        });
+            await sendEmail(res.locals.user.email, emailBody, emailSubject);
+        }
     }
     catch (err) {
         if (err instanceof CustomError) {
