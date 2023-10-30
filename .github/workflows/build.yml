@@ -73,7 +73,7 @@ jobs:
 
       - name: Deploy
         run: |
-          docker compose -f docker-compose.yml up -d
+          docker-compose pull expenelixir && docker-compose up -d --no-deps expenelixir
         env:
           DB_HOST: ${{ secrets.DB_HOST }}
           DB_PORT: ${{ secrets.DB_PORT }}
