@@ -3518,3 +3518,19 @@
 2023-10-29T22:39:22.646Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
 2023-10-29T22:39:22.952Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
 2023-10-29T22:39:23.080Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1
+2023-10-29T23:18:08.023Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T23:18:41.121Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T23:18:41.287Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T23:18:58.070Z [error]: 400 - Invalid token. - /user/verify-account?token=819bada8-1d6f-46c1-83c2-9fcf502d2ee5 - GET - ::1
+2023-10-29T23:18:58.139Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-29T23:19:08.471Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rueshb already exists. - /user/register - POST - ::1
+2023-10-29T23:19:24.094Z [info]: 201 Created - /user/register - POST - ::1
+2023-10-29T23:19:41.125Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-29T23:19:41.257Z [info]: Scheduled task completed successfully, deleted 1 users.
+2023-10-29T23:19:46.068Z [info]: 200 OK - /user/verify-email - GET - ::1
+2023-10-29T23:20:11.858Z [info]: 200 OK - /user/login - POST - ::1
+2023-10-29T23:20:41.117Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-10-29T23:20:41.120Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-10-30T08:38:26.696Z [info]: 201 Created - /user/register - POST - ::ffff:127.0.0.1
+2023-10-30T08:38:26.880Z [info]: 200 OK - /user/login - POST - ::ffff:127.0.0.1
+2023-10-30T08:38:27.000Z [info]: 200 OK - /user/delete-account - DELETE - ::ffff:127.0.0.1

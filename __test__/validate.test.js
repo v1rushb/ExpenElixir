@@ -1,5 +1,6 @@
 import { CustomError } from "../dist/CustomError.js";
 import { validateUser, validateExpense } from "../dist/middlewares/Validate";
+import jest from 'jest-mock';
 
 describe("validateUser Middleware", () => {
   let req;

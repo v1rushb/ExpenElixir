@@ -613,3 +613,6 @@
 2023-10-29T19:01:56.461Z [error]: 501 - An error occurred during login. Error: TypeError: Cannot read properties of undefined (reading 'role') - /user/login - POST - ::1
 2023-10-29T21:04:06.447Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
 2023-10-29T21:06:05.279Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rueshb already exists. - /user/register - POST - ::1
+2023-10-29T23:18:58.070Z [error]: 400 - Invalid token. - /user/verify-account?token=819bada8-1d6f-46c1-83c2-9fcf502d2ee5 - GET - ::1
+2023-10-29T23:18:58.139Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-29T23:19:08.471Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rueshb already exists. - /user/register - POST - ::1

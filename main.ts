@@ -40,7 +40,7 @@ app.use('/', (req, res) => {
 app.use(ErrorHandler);
 
 
-app.listen(PORT, () => {
+app.listen(2077, () => {
     console.log(`Server is ON and running on PORT: ${PORT}`);
     db.initialize().then(() => {
         console.log(`Connected to DB dude!`);
