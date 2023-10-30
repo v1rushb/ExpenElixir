@@ -22,10 +22,6 @@ app.use('/expense', expenseRouter);
 app.use('/category', categoryRouter);
 
 
-app.get('/', (req, res) => {
-    res.status(404).send('Not Found');
-});
-
 app.get('/health', (req, res) => {
     logger.info('Full HP [200] - /health - GET');
     res.status(200).send('Full HP');
