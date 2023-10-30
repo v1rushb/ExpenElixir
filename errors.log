@@ -725,3 +725,22 @@
 2023-10-30T15:54:14.635Z [error]: undefined - Cannot read properties of undefined (reading 'user') - /expense/analytics/expenses-by-category - GET - ::1
 2023-10-30T16:00:57.431Z [error]: 401 - Unauthorized - /category - GET - ::1
 2023-10-30T16:01:02.841Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T17:35:54.644Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:36:47.549Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:37:02.496Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:37:15.761Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:37:20.059Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:41:11.152Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:41:22.920Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T17:42:04.935Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-30T18:01:41.147Z [error]: 400 - Invalid token. - /user/verify-account?token=e8947c11-e7aa-4b5a-9a4e-d7ddb3cff3c8 - GET - ::1
+2023-10-30T18:08:11.215Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-30T18:08:35.250Z [error]: 401 - Invalid password - /user/login - POST - ::1
+2023-10-30T18:12:02.172Z [error]: 404 - Category not found. - /expense - POST - ::1
+2023-10-30T18:19:46.884Z [error]: 400 - Card expired. - /user/upgrade-to-business - POST - ::1
+2023-10-30T18:19:58.546Z [error]: 400 - Insufficient funds. - /user/upgrade-to-business - POST - ::1
+2023-10-30T18:21:40.753Z [error]: 409 - User with email: 211111@ppu.edu.ps or username: bainb1 already exists. - /user/business/add-user - POST - ::1
+2023-10-30T18:24:01.683Z [error]: 401 - Unauthorized - /category - POST - ::1
+2023-10-30T18:24:07.898Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T18:27:27.905Z [error]: 409 - User with email: 2111211@ppu.edu.ps or username: bainb1 already exists. - /user/business/add-user - POST - ::1
+2023-10-30T18:30:19.436Z [error]: undefined - fetch failed - /expense/analytics/expenses-by-category - GET - ::1

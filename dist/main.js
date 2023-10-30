@@ -13,7 +13,7 @@ import { checkForSubscriptionValidation, checkForVerification } from './controll
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-const PORT = process.env.PORT || 2077;
+const PORT = process.env.PORT || 2073;
 app.use('/user', userRouter);
 app.use('/income', incomeRouter);
 app.use('/expense', expenseRouter);
@@ -27,7 +27,7 @@ app.use('/', (req, res) => {
     res.status(404).send('Route Does not exist');
 });
 app.use(ErrorHandler);
-app.listen(2073, () => {
+app.listen(PORT, () => {
     console.log(`Server is ON and running on PORT: ${PORT}`);
     db.initialize().then(() => {
         console.log(`Connected to DB dude!`);

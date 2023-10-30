@@ -8,10 +8,10 @@ import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
 import businessUser from '../middlewares/businessUser.js';
 import { stripe } from '../stripe-config.js';
-import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcrypt';
+import { upgradeToBusiness } from '../controllers/Business.js';
 const router = express.Router();
 //registering a new user using the insertUser function from the User controller.
 //ps: do the the error handling thingy whenever you can. (mid priority)

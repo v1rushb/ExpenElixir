@@ -525,7 +525,6 @@ const getFireAdvice = async (inputArr: { username: string, userId: string, incom
     const res: ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I fire? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason. Dont include 'Section 1 or Section 2' in your response. just give the information`)
     return res.text.toString();
 }
-
 export {
     createUserUnderRoot,
     deleteDescendant,

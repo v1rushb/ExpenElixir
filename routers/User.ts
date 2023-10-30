@@ -8,13 +8,13 @@ import logger from '../logger.js';
 import { CustomError } from '../CustomError.js';
 import businessUser from '../middlewares/businessUser.js';
 import { stripe } from '../stripe-config.js';
-import { upgradeToBusiness } from '../controllers/Business.js';
 import getCards from '../middlewares/cards.js';
 import { Gen } from '../@types/generic.js';
 import IAMAuth from '../middlewares/IAMAuth.js';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt, { hash } from 'bcrypt';
 import { sendEmail } from '../utils/sesServiceAws.js';
+import { upgradeToBusiness } from '../controllers/Business.js';
 
 const router = express.Router();
 

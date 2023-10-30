@@ -37,7 +37,7 @@ const insertUser = async (payload: Gen.User): Promise<Users> => {
             const verificationToken = uuidv4();
             newUser.verificationToken = verificationToken;
             
-            const host = process.env.HOST || 'localhost:2077';
+            const host = process.env.HOST || 'localhost:2073';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
             const emailBody = "Dear User,\n\nThank you for registering. To complete your account setup, please verify your account by clicking the link below:\n" + verificationLink + "\n\nIf you didn't create this account, you can safely ignore this email.\n\nBest regards,\nYour Company Support Team";
             const emailSubject = 'ExpenElixir Email Verification';
@@ -179,7 +179,7 @@ const checkForSubscriptionValidation = () => {
 }
 
 const sendResetPasswordEmail = async (payload: Gen.sendResetPasswordEmail): Promise<void> => {
-  const host = process.env.HOST || 'localhost:2000';
+  const host = process.env.HOST || 'localhost:2073';
   const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
   const emailSubject = 'ExpenElixir User Password Reset';
   const emailBody = "Dear User,\n\nWe received a request to reset your password. If you didn't make the request, please ignore this email.\n\nTo reset your password, click the link below:\n" + resetLink + "\n\nThis link will expire in 30 minutes.\n\nBest regards,\nExpenElixir Support team.";
