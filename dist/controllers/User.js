@@ -38,7 +38,7 @@ const insertUser = async (payload) => {
         });
     }
     catch (err) {
-        if (err.code?.includes('ER_DUP_ENTRY') || err instanceof CustomError) {
+        if (err.code?.includes('ER_DUP_ENTRY') || err instanceof CustomError && err.statusCode === 409) {
             throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
         }
         throw new CustomError(err, 500);

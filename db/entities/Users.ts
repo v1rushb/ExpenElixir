@@ -53,19 +53,19 @@ export class Users extends BaseEntity {
     })
     createdAt: Date;
 
-    @OneToMany(() => Expense, expense => expense.users, { cascade: true })
+    @OneToMany(() => Expense, expense => expense.users, { eager: true, cascade: true })
     expenses: Expense[];
 
-    @OneToMany(() => Category, category => category.users, { cascade: true })
+    @OneToMany(() => Category, category => category.users, { eager: true, cascade: true })
     categories: Category[];
 
-    @OneToMany(() => Income, income => income.user, { cascade: true })
+    @OneToMany(() => Income, income => income.user, { eager: true, cascade: true })
     incomes: Income[];
 
     @ManyToOne(() => Business, business => business.users, { eager: true,onDelete: 'CASCADE' })
     business: Business;
 
-    @OneToOne(() => Profile, profile => profile.user)
+    @OneToOne(() => Profile, profile => profile.user, { eager: true, cascade: true })
     profile: Partial<Profile>;
 
     @OneToOne(() => Business, business => business.userb, {onDelete: "CASCADE" })

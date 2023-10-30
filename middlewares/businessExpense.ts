@@ -18,7 +18,7 @@ router.get('/', authMe, premiumAuth, async (req, res, next): Promise<void> => {
     }).catch(err => next(err));
 });
 
-router.post('/add-user-expense/:id', authMe, premiumAuth, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+router.post('/:id', authMe, premiumAuth, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     addUserExpense({...req.body,id:req.query.id as string, picFile:req.file as Express.MulterS3.File},res).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);

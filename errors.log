@@ -616,3 +616,45 @@
 2023-10-29T23:18:58.070Z [error]: 400 - Invalid token. - /user/verify-account?token=819bada8-1d6f-46c1-83c2-9fcf502d2ee5 - GET - ::1
 2023-10-29T23:18:58.139Z [error]: 404 Not Found - /favicon.ico - GET - ::1
 2023-10-29T23:19:08.471Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rueshb already exists. - /user/register - POST - ::1
+2023-10-30T08:49:03.413Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-30T08:50:07.165Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:50:14.380Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:50:15.296Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:54:27.217Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:54:43.455Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:55:15.547Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:55:37.543Z [error]: 500 - ReferenceError: hi is not defined - /user/register - POST - ::1
+2023-10-30T08:55:47.101Z [error]: 500 - Error: DataSource is not set for this entity. - /user/register - POST - ::1
+2023-10-30T08:55:56.104Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:56:51.334Z [error]: 500 - TypeError: Cannot read properties of null (reading 'isVerified') - /user/register - POST - ::1
+2023-10-30T08:57:07.821Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-30T08:57:09.765Z [error]: 500 - Error: Please verify your email address. - /user/register - POST - ::1
+2023-10-30T08:57:30.199Z [error]: 409 - User with email: cs.bashar.herbawi@gmail.com or username: v1rushb already exists. - /user/register - POST - ::1
+2023-10-30T08:57:53.579Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T08:58:21.767Z [error]: 401 - You are not logged in. - /user/logout - POST - ::1
+2023-10-30T08:59:51.883Z [error]: undefined - Cannot read properties of undefined (reading 'Currency') - /user/balance - GET - ::1
+2023-10-30T09:00:55.825Z [error]: undefined - Cannot read properties of undefined (reading 'Currency') - /user/balance - GET - ::1
+2023-10-30T09:01:30.596Z [error]: undefined - Cannot read properties of undefined (reading 'Currency') - /user/balance - GET - ::1
+2023-10-30T09:02:07.688Z [error]: undefined - Cannot read properties of undefined (reading 'Currency') - /user/balance - GET - ::1
+2023-10-30T09:02:36.286Z [error]: undefined - Cannot read properties of undefined (reading 'Currency') - /user/balance - GET - ::1
+2023-10-30T09:02:37.388Z [error]: undefined - Cannot read properties of undefined (reading 'Currency') - /user/balance - GET - ::1
+2023-10-30T09:07:28.237Z [error]: 401 - Unauthorized - /user/delete-account - DELETE - ::1
+2023-10-30T10:54:14.021Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T10:54:30.759Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T10:54:31.459Z [error]: 400 - Invalid credentials - /user/login - POST - ::1
+2023-10-30T10:56:04.985Z [error]: 404 Not Found - /category/business/ - POST - ::1
+2023-10-30T11:02:22.234Z [error]: 404 Not Found - /expense/business/4351caa9-24bf-4ae1-be44-0f5db2a8073e - POST - ::1
+2023-10-30T11:07:53.196Z [error]: 401 - You are not allowed here. - /user/upgrade-to-business - POST - ::1
+2023-10-30T11:08:01.059Z [error]: 401 - You are not a root user - /expense/business/4351caa9-24bf-4ae1-be44-0f5db2a8073e - POST - ::1
+2023-10-30T11:08:18.986Z [error]: undefined - ER_NO_DEFAULT_FOR_FIELD: Field 'description' doesn't have a default value - /expense/ - POST - ::1
+2023-10-30T11:09:49.376Z [error]: undefined - Property "title" was not found in "Users". Make sure your query is correct. - /expense/business - GET - ::1
+2023-10-30T11:11:34.020Z [error]: 401 - You are not a root user - /expense/business - GET - ::1
+2023-10-30T11:11:35.314Z [error]: 401 - You are not a root user - /expense/business - GET - ::1
+2023-10-30T11:12:00.272Z [error]: 404 Not Found - /favicon.ico - GET - ::1
+2023-10-30T11:27:07.940Z [error]: 401 - Unauthorized - /expense/business - GET - ::1
+2023-10-30T11:27:21.284Z [error]: 401 - Unauthorized - /expense/business - GET - ::1
+2023-10-30T11:28:52.067Z [error]: 401 - Unauthorized - /expense/business - GET - ::1
+2023-10-30T11:29:01.991Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-10-30T11:29:16.504Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
+2023-10-30T11:32:44.709Z [error]: 401 - Unauthorized - /expense/business - GET - ::1
+2023-10-30T11:32:55.688Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1

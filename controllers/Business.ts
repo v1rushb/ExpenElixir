@@ -8,7 +8,7 @@ import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
-import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
+import { currencyConverterFromOtherToUSD, expenseOnProfileCurrency, incomeOnProfileCurrency } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import { v4 as uuidv4 } from 'uuid';
 import { ChatGPTAPI, ChatMessage } from 'chatgpt';
@@ -36,10 +36,10 @@ const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Pr
                 iamId,
             });
             await trans.save(newUser);
-            
+
             const verificationToken = uuidv4();
             newUser.verificationToken = verificationToken;
-            
+
             const host = process.env.HOST || 'localhost:2077';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
             const emailBody = "Dear User,\n\nThank you for registering. To complete your account setup, please verify your account by clicking the link below:\n" + verificationLink + "\n\nIf you didn't create this account, you can safely ignore this email.\n\nBest regards,\nYour Company Support Team";
@@ -75,7 +75,9 @@ const deleteDescendant = async (res: express.Response, descendantID: string): Pr
 };
 
 const businessUsers = async (res: express.Response): Promise<Users[]> => {
-    return await Users.find({ where: { business: res.locals.user.business } }) as Users[];
+
+    const filter = { ...res.locals.filter, where: { business: res.locals.user.business } };
+    return await Users.find(filter) as Users[];
 }
 
 const businessBalance = async (res: express.Response): Promise<number> => {
@@ -98,12 +100,13 @@ const addUserIncome = async (payload: Gen.Income, userID: string, res: express.R
             throw new CustomError(`User not found.`, 404);
         }
         return dataSource.manager.transaction(async trans => {
-
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD")
             const newIncome = Income.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
+                currencyData: JSON.stringify(currency.currencyData),
             });
             await trans.save(newIncome);
             user.incomes.push(newIncome);
@@ -140,9 +143,23 @@ const deleteUserIncome = async (incomeID: string, userID: string, res: express.R
 }
 
 const businessIncome = async (res: express.Response) => {
-    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
-    return users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
-}
+    try {
+        const filter = {
+        ...res.locals.filter,
+        where: { business: res.locals.user.business }
+        };
+        const users: Users[] = await Users.find(filter);
+        const resultPromises = users.map(async user => {
+        const currencyChanged = await incomeOnProfileCurrency(user.incomes, res.locals.user);
+        return currencyChanged.map(income => ({ ...income, userId: user.id }));
+        });
+        const result = await Promise.all(resultPromises);
+        const flatResult = result.flat();
+        return flatResult;
+    } catch (err) {
+        throw err;
+    }
+};
 
 const totalBusinessIncome = async (res: express.Response): Promise<number> => {
     const incomes = await businessIncome(res);
@@ -189,12 +206,13 @@ const addUserExpense = async (payload: Gen.addUserExpense, res: express.Response
             throw new CustomError(`User not found.`, 404);
         }
         return dataSource.manager.transaction(async trans => {
-
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD')
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
+                currencyData: JSON.stringify(currency.currencyData),
                 picURL: payload.picFile?.location
             });
             await trans.save(newExpense);
@@ -217,15 +235,15 @@ const addUserExpense = async (payload: Gen.addUserExpense, res: express.Response
                 let rootEmailBody = '';
                 let rootEmailSubject = '';
 
-                if(category.totalExpenses < category.budget) {
+                if (category.totalExpenses < category.budget) {
                     emailBody = `You are about to reach your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     emailSubject = `You are about to reach your budget limit for ${category.title}`;
                     rootEmailBody = `User ${user.username} is about to reach their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     rootEmailSubject = `User ${user.username} is about to reach their budget limit for ${category.title}`;
-                } else if(category.totalExpenses === category.budget) {
+                } else if (category.totalExpenses === category.budget) {
                     emailBody = `You have reached your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
-                    emailSubject = `You have reached your budget limit for ${category.title}`;  
-                    rootEmailBody = `User ${user.username} has reached their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`; 
+                    emailSubject = `You have reached your budget limit for ${category.title}`;
+                    rootEmailBody = `User ${user.username} has reached their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     rootEmailSubject = `User ${user.username} has reached their budget limit for ${category.title}`;
                 } else {
                     emailBody = `You have exceeded your budget limit for ${category.title}. You have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
@@ -233,9 +251,9 @@ const addUserExpense = async (payload: Gen.addUserExpense, res: express.Response
                     rootEmailBody = `User ${user.username} has exceeded their budget limit for ${category.title}. They have spent ${category.totalExpenses} out of ${category.budget} for ${category.title}.`;
                     rootEmailSubject = `User ${user.username} has exceeded their budget limit for ${category.title}`;
                 }
-                await sendEmail(user.email,emailBody, emailSubject);
-                if(user.id !== res.locals.user.id)
-                    await sendEmail(res.locals.user.email,rootEmailBody, rootEmailSubject);
+                await sendEmail(user.email, emailBody, emailSubject);
+                if (user.id !== res.locals.user.id)
+                    await sendEmail(res.locals.user.email, rootEmailBody, rootEmailSubject);
             }
         });
     } catch (err) {
@@ -274,17 +292,26 @@ const deleteUserExpense = async (payload: Gen.deleteUserExpense, res: express.Re
 
 const businessExpenses = async (res: express.Response) => {
     try {
-        const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
-        const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
-        return result;
+      const filter = {
+        ...res.locals.filter,
+        where: { business: res.locals.user.business }
+      };
+      const users: Users[] = await Users.find(filter);
+      const resultPromises = users.map(async user => {
+        const currencyChanged = await expenseOnProfileCurrency(user.expenses, res.locals.user);
+        return currencyChanged.map(expense => ({ ...expense, userId: user.id }));
+      });
+      const result = await Promise.all(resultPromises);
+      const flatResult = result.flat();
+      return flatResult;
     } catch (err) {
-        throw (err);
+      throw err;
     }
-}
+  };
 
 const totalBusinessExpenses = async (res: express.Response): Promise<number> => { // fix error handling later
     const expenses = await businessExpenses(res);
-    return expenses ? expenses.reduce((acc, expense) => acc + expense.amount, 0) : 0
+    return expenses ? expenses.reduce((acc, expense: any) => acc + expense.amount, 0) : 0
 }
 
 const addUserCategory = async (payload: Gen.Category, userID: string, res: express.Response): Promise<void> => {
@@ -300,7 +327,7 @@ const addUserCategory = async (payload: Gen.Category, userID: string, res: expre
         return dataSource.manager.transaction(async trans => {
 
             const newCategory = Category.create({
-                title: payload.title, description: payload.description,budget: payload.budget
+                title: payload.title, description: payload.description, budget: payload.budget
             });
             await trans.save(newCategory);
             user.categories.push(newCategory);
@@ -337,8 +364,10 @@ const deleteUserCategory = async (categoryID: string, userID: string, res: expre
         throw err;
     }
 }
+
 const businessCategories = async (res: express.Response) => {
-    const users = await Users.find({ where: { business: res.locals.user.business } }) as Users[];
+    const filter = { ...res.locals.filter, where: { business: res.locals.user.business } }
+    const users = await Users.find(filter) as Users[];
     const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
     return result;
 }
@@ -385,11 +414,11 @@ const getFilteredExpenses = async (payload: Gen.getFilteredBusinessExpenses, req
         const maxAmount = Number(payload.maxAmountQuery) || Infinity;
         const userID = payload.userIDQuery;
 
-        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        const filteredExpenses = Expenses.filter((expense: any) => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
         if (!userID)
             return filteredExpenses;
         else {
-            const newFilteredExpenses = filteredExpenses.filter(expense => expense.userId === userID);
+            const newFilteredExpenses = filteredExpenses.filter((expense: any) => expense.userId === userID);
             return newFilteredExpenses;
         }
     } catch (err) {
@@ -475,15 +504,15 @@ const sortRecommendation = (result: { username: string, userId: string, incomeEx
     return result.sort((a, b) => b.incomeExpenseDiff - a.incomeExpenseDiff);
 }
 
-const getAdvice = async (inputArr: {username: string, userId: string, incomeExpenseDiff: number}[])=> {
-        const api = new ChatGPTAPI({apiKey: process.env.CHATGPTAPI_SECRET_KEY || ''});
-        let message = '';
-        for(const user of inputArr) {
-            const {username, incomeExpenseDiff} = user;
-            message+= `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
-        }
-        const res : ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason. Dont include 'Section 1 or Section 2' in your response. just give the information`)
-        return res.text.toString();
+const getAdvice = async (inputArr: { username: string, userId: string, incomeExpenseDiff: number }[]) => {
+    const api = new ChatGPTAPI({ apiKey: process.env.CHATGPTAPI_SECRET_KEY || '' });
+    let message = '';
+    for (const user of inputArr) {
+        const { username, incomeExpenseDiff } = user;
+        message += `User ${username} has an income-expense difference of ${incomeExpenseDiff}.\n`;
+    }
+    const res: ChatMessage = await api.sendMessage(`I will give you an array of objects. each element of that array will contain username, user id and incomeExpenseDiff, incomeExpenseDiff represents income amount (money brought to business) minus expense amount (money taken from business) for each user. and out of this array I want you to tell me which user out of all of these users should I give a promotion? and give me a short reason why should I do that so. data: ${message}, I want your answer to be in 2 section, first section is stating the name of that user ONLY, second one is a breif paragraph that states the reason. Dont include 'Section 1 or Section 2' in your response. just give the information`)
+    return res.text.toString();
 }
 
 const getFireAdvice = async (inputArr: { username: string, userId: string, incomeExpenseDiff: number }[]) => {

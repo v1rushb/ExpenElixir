@@ -6,7 +6,7 @@ import { Income } from '../db/entities/Income.js';
 import { Expense } from '../db/entities/Expense.js';
 import { Category } from '../db/entities/Category.js';
 import { Business } from '../db/entities/Business.js';
-import { currencyConverterFromOtherToUSD } from '../utils/currencyConverter.js';
+import { currencyConverterFromOtherToUSD, expenseOnProfileCurrency, incomeOnProfileCurrency } from '../utils/currencyConverter.js';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import { v4 as uuidv4 } from 'uuid';
 import { ChatGPTAPI } from 'chatgpt';
@@ -65,7 +65,8 @@ const deleteDescendant = async (res, descendantID) => {
     }
 };
 const businessUsers = async (res) => {
-    return await Users.find({ where: { business: res.locals.user.business } });
+    const filter = { ...res.locals.filter, where: { business: res.locals.user.business } };
+    return await Users.find(filter);
 };
 const businessBalance = async (res) => {
     try {
@@ -86,11 +87,13 @@ const addUserIncome = async (payload, userID, res) => {
             throw new CustomError(`User not found.`, 404);
         }
         return dataSource.manager.transaction(async (trans) => {
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || "USD");
             const newIncome = Income.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 incomeDate: payload.incomeDate,
                 description: payload.description,
+                currencyData: JSON.stringify(currency.currencyData),
             });
             await trans.save(newIncome);
             user.incomes.push(newIncome);
@@ -125,8 +128,23 @@ const deleteUserIncome = async (incomeID, userID, res) => {
     }
 };
 const businessIncome = async (res) => {
-    const users = await Users.find({ where: { business: res.locals.user.business } });
-    return users.flatMap(user => user.incomes.map(income => ({ ...income, userId: user.id })));
+    try {
+        const filter = {
+            ...res.locals.filter,
+            where: { business: res.locals.user.business }
+        };
+        const users = await Users.find(filter);
+        const resultPromises = users.map(async (user) => {
+            const currencyChanged = await incomeOnProfileCurrency(user.incomes, res.locals.user);
+            return currencyChanged.map(income => ({ ...income, userId: user.id }));
+        });
+        const result = await Promise.all(resultPromises);
+        const flatResult = result.flat();
+        return flatResult;
+    }
+    catch (err) {
+        throw err;
+    }
 };
 const totalBusinessIncome = async (res) => {
     const incomes = await businessIncome(res);
@@ -170,11 +188,13 @@ const addUserExpense = async (payload, res) => {
             throw new CustomError(`User not found.`, 404);
         }
         return dataSource.manager.transaction(async (trans) => {
+            const currency = await currencyConverterFromOtherToUSD(Number(payload.amount), payload.currencyType || 'USD');
             const newExpense = Expense.create({
                 title: payload.title,
-                amount: Number(payload.amount),
+                amount: currency.amount,
                 expenseDate: payload.expenseDate,
                 description: payload.description,
+                currencyData: JSON.stringify(currency.currencyData),
                 picURL: payload.picFile?.location
             });
             await trans.save(newExpense);
@@ -254,12 +274,21 @@ const deleteUserExpense = async (payload, res) => {
 };
 const businessExpenses = async (res) => {
     try {
-        const users = await Users.find({ where: { business: res.locals.user.business } });
-        const result = users.flatMap(user => user.expenses.map(expense => ({ ...expense, userId: user.id })));
-        return result;
+        const filter = {
+            ...res.locals.filter,
+            where: { business: res.locals.user.business }
+        };
+        const users = await Users.find(filter);
+        const resultPromises = users.map(async (user) => {
+            const currencyChanged = await expenseOnProfileCurrency(user.expenses, res.locals.user);
+            return currencyChanged.map(expense => ({ ...expense, userId: user.id }));
+        });
+        const result = await Promise.all(resultPromises);
+        const flatResult = result.flat();
+        return flatResult;
     }
     catch (err) {
-        throw (err);
+        throw err;
     }
 };
 const totalBusinessExpenses = async (res) => {
@@ -314,7 +343,8 @@ const deleteUserCategory = async (categoryID, userID, res) => {
     }
 };
 const businessCategories = async (res) => {
-    const users = await Users.find({ where: { business: res.locals.user.business } });
+    const filter = { ...res.locals.filter, where: { business: res.locals.user.business } };
+    const users = await Users.find(filter);
     const result = users.flatMap(user => user.categories.map(category => ({ ...category, userId: user.id })));
     return result;
 };
@@ -355,11 +385,11 @@ const getFilteredExpenses = async (payload, req, res) => {
         const minAmount = Number(payload.minAmountQuery) || -Infinity;
         const maxAmount = Number(payload.maxAmountQuery) || Infinity;
         const userID = payload.userIDQuery;
-        const filteredExpenses = Expenses.filter(expense => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
+        const filteredExpenses = Expenses.filter((expense) => expense.amount >= minAmount && expense.amount <= maxAmount && expense.title.toLowerCase().includes(search));
         if (!userID)
             return filteredExpenses;
         else {
-            const newFilteredExpenses = filteredExpenses.filter(expense => expense.userId === userID);
+            const newFilteredExpenses = filteredExpenses.filter((expense) => expense.userId === userID);
             return newFilteredExpenses;
         }
     }

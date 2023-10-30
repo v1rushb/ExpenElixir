@@ -14,7 +14,7 @@ router.get('/', authMe, premiumAuth, async (req, res, next) => {
         res.status(200).send(expense);
     }).catch(err => next(err));
 });
-router.post('/add-user-expense/:id', authMe, premiumAuth, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
+router.post('/:id', authMe, premiumAuth, validateExpense, uImage('expen-elixir-bucket').single('expenImage'), async (req, res, next) => {
     addUserExpense({ ...req.body, id: req.query.id, picFile: req.file }, res).then(expense => {
         logger.info(`User ${req.body.username} added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);

@@ -16,6 +16,7 @@ import logger from '../logger.js';
 const insertUser = async (payload: Gen.User): Promise<Users> => {
   try {
     const user = await Users.findOne({ where: { email: payload.email } }) as Users;
+
     if (user) {
       if (!user.isVerified) {
         throw new CustomError('Please verify your email address.', 423);
@@ -44,7 +45,7 @@ const insertUser = async (payload: Gen.User): Promise<Users> => {
             return await trans.save(newUser);
         });
     } catch (err: any) {
-        if (err.code?.includes('ER_DUP_ENTRY') || err instanceof CustomError) {
+        if (err.code?.includes('ER_DUP_ENTRY') || err instanceof CustomError && err.statusCode === 409) {
             throw new CustomError(`User with email: ${payload.email} or username: ${payload.username} already exists.`, 409);
         }
         throw new CustomError(err, 500);

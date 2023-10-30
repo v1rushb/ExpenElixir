@@ -6,7 +6,6 @@ import { Income } from "./entities/Income.js";
 import { Profile } from "./entities/Profile.js";
 import { Business } from "./entities/Business.js";
 
-console.log(process.env);
 
 const dataSource = new DataSource({
     type: "mysql",
