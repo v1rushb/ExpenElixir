@@ -1,7 +1,86 @@
 # ExpenElixir
 Magical Money Manager
 ---
+## Table of Content
 
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Installation Setup](#installation-setup)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+
+## Features
+
+- **Security:**
+  - User Authentication & Authorization (secure access control)
+- **User Management:**
+  - Email Verification (confirm user accounts)
+  - Password Recovery (reset forgotten passwords)
+- **Cloud Integration & Storage:**
+  - AWS S3 (file uploads and storage)
+  - Amazon RDS (scalable data storage)
+- **Payment Processing:**
+  - Stripe (secure payment transactions)
+- **Notifications:**
+  - Email Notifications (timely user communication)
+- **Continuous Integration/Continuous Deployment:**
+  - AWS CodePipeline (automated deployment workflows)
+  - DockerHub
+- **User Experience:**
+  - Fast Filtering (efficient search capabilities)
+- **Artificial Intelligence:**
+  - ChatGPT Integration (AI-driven analytics and interactions)
+
+## Tech Stack
+- **Core Programming Languages:**
+  - **TypeScript** (primary)
+  - **JavaScript** (when necessary)
+- **Server Environment:** Node.js
+- **Primary Frameworks:** Express.js
+- **Database Intergration:** TypeORM (for database management)
+- **Payment Processing:** Stripe
+- **Storage Solutions:** Amazon S3 (for static file hosting and management)
+- **Continuous Integration/Continous Deployment:**
+  - AWS CLI
+  - DockerHub
+ 
+## Installation setup
+
+### Prerequisites
+
+Before proceeding, ensure that you have `git` and `Node.js` with `npm` installed on your machine.
+
+### Step 1: Clone the Repository
+
+Clone the project repository to your local machine with the following command:
+
+```bash
+git clone git@github.com:V1rushB/ExpenElixir.git .
+```
+
+### Step 2: Install dependencies
+```bash
+npm install
+```
+### Step 3: Environment Configuration
+The default port for the project is 2077. To change that just set up the `PORT` environment variable
+when using docker ensure that you have mapped the ports correctly to avoid any run time issue.
+
+### Step 4: Running the applicaiton
+To run the application you can use this command:
+```bash
+npm run dev
+```
+
+### Deployment notes:
+Remember to map the following:
+Port `80` to the application's `PORT` for HTTP
+Port `443` to the application's `PORT` for HTTPS
+
+### Other notes.
+you'll also need to setup other environment variables in order for the application to run properly.
+
+# Documentation
 ## Register API Documentation
 
 ### Endpoint
@@ -2230,3 +2309,6 @@ User tried to access without being logged in.
 
 
 - `500`: Internal Server Error
+
+## Contributing
+We sincerely appreciate your interest and contributions to our project. If you encounter any issues or have suggestions for enhancements, we welcome you to open an issue or submit a pull request. We strive for collaborative improvement and value each contribution, big or small. Please ensure that any pull requests follow the project's guidelines, are well-documented, and pass all tests. Your efforts help us build something truly remarkable are really appreciated.
