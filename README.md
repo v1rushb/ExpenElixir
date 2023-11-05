@@ -2312,3 +2312,5 @@ User tried to access without being logged in.
 
 ## Contributing
 We sincerely appreciate your interest and contributions to our project. If you encounter any issues or have suggestions for enhancements, we welcome you to open an issue or submit a pull request. We strive for collaborative improvement and value each contribution, big or small. Please ensure that any pull requests follow the project's guidelines, are well-documented, and pass all tests. Your efforts help us build something truly remarkable are really appreciated.
+
+## Haters will say it's a bad project. so if you're done reading we would really love for you to **STAR** this repo!
