@@ -8,12 +8,7 @@ import { Gen } from '../@types/generic.js';
 const getExpensesByCategory = async (res: express.Response): Promise<Gen.getExpenesByCategoryReturn[]>=> {
     const expensesByCategory: { [key: string]: number } = {};
     const result: {category: string, amount: number}[] = [];
-
-    // const filteredExpenses = res.locals.user.expenses.filter((expense: Expense) => {
-    //     const expenseDate = new Date(expense.expenseDate);
-    //     return expenseDate >= startDate && expenseDate <= endDate;
-    //   });
-
+    
     console.log(res.locals.user.expenses.category);
     res.locals.user.expenses.forEach((expense: Expense)=> {
         if (expense.category) {

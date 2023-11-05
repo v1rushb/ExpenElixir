@@ -309,7 +309,7 @@ const businessExpenses = async (res: express.Response) => {
     }
   };
 
-const totalBusinessExpenses = async (res: express.Response): Promise<number> => { // fix error handling later
+const totalBusinessExpenses = async (res: express.Response): Promise<number> => {
     const expenses = await businessExpenses(res);
     return expenses ? expenses.reduce((acc, expense: any) => acc + expense.amount, 0) : 0
 }
@@ -405,7 +405,7 @@ const upgradeToBusiness = async (res: express.Response) => {
 const getFilteredExpenses = async (payload: Gen.getFilteredBusinessExpenses, req: express.Request, res: express.Response) => {
 
     try {
-        const Expenses = await businessExpenses(res);// put authme in router, else it wont work.
+        const Expenses = await businessExpenses(res);
 
         if (!payload.searchQuery && !payload.minAmountQuery && !payload.maxAmountQuery && !payload.userIDQuery)
             return Expenses;
@@ -460,7 +460,7 @@ const modifyUserExpense = async (expenseID: string, userID: string, payload: Gen
     } catch (err) {
         throw err;
     }
-} // this controller is not done yet.
+}
 
 const modifyUserCategory = async (categoryID: string, userID: string, payload: Gen.Category, res: express.Response) => {
     try {
