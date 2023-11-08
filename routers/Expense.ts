@@ -1,6 +1,5 @@
 import express from 'express';
-import { Expense } from '../db/entities/Expense.js';
-import { deleteAllExpenses, deleteExpense, getExpenses, getFilteredExpenses, insertExpense, totalExpenses, updateExpense } from '../controllers/Expense.js';
+import { deleteAllExpenses, deleteExpense, getExpenses, insertExpense, totalExpenses, updateExpense } from '../controllers/Expense.js';
 import authMe from '../middlewares/Auth.js';
 import logger from '../logger.js';
 import uImage from '../utils/uploadS3Image.js';
@@ -13,50 +12,45 @@ const router = express.Router();
 
 
 router.post('/', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
-
     insertExpense({ ...req.body, picFile: req.file as Express.MulterS3.File }, res).then(expense => {
-        logger.info(`User ${req.body.username} added a new Expense!`);
+        logger.info(`${res.locals.user.username} has added a new Expense!`);
         res.status(200).send(`You have successfully added a new Expense!`);
     }).catch(err => next(err));
 });
 
 router.get('/', authMe, async (req, res, next) => {
-    getExpenses(req, res).then(expense => {
-        logger.info(`User ${req.body.username} requested all Expenses!`);
-        res.status(200).send(expense);
+    getExpenses(req, res).then(expenses => {
+        logger.info(`${req.body.username} has requested all of their Expenses!`);
+        res.status(200).send(expenses);
     }).catch(err => next(err));
 });
 
 router.get('/total', authMe, async (req, res, next) => {
-    totalExpenses(res).then(expense => {
-        logger.info(`User ${req.body.username} requested total Expenses!`);
-        res.status(200).send(`Total expenses: ${expense} ${res.locals.user.profile.Currency}`);
+    totalExpenses(res).then(total => {
+        logger.info(`${res.locals.user.username} has requested the total amount of their Expenses' worth.`);
+        res.status(200).send(`Total expenses: ${total} ${res.locals.user.profile.Currency}`);
     }).catch(err => next(err));
 });
 
 
 router.delete('/all-expenses', authMe, async (req, res, next) => {
-    deleteAllExpenses(res).then(expense => {
-        res.status(200).send(`You have successfully deleted all expenses!`);
+    deleteAllExpenses(res).then(() => {
+        logger.info(`${res.locals.user.username} has deleted all of their Expenses.`);
+        res.status(200).send(`You have successfully deleted all of your Expenses!`);
     }).catch(err => next(err));
 });
 
 router.delete('/:id', authMe, async (req, res, next) => {
     deleteExpense({ id: req.params.id }).then(expense => {
-        logger.info(`User ${req.body.username} deleted expense ${req.params.id}!`);
-        res.status(200).send(`You have successfully deleted the expense with id: ${req.params.id}!`);
+        logger.info(`${res.locals.user.username} has deleted an Expense with the id [${req.params.id}]`);
+        res.status(200).send(`You have successfully deleted the Expense! too much eddies?`);
     }).catch(err => next(err));
-});
-
-router.get('/all', authMe, async (req, res, next) => { // testing purposes
-    const expenses = await Expense.find();
-    res.status(200).send(expenses);
 });
 
 router.put('/:id', authMe, uImage('expen-elixir-bucket').single('expenImage'), validateExpense, async (req, res, next) => {
     updateExpense(req.params.id, { ...req.body, picFile: req.file as Express.MulterS3.File }, res).then(expense => {
-        logger.info(`User ${req.body.username} modified expense ${req.body.id}!`);
-        res.status(200).send(`You have successfully modified the expense with id: ${req.params.id}!`);
+        logger.info(`${res.locals.user.username} has modified an Expense with the id [${req.params.id}]`);
+        res.status(200).send(`You have successfully modified the expense with id [${req.params.id}]`);
     }).catch(err => next(err));
 });
 

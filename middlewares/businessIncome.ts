@@ -11,7 +11,7 @@ const router = express.Router();
 
 router.post('/add-user-income/:id', authMe, premiumAuth, validateIncome, async (req,res,next): Promise<void> => {
     addUserIncome(req.body,req.params.id as string,res).then(()=> {
-        logger.info(`User ${res.locals.user.username} added income ${req.params.id} for user with id ${req.params.id}!`);
+        logger.info(`${res.locals.user.username} has added an income to their business!`);
         res.status(201).send(`You have successfully added a new income!`);
     }).catch(err => next(err));
 });
@@ -25,14 +25,14 @@ router.delete('/delete-user-income/:id', authMe, premiumAuth, async (req,res,nex
 
 router.get('/',authMe, premiumAuth, async (req, res, next): Promise<void> => {
     businessIncome(res).then(income => {
-        logger.info(`User ${res.locals.user.username} requested all Incomes!`);
+        logger.info(`${res.locals.user.username} requested all Incomes under their business!`);
         res.status(200).send(income);
     }).catch(err => next(err));
 });
 
 router.put('/:id',authMe, premiumAuth, validateIncome, async (req, res, next): Promise<void> => {
     modifyIncome({...req.body,id: req.params.id},res).then(()=> {
-        logger.info(`User ${res.locals.user.username} modified income ${req.params.id}!`);
+        logger.info(`${res.locals.user.username} has modified income ${req.params.id}!`);
         res.status(200).send(`You have successfully modified the income!`);
     }).catch(err => next(err));
 });

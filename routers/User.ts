@@ -10,16 +10,11 @@ import businessUser from '../middlewares/businessUser.js';
 import { stripe } from '../stripe-config.js';
 import getCards from '../middlewares/cards.js';
 import { Gen } from '../@types/generic.js';
-import IAMAuth from '../middlewares/IAMAuth.js';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt, { hash } from 'bcrypt';
-import { sendEmail } from '../utils/sesServiceAws.js';
 import { upgradeToBusiness } from '../controllers/Business.js';
 
 const router = express.Router();
-
-//registering a new user using the insertUser function from the User controller.
-//ps: do the the error handling thingy whenever you can. (mid priority)
 
 router.post('/register', validateUser, async (req, res, next) => {
     insertUser(req.body).then(user => {
@@ -90,15 +85,6 @@ router.get('/balance', authMe, async (req, res, next) => {
         logger.info(`200 OK - /user/totalIncome - GET - ${req.ip}`);
         return res.status(200).send(`Your total income is: ${data} ${res.locals.user.profile.Currency}.`);
     }).catch(err => next(err));
-});
-
-router.get('/', authMe, async (req, res, next) => { //delete this
-    try {
-        const users = await Users.find();
-        res.status(200).send(users);
-    } catch (err) {
-        return next(new CustomError(`An error occurred while trying to get all users. Error: ${err}`, 500));
-    }
 });
 
 router.post('/upgrade-to-business', authMe, getCards, async (req, res, next) => {
@@ -224,7 +210,7 @@ router.post('/reset-password', validatePassword, async (req, res, next) => {
         res.clearCookie("userEmail");
         res.clearCookie("token");
         res.clearCookie("loginDate");
-        res.status(200).send('Please check your mailbox for to continue in resetting your passwrd.');
+        res.status(200).send('Please check your mailbox to continue in resetting your password.');
     } catch (err) {
         next(err);
     }

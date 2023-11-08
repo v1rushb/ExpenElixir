@@ -15,7 +15,7 @@ router.get('/', authMe, async (req, res, next) => {
         category: query.category as string,
     };
     getFilteredExpenses(payload, req, res).then(expense => {
-        logger.info(`User ${req.body.username} requested all Expenses!`);
+        logger.info(`${res.locals.user.username} has requested filtered Expenses according to the following query: ${JSON.stringify(payload)}`);
         res.status(200).send(expense);
     }).catch(err => next(err));
 });

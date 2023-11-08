@@ -1,8 +1,6 @@
 import express from 'express';
 import {recommendation, getAdvice, sortRecommendation, getFireAdvice} from '../controllers/Business.js';
 import { CustomError } from '../CustomError.js';
-import authMe from './Auth.js';
-import {ChatGPTAPI, ChatMessage} from 'chatgpt';
 
 const router = express.Router();
 

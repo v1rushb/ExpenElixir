@@ -1,7 +1,6 @@
 import express from 'express';
 import dataSource from "../db/dataSource.js";
 import { Category } from "../db/entities/Category.js";
-import jwt from 'jsonwebtoken';
 import { Users } from '../db/entities/Users.js';
 import { Gen } from '../@types/generic.js';
 import { CustomError } from '../CustomError.js';
@@ -21,7 +20,7 @@ const insertCategory = async (payload: Gen.Category, res: express.Response): Pro
                 relations: ["categories"],
             });
             if (!user) {
-                throw new CustomError(`User not found.`, 404); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new CustomError(`User not found.`, 404);
             }
             user.categories.push(newCategory);
             await trans.save(user);
@@ -34,7 +33,7 @@ const insertCategory = async (payload: Gen.Category, res: express.Response): Pro
     }
 }
 
-const deleteAllCategory = async (res: express.Response) => {
+const deleteAllCategories = async (res: express.Response) => {
     await Category.delete({ users: new EqualOperator(res.locals.user.id) });
 }
 
@@ -92,7 +91,7 @@ const modifyCategory = async (payload: Gen.modifyCategory, res: express.Response
 
 export {
     insertCategory,
-    deleteAllCategory,
+    deleteAllCategories,
     deleteCategory,
     totalCategory,
     modifyCategory,
