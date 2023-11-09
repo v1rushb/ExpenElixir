@@ -25,7 +25,7 @@ const insertIncome = async (payload: Gen.insertIncome, res: express.Response) =>
                 relations: ["incomes"],
             });
             if (!user) {
-                throw new Error("Session terminated. You have to log in again!"); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new Error("Session terminated. You have to log in again!");
             }
             user.incomes.push(newIncome);
             await trans.save(user);
@@ -99,8 +99,6 @@ const getIncome = async (req: express.Request, res: express.Response): Promise<I
         return results as unknown as Promise<Income[]>;
 
     } catch (err: unknown) {
-        console.log(err);
-
         if (err instanceof CustomError) {
             throw new CustomError(err.message, err.statusCode);
         }

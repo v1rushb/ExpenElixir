@@ -40,7 +40,7 @@ const createUserUnderRoot = async (payload: Gen.User, res: express.Response): Pr
             const verificationToken = uuidv4();
             newUser.verificationToken = verificationToken;
 
-            const host = process.env.HOST || 'localhost:2073';
+            const host = process.env.HOST || 'localhost:2077';
             const verificationLink = 'http://' + host + '/user/verify-account?token=' + verificationToken;
             const emailBody = "Dear User,\n\nThank you for registering. To complete your account setup, please verify your account by clicking the link below:\n" + verificationLink + "\n\nIf you didn't create this account, you can safely ignore this email.\n\nBest regards,\nYour Company Support Team";
             const emailSubject = 'EpenElixir Email Verification';

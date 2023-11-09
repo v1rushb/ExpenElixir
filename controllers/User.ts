@@ -299,6 +299,119 @@ const logMe = async (req: express.Request, res: express.Response): Promise<void>
   }
 }
 
+const deleteMe = async (req: express.Request, res: express.Response): Promise<void> => {
+  const user = res.locals.user;
+  try {
+      if(user?.profile?.role === 'User')
+          throw new CustomError(`You are not allowed to delete your account.`, 400);
+
+          await deleteUser(res).then(() => {
+          logger.info(`200 OK - /user/delete-account - DELETE - ${req.ip}`);
+          res.clearCookie("userEmail");
+          res.clearCookie("token");
+          res.clearCookie("loginDate");
+          res.status(200).send(`Your account has been deleted successfully.`);
+      }).catch(err => {
+        throw err
+      });
+  } catch (err) {
+      throw err;
+  }
+}
+
+const verifyAccount = async (req: express.Request, res: express.Response): Promise<string> => {
+    try {
+      const { token } = req.query;
+      if (!token)
+          throw new CustomError(`Invalid token.`, 400);
+
+      const user = await Users.findOne({ where: { verificationToken: token as string } });
+      if (!user)
+          throw new CustomError(`Invalid token.`, 400);
+
+      user.isVerified = true;
+      user.verificationToken = ' ';
+      await user.save();
+      return user.username;
+    } catch (err) {
+        throw err;
+    }
+}
+
+const resetPassword = async (req: express.Request, res: express.Response): Promise<void> => {
+    const { email, newPassword } = req.body;
+    try {
+        if (!email) {
+            throw new CustomError('Email is required', 400);
+        }
+        if (!newPassword) {
+            throw new CustomError('new password is required', 400);
+        }
+        const user = await Users.findOne({ where: { email } });
+
+        if (!user) {
+            throw new CustomError('User not found', 404);
+        }
+
+        if (bcrypt.compareSync(newPassword, user.password))
+            throw new CustomError('You cannot use your old password.', 400);
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        user.newHashedPassword = hashedPassword;
+        const resetToken = uuidv4();
+        user.resetToken = resetToken;
+        user.resetTokenExpiration = new Date(Date.now() + 300000);
+        await sendResetPasswordEmail({ email: email, token: resetToken });
+        await user.save();
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+    } catch (err) {
+      throw err;
+    }
+}
+
+const resetPasswordEmail = async (req: express.Request, res: express.Response): Promise<void> => {
+    const { token } = req.query;
+    try {
+        const user = await Users.findOne({ where: { resetToken: token as string } });
+        if (!user || !token)
+            throw new CustomError(`Invalid token.`, 400);
+
+        if (user.resetTokenExpiration && user.resetTokenExpiration < new Date(Date.now()))
+            throw new CustomError(`Token expired.`, 400);
+
+        user.password = user.newHashedPassword ? user.newHashedPassword : user.password;
+        user.resetToken = '';
+        user.resetTokenExpiration = undefined;
+        user.newHashedPassword = '';
+        await user.save();
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+    } catch (err) {
+      throw err;
+    }
+}
+
+const updateUser = async (req: express.Request, res: express.Response): Promise<void> => {
+    try {
+      const user = res.locals.user;
+      const { username, email, password } = req.body;
+      if (await bcrypt.compare(password, user.password)) {
+          if (username)
+              user.username = username;
+          if (email)
+              user.email = email;
+          if (password)
+              user.password = await bcrypt.hash(password, 10);
+          await user.save();
+      }
+      throw new CustomError('Invalid password.', 400);
+    } catch (err) {
+      throw err;
+    }
+}
+
 export {
   insertUser,
   login,
@@ -310,4 +423,9 @@ export {
   logout,
   upgradeToBusinessUser,
   logMe,
+  deleteMe,
+  verifyAccount,
+  resetPassword,
+  resetPasswordEmail,
+  updateUser,
 }

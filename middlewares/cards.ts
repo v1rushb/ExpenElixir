@@ -1,7 +1,6 @@
 import express from 'express'
 import { Gen } from '../@types/generic.js'
 
-//This middleware serves as a temporary solution to the lack of a real payment system
 const makeCardsMiddleware = (req: express.Request,res: express.Response,next: express.NextFunction) => {
     const cards: Gen.card[] = [
         {
@@ -28,7 +27,7 @@ const makeCardsMiddleware = (req: express.Request,res: express.Response,next: ex
             card_cvc: 123,
             amount: 10000.72,
         }
-    ]; // first element is 3 days ago, second element is 5 minutes from now, third element is 1 hour from now
+    ];
 
     res.locals.cards = cards;
     next();

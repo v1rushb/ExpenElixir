@@ -89,7 +89,7 @@ const validateIncome = async (req: express.Request, res: express.Response, next:
     }
 }
 
-const validateCategory = async (req: express.Request, res: express.Response, next: express.NextFunction) => { //ik making this whole code for one metafield seems ridiculous but i'm doing it anyway ;P
+const validateCategory = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     try {
         if (!req.body)
             throw new CustomError(`Empty body!`, 400);

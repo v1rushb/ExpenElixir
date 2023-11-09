@@ -9,7 +9,6 @@ const getExpensesByCategory = async (res: express.Response): Promise<Gen.getExpe
     const expensesByCategory: { [key: string]: number } = {};
     const result: {category: string, amount: number}[] = [];
     
-    console.log(res.locals.user.expenses.category);
     res.locals.user.expenses.forEach((expense: Expense)=> {
         if (expense.category) {
             if (expensesByCategory[expense.category.title]) {
@@ -22,7 +21,6 @@ const getExpensesByCategory = async (res: express.Response): Promise<Gen.getExpe
     for(const [category,amount] of Object.entries(expensesByCategory)) {
         result.push({category,amount});
     }
-    console.log(result);
     return result;
 }
 

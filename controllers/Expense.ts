@@ -123,37 +123,6 @@ const getExpenses = async (req: express.Request, res: express.Response): Promise
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-
-// const getFilteredExpenses = async (req: express.Request, res: express.Response): Promise<Expense[]> => {
-//     try {
-//         const userId = req.cookies['userId'];
-//         const search = req.query.search?.toString().toLowerCase() || '';
-//         const minAmount = Number(req.query.minAmount) || 0
-//         const maxAmount = Number(req.query.maxAmount) || Infinity
-//         const expense = await Users.findOne({
-//             where: { id: userId },
-//             relations: ['expenses'],
-//         });
-//         if (!expense) throw new CustomError('User not found', 404);
-
-//         const filteredExpenses: Expense[] = expense.expenses.filter(expense => {
-//             return expense.amount >= minAmount && expense.amount <= maxAmount &&
-//                 expense.title.toLowerCase().includes(search);
-//         });
-
-//         const expenseOnProfileCurrency = await Promise.all(
-//             filteredExpenses.map(async (expense) => {
-//                 const amount = await currencyConverterFromUSDtoOther(expense.amount, res.locals.user.profile.Currency, expense.data);
-//                 return { ...expense, amount };
-//             })
-//         );
-
-//         return expenseOnProfileCurrency as unknown as Promise<Expense[]>;
-//     } catch (err) {
-//         throw err;
-//     }
-// };
-
 const getFilteredExpenses = async (payload: Gen.getFilteredExpenses, req: express.Request, res: express.Response): Promise<Expense[]> => {
     try {
 
@@ -184,7 +153,6 @@ const getFilteredExpenses = async (payload: Gen.getFilteredExpenses, req: expres
 const updateExpense = async (expenseId: string, payload: Gen.Expense, res: express.Response): Promise<void> => {
     try {
         const userExpenses: Expense[] = res.locals.user.expenses;
-        console.log(userExpenses);
         if (!expenseId)
             throw new CustomError("ID is required.", 400);
             const expense = userExpenses?.find(expense => expense.id === expenseId);
