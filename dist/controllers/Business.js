@@ -378,7 +378,7 @@ const upgradeToBusiness = async (res) => {
 };
 const getFilteredExpenses = async (payload, req, res) => {
     try {
-        const Expenses = await businessExpenses(res); // put authme in router, else it wont work.
+        const Expenses = await businessExpenses(res);
         if (!payload.searchQuery && !payload.minAmountQuery && !payload.maxAmountQuery && !payload.userIDQuery)
             return Expenses;
         const search = payload.searchQuery || '';
@@ -430,7 +430,7 @@ const modifyUserExpense = async (expenseID, userID, payload, res, picFile) => {
     catch (err) {
         throw err;
     }
-}; // this controller is not done yet.
+};
 const modifyUserCategory = async (categoryID, userID, payload, res) => {
     try {
         if (!userID)

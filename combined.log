@@ -4652,3 +4652,80 @@
 2023-10-30T20:11:05.717Z [info]: Scheduled task completed successfully, checked 0 users.
 2023-10-30T20:12:05.745Z [info]: Scheduled task completed successfully, deleted 0 users.
 2023-10-30T20:12:05.745Z [info]: Scheduled task completed successfully, checked 0 users.
+2023-11-09T15:31:53.344Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:31:59.207Z [info]: 200 OK - /user/logout - POST - ::1
+2023-11-09T15:31:59.211Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/logout - POST - ::1
+2023-11-09T15:32:59.395Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:05.428Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:19.661Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:33:22.778Z [info]: 200 OK - /user/logout - POST - ::1
+2023-11-09T15:33:24.273Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:25.826Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:26.669Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:14.211Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:15.486Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:21.979Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:39:23.558Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:39:27.518Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:31.024Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:39:36.818Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:39:36.819Z [info]: 200 OK - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:39:36.820Z [error]: undefined - Cannot set headers after they are sent to the client - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:40:25.629Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:41:08.063Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:41:08.067Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:42:08.060Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:42:08.068Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:43:08.087Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:43:08.089Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:44:14.567Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:44:14.582Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:45:14.546Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:45:14.563Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:46:48.452Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:46:48.461Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:49:10.490Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:49:10.501Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:50:41.507Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:50:41.518Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:50:56.164Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:50:58.633Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:51:01.202Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:02.302Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:51:03.092Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:03.868Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:51:04.534Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:05.315Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:51:05.866Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:53.230Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:51:53.233Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:52:45.760Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:52:46.799Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:52:47.562Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:52:48.316Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:52:48.910Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:52:49.914Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:52:50.525Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:53:33.689Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:53:35.595Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:53:36.331Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:53:37.005Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:53:42.559Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:53:45.447Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:54:18.397Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:19.226Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:19.807Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:20.332Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:20.806Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:23.433Z [info]: 200 OK - /user/logout - POST - ::1
+2023-11-09T15:54:26.937Z [info]: 200 OK - /user/login - POST - ::1
+2023-11-09T15:54:27.450Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:27.873Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:28.357Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:28.859Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:29.254Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:29.710Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:55:18.289Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:55:18.834Z [info]: Scheduled task completed successfully, checked 1 users.
+2023-11-09T15:56:18.274Z [info]: Scheduled task completed successfully, deleted 0 users.
+2023-11-09T15:56:18.286Z [info]: Scheduled task completed successfully, checked 0 users.

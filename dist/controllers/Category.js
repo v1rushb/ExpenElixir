@@ -15,7 +15,7 @@ const insertCategory = async (payload, res) => {
                 relations: ["categories"],
             });
             if (!user) {
-                throw new CustomError(`User not found.`, 404); // This should never happen. (unless token becomes suddenly invalid for some reason lol)
+                throw new CustomError(`User not found.`, 404);
             }
             user.categories.push(newCategory);
             await trans.save(user);
@@ -27,7 +27,7 @@ const insertCategory = async (payload, res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-const deleteAllCategory = async (res) => {
+const deleteAllCategories = async (res) => {
     await Category.delete({ users: new EqualOperator(res.locals.user.id) });
 };
 const deleteCategory = async (payload) => {
@@ -79,5 +79,5 @@ const modifyCategory = async (payload, res) => {
         throw new CustomError(`Internal Server Error`, 500);
     }
 };
-export { insertCategory, deleteAllCategory, deleteCategory, totalCategory, modifyCategory, };
+export { insertCategory, deleteAllCategories, deleteCategory, totalCategory, modifyCategory, };
 //# sourceMappingURL=Category.js.map

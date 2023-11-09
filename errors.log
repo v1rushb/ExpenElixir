@@ -744,3 +744,35 @@
 2023-10-30T18:24:07.898Z [error]: undefined - Cannot set headers after they are sent to the client - /user/login - POST - ::1
 2023-10-30T18:27:27.905Z [error]: 409 - User with email: 2111211@ppu.edu.ps or username: bainb1 already exists. - /user/business/add-user - POST - ::1
 2023-10-30T18:30:19.436Z [error]: undefined - fetch failed - /expense/analytics/expenses-by-category - GET - ::1
+2023-11-09T15:31:59.211Z [error]: undefined - Cannot read properties of undefined (reading 'username') - /user/logout - POST - ::1
+2023-11-09T15:32:59.395Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:05.428Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:24.273Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:25.826Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:33:26.669Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:14.211Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:15.486Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:21.979Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:39:23.558Z [error]: 401 - Unauthorized - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:39:27.518Z [error]: 401 - Your session has already been expired. - /user/logout - POST - ::1
+2023-11-09T15:39:36.820Z [error]: undefined - Cannot set headers after they are sent to the client - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:40:25.629Z [error]: 400 - You are already a business user. - /user/upgrade-to-business - POST - ::1
+2023-11-09T15:50:56.164Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:01.202Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:03.092Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:04.534Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:51:05.866Z [error]: 401 - Your session has already been expired. - /user/login - POST - ::1
+2023-11-09T15:53:33.689Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:53:36.331Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:53:42.559Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:18.397Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:19.226Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:19.807Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:20.332Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:20.806Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:27.450Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:27.873Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:28.357Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:28.859Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:29.254Z [error]: 409 - You are already logged in. - /user/login - POST - ::1
+2023-11-09T15:54:29.710Z [error]: 409 - You are already logged in. - /user/login - POST - ::1

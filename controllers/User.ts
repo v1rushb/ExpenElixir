@@ -11,6 +11,8 @@ import { Profile } from '../db/entities/Profile.js';
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '../utils/sesServiceAws.js';
 import logger from '../logger.js';
+import { stripe } from '../stripe-config.js';
+import { upgradeToBusiness } from './Business.js';
 
 
 const insertUser = async (payload: Gen.User): Promise<Users> => {
@@ -95,7 +97,6 @@ const login = async (payload: Gen.login): Promise<Gen.loginReturn> => {
       );
   
       return { username: user.username, email: user.email, token: token };
-  
     } catch (err) {
       if (err instanceof CustomError) {
         throw err;
@@ -179,12 +180,123 @@ const checkForSubscriptionValidation = () => {
 }
 
 const sendResetPasswordEmail = async (payload: Gen.sendResetPasswordEmail): Promise<void> => {
-  const host = process.env.HOST || 'localhost:2073';
+  const host = process.env.HOST || 'localhost:2077';
   const resetLink = 'http://' + host + '/user/reset-password-email?token=' + payload.token;
   const emailSubject = 'ExpenElixir User Password Reset';
   const emailBody = "Dear User,\n\nWe received a request to reset your password. If you didn't make the request, please ignore this email.\n\nTo reset your password, click the link below:\n" + resetLink + "\n\nThis link will expire in 30 minutes.\n\nBest regards,\nExpenElixir Support team.";
 
-  await sendEmail(payload.email,emailBody, emailSubject); // add email   await sendEmail(payload.email,emailBody, emailSubject)
+  await sendEmail(payload.email,emailBody, emailSubject);
+}
+
+const logout = async (req: express.Request,res: express.Response): Promise<string> => {
+  const token = req.cookies["token"];
+  try {
+      if (!token) {
+          throw new CustomError(`You are not logged in.`, 401);
+      }
+
+      jwt.verify(token, process.env.SECRET_KEY || '');
+      const decoded = jwt.decode(token || '', { json: true });
+
+      res.clearCookie("userEmail");
+      res.clearCookie("token");
+      res.clearCookie("loginDate");
+      return decoded?.username;
+  } catch (err) {
+      res.clearCookie("userEmail");
+      res.clearCookie("token");
+      res.clearCookie("loginDate");
+      throw new CustomError(`Your session has already been expired.`, 401);
+  }
+}
+
+const upgradeToBusinessUser = async (req: express.Request, res: express.Response): Promise<void> => {
+   try {
+        const selectedCard = Number(req.body.card);
+        if ((!selectedCard && selectedCard !==0) || selectedCard < 0 && selectedCard > 2) {
+            throw new CustomError(`You must select a valid card.`, 400);
+        }
+
+        const card: Gen.card = res.locals.cards[selectedCard];
+        if (card.cardExp <= new Date()) {
+            throw new CustomError(`Card expired.`, 400);
+        }
+        if (card.amount < 3000) {
+            throw new CustomError(`Insufficient funds.`, 400);
+        }
+        const { name, email } = res.locals.user;
+
+        const customer = await stripe.customers.create({
+            name,
+            email,
+        });
+
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: 3000,
+            currency: 'usd',
+            customer: customer.id,
+            payment_method: 'pm_card_visa',
+            automatic_payment_methods: {
+                enabled: true,
+                allow_redirects: 'never',
+            },
+        });
+
+        const confirmedPaymentIntent = await stripe.paymentIntents.confirm(paymentIntent.id);
+
+        if (confirmedPaymentIntent.status === 'succeeded') {
+            try {
+                const user = res.locals.user;
+                if (user.profile.role !== 'Member') {
+                    if (user.profile.role === 'Root') {
+                        throw new CustomError(`You are already a business user.`, 400);
+                    }
+                    throw new CustomError(`You are not allowed here.`, 401);
+                }
+                await upgradeToBusiness(res);
+            } catch (err: any) {
+                throw err;
+            }
+        } else {
+            throw new CustomError(`Payment failed.`, 400);
+        }
+    } catch (err: any) {
+        throw err;
+    }
+}
+
+const logMe = async (req: express.Request, res: express.Response): Promise<void> => {
+  const { username, password, iamId } = req.body;
+  const token = req.cookies["token"];
+
+  try {
+      if (token) {
+              jwt.verify(token, process.env.SECRET_KEY || '')
+              throw new CustomError(`You are already logged in.`, 409);
+          }
+  } catch (err: any) {
+      if(err.name === 'TokenExpiredError') {
+        res.clearCookie("userEmail");
+        res.clearCookie("token");
+        res.clearCookie("loginDate");
+        throw new CustomError (`Your session has already been expired.`, 401);
+      }
+      throw err;
+  }
+
+  if (username && password) {
+      const payload: Gen.login = {username, password, iamId,res};
+      await login(payload).then(data => {
+          res.cookie("userEmail", data.email, { maxAge: 30 * 60 * 1000 });
+          res.cookie("token", data.token, { maxAge: 30 * 60 * 1000 });
+          res.cookie("loginDate", Date.now(), { maxAge: 30 * 60 * 1000 });
+      }).catch(err => {
+        throw err;
+      });
+  }
+  else {
+      throw new CustomError(`Invalid username or password.`, 401);
+  }
 }
 
 export {
@@ -195,4 +307,7 @@ export {
   checkForVerification,
   sendResetPasswordEmail,
   checkForSubscriptionValidation,
+  logout,
+  upgradeToBusinessUser,
+  logMe,
 }

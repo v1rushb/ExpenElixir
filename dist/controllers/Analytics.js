@@ -4,10 +4,6 @@ import { EqualOperator } from 'typeorm';
 const getExpensesByCategory = async (res) => {
     const expensesByCategory = {};
     const result = [];
-    // const filteredExpenses = res.locals.user.expenses.filter((expense: Expense) => {
-    //     const expenseDate = new Date(expense.expenseDate);
-    //     return expenseDate >= startDate && expenseDate <= endDate;
-    //   });
     console.log(res.locals.user.expenses.category);
     res.locals.user.expenses.forEach((expense) => {
         if (expense.category) {

@@ -13,7 +13,7 @@ import { checkForSubscriptionValidation, checkForVerification } from './controll
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
-const PORT = process.env.PORT || 2073;
+const PORT = process.env.PORT || 2077;
 app.use('/user', userRouter);
 app.use('/income', incomeRouter);
 app.use('/expense', expenseRouter);
